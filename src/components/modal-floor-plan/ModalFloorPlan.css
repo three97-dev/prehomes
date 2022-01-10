@@ -1,0 +1,179 @@
+.modal-floor-plan {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 20px);
+  max-height: 510px;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+@media screen and (min-width: 834px) {
+  .modal-floor-plan {
+    top: 50%;
+    width: 100%;
+    max-width: 1410px;
+    max-height: 520px;
+  }
+}
+
+.modal-floor-plan:focus {
+  outline: none;
+}
+
+.modal-floor-plan-overlay:focus {
+  outline: none;
+}
+
+.modal-floor-plan-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  filter: drop-shadow(0px 18px 40px rgba(0, 0, 0, 0.15));
+}
+
+@-moz-document url-prefix() {
+  .modal-floor-plan-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #af0000;
+  width: 50px;
+  height: 50px;
+  border-top-right-radius: 15px;
+  z-index: 91;
+}
+
+.close-button:before {
+  content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0IDEuNDFMMTIuNTkgMEw3IDUuNTlMMS40MSAwTDAgMS40MUw1LjU5IDdMMCAxMi41OUwxLjQxIDE0TDcgOC40MUwxMi41OSAxNEwxNCAxMi41OUw4LjQxIDdMMTQgMS40MVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==");
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 93;
+}
+
+.modal-flor-plan-grid {
+  display: grid;
+  grid-template-rows: minmax(auto, 20rem) 1rem minmax(auto, 30rem);
+  grid-template-areas:
+    "ModalImage"
+    "."
+    "ModalDescriptions";
+}
+@media screen and (min-width: 834px) {
+  .modal-flor-plan-grid {
+    display: grid;
+    grid-template-columns: minmax(auto, 49rem) minmax(auto, 19.4rem) minmax(auto, 70rem);
+    grid-template-areas: "ModalImage . ModalDescriptions";
+  }
+}
+
+.modal-floor-plan-titles {
+  @apply text-11px leading-11px font-bold font-metropolis text-black mb-20px;
+}
+@media screen and (min-width: 834px) {
+  .modal-floor-plan-titles {
+    @apply text-16px leading-16px;
+  }
+}
+
+.modal-floor-plan-values {
+  @apply text-18px leading-18px font-metropolis text-black mb-25px;
+}
+@media screen and (min-width: 834px) {
+  .modal-floor-plan-values {
+    @apply text-26px leading-26px;
+  }
+}
+
+.modal-floor-plan-price {
+  @apply text-18px leading-18px font-metropolis mb-25px;
+}
+@media screen and (min-width: 834px) {
+  .modal-floor-plan-price {
+    @apply text-42px leading-42px;
+  }
+}
+
+.apartment-parameters-grid-area {
+  display: grid;
+  grid-template-columns:
+    minmax(auto, 15.4rem)
+    minmax(auto, 15.4rem)
+    minmax(auto, 15.4rem);
+  grid-template-areas:
+    "SquareFootageTitle BedroomsTitle BathroomsTitle"
+    "SquareFootageValue BedroomsValue BathroomsValue";
+}
+@media screen and (min-width: 834px) {
+  .apartment-parameters-grid-area {
+    display: grid;
+    grid-template-columns:
+      minmax(auto, 15.4rem)
+      minmax(auto, 9.8rem)
+      minmax(auto, 15.4rem)
+      minmax(auto, 4.4rem)
+      minmax(auto, 15.4rem);
+    grid-template-areas:
+      "SquareFootageTitle . BedroomsTitle . BathroomsTitle"
+      "SquareFootageValue . BedroomsValue . BathroomsValue";
+  }
+}
+
+.grid-square-footage-title-area {
+  grid-area: SquareFootageTitle;
+}
+
+.grid-bedrooms-title-area {
+  grid-area: BedroomsTitle;
+}
+
+.grid-bathrooms-title-area {
+  grid-area: BathroomsTitle;
+}
+
+.grid-square-footage-value-area {
+  grid-area: SquareFootageValue;
+}
+
+.grid-bedrooms-value-area {
+  grid-area: BedroomsValue;
+}
+
+.grid-bathrooms-value-area {
+  grid-area: BathroomsValue;
+}
+.modal-flor-plan-image-area {
+  grid-area: ModalImage;
+}
+.modal-flor-plan-descriptions-area {
+  grid-area: ModalDescriptions;
+}
+
+.button-favourite {
+  display: inline-block;
+  margin-right: 8px;
+  padding-right: 5px;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  column-gap: 20px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}

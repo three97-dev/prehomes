@@ -1,0 +1,67 @@
+.home-hero-input-shadow {
+  box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  z-index: 1;
+  float: left;
+  width: 100%;
+  margin: 2px 0 0;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #dfe2e5;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding-top: 16px;
+  overflow: hidden;
+}
+
+.list-item {
+  height: 44px;
+  padding: 6px;
+}
+
+.list-item:hover {
+  cursor: pointer;
+  background-color: #dfe2e5;
+}
+
+.list-item:last-child {
+  border-top: 1px solid #dfe2e5;
+}
+
+.item-search-for {
+  width: 100%;
+  text-align: center;
+  height: 31px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 31px;
+}
+
+.item-image {
+  width: 44px;
+  height: 32px;
+  float: left;
+  margin-right: 2%;
+  padding-top: 8px;
+}
+
+.text-wrapper {
+  text-align: left;
+}
+
+.text-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

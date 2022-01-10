@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 62.5%;
+  color: #0b121d;
+}
+
+html body {
+  width: 100%;
+}
+
+@font-face {
+  font-family: "Rosario";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Rosario"), url("../fonts/rosario/Rosario-Regular.woff2") format("woff2"),
+    url("../fonts/rosario/Rosario-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Rosario";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Rosario"), url("../fonts/rosario/Rosario-Bold.woff2") format("woff2"),
+    url("../fonts/rosario/Rosario-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Metropolis";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Metropolis"), url("../fonts/metropolis/metropolis-regular.woff2") format("woff2"),
+    url("../fonts/metropolis/metropolis-regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Metropolis";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Metropolis"), url("../fonts/metropolis/metropolis-bold.woff2") format("woff2"),
+    url("../fonts/metropolis/metropolis-bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Late November";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Late November"), local("Late-November"), url("../fonts/late-november/late-november.woff2") format("woff2"),
+    url("../fonts/late-november/late-november.woff") format("woff");
+}
+@font-face {
+  font-family: "Late November";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Late November"), local("Late-November"),
+    url("../fonts/late-november/late-november-bold.woff2") format("woff2"),
+    url("../fonts/late-november/late-november-bold.woff") format("woff");
+}
+
+@layer utilities {
+  @variants responsive {
+    .component-margins-mobile {
+      margin-top: var(--margin-top-mobile);
+      margin-bottom: var(--margin-bottom-mobile);
+    }
+
+    .component-margins {
+      margin-top: var(--margin-top);
+      margin-bottom: var(--margin-bottom);
+    }
+  }
+}

@@ -1,0 +1,60 @@
+@layer utilities {
+  @variants responsive {
+    .businnes-life-cycle-tiles-mobile {
+      grid-template-columns: 32.1rem;
+      grid-template-areas:
+        "BusinnesLifeCycleTilesTitle"
+        "BusinnesLifecycleTilesTiles1"
+        "BusinnesLifecycleTilesTiles2"
+        "BusinnesLifecycleTilesTiles3"
+        "BusinnesLifecycleTilesTiles4"
+        "BusinnesLifeCycleTilesButton";
+    }
+    .businnes-life-cycle-tiles-grid-tablet {
+      grid-template-columns: 33.6rem 33.6rem;
+      grid-template-rows: auto;
+      gap: 0;
+      grid-template-areas:
+        "BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle"
+        "BusinnesLifecycleTilesTiles1 BusinnesLifecycleTilesTiles2"
+        "BusinnesLifecycleTilesTiles3 BusinnesLifecycleTilesTiles4"
+        "BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton";
+    }
+    .businnes-life-cycle-tiles-grid-web {
+      grid-template-columns: 26.7rem 27.7rem 27.5rem 26.7rem;
+      grid-template-areas:
+        "BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle"
+        "BusinnesLifecycleTilesTiles1 BusinnesLifecycleTilesTiles2 BusinnesLifecycleTilesTiles3 BusinnesLifecycleTilesTiles4"
+        "BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton";
+    }
+    .businnes-life-cycle-tiles-grid-webHD {
+      grid-template-columns: 40.6rem 41.4rem 41.4rem 40.6rem;
+      grid-template-areas:
+        "BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle BusinnesLifeCycleTilesTitle"
+        "BusinnesLifecycleTilesTiles1 BusinnesLifecycleTilesTiles2 BusinnesLifecycleTilesTiles3 BusinnesLifecycleTilesTiles4"
+        "BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton BusinnesLifeCycleTilesButton";
+    }
+    .businnes-life-cycle-tiles-title {
+      grid-area: BusinnesLifeCycleTilesTitle;
+    }
+    .businnes-life-cycle-tiles-tiles1 {
+      grid-area: BusinnesLifecycleTilesTiles1;
+    }
+    .businnes-life-cycle-tiles-tiles2 {
+      grid-area: BusinnesLifecycleTilesTiles2;
+    }
+    .businnes-life-cycle-tiles-tiles3 {
+      grid-area: BusinnesLifecycleTilesTiles3;
+    }
+    .businnes-life-cycle-tiles-tiles4 {
+      grid-area: BusinnesLifecycleTilesTiles4;
+    }
+    .businnes-life-cycle-tiles-button {
+      grid-area: BusinnesLifeCycleTilesButton;
+    }
+
+    .modal-background {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}

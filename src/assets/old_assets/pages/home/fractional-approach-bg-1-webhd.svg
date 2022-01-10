@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="168.348" height="168.348" viewBox="0 0 168.348 168.348">
+  <defs>
+    <linearGradient id="fractional-approach-bg-1-webhd-linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+  </defs>
+  <circle cx="84.174" cy="84.174" r="84.174" fill="url(#fractional-approach-bg-1-webhd-linear-gradient)"/>
+</svg>

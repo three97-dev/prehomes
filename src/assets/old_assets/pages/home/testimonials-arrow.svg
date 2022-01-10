@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+    <g id="Button_-_Sm._Arrow" data-name="Button - Sm. Arrow" transform="translate(35 35) rotate(180)">
+        <g id="Group_2" data-name="Group 2" transform="translate(10.824 11.715)">
+            <line id="Line_1" data-name="Line 1" x2="12.447" transform="translate(0 5.375)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+            <line id="Line_2" data-name="Line 2" x2="5.375" y2="5.375" transform="translate(7.072)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+            <line id="Line_3" data-name="Line 3" y1="5.375" x2="5.375" transform="translate(7.072 5.375)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+        </g>
+    </g>
+</svg>

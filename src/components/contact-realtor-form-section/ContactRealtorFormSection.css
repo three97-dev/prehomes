@@ -1,0 +1,62 @@
+@layer base {
+  @variants responsive {
+    .contact-realtor-form-grid-mobile {
+      grid-template-rows: auto 2.3rem auto 1.9rem auto 2.3rem auto 1.7rem auto 1.6rem auto auto;
+      grid-template-areas:
+        "ContactRealtorFormFirstName"
+        "."
+        "ContactRealtorFormLastName"
+        "."
+        "ContactRealtorFormEmail"
+        "."
+        "ContactRealtorFormPhone"
+        "."
+        "ContactRealtorFormInformation"
+        "."
+        "ContactRealtorFormErrorMessage"
+        "ContactRealtorFormButton";
+    }
+
+    .contact-realtor-form-grid {
+      grid-template-columns: auto 3.4rem auto;
+      grid-template-rows: auto 1.7rem auto 1.7rem auto 3.4rem auto;
+      grid-template-areas:
+        "ContactRealtorFormFirstName . ContactRealtorFormLastName"
+        ". . . "
+        "ContactRealtorFormEmail . ContactRealtorFormPhone"
+        ". . ."
+        "ContactRealtorFormInformation ContactRealtorFormInformation ContactRealtorFormInformation"
+        ". . . "
+        "ContactRealtorFormErrorMessage . ContactRealtorFormButton";
+    }
+    .contact-realtor-form-first-name-area {
+      grid-area: ContactRealtorFormFirstName;
+    }
+    .contact-realtor-form-last-name-area {
+      grid-area: ContactRealtorFormLastName;
+    }
+    .contact-realtor-form-email-area {
+      grid-area: ContactRealtorFormEmail;
+    }
+    .contact-realtor-form-phone-area {
+      grid-area: ContactRealtorFormPhone;
+    }
+    .contact-realtor-form-information-area {
+      grid-area: ContactRealtorFormInformation;
+    }
+    .contact-realtor-form-message-area {
+      grid-area: ContactRealtorFormErrorMessage;
+    }
+    .contact-realtor-form-button-area {
+      grid-area: ContactRealtorFormButton;
+    }
+
+    .contact-realtor-form-button-shadow {
+      box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-realtor-form-form-box-shadow {
+      box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}

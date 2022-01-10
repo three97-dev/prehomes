@@ -1,0 +1,21 @@
+@layer base {
+  @variants responsive {
+    .pie-chart-web-grid {
+      grid-template-columns: 1fr 444px 104px 536px 1fr;
+      grid-template-areas: ". PieChartContent . PieChartDiagram .";
+    }
+
+    .pie-chart-webhd-grid {
+      grid-template-columns: 1fr 674px 154px 812px 1fr;
+      grid-template-areas: ". PieChartContent . PieChartDiagram .";
+    }
+
+    .pie-chart-content-area {
+      grid-area: PieChartContent;
+    }
+
+    .pie-chart-diagram-area {
+      grid-area: PieChartDiagram;
+    }
+  }
+}

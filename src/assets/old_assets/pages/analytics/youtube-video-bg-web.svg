@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="231.047" height="212.733" viewBox="0 0 231.047 212.733">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+  </defs>
+  <g id="youtube-video-bg-web" transform="translate(20.047 -3102)">
+    <circle id="Ellipse_318" data-name="Ellipse 318" cx="97.211" cy="97.211" r="97.211" transform="translate(-20.047 3120.311)" fill="#f15d5e"/>
+    <circle id="Ellipse_319" data-name="Ellipse 319" cx="18.312" cy="18.312" r="18.312" transform="translate(174.376 3102)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

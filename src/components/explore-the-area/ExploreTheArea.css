@@ -1,0 +1,76 @@
+@layer base {
+  @variants responsive {
+    .walk-score-grid-area-mobile {
+      display: grid;
+      grid-template-columns: 2.2rem 3.1rem 13.4rem 5.6rem 3.7rem;
+      grid-template-areas: "PedestrianIcon . WalkScoreTitle . WalkScoreNumber";
+    }
+
+    .walk-score-grid-area {
+      display: grid;
+      grid-template-columns: 2.2rem 3.1rem 13.4rem 2rem 3.7rem 2rem 2rem;
+      grid-template-areas: "PedestrianIcon . WalkScoreTitle . WalkScoreNumber . WalkScoreHelpMark";
+    }
+
+    .walk-score-grid-pedestrian-area {
+      grid-area: PedestrianIcon;
+    }
+    .walk-score-grid-title-area {
+      grid-area: WalkScoreTitle;
+    }
+    .walk-score-grid-number-area {
+      grid-area: WalkScoreNumber;
+    }
+    .walk-score-grid-helpmark-area {
+      grid-area: WalkScoreHelpMark;
+    }
+
+    .bike-score-grid-area-mobile {
+      display: grid;
+      grid-template-columns: 2.4rem 3.1rem 13.4rem 5.4rem 3.7rem;
+      grid-template-areas: "CyclistIcon . BikeScoreTitle . BikeScoreNumber";
+    }
+
+    .bike-score-grid-area {
+      display: grid;
+      grid-template-columns: 2.4rem 2rem 13.4rem 2rem 3.7rem 2rem 2rem;
+      grid-template-areas: "CyclistIcon . BikeScoreTitle . BikeScoreNumber . BikeScoreHelpMark";
+    }
+
+    .bike-score-grid-pedestrian-area {
+      grid-area: CyclistIcon;
+    }
+    .bike-score-grid-title-area {
+      grid-area: BikeScoreTitle;
+    }
+    .bike-score-grid-number-area {
+      grid-area: BikeScoreNumber;
+    }
+    .bike-score-grid-helpmark-area {
+      grid-area: BikeScoreHelpMark;
+    }
+
+    .transit-sckore-grid-area-mobile {
+      grid-template-columns: 2.4rem 3.1rem 13.4rem 5.4rem 3.7rem;
+      grid-template-areas: "BusIcon . TransitScoreTitle . TransitScoreNumber";
+    }
+
+    .transit-sckore-grid-area {
+      grid-template-columns: 2.4rem 2rem 13.4rem 2rem 3.7rem 2rem 2rem;
+      grid-template-areas: "BusIcon . TransitScoreTitle . TransitScoreNumber . TransitScoreHelpMark";
+    }
+
+    .transit-sckore-grid-pedestrian-area {
+      grid-area: BusIcon;
+    }
+    .transit-sckore-grid-title-area {
+      grid-area: TransitScoreTitle;
+    }
+    .transit-sckore-grid-number-area {
+      grid-area: TransitScoreNumber;
+    }
+    .transit-sckore-grid-helpmark-area {
+      grid-area: TransitScoreHelpMark;
+    }
+  }
+}

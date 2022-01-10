@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1405.138" height="202.714" viewBox="0 0 1405.138 202.714">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+  </defs>
+  <g id="how-crm-helps-bg-web" transform="translate(-50.494 -2397.643)">
+    <g id="Group_2504" data-name="Group 2504" transform="translate(76 50.61)">
+      <circle id="Ellipse_205" data-name="Ellipse 205" cx="101.357" cy="101.357" r="101.357" transform="translate(1176.919 2347.033)" fill="url(#linear-gradient)"/>
+      <circle id="Ellipse_207" data-name="Ellipse 207" cx="18.534" cy="18.534" r="18.534" transform="translate(1059 2429.856)" fill="#f15d5e"/>
+    </g>
+    <circle id="Ellipse_211" data-name="Ellipse 211" cx="50.88" cy="50.88" r="50.88" transform="translate(50.494 2479.239)" fill="#f15d5e"/>
+    <circle id="Ellipse_212" data-name="Ellipse 212" cx="25.794" cy="25.794" r="25.794" transform="translate(141.655 2433.305)" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>

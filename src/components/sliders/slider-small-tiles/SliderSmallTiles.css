@@ -1,0 +1,15 @@
+.small-tile-prev-arrow {
+  position: absolute;
+  top: calc(50% - 41px);
+  left: -50px;
+  -ms-transform: translateX(calc(50% - 17px));
+  -webkit-transform: translate(calc(50% - 17px));
+}
+
+.small-tile-next-arrow {
+  position: absolute;
+  top: calc(50% - 41px);
+  right: -50px;
+  -ms-transform: translateX(-50% - 17px);
+  -webkit-transform: translate(-50% - 17px);
+}

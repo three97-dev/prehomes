@@ -1,0 +1,37 @@
+@layer base {
+  @variants responsive {
+    .area-au-texts {
+      grid-area: AUTexts;
+    }
+    .area-au-tiles {
+      grid-area: AUTiles;
+    }
+
+    .au-grid-mobile {
+      grid-template-areas:
+        "AUTexts"
+        "AUTiles";
+    }
+    .au-grid-tablet {
+      grid-template-columns: 672px;
+    }
+    .au-grid-web {
+      grid-template-columns: 536px 552px;
+      grid-template-areas: "AUTexts AUTiles";
+    }
+    .au-grid-webhd {
+      grid-template-columns: 812px 828px;
+      grid-template-areas: "AUTexts AUTiles";
+    }
+
+    .au-tile-grid-tablet {
+      grid-template-columns: 136px 324px;
+    }
+    .au-tile-grid-web {
+      grid-template-columns: 148px 256px;
+    }
+    .au-tile-grid-webhd {
+      grid-template-columns: 102px 532px;
+    }
+  }
+}

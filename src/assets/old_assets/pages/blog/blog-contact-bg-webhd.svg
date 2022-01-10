@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2060.5" height="531" viewBox="0 0 2060.5 531">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+  </defs>
+  <g id="blog-contact-bg-webhd" transform="translate(-2647.5 -3498.5)">
+    <g transform="matrix(1, 0, 0, 1, 2647.5, 3498.5)">
+      <circle id="Ellipse_356-2" data-name="Ellipse 356" cx="117" cy="117" r="117" transform="translate(138.5 138.5)" fill="url(#linear-gradient)"/>
+    </g>
+    <circle id="Ellipse_357" data-name="Ellipse 357" cx="22" cy="22" r="22" transform="translate(3045 3665)" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse" cx="109" cy="108.5" rx="109" ry="108.5" transform="translate(4490 3631)" opacity="0.995" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_358" data-name="Ellipse 358" cx="29.5" cy="29.5" r="29.5" transform="translate(4397 3789)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

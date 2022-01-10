@@ -1,0 +1,18 @@
+.cluster-icon {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 100px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.cluster-icon > img {
+  display: none;
+}
+
+.cluster-icon > div {
+  color: #ffffff !important;
+  font-size: 12px !important;
+  line-height: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+}

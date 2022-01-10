@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1921" height="430" viewBox="0 0 1921 430">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="142" cy="142.5" rx="142" ry="142.5" transform="translate(-0.211 -0.314)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="donation-win-bg-webhd-1" transform="translate(76 -4120)">
+    <circle id="Ellipse_138" data-name="Ellipse 138" cx="50.5" cy="50.5" r="50.5" transform="translate(193 4265)" fill="url(#linear-gradient)"/>
+    <circle id="Ellipse_139" data-name="Ellipse 139" cx="123" cy="123" r="123" transform="translate(-76 4120)" fill="#f15d5e"/>
+    <circle id="Ellipse_141" data-name="Ellipse 141" cx="22.5" cy="22.5" r="22.5" transform="translate(1642 4243)" fill="url(#linear-gradient)"/>
+    <circle id="Ellipse_194" data-name="Ellipse 194" cx="64" cy="64" r="64" transform="translate(1717 4126)" fill="url(#linear-gradient-3)"/>
+    <g id="Group_2245" data-name="Group 2245" transform="translate(2268.809 1907.655)">
+      <g id="Group_75" data-name="Group 75" transform="translate(-1662.598 2357.659)" clip-path="url(#clip-path)">
+        <line id="Line_50" data-name="Line 50" y1="251" x2="251" transform="translate(34.289 29.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_51" data-name="Line 51" y1="250" x2="251" transform="translate(50.289 46.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_52" data-name="Line 52" y1="250" x2="250" transform="translate(67.289 62.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_53" data-name="Line 53" y1="245" x2="245" transform="translate(88.289 78.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_54" data-name="Line 54" y1="223" x2="223" transform="translate(108.289 112.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_55" data-name="Line 55" y1="223" x2="223" transform="translate(125.289 128.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_56" data-name="Line 56" y1="231" x2="231" transform="translate(-53.711 -83.814)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_57" data-name="Line 57" y1="231" x2="231" transform="translate(-37.711 -67.814)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_58" data-name="Line 58" y1="251" x2="251" transform="translate(-30.711 -62.814)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_59" data-name="Line 59" y1="251" x2="251" transform="translate(-14.711 -46.814)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_60" data-name="Line 60" y1="227" x2="228" transform="translate(1.289 -8.814)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_61" data-name="Line 61" y1="228" x2="228" transform="translate(17.289 7.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_62" data-name="Line 62" y1="228" x2="228" transform="translate(33.289 23.186)" fill="none" stroke="#f15d5e" stroke-miterlimit="10" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

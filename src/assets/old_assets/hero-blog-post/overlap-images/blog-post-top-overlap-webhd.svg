@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="202" height="203" viewBox="0 0 202 203">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+  </defs>
+  <ellipse id="blog-post-top-overlap-webhd" cx="101" cy="101.5" rx="101" ry="101.5" fill="url(#linear-gradient)"/>
+</svg>

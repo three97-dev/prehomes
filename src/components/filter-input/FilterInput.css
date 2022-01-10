@@ -1,0 +1,11 @@
+.search-input[type="number"]::-webkit-outer-spin-button,
+.search-input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.search-input[type='number'],
+.search-input[type="number"]:hover,
+.search-input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}

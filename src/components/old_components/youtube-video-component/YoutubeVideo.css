@@ -1,0 +1,34 @@
+@layer utilities {
+  @variants responsive {
+    .youtube-video-mobile-grid {
+      grid-template-columns: 318px;
+      grid-template-areas:
+        "YoutubeVideoContent"
+        "YoutubeVideoVideo";
+    }
+
+    .youtube-video-tablet-grid {
+      grid-template-columns: 672px;
+      grid-template-areas:
+        "YoutubeVideoContent"
+        "YoutubeVideoVideo";
+    }
+    .youtube-video-desktop-grid {
+      grid-template-columns: 444px 108px 536px;
+      grid-template-areas: "YoutubeVideoContent . YoutubeVideoVideo";
+    }
+
+    .youtube-video-hd-grid {
+      grid-template-columns: 674px 154px 812px;
+      grid-template-areas: "YoutubeVideoContent . YoutubeVideoVideo";
+    }
+
+    .youtube-video-content-area {
+      grid-area: YoutubeVideoContent;
+    }
+
+    .youtube-video-video-area {
+      grid-area: YoutubeVideoVideo;
+    }
+  }
+}

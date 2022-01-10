@@ -1,0 +1,53 @@
+@media (min-width: 834px) {
+  .footer-grid-area {
+    display: grid;
+    grid-template-columns:
+      minmax(auto, 23.1rem)
+      minmax(auto, 2rem)
+      minmax(auto, 52.3rem)
+      minmax(auto, 2rem)
+      minmax(auto, 23.1rem);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "Address . Disclaimer . SocialMedia"
+      "Address . Disclaimer . ContactUs";
+  }
+}
+
+@media (min-width: 1250px) {
+  .footer-grid-area {
+    grid-template-columns:
+      23.1rem
+      auto
+      52.3rem
+      auto
+      23.1rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .footer-grid-area {
+    grid-template-columns:
+      23.1rem
+      minmax(10rem, 18rem)
+      minmax(55rem, 85.2rem)
+      minmax(10rem, 18rem)
+      23.1rem;
+  }
+}
+
+.footer-grid-address-area {
+  grid-area: Address;
+}
+
+.footer-grid-disclaimer-area {
+  grid-area: Disclaimer;
+}
+
+.footer-grid-social-media-area {
+  grid-area: SocialMedia;
+}
+
+.footer-grid-contact-us-area {
+  grid-area: ContactUs;
+}

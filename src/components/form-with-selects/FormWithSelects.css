@@ -1,0 +1,44 @@
+@layer base {
+  @variants responsive {
+    .form-with-selects-grid {
+      grid-template-columns: 1fr 4.4rem 1fr 4.4rem 1fr 4.4rem 1fr;
+      grid-template-areas:
+        "FormWithSelectsFirstNameInput FormWithSelectsFirstNameInput FormWithSelectsFirstNameInput . FormWithSelectsLastNameInput FormWithSelectsLastNameInput FormWithSelectsLastNameInput"
+        "FormWithSelectsEmailInput FormWithSelectsEmailInput FormWithSelectsEmailInput . FormWithSelectsPhoneInput FormWithSelectsPhoneInput FormWithSelectsPhoneInput"
+        "FormWithSelectsRealtorDropdown . FormWithSelectsPurchaseDropdown . FormWithSelectsHearAboutUsDropdown FormWithSelectsHearAboutUsDropdown FormWithSelectsHearAboutUsDropdown"
+        ". . . . . FormWithSelectsButton FormWithSelectsButton";
+    }
+
+    .form-with-selects-first-name-input-area {
+      grid-area: FormWithSelectsFirstNameInput;
+    }
+
+    .form-with-selects-last-name-input-area {
+      grid-area: FormWithSelectsLastNameInput;
+    }
+
+    .form-with-selects-email-input-area {
+      grid-area: FormWithSelectsEmailInput;
+    }
+
+    .form-with-selects-phone-input-area {
+      grid-area: FormWithSelectsPhoneInput;
+    }
+
+    .form-with-selects-realtor-dropdown-area {
+      grid-area: FormWithSelectsRealtorDropdown;
+    }
+
+    .form-with-selects-purchase-dropdown-area {
+      grid-area: FormWithSelectsPurchaseDropdown;
+    }
+
+    .form-with-selects-hear-about-us-dropdown-area {
+      grid-area: FormWithSelectsHearAboutUsDropdown;
+    }
+
+    .form-with-selects-first-button-area {
+      grid-area: FormWithSelectsButton;
+    }
+  }
+}

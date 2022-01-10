@@ -1,0 +1,67 @@
+.drop-down-grid {
+  display: none;
+}
+@media screen and (min-width: 834px) {
+  .drop-down-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 105px));
+    column-gap: 40px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .drop-down-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 155px));
+    column-gap: 40px;
+  }
+}
+
+.table-head th {
+  padding-bottom: 40px;
+}
+@media screen and (min-width: 834px) {
+  .table-head th {
+    padding-top: 20px;
+  }
+}
+
+.table-head-item {
+  width: 200px;
+  text-align: start;
+  @apply text-16px leading-16px font-bold font-metropolis;
+}
+
+.table-info {
+  width: 100%;
+}
+@media screen and (min-width: 834px) {
+  .table-info {
+    padding-left: 2px;
+  }
+}
+
+.table-info:nth-child(odd) {
+  background-color: #e5e5e5;
+}
+
+.table-info:nth-child(even) button {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.floor-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.table-data {
+  width: calc(100vw - 146px);
+}
+
+.table-filters {
+  width: 100%;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+}

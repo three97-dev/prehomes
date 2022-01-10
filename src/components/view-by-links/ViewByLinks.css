@@ -1,0 +1,32 @@
+@layer base {
+  @variants responsive {
+    .view-by-links-grid {
+      display: grid;
+      grid-template-columns: minmax(auto, 310px) auto;
+      column-gap: 59px;
+    }
+    .view-by-links-mobile {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; /* Important for iOS devices */
+    }
+
+    .view-by-links-desktop {
+      overflow-x: hidden;
+      scroll-snap-type: none;
+      -webkit-overflow-scrolling: auto; /* Important for iOS devices */
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .view-by-links-hide-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .view-by-links-hide-scroll {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+
+  }
+}

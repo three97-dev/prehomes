@@ -1,0 +1,18 @@
+@layer base {
+  @variants responsive {
+    .project-overview-grid {
+      grid-template-areas:
+        "ProjectOverviewContent  ProjectOverviewPrice"
+        "ProjectOverviewContent  ProjectOverviewVideo";
+    }
+    .project-overview-content-area {
+      grid-area: ProjectOverviewContent;
+    }
+    .project-overview-price-area {
+      grid-area: ProjectOverviewPrice;
+    }
+    .project-overview-video-area {
+      grid-area: ProjectOverviewVideo;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="866.463" height="165.5" viewBox="0 0 866.463 165.5">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+  </defs>
+  <g id="how-crm-helps-bg-tablet" transform="translate(-18 -3311)">
+    <g id="Group_2314" data-name="Group 2314" transform="translate(87 247.555)">
+      <circle id="Ellipse_231" data-name="Ellipse 231" cx="47.5" cy="47.5" r="47.5" transform="translate(-69 3105.445)" fill="#f15d5e"/>
+      <circle id="Ellipse_232" data-name="Ellipse 232" cx="24" cy="24" r="24" transform="translate(16 3063.445)" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="Group_2315" data-name="Group 2315" transform="translate(83 348.104)">
+      <circle id="Ellipse_205" data-name="Ellipse 205" cx="63.686" cy="63.686" r="63.686" transform="translate(674.092 2969.728)" fill="url(#linear-gradient-2)"/>
+      <circle id="Ellipse_207" data-name="Ellipse 207" cx="11.645" cy="11.645" r="11.645" transform="translate(600 3021.768)" fill="#f15d5e"/>
+      <circle id="Ellipse_206" data-name="Ellipse 206" cx="31.297" cy="31.297" r="31.297" transform="translate(659.535 3065.802)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

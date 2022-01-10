@@ -1,0 +1,78 @@
+@layer utilities {
+  @variants responsive {
+    .analytics-features-image-text-desktop-grid {
+      grid-template-columns: 1fr 536px 16px 536px 1fr;
+      grid-template-areas: ". AnalyticsImage . AnalyticsText .";
+    }
+
+    .analytics-features-image-text-hd-grid {
+      grid-template-columns: 1fr 812px 16px 674px 138px 1fr;
+      grid-template-areas: ". AnalyticsImage . AnalyticsText . .";
+    }
+
+    .analytics-features-image-area {
+      grid-area: AnalyticsImage;
+    }
+
+    .analytics-features-text-area {
+      grid-area: AnalyticsText;
+    }
+
+    .analytics-features-mobile-tiles-grid {
+      grid-template-columns: 318px;
+      grid-template-areas:
+        "AnalyticsFeaturesTile1"
+        "AnalyticsFeaturesTile2"
+        "AnalyticsFeaturesTile3"
+        "AnalyticsFeaturesTile4"
+        "AnalyticsFeaturesTile5"
+        "AnalyticsFeaturesTile6";
+    }
+
+    .analytics-features-tablet-tiles-grid {
+      grid-template-columns: repeat(2, 337px);
+      grid-template-areas:
+        "AnalyticsFeaturesTile1 AnalyticsFeaturesTile2"
+        "AnalyticsFeaturesTile3 AnalyticsFeaturesTile4"
+        "AnalyticsFeaturesTile5 AnalyticsFeaturesTile6";
+    }
+
+    .analytics-features-desktop-tiles-grid {
+      grid-template-columns: 361px 359px 361px;
+      grid-template-areas:
+        "AnalyticsFeaturesTile1 AnalyticsFeaturesTile2 AnalyticsFeaturesTile3"
+        "AnalyticsFeaturesTile4 AnalyticsFeaturesTile5 AnalyticsFeaturesTile6";
+    }
+
+    .analytics-features-desktop-hd-tiles-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "AnalyticsFeaturesTile1 AnalyticsFeaturesTile2 AnalyticsFeaturesTile3"
+        "AnalyticsFeaturesTile4 AnalyticsFeaturesTile5 AnalyticsFeaturesTile6";
+    }
+
+    .analytics-features-tile-1-area {
+      grid-area: AnalyticsFeaturesTile1;
+    }
+
+    .analytics-features-tile-2-area {
+      grid-area: AnalyticsFeaturesTile2;
+    }
+
+    .analytics-features-tile-3-area {
+      grid-area: AnalyticsFeaturesTile3;
+    }
+
+    .analytics-features-tile-4-area {
+      grid-area: AnalyticsFeaturesTile4;
+    }
+
+    .analytics-features-tile-5-area {
+      grid-area: AnalyticsFeaturesTile5;
+    }
+
+    .analytics-features-tile-6-area {
+      grid-area: AnalyticsFeaturesTile6;
+    }
+  }
+}

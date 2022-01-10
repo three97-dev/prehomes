@@ -1,0 +1,48 @@
+@layer base {
+  @variants responsive {
+    .winner-grid-mobile {
+      grid-template-columns: 31.8rem;
+      grid-template-areas:
+        "WinnerTitle"
+        "WinnerSubTitle"
+        "WinnerContent"
+        "WinnerShadow";
+    }
+    .winner-grid-tablet {
+      grid-template-columns: 67.2rem;
+
+      grid-template-areas:
+        "WinnerTitle"
+        "WinnerSubTitle"
+        "WinnerContent"
+        "WinnerStrong"
+        "WinnerShadow";
+    }
+    .winner-grid-desc {
+      grid-template-columns: 44.4rem 10.8rem 53.6rem;
+      grid-template-areas:
+        "WinnerShadow . WinnerTitle"
+        "WinnerShadow . WinnerSubTitle"
+        "WinnerShadow . WinnerContent";
+    }
+    .winner-grid-HD {
+      grid-template-columns: 67.2rem 15.4rem 81.2rem;
+      grid-template-areas:
+        "WinnerShadow . WinnerTitle"
+        "WinnerShadow . WinnerSubTitle"
+        "WinnerShadow . WinnerContent";
+    }
+    .winner-title-area {
+      grid-area: WinnerTitle;
+    }
+    .winner-subtitle-area {
+      grid-area: WinnerSubTitle;
+    }
+    .winner-content-area {
+      grid-area: WinnerContent;
+    }
+    .winner-shadow-area {
+      grid-area: WinnerShadow;
+    }
+  }
+}

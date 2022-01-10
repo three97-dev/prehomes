@@ -1,0 +1,48 @@
+@layer base {
+  @variants responsive {
+    .switch-location-grid {
+      display: grid;
+      grid-template-columns: minmax(auto, 73.6rem) minmax(auto, 4.3rem) minmax(auto, 34.7rem);
+      grid-template-rows: 6.2rem;
+      grid-template-areas:
+        "Map . Transportation"
+        "Map . Shopping"
+        "Map . Restaurants"
+        "Map . CafesBars"
+        "Map . ArtsEntertainment"
+        "Map . Fitness";
+    }
+
+    .switch-location-map-grid {
+      grid-area: Map;
+    }
+
+    .switch-location-transportation-grid {
+      grid-area: Transportation;
+    }
+
+    .switch-location-shopping-grid {
+      grid-area: Shopping;
+    }
+
+    .switch-location-restaurants-grid {
+      grid-area: Restaurants;
+    }
+
+    .switch-location-cafes-bars-grid {
+      grid-area: CafesBars;
+    }
+
+    .switch-location-arts-entertainment-grid {
+      grid-area: ArtsEntertainment;
+    }
+
+    .switch-location-fitness-grid {
+      grid-area: Fitness;
+    }
+
+    .gm-style-iw + div {
+      display: none;
+    }
+  }
+}

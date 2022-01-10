@@ -1,0 +1,128 @@
+.search-section {
+  width: calc(50% + 20px);
+  padding-right: 40px;
+}
+
+.search-section-list-mode {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.search-container {
+  display: grid;
+  column-gap: 40px;
+  margin-top: 16px;
+}
+
+.grid-regular {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "SearchBar SearchBar SearchBar"
+    "TypeSelect BedsSelect BathsSelect"
+    "MinPriceSelect MaxPriceSelect ."
+    "MinSizeSelect MaxSizeSelect .";
+}
+
+.grid-list-mode {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas:
+    "SearchBar SearchBar SearchBar TypeSelect BedsSelect BathsSelect"
+    "MinPriceSelect MaxPriceSelect MinSizeSelect MaxSizeSelect . .";
+}
+
+.search-bar {
+  grid-area: SearchBar;
+  display: grid;
+  align-items: flex-end;
+  grid-template-columns: auto 57px;
+  gap: 6px;
+  position: relative;
+  min-height: 69px;
+}
+
+.type-select {
+  grid-area: TypeSelect;
+}
+
+.beds-select {
+  grid-area: BedsSelect;
+}
+
+.baths-select {
+  grid-area: BathsSelect;
+}
+
+.min-price-select {
+  grid-area: MinPriceSelect;
+}
+
+.max-price-select {
+  grid-area: MaxPriceSelect;
+}
+
+.min-size-select {
+  grid-area: MinSizeSelect;
+}
+
+.max-size-select {
+  grid-area: MaxSizeSelect;
+}
+
+.switch-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-shadow {
+  box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+}
+
+.result-controls {
+  display: grid;
+  grid-template-columns: auto 149px 57px;
+  gap: 7px;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.result-tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 834px) {
+  .result-tiles-container {
+    display: grid;
+  }
+}
+
+.map-container {
+  position: fixed;
+  right: 0;
+  top: 75px;
+  width: calc(50% - 20px);
+  height: calc(100vh - 75px);
+  z-index: 0;
+}
+
+.search-section-results-container-mobile {
+  min-height: calc(100vh - 257px);
+}
+
+.search-section-map-container-mobile {
+  height: calc(100vh - 257px);
+}
+
+.search-section-tile-mobile {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+@media screen and (max-width: 834px) {
+  body {
+    @apply bg-peach-colour;
+  }
+}

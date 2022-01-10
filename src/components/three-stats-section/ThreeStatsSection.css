@@ -1,0 +1,16 @@
+@layer base {
+  @variants responsive {
+    .three-elements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 40px;
+    }
+
+    .three-elements-grid-title {
+      @apply text-18px sm+:text-14px leading-18px sm+:leading-14px font-bold font-metropolis sm+:text-center text-dark-creamy mt-30px mb-28px sm+:mb-34px;
+    }
+    .three-elements-grid-description {
+      @apply text-23px sm+:text-26px leading-11px sm+:leading-26px font-bold font-metropolis sm+:text-center text-tundora;
+    }
+  }
+}

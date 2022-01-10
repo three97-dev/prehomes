@@ -1,0 +1,49 @@
+@layer base {
+  @variants responsive {
+    .area-hero-content {
+      grid-area: HeroContent;
+    }
+    .hero-grid-mobile {
+      grid-template-areas: "HeroContent";
+    }
+    .hero-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas: ". HeroContent";
+    }
+
+    .hero-h-bg-mobile {
+      height: calc(100vh + 49px);
+    }
+    .hero-h-bg-tablet {
+      height: calc(100vh + 73px);
+    }
+
+    .hero-h-type1-web {
+      height: calc(100vh + 84px);
+    }
+    .hero-h-type1-webhd {
+      height: calc(100vh + 136px);
+    }
+
+    .hero-h-type2-web {
+      height: calc(100vh + 112px);
+    }
+    .hero-h-type2-webhd {
+      height: calc(100vh + 116px);
+    }
+
+    .hero-h-type3-web {
+      height: calc(100vh + 137px);
+    }
+    .hero-h-type3-webhd {
+      height: calc(100vh + 182px);
+    }
+
+    .hero-h-type4-web {
+      height: calc(100vh + 75px);
+    }
+    .hero-h-type4-webhd {
+      height: calc(100vh + 119px);
+    }
+  }
+}

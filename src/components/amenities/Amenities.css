@@ -1,0 +1,9 @@
+@layer base {
+  @variants responsive {
+    .amenities-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(auto, 1fr));
+      column-gap: 36px;
+    }
+  }
+}

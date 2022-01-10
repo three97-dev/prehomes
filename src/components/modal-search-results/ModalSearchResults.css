@@ -1,0 +1,101 @@
+.modal-search-results {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: calc(100vw - 20px);
+  max-height: 500px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 84px;
+  padding-left: 25px;
+  padding-right: 25px;
+  box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+}
+@media screen and (min-width: 769px) {
+  .modal-search-results {
+    padding-left: 41px;
+    max-width: 797px;
+  }
+}
+
+.modal-search-results:focus {
+  outline: none;
+}
+
+.modal-search-results-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  filter: drop-shadow(0px 18px 40px rgba(0, 0, 0, 0.15));
+}
+
+@-moz-document url-prefix() {
+  .modal-search-results-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.modal-search-results-dropdown {
+  max-height: 360px;
+  overflow-y: scroll;
+  padding-right: 25px;
+  background-color: #ffffff;
+}
+
+.modal-search-results-item {
+  padding-top: 10px;
+}
+
+.modal-search-results-item:hover {
+  cursor: pointer;
+  background-color: #dfe2e5;
+}
+
+.item-line {
+  max-width: 683px;
+  margin-top: 10px;
+  border: 1px solid #fbfbfb;
+  box-shadow: inset 2px 0px 5px #e5e5e5;
+}
+
+.modal-search-image {
+  width: 44px;
+  height: 32px;
+  float: left;
+  margin-right: 15px;
+  padding-top: 8px;
+}
+@media screen and (min-width: 769px) {
+  .modal-search-image {
+    margin-right: 45px;
+    padding-left: 20px;
+  }
+}
+
+.modal-search-results-dropdown::-webkit-scrollbar {
+  width: 22px;
+}
+
+.modal-search-results-dropdown::-webkit-scrollbar-track {
+  background: radial-gradient(50% 50% at 50% 50%, #ffeeee 0%, rgba(255, 238, 238, 0) 50.52%, #ffeeee 99.48%);
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+
+.modal-search-results-dropdown::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 22px;
+}

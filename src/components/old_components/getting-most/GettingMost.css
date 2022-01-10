@@ -1,0 +1,43 @@
+@layer base {
+  @variants responsive {
+    .getting-grid-mobile {
+      grid-template-columns: 39rem;
+      grid-template-areas:
+        "TitleBlock"
+        "AnswerBlock1"
+        "AnswerBlock2"
+        "AnswerBlock3";
+    }
+    .getting-grid-tablet {
+      grid-template-columns: 33.6rem 33.6rem;
+      grid-template-areas:
+        "TitleBlock TitleBlock"
+        "AnswerBlock1 AnswerBlock2"
+        "AnswerBlock3 AnswerBlock3";
+    }
+    .getting-grid-web {
+      grid-template-columns: 36rem 36.8rem 36rem;
+      grid-template-areas:
+        "TitleBlock TitleBlock TitleBlock"
+        "AnswerBlock1 AnswerBlock2 AnswerBlock3";
+    }
+    .getting-grid-webHD {
+      grid-template-columns: 54.4rem 55.2rem 54.4rem;
+      grid-template-areas:
+        "TitleBlock TitleBlock TitleBlock"
+        "AnswerBlock1 AnswerBlock2 AnswerBlock3";
+    }
+    .getting-title-area {
+      grid-area: TitleBlock;
+    }
+    .getting-answer-area1 {
+      grid-area: AnswerBlock1;
+    }
+    .getting-answer-area2 {
+      grid-area: AnswerBlock2;
+    }
+    .getting-answer-area3 {
+      grid-area: AnswerBlock3;
+    }
+  }
+}

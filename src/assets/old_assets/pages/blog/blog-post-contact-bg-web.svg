@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1417.41" height="277.726" viewBox="0 0 1417.41 277.726">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+  </defs>
+  <g id="blog-post-contact-bg-web" transform="translate(-6366 -3660)">
+    <circle id="Ellipse_359" data-name="Ellipse 359" cx="72" cy="72" r="72" transform="translate(6366 3770.272)" fill="#f15d5e"/>
+    <circle id="Ellipse_360" data-name="Ellipse 360" cx="36.5" cy="36.5" r="36.5" transform="translate(6495 3705.272)" fill="url(#linear-gradient)"/>
+    <g id="Group_2755" data-name="Group 2755" transform="translate(6371.777 1312.967)">
+      <circle id="Ellipse_205" data-name="Ellipse 205" cx="111.472" cy="111.472" r="111.472" transform="translate(1188.687 2347.033)" fill="url(#linear-gradient-2)"/>
+      <circle id="Ellipse_207" data-name="Ellipse 207" cx="20.384" cy="20.384" r="20.384" transform="translate(1059 2438.122)" fill="#f15d5e"/>
+      <circle id="Ellipse_206" data-name="Ellipse 206" cx="54.781" cy="54.781" r="54.781" transform="translate(1163.208 2515.198)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

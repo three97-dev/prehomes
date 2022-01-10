@@ -1,0 +1,111 @@
+@layer base {
+  @variants responsive {
+    .key-info-grid-area-wrapper-mobile {
+      display: grid;
+      grid-template-rows: auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto;
+      grid-template-areas:
+        "Status Type"
+        " . ."
+        "LaunchDate EstimatedOccupancy"
+        " . ."
+        "MajorIntersection ."
+        " . ."
+        "Architects ."
+        " . ."
+        "Deposit CashDeposit"
+        " . ."
+        "DepositStructure ."
+        " . ."
+        "LockerMaintenance LockerMaintenance";
+
+      align-items: start;
+    }
+
+    .key-info-grid-area-wrapper {
+      display: grid;
+      grid-template-columns:
+        minmax(auto, 252px)
+        auto
+        minmax(auto, 252px)
+        auto
+        minmax(auto, 252px)
+        auto
+        minmax(auto, 252px);
+      grid-template-rows: auto;
+      grid-template-areas:
+        "Status . Type . LaunchDate . EstimatedOccupancy"
+        "MajorIntersection MajorIntersection MajorIntersection . Architects Architects Architects"
+        "Deposit . CashDeposit . DepositStructure . LockerMaintenance";
+      row-gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 1500px) {
+      .key-info-grid-area-wrapper {
+        display: grid;
+        grid-template-columns:
+          minmax(auto, 252px)
+          minmax(auto, 85px)
+          minmax(auto, 252px)
+          minmax(auto, 85px)
+          minmax(auto, 252px)
+          minmax(auto, 85px)
+          minmax(auto, 252px);
+      }
+    }
+
+    @media (max-width: 1366px) {
+      .key-info-grid-area-wrapper {
+        display: grid;
+        grid-template-columns:
+          minmax(auto, 252px)
+          minmax(auto, 38px)
+          minmax(auto, 252px)
+          minmax(auto, 40px)
+          minmax(auto, 252px)
+          minmax(auto, 42px)
+          minmax(auto, 252px);
+      }
+    }
+
+    .key-info-grid-status-area {
+      grid-area: Status;
+    }
+
+    .key-info-grid-type-area {
+      grid-area: Type;
+    }
+
+    .key-info-grid-launch-date-area {
+      grid-area: LaunchDate;
+    }
+
+    .key-info-grid-estimated-occupancy-area {
+      grid-area: EstimatedOccupancy;
+    }
+
+    .key-info-grid-major-intersection-area {
+      grid-area: MajorIntersection;
+    }
+
+    .key-info-grid-architects-area {
+      grid-area: Architects;
+    }
+
+    .key-info-grid-deposit-area {
+      grid-area: Deposit;
+    }
+
+    .key-info-grid-cash-deposit-area {
+      grid-area: CashDeposit;
+    }
+
+    .key-info-grid-deposit-structure-area {
+      grid-area: DepositStructure;
+    }
+
+    .key-info-grid-locker-maintenance-area {
+      grid-area: LockerMaintenance;
+    }
+  }
+}

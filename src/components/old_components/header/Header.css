@@ -1,0 +1,108 @@
+@layer utilities {
+  @variants responsive, focus-visible {
+    .header-focus-outline {
+      outline: 2px solid #000000;
+    }
+
+    .header-mobile-grid {
+      grid-template-columns: 3.6rem 5.2rem auto 3rem 3.6rem;
+      grid-template-areas: ". HeaderLogo . HeaderBurger .";
+    }
+
+    .header-tablet-grid {
+      grid-template-columns: 6.9rem 16.8rem auto 3rem 8.1rem;
+      grid-template-areas: ". HeaderLogo . HeaderBurger .";
+    }
+
+    .header-desktop-grid {
+      grid-template-columns: 4.7rem 16.8rem auto 3.6rem 10.3rem;
+      grid-template-areas: ". HeaderLogo HeaderLinks . HeaderSendButton";
+    }
+
+    .header-hd-grid {
+      grid-template-columns: 9.4rem 16.8rem auto 9.2rem 10.4rem;
+      grid-template-areas: ". HeaderLogo HeaderLinks . HeaderSendButton";
+    }
+
+    .header-logo-area {
+      grid-area: HeaderLogo;
+    }
+
+    .header-burger-area {
+      grid-area: HeaderBurger;
+    }
+
+    .header-links-area {
+      grid-area: HeaderLinks;
+    }
+
+    .header-send-button-area {
+      grid-area: HeaderSendButton;
+    }
+
+    .header-burger-mobile-grid {
+      grid-template-columns: 36px 200px 36px;
+      grid-template-rows: 98px auto 98px;
+      grid-template-areas:
+        ". HeaderBurgerMenuIcon ."
+        ". HeaderBurgerMenuLinks ."
+        ". HeaderBurgerMenuSendButton HeaderBurgerMenuSendButton";
+    }
+
+    .header-burger-tablet-grid {
+      grid-template-columns: 81px 247px 81px;
+      grid-template-rows: 98px auto 98px;
+      grid-template-areas:
+        ". HeaderBurgerMenuIcon ."
+        ". HeaderBurgerMenuLinks ."
+        ". HeaderBurgerMenuSendButton HeaderBurgerMenuSendButton";
+    }
+
+    .header-modal-mobile-grid {
+      grid-template-columns: auto 272px;
+      grid-template-areas: ". HeaderBurgerMenu";
+    }
+
+    .header-modal-tablet-grid {
+      grid-template-columns: auto 409px;
+      grid-template-areas: ". HeaderBurgerMenu";
+    }
+
+    .header-burger-menu-area {
+      grid-area: HeaderBurgerMenu;
+    }
+
+    .header-burger-menu-icon-area {
+      grid-area: HeaderBurgerMenuIcon;
+    }
+
+    .header-burger-menu-links-area {
+      grid-area: HeaderBurgerMenuLinks;
+    }
+
+    .header-burger-menu-send-button-area {
+      grid-area: HeaderBurgerMenuSendButton;
+    }
+
+    .header-slide-to-left {
+      right: 0;
+      transition: right 0.35s;
+    }
+
+    .header-slide-back {
+      right: -100%;
+      transition: right 0.35s;
+    }
+
+    .header-modal-hidden {
+      visibility: hidden;
+      background: linear-gradient(180deg, rgba(9, 7, 67, 0.5), rgba(67, 67, 152, 0.5));
+    }
+
+    .header-modal-visible {
+      visibility: visible;
+      background: #ffffff;
+      opacity: 65%;
+    }
+  }
+}

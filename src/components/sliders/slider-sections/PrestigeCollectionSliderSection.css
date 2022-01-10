@@ -1,0 +1,23 @@
+.prev-arrow {
+  position: absolute;
+  top: calc(50% - 17px);
+  left: -54px;
+  -ms-transform: translateX(calc(50% - 17px));
+  -webkit-transform: translate(calc(50% - 17px));
+}
+
+.next-arrow {
+  position: absolute;
+  top: calc(50% - 17px);
+  right: -54px;
+  -ms-transform: translateX(-50% - 17px);
+  -webkit-transform: translate(-50% - 17px);
+}
+
+.title-section {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.bg-dark-orange-85 {
+  background-color: rgba(172, 160, 134, 0.85);
+}

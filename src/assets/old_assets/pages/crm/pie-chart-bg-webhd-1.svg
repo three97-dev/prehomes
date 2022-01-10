@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1938.542" height="373.548" viewBox="0 0 1938.542 373.548">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.247" y1="0.925" x2="0.695" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1a1a40"/>
+      <stop offset="1" stop-color="#fb5357"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#090743"/>
+      <stop offset="1" stop-color="#434398"/>
+    </linearGradient>
+  </defs>
+  <g id="pie-chart-webhd-1-redo" transform="translate(-77.506 -3853.962)">
+    <g transform="matrix(1, 0, 0, 1, 77.51, 3853.96)">
+      <circle id="Ellipse_213-2" data-name="Ellipse 213" cx="38.274" cy="38.274" r="38.274" transform="translate(1703.49 138.5)" fill="url(#linear-gradient)"/>
+    </g>
+    <circle id="Ellipse_208" data-name="Ellipse 208" cx="42.005" cy="42.005" r="42.005" transform="translate(77.506 4044.323)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_346" data-name="Ellipse 346" cx="22.002" cy="22.002" r="22.002" transform="translate(196.634 4103.329)" fill="#f15d5e"/>
+  </g>
+</svg>
