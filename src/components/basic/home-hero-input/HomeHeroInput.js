@@ -68,7 +68,7 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
   return (
     <div ref={inputMenu} className={`${className} relative`}>
       <input
-        className={`home-hero-input-shadow text-11px md:text-16px leading-11px md:leading-16px font-metropolis w-full z-10 ${height} rounded-15px pl-28px pr-40px placeholder-dark-orange bg-cream-pink md:bg-white focus-visible:outline-none focus:outline-none`}
+        className={`home-hero-input-shadow text-11px md:text-13px leading-24px md:leading-14px font-poppins md:font-late-november font-bold md:font-normal italic md:not-italic w-full z-10 ${height} rounded-15px pl-20px pr-40px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none`}
         type="text"
         placeholder={placeholder}
         onChange={e => setSearchTerm(e.target.value)}
@@ -93,8 +93,8 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
             </li>
           ))}
           <li className="list-item" onMouseDown={openModal}>
-            <div className={`item-search-for text-tundora font-metropolis`}>
-              Search for <b>{searchTerm}</b>
+            <div className={`item-search-for uppercase text-tundora font-metropolis`}>
+              Search for <b>"{searchTerm}"</b>
             </div>
           </li>
         </ul>

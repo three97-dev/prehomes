@@ -63,13 +63,15 @@ const IndexPage = ({ data }) => {
         inputAutocompleteItems={inputAutocompleteItems}
         placeholder={homePageData.searchPlaceholder}
         bottomText={homePageData.videoLinkLabel}
+        bottomTextUnderline={homePageData.videoLinkLabelUnderline}
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle={homePageData.platinumAccessProjectsSliderTitle}
+        helpMarkTooltip={homePageData.platinumAccessProjectsSliderTooltip}
         showHelpMark={true}
         smallTileData={newestReleasesProjects}
-        bgWrapperClasses="bg-simple-cream mx-auto"
+        bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
       />
@@ -77,18 +79,20 @@ const IndexPage = ({ data }) => {
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle={homePageData.newestReleasesSliderTitle}
+        helpMarkTooltip={homePageData.newestReleasesSliderTooltip}
         showHelpMark={true}
         smallTileData={newestReleasesProjects}
-        bgWrapperClasses="bg-simple-cream mx-auto"
+        bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px"
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle={homePageData.launchingSoonSliderTitle}
+        helpMarkTooltip={homePageData.launchingSoonSliderTooltip}
         showHelpMark={true}
         smallTileData={launchingSoonProjects}
-        bgWrapperClasses="bg-simple-cream mx-auto"
+        bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-70px"
         paddingSliderClasses="pt-70px pb-50px"
       />
@@ -127,13 +131,17 @@ export const query = graphql`
       heroTitle
       searchPlaceholder
       videoLinkLabel
+      videoLinkLabelUnderline
       heroImage {
         ...Image
       }
       platinumAccessProjectsSliderTitle
+      platinumAccessProjectsSliderTooltip
       viewDevelopmentsByCity
       newestReleasesSliderTitle
+      newestReleasesSliderTooltip
       launchingSoonSliderTitle
+      launchingSoonSliderTooltip
       viewProjectsByDeveloper
       searchByPropertyType
       townhousePreviewImage {

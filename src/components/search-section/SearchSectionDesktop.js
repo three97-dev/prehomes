@@ -10,9 +10,12 @@ import SearchMap from "../search-map/SearchMap";
 import { options } from "../../utils/filterOptions";
 
 import SearchIcon from "../../assets/search.svg";
-import FilterIcon from "../../assets/button/filter.svg";
-import SquaresIcon from "../../assets/button/squares.svg";
-import SquaresBlackIcon from "../../assets/button/squares_black.svg";
+import FilterWhiteIcon from "../../assets/button/filter-white.svg";
+import FilterGoldIcon from "../../assets/button/filter-gold.svg";
+import SquaresWhiteIcon from "../../assets/button/squares-white.svg";
+import SquaresGoldIcon from "../../assets/button/squares-gold.svg";
+
+import "./SearchSectionDesktop.css";
 
 const SearchSectionDesktop = ({
   onMapChange,
@@ -62,10 +65,10 @@ const SearchSectionDesktop = ({
               />
               <span
                 className={`absolute w-full h-full cursor-pointer rounded-15px ${
-                  isFiltersOpen ? "bg-dark-orange" : "bg-black"
+                  isFiltersOpen ? "bg-dark-orange search-section-switch-inner-shadow" : "bg-white search-section-shadow-border"
                 }`}
               >
-                <img src={FilterIcon} alt="filter" className="switch-image" />
+                <img src={isFiltersOpen ? FilterWhiteIcon : FilterGoldIcon} alt="filter" className="switch-image" />
               </span>
             </label>
           </div>
@@ -130,18 +133,18 @@ const SearchSectionDesktop = ({
         </div>
         <div className="result-container">
           <div className="result-controls">
-            <span className="text-14px leading-14px font-metropolis font-bold text-tundora">
+            <span className="text-13px leading-14px font-poppins font-bold text-tundora">
               {visibleTiles.length} {resultsLabel}
             </span>
             <DropdownSort options={options.sort} value={typeSort} onChange={setTypeSort} />
             <label className="relative inline-block w-57px h-45px">
               <input type="checkbox" onChange={() => setIsListMode(!isListMode)} className="w-0px h-0px opacity-0" />
               <span
-                className={`absolute w-full h-full cursor-pointer rounded-15px button-shadow ${
-                  isListMode ? "bg-dark-orange" : "bg-white"
+                className={`absolute w-full h-full cursor-pointer rounded-15px ${
+                  isListMode ? "bg-dark-orange search-section-switch-inner-shadow" : "bg-white search-section-shadow-border"
                 }`}
               >
-                <img src={isListMode ? SquaresIcon : SquaresBlackIcon} alt="squares" className="switch-image" />
+                <img src={isListMode ? SquaresWhiteIcon : SquaresGoldIcon} alt="squares" className="switch-image" />
               </span>
             </label>
           </div>

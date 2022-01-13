@@ -180,7 +180,7 @@ const SearchSection = ({
             resultsLabel={resultsLabel}
             noResultsLabel={noResultsLabel}
             allProjects={allProjects}
-            className="relative pt-75px pl-20px min-h-screen bg-white z-10"
+            className="relative pt-102px pl-20px min-h-screen bg-light-gray z-10"
           />
         ) : (
           <SearchSectionMobile

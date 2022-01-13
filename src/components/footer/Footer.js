@@ -57,19 +57,24 @@ const Footer = ({ className }) => {
   } = data.contentfulFooter;
 
   return (
-    <div className={classNames("bg-black w-full px-25px md:px-120px pt-50px md:pt-65px pb-70px md:pb-60px", className)}>
+    <div
+      className={classNames(
+        "bg-black-gray w-full px-25px md:px-120px pt-50px md:pt-65px pb-70px md:pb-60px",
+        className
+      )}
+    >
       <div>
         <div className="pb-20px">{isDesktop ? <Image image={footerImage} /> : <Image image={footerImageMobile} />}</div>
         <div className="footer-grid-area">
           <div className="footer-grid-address-area">
-            <div className="text-14px md:text-16px leading-24px text-white font-metropolis pb-25px">
+            <div className="text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold pb-25px">
               {addressBlockText}
             </div>
             <div>
               <Markdown
                 data={address}
                 config={{
-                  p: "text-14px md:text-16px leading-24px text-white font-metropolis",
+                  p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold",
                 }}
               />
             </div>
@@ -78,12 +83,12 @@ const Footer = ({ className }) => {
             <Markdown
               data={disclaimer}
               config={{
-                p: "text-14px md:text-16px leading-24px text-white font-metropolis mb-24px",
+                p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold mb-24px",
               }}
             />
           </div>
           <div className="footer-grid-social-media-area pt-16px md:pt-0px">
-            <div className="text-16px leading-24px text-white font-bold font-metropolis pb-19px">{socialMediaText}</div>
+            <div className="text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold pb-19px">{socialMediaText}</div>
             <div className="pb-26px">
               <UniversalLink link={facebook}>
                 <img src={facebookIcon} className="inline-block mr-20px" />
@@ -100,7 +105,7 @@ const Footer = ({ className }) => {
             <Markdown
               data={contactUs}
               config={{
-                p: "text-16px leading-24px text-white font-metropolis",
+                p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold",
               }}
             />
           </div>

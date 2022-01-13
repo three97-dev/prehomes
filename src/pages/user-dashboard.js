@@ -39,14 +39,16 @@ const UserDashboardPage = ({ data }) => {
       <HeroSection
         image={dashboardPageData.heroImage}
         title={session.name ? `${dashboardPageData.heroTitle}, ${session.name}` : null}
+        isUserDashboard
       />
       {favoriteProjects ? (
         <SliderSmallTiles
           arrowsColor="black-gray-2"
           mainTitle={dashboardPageData.myFavoritesLabel}
+          helpMarkTooltip={dashboardPageData.myFavoritesTooltip}
           showHelpMark={true}
           smallTileData={favoriteProjects}
-          bgWrapperClasses="bg-transparent"
+          bgWrapperClasses="bg-white-pink md:bg-light-gray"
           paddingTitleClasses="pt-95px"
           paddingSliderClasses="pt-70px pb-50px"
         />
@@ -73,7 +75,6 @@ const UserDashboardPage = ({ data }) => {
           priceColumnUnits={projectPageData.priceColumnUnits}
           moreInfoButtonLabel={projectPageData.moreInfoButtonLabel}
           floors={favoriteFloorPlans}
-          projectData={{ projectName: favoriteFloorPlans.length > 0 ? favoriteFloorPlans[0].projectName : "" }}
           projectNameLabel={projectPageData.modalProjectNameLabel}
           suiteNameLabel={projectPageData.suiteNameColumnTitle}
           squareFootageLabel={projectPageData.modalSquareFootageLabel}
@@ -101,6 +102,7 @@ export const query = graphql`
         ...Image
       }
       myFavoritesLabel
+      myFavoritesTooltip
     }
     contentfulProjectPage(isTemplateSample: { ne: true }) {
       heroTopText

@@ -3,7 +3,7 @@
     .view-by-links-grid {
       display: grid;
       grid-template-columns: minmax(auto, 310px) auto;
-      column-gap: 59px;
+      column-gap: 18px;
     }
     .view-by-links-mobile {
       overflow-x: auto;
@@ -27,6 +27,12 @@
       scrollbar-width: none; /* Firefox */
     }
 
+    .view-by-links-item {
+      margin-bottom: 20px;
+    }
 
+    .view-by-links-item:last-child {
+      margin-bottom: 0px;
+    }
   }
 }

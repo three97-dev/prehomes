@@ -125,13 +125,13 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div className={`w-full justify-center px-10px md:px-120px bg-whitesmoke ${className}`}>
+    <div className={`w-full justify-center px-10px md:px-120px bg-whitesmoke sm+:bg-light-gray ${className}`}>
       <div className="w-full max-w-1126px mx-auto justify-center py-10px md:pt-73px md:pb-75px">
         <div className="bg-white pt-55px pb-22px sm+:pb-45px px-17px md:px-50px lg:px-100px rounded-15px contact-realtor-form-form-box-shadow">
-          <div className="text-center mb-15px sm+:mb-13px text-22px sm+:text-29px leading-30px tracking-wide font-bold font-metropolis text-tundora ml-10px">
+          <div className="text-center mb-15px sm+:mb-13px text-29px sm+:text-33px leading-43px sm+:leading-30px tracking-wide font-bold font-poppins text-black-gray ml-10px">
             {title}
           </div>
-          <div className="text-center text-14px sm+:text-16px leading-24px font-metropolis text-black-gray pl-4px sm+:pl-3px mx-20px sm+:px-0px">
+          <div className="text-center text-14px sm+:text-16px leading-24px font-light font-poppins text-black-gray pl-4px sm+:pl-3px mx-20px sm+:px-0px">
             {content}
           </div>
 
@@ -142,8 +142,8 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
             <Input
               id="firstName"
               name="firstName"
-              placeholderColor="placeholder-dark-orange font-metropolis text-14px leading-14px"
-              labelСonfigure="text-tundora font-bold font-metropolis text-11px sm+:text-10px leading-10px"
+              placeholderColor="placeholder-dark-orange font-poppins sm+:font-late-november text-11px sm+:text-12px leading-24px sm+:leading-14px italic sm+:not-italic"
+              labelСonfigure="text-black-gray font-bold font-poppins text-11px sm+:text-12px leading-24px sm+:leading-19px"
               label={firstNameInputLabel}
               placeholder={firstNameInputPlaceholder}
               className="contact-realtor-form-first-name-area"
@@ -153,12 +153,13 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.firstName}
+              isShadow
             />
             <Input
               id="lastName"
               name="lastName"
-              placeholderColor="placeholder-dark-orange font-metropolis text-14px leading-14px"
-              labelСonfigure="text-tundora font-bold font-metropolis text-11px sm+:text-10px leading-10px"
+              placeholderColor="placeholder-dark-orange font-poppins sm+:font-late-november text-11px sm+:text-12px leading-24px sm+:leading-14px italic sm+:not-italic"
+              labelСonfigure="text-black-gray font-bold font-poppins text-11px sm+:text-12px leading-24px sm+:leading-19px"
               label={lastNameInputLabel}
               placeholder={lastNameInputPlaceholder}
               className="contact-realtor-form-last-name-area"
@@ -168,12 +169,13 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.lastName}
+              isShadow
             />
             <Input
               id="email"
               name="email"
-              placeholderColor="placeholder-dark-orange font-metropolis text-14px leading-14px pr-5px"
-              labelСonfigure="text-tundora font-bold font-metropolis text-11px sm+:text-10px leading-10px"
+              placeholderColor="placeholder-dark-orange font-poppins sm+:font-late-november text-11px sm+:text-12px leading-24px sm+:leading-14px italic sm+:not-italic"
+              labelСonfigure="text-black-gray font-bold font-poppins text-11px sm+:text-12px leading-24px sm+:leading-19px"
               label={emailAddressInputLabel}
               placeholder={emailAddressInputPlaceholder}
               className="contact-realtor-form-email-area"
@@ -183,12 +185,13 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
+              isShadow
             />
             <InputPhone
               id="phone"
               name="phone"
-              placeholderColor="placeholder-dark-orange font-metropolis text-14px leading-14px"
-              labelСonfigure="text-tundora font-bold font-metropolis text-11px sm+:text-10px leading-10px"
+              placeholderColor="placeholder-dark-orange font-poppins sm+:font-late-november text-11px sm+:text-12px leading-24px sm+:leading-14px italic sm+:not-italic"
+              labelСonfigure="text-black-gray font-bold font-poppins text-11px sm+:text-12px leading-24px sm+:leading-19px"
               label={phoneNumberInputLabel}
               placeholder={phoneNumberInputPlaceholder}
               className="contact-realtor-form-phone-area"
@@ -199,12 +202,13 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               }}
               onBlur={formik.handleBlur}
               value={formik.values.phone}
+              isShadow
             />
             <TextArea
               id="message"
               name="message"
-              placeholderColor="placeholder-dark-orange font-metropolis text-14px leading-14px"
-              labelСonfigure="text-tundora font-bold font-metropolis text-11px sm+:text-10px leading-10px"
+              placeholderColor="placeholder-dark-orange font-poppins sm+:font-late-november text-11px sm+:text-12px leading-24px sm+:leading-14px italic sm+:not-italic"
+              labelСonfigure="text-black-gray font-bold font-poppins text-11px sm+:text-12px leading-24px sm+:leading-19px"
               label={textareaInputLabel}
               placeholder={textareaInputPlaceholder}
               className="contact-realtor-form-information-area"
@@ -212,8 +216,9 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.message}
+              isShadow
             />
-            <div className="contact-realtor-form-message-area text-red-color-error-2 font-bold uppercase font-metropolis text-14px leading-14px self-center ml-auto sm+:ml-0px my-15px">
+            <div className="contact-realtor-form-message-area text-red-color-error-2 font-bold uppercase font-poppins text-14px leading-14px self-center ml-auto sm+:ml-0px my-15px">
               {showError}
             </div>
             <Button
@@ -222,7 +227,9 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               variants="dark_orange"
               btnClasses="contact-realtor-form-button-area bg-dark-orange text-white w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow"
             >
-              <div className="text-16px leading-16px text-white font-metropolis font-bold">{buttonLabel}</div>
+              <div className="text-16px leading-16px text-white font-poppins font-medium">
+                {buttonLabel}
+              </div>
             </Button>
           </form>
         </div>

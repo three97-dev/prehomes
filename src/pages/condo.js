@@ -22,72 +22,78 @@ const CondoPage = ({ data }) => {
 
   return (
     <div>
-      <Header logoLink="/" className="bg-white-pink md:bg-transparent" />
+      <Header logoLink="/" />
       <HeroSection
         image={propertyType.heroImage}
         title={propertyType.heroTitle}
         heroTopText={propertyPageData.heroTopText}
         heroContent={propertyType.heroContent}
-        heroContentCss="text-black-gray"
+        heroContentCss="text-11px md:text-16px leading-24px md:leading-19px text-black-gray font-poppins md:font-late-november md:font-normal text-black-gray"
         isFixedHeader
       />
-      <TextSection content={propertyType.overviewText} className="mx-25px lg:mx-120px mt-100px" />
-      <div className="lg:px-120px pb-40px lg:pb-0px bg-white-pink md:bg-transparent">
-        <ThreeStatsSection
-          statOneLabel={propertyPageData.averagePrice}
-          statOneValue={propertyType.averagePrice}
-          statTwoLabel={propertyPageData.averageSize}
-          statTwoValue={propertyType.averageSize}
-          statThreeLabel={propertyPageData.marketTrend}
-          statThreeValue={propertyType.marketTrend}
-          className="px-25px lg:0-px pb-40px"
-        />
+      <div className="bg-white-pink md:bg-transparent">
+        <TextSection content={propertyType.overviewText} className="mx-25px lg:mx-120px pt-50px md:pt-100px" />
+        <div className="lg:px-120px pb-30px sm+:pb-40px lg:pb-0px">
+          <ThreeStatsSection
+            statOneLabel={propertyPageData.averagePrice}
+            statOneValue={propertyType.averagePrice}
+            statTwoLabel={propertyPageData.averageSize}
+            statTwoValue={propertyType.averageSize}
+            statThreeLabel={propertyPageData.marketTrend}
+            statThreeValue={propertyType.marketTrend}
+            className="px-25px lg:0-px pb-20px md:pb-40px"
+          />
+        </div>
+        <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px md:mt-35px mb-10px md:-mb-10px border-gray-border md:border-white-pink"></div>
+        <div className="double-slider-small-tiles-background">
+          <SliderSmallTiles
+            arrowsColor="black-gray-2"
+            mainTitle={propertyPageData.newestReleasesSliderTitle}
+            helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
+            showHelpMark={true}
+            smallTileData={newestReleasesProjects}
+            bgWrapperClasses="bg-transparent"
+            paddingTitleClasses="pt-40px"
+            paddingSliderClasses="pt-70px"
+          />
+          <SliderSmallTiles
+            arrowsColor="black-gray-2"
+            mainTitle={propertyPageData.launchingSoonSliderTitle}
+            helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
+            showHelpMark={true}
+            smallTileData={launchingSoonProjects}
+            bgWrapperClasses="bg-transparent"
+            paddingTitleClasses="pt-70px"
+            paddingSliderClasses="pt-70px pb-50px"
+          />
+        </div>
+        <ViewByLinks title={propertyPageData.viewDevelopmentsByCity} links={developmentsByCityLinks} />
+        <div className="double-slider-small-tiles-background">
+          <SliderSmallTiles
+            arrowsColor="black-gray-2"
+            mainTitle={propertyPageData.newestReleasesSliderTitle}
+            helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
+            showHelpMark={true}
+            smallTileData={newestReleasesProjects}
+            bgWrapperClasses="bg-transparent"
+            paddingTitleClasses="pt-95px"
+            paddingSliderClasses="pt-70px"
+          />
+          <SliderSmallTiles
+            arrowsColor="black-gray-2"
+            mainTitle={propertyPageData.launchingSoonSliderTitle}
+            helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
+            showHelpMark={true}
+            smallTileData={launchingSoonProjects}
+            bgWrapperClasses="bg-transparent"
+            paddingTitleClasses="pt-70px"
+            paddingSliderClasses="pt-70px pb-50px"
+          />
+        </div>
+        <ViewByLinks title={propertyPageData.viewProjectsByDeveloper} links={projectsByDeveloperLinks} />
+        <ContactRealtorFormSection />
+        <Footer />
       </div>
-      <div className="border-t mx-120px border-white-pink"></div>
-      <div className="double-slider-small-tiles-background">
-        <SliderSmallTiles
-          arrowsColor="black-gray-2"
-          mainTitle={propertyPageData.newestReleasesSliderTitle}
-          showHelpMark={true}
-          smallTileData={newestReleasesProjects}
-          bgWrapperClasses="bg-transparent"
-          paddingTitleClasses="pt-40px"
-          paddingSliderClasses="pt-70px"
-        />
-        <SliderSmallTiles
-          arrowsColor="black-gray-2"
-          mainTitle={propertyPageData.launchingSoonSliderTitle}
-          showHelpMark={true}
-          smallTileData={launchingSoonProjects}
-          bgWrapperClasses="bg-transparent"
-          paddingTitleClasses="pt-70px"
-          paddingSliderClasses="pt-70px pb-50px"
-        />
-      </div>
-      <ViewByLinks title={propertyPageData.viewDevelopmentsByCity} links={developmentsByCityLinks} />
-      <div className="double-slider-small-tiles-background">
-        <SliderSmallTiles
-          arrowsColor="black-gray-2"
-          mainTitle={propertyPageData.newestReleasesSliderTitle}
-          showHelpMark={true}
-          smallTileData={newestReleasesProjects}
-          bgWrapperClasses="bg-transparent"
-          paddingTitleClasses="pt-95px"
-          paddingSliderClasses="pt-70px"
-        />
-        <SliderSmallTiles
-          arrowsColor="black-gray-2"
-          mainTitle={propertyPageData.launchingSoonSliderTitle}
-          showHelpMark={true}
-          smallTileData={launchingSoonProjects}
-          bgWrapperClasses="bg-transparent"
-          paddingTitleClasses="pt-70px"
-          paddingSliderClasses="pt-70px pb-50px"
-        />
-      </div>
-      <ViewByLinks title={propertyPageData.viewProjectsByDeveloper} links={projectsByDeveloperLinks} />
-      <ContactRealtorFormSection />
-      <Footer />
     </div>
   );
 };
@@ -102,7 +108,9 @@ export const query = graphql`
       averageSize
       marketTrend
       newestReleasesSliderTitle
+      newestReleasesSliderTooltip
       launchingSoonSliderTitle
+      launchingSoonSliderTooltip
       viewDevelopmentsByCity
       viewProjectsByDeveloper
     }

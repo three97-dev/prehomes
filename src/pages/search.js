@@ -18,7 +18,7 @@ const SearchPage = ({ data }) => {
       city: project.projectCity.cityName,
       neighborhood: "Neighborhood",
       prices: project.fields.prices,
-      price: `$${minPrice} - ${maxPrice}`,
+      price: `$${minPrice} - $${maxPrice}`,
       lat: project.projectAddressMapLocation.lat,
       lng: project.projectAddressMapLocation.lon,
       type: project.projectType.type,
@@ -31,7 +31,7 @@ const SearchPage = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" className="" isStickyHeader />
+      <Header logoLink="/" className="" />
       <SearchSection
         searchPlaceholder={searchPageData.searchPlaceholder}
         typeFilterTitle={searchPageData.typeFilterTitle}

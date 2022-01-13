@@ -37,7 +37,7 @@ const TextArea = ({
         value={value}
         className={`${
           isShadow ? "text-area-shadow" : null
-        } resize-none placeholder-tracking-wider typography-body-small text-14px leading-20px font-rosario italic text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
+        } resize-none placeholder-tracking-wider typography-body-small text-12px leading-20px font-late-november text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
       />
     </div>
   );

@@ -38,7 +38,7 @@ const InputPhone = ({
           onBlur: onBlur,
           className: `${
             isShadow ? "input-phone-shadow" : null
-          } placeholder-tracking-wider typography-body-small text-14px leading-20px font-rosario italic text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`,
+          } placeholder-tracking-wider typography-body-small text-12px leading-20px font-late-november text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`,
         }}
         country={"us"}
         onlyCountries={["us"]}

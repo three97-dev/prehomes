@@ -60,6 +60,62 @@ html body {
     url("../fonts/late-november/late-november-bold.woff2") format("woff2"),
     url("../fonts/late-november/late-november-bold.woff") format("woff");
 }
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-100italic.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-100italic.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-200.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-200.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-300.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-300.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-regular.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v5-latin-italic.woff") format("woff2"),
+    url("../fonts/poppins/poppins-v5-latin-italic.woff2") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-500.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-500.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Poppins"), url("../fonts/poppins/poppins-v15-latin-700.woff2") format("woff2"),
+    url("../fonts/poppins/poppins-v15-latin-700.woff") format("woff");
+}
 
 @layer utilities {
   @variants responsive {

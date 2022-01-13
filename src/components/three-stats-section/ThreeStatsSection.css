@@ -3,14 +3,13 @@
     .three-elements-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 40px;
     }
 
     .three-elements-grid-title {
-      @apply text-18px sm+:text-14px leading-18px sm+:leading-14px font-bold font-metropolis sm+:text-center text-dark-creamy mt-30px mb-28px sm+:mb-34px;
+      @apply text-22px sm+:text-13px leading-26px sm+:leading-19px sm+:font-bold font-late-november sm+:font-poppins sm+:text-center text-dark-orange mt-20px sm+:mt-40px mb-20px sm+:mb-39px;
     }
     .three-elements-grid-description {
-      @apply text-23px sm+:text-26px leading-11px sm+:leading-26px font-bold font-metropolis sm+:text-center text-tundora;
+      @apply text-14px sm+:text-33px leading-24px sm+:leading-26px sm+:font-bold font-poppins sm+:text-center text-black-gray;
     }
   }
 }

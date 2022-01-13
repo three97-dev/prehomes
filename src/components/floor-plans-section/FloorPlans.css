@@ -29,7 +29,7 @@
 .table-head-item {
   width: 200px;
   text-align: start;
-  @apply text-16px leading-16px font-bold font-metropolis;
+  @apply text-20px leading-30px font-medium font-poppins;
 }
 
 .table-info {
@@ -64,4 +64,12 @@
   width: 100%;
   border-top: 1px solid #c4c4c4;
   border-bottom: 1px solid #c4c4c4;
+}
+
+.floor-plans-dropdown-shadow {
+  box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
+}
+
+.floor-plans-dropdown-sort-shadow {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
 }

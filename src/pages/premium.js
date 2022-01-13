@@ -17,7 +17,7 @@ const PremiumPage = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" variant="premium" className="bg-white-pink md:bg-transparent" />
+      <Header logoLink="/" variant="premium" />
 
       <PremiumAndPrestigeHero
         image={premiumPageData.heroImage}
@@ -25,7 +25,7 @@ const PremiumPage = ({ data }) => {
         heroTopText={premiumPageData.heroTopText}
         heroContent={premiumPageData.heroContent}
       />
-      <div className="bg-light-black w-full px-25px md:px-115px pt-50px md:pt-100px">
+      <div className="bg-black-gray w-full pt-50px md:pt-87px">
         <PremiumAndPrestigeText title={premiumPageData.headTitle} textContent={premiumPageData.headContent} />
         <PrestigeAndPremiumSlider
           title={premiumPageData.newReleasesSliderTitle}

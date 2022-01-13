@@ -44,7 +44,7 @@ const Input = ({
         disabled={disabled}
         className={`${
           isShadow ? "input-shadow" : null
-        } placeholder-tracking-wider typography-body-small ${font} font-rosario italic text-dark-orange ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-15px ${border} focus-visible:outline-none ${placeholderColor}`}
+        } placeholder-tracking-wider typography-body-small ${font} font-late-november text-dark-orange ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-15px ${border} focus-visible:outline-none ${placeholderColor}`}
       />
     </div>
   );
@@ -73,7 +73,7 @@ Input.defaultProps = {
   type: "",
   name: "",
   border: "",
-  font: "text-14px leading-20px",
+  font: "text-12px leading-20px",
   height: "h-53px",
   paddingLeft: "pl-27px",
   id: "",

@@ -18,7 +18,7 @@ import linkedInIconMobile from "../../assets/home-mobile/logo-linkedin.svg";
 
 import "./HeroHome.css";
 
-const HeroHome = ({ image, title, placeholder, bottomText, className }) => {
+const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, className }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const data = useStaticQuery(graphql`
     query HeroSocialLinksQuery {
@@ -40,31 +40,34 @@ const HeroHome = ({ image, title, placeholder, bottomText, className }) => {
         <div className="absolute home-header-white-section hidden md:block"></div>
         <div className="absolute block md:hidden bg-black w-full h-full bg-opacity-75"></div>
         <div className="absolute home-hero-title px-25px md:px-0px w-full z-100 md:pl-120px">
-          <div className="relative text-47px leading-54px font-late-november md:w-428px mb-45px md:mb-16px text-center md:text-left text-cream-pink md:text-black">
+          <div className="relative text-47px md:text-53px leading-54px md:leading-61px font-late-november md:w-540px mb-45px md:mb-16px text-center md:text-left text-cream-pink md:text-light-pink">
             {title}
           </div>
-          <HomeHeroInput placeholder={placeholder} className="relative md:max-w-632px" />
+          <HomeHeroInput placeholder={placeholder} className="relative md:max-w-632px md:-ml-20px" />
         </div>
-        <div className="absolute md:static flex flex-col bottom-80px home-hero-links">
-          <div className="md:absolute flex justify-around md:flex-col bottom-20px left-20px order-last md:order-none">
-            <UniversalLink link={facebook}>
-              <img className="hidden md:block" src={facebookIcon} />
-              <img className="block md:hidden" src={facebookIconMobile} />
-            </UniversalLink>
-            <UniversalLink link={twitter} className="md:my-40px">
-              <img className="hidden md:block" src={twitterIcon} />
-              <img className="block md:hidden" src={twitterIconMobile} />
-            </UniversalLink>
-            <UniversalLink link={linkedin}>
-              <img className="hidden md:block" src={linkedInIcon} />
-              <img className="block md:hidden" src={linkedInIconMobile} />
-            </UniversalLink>
-          </div>
-          <div
-            onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
-            className="md:absolute cursor-pointer text-cream-pink md:text-tundora mb-40px md:mb-0px text-14px leading-14px font-metropolis underline bottom-18px left-122px"
-          >
-            {bottomText}
+        <div className="relative h-full min-h-600px">
+          <div className="absolute md:static flex flex-col bottom-80px home-hero-links">
+            <div className="md:absolute flex justify-around md:flex-col bottom-20px left-20px order-last md:order-none">
+              <UniversalLink link={facebook}>
+                <img className="hidden md:block" src={facebookIcon} />
+                <img className="block md:hidden" src={facebookIconMobile} />
+              </UniversalLink>
+              <UniversalLink link={twitter} className="md:my-40px">
+                <img className="hidden md:block" src={twitterIcon} />
+                <img className="block md:hidden" src={twitterIconMobile} />
+              </UniversalLink>
+              <UniversalLink link={linkedin}>
+                <img className="hidden md:block" src={linkedInIcon} />
+                <img className="block md:hidden" src={linkedInIconMobile} />
+              </UniversalLink>
+            </div>
+            <div
+              onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
+              className="flex mx-auto md:absolute cursor-pointer bottom-18px left-122px tracking-tight text-white md:text-light-pink mb-40px md:mb-0px text-11px md:text-13px leading-24px md:leading-19px font-poppins font-bold text-center"
+            >
+              <div className="mr-3px">{bottomText}</div>
+              <div className="md:underline">{bottomTextUnderline}</div>
+            </div>
           </div>
         </div>
         <ModalVideo

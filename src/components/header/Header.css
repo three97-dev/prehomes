@@ -1,12 +1,14 @@
 @layer utilities {
   @variants responsive {
     .button-circle-shadow {
-      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+    }
+    .burger-menu-not-active-bg {
       background: radial-gradient(50% 50% at 50% 50%, rgba(244, 244, 244, 0.85) 0%, #ffffff 100%);
     }
     .header-show {
       background: #fff;
-      box-shadow: 0px 18px 40px -12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
       position: fixed;
       left: 0;
       top: 0;
@@ -16,8 +18,12 @@
     }
     @media (max-width: 833px) {
       .header-show {
-        background: #ffeeee;
+        background: #fff;
       }
+    }
+    .header-border {
+      border-bottom: 1px solid #F0F0F1;
+      box-shadow: none;
     }
   }
 }

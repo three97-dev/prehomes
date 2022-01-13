@@ -68,7 +68,7 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange }) => {
     <div ref={inputMenu} className="relative">
       <input
         placeholder={searchPlaceholder}
-        className={`relative z-10 text-16px md:text-14 leading-16px md:leading-14px font-metropolis w-full h-45px pl-20px md:pl-52px pr-45px md:pr-20px rounded-15px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none search-section-input-shadow md:border md:border-silver`}
+        className={`relative z-10 text-11px md:text-13px leading-24px md:leading-14px font-rosario md:font-late-november italic md:not-italic tracking-wider md:tracking-normal w-full h-45px pl-10px md:pl-52px pr-45px md:pr-20px rounded-15px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none search-section-input-shadow border border-silver`}
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
         onFocus={() => setIsSearchMenuShown(true)}
@@ -90,16 +90,16 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange }) => {
                 <img className="my-auto mx-auto" src={getIconByType(type)} alt="" />
               </div>
               <div className="text-wrapper">
-                <div className={`text-title item-title text-18px text-tundora leading-16px font-metropolis mb-7px`}>
+                <div className={`text-title item-title text-18px text-tundora leading-16px font-late-november mb-7px`}>
                   {label}
                 </div>
-                <div className={`item-subtitle text-10px text-tundora font-metropolis font-bold`}>{type}</div>
+                <div className={`item-subtitle text-10px text-tundora font-late-november font-bold`}>{type}</div>
               </div>
             </li>
           ))}
           <li className="list-item" onMouseDown={openModal}>
-            <div className={`item-search-for text-tundora font-metropolis`}>
-              Search for <b>{searchTerm}</b>
+            <div className={`item-search-for uppercase text-tundora font-metropolis`}>
+              Search for <b>"{searchTerm}"</b>
             </div>
           </li>
         </ul>

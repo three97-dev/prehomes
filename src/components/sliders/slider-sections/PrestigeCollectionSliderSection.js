@@ -9,8 +9,11 @@ import SmallTile from "../../small-tile/SmallTile";
 import UniversalLink from "../../../utils/UniversalLink";
 import useApplyAfterWidth from "../../../utils/useApplyAfterWidth";
 
-import flowers from "../../../assets/flower-cream.svg";
+import flowers from "../../../assets/flower-pink.svg";
+import flowersWhite from "../../../assets/flower-white.svg";
 import buildings from "../../../assets/buildings.svg";
+import buildingsWhite from "../../../assets/buildings-white.svg";
+import prestigeBackground from "../../../assets/home/prestige-section-background.png";
 
 import "./PrestigeCollectionSliderSection.css";
 
@@ -19,8 +22,8 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
   const [tileCount, setTileCount] = useState(0);
   const isDesktop = useApplyAfterWidth(833);
   const settings = {
-    prevArrow: <SliderArrow classNames="prev-arrow" />,
-    nextArrow: <SliderArrow rotate={true} classNames="next-arrow" />,
+    prevArrow: <SliderArrow classNames="prev-arrow bg-white" />,
+    nextArrow: <SliderArrow rotate={true} classNames="next-arrow bg-white" />,
     slidesToShow: 4,
     slidesToScroll: 1,
     infinite: false,
@@ -81,62 +84,74 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
   };
 
   return (
-    <div className={`w-full py-50px md:py-76px ${blackVariant ? "bg-light-black" : "bg-dark-orange-85"}`}>
-      <div className="relative">
-        <div
-          className={`md:absolute w-full md:w-236px mt-20px px-48px md:mx-48px lg:mx-96px pb-45px md:pb-20px ${
-            blackVariant ? "text-cream-pink order-last right-0px" : "text-cream-pink left-0px"
-          }`}
-        >
-          <img src={blackVariant ? buildings : flowers} />
-          <p className="text-22px md:text-29px font-metropolis font-bold w-155px leading-29px mt-26px mb-32px">
-            {title}
-          </p>
-          <hr className="rounded border-t-2 border-b mb-23px -mx-12px md:mx-0px" />
-          <p className="mb-40px text-14px md:text-16px leading-19px font-rosario font-normal">{subtitle}</p>
-          <UniversalLink link={link}>
-            <span className="font-rosario font-bold text-14px md:text-16px leading-19px border-b-2 border-current-600 w-max cursor-pointer">
-              {linkLabel}
-            </span>
-          </UniversalLink>
-        </div>
-        <div
-          className={`${
-            blackVariant ? "md:mr-313px lg:mr-400px md:ml-45px" : "md:ml-313px lg:ml-400px md:mr-45px"
-          } md:px-60px`}
-        >
-          <Slider className="w-full relative" ref={s => setSlider(s)} {...settings}>
-            {projects.map((project, index) => {
-              return isDesktop ? (
-                <PremiumAndPrestigeTile
-                  key={index}
-                  id={project.contentful_id}
-                  image={project.projectPreviewImage}
-                  tileTitle={project.projectName}
-                  tileContent={project.projectPreviewShortText}
-                  tilePrice={project.projectMinPrice}
-                  buttonLink={project.fields.pageUrl}
-                  isLikeButton
-                  blackVariant={blackVariant ? true : false}
-                  className="mx-auto"
-                />
-              ) : (
-                <SmallTile
-                  key={index}
-                  id={project.contentful_id}
-                  image={project.projectPreviewImage}
-                  link={project.fields.pageUrl}
-                  title={project.projectName}
-                  location={project.projectCity.cityName}
-                  price={project.projectMinPrice}
-                  textColor="text-cream-pink"
-                  bgColor={blackVariant ? "bg-white-asphalt" : "bg-dark-green"}
-                  className="mb-25px mx-auto"
-                />
-              );
-            })}
-            {emptyTiles(projects, tileCount)}
-          </Slider>
+    <div className="relative w-full">
+      {blackVariant ? null : <img src={prestigeBackground} className="absolute w-full h-full object-cover" />}
+      <div
+        className={`relative w-full pb-20px pt-50px md:py-125px ${
+          blackVariant ? "bg-black-gray md:bg-light-black" : "bg-dark-orange-85"
+        }`}
+      >
+        <div className="relative">
+          <div
+            className={`md:absolute w-full md:w-236px mt-20px md:mt-92px px-48px md:px-0px md:mx-48px lg:mx-96px pb-45px md:pb-20px text-white md:text-white-pink ${
+              blackVariant ? "order-last right-0px" : "left-0px"
+            }`}
+          >
+            <img
+              src={blackVariant ? (isDesktop ? buildings : buildingsWhite) : isDesktop ? flowers : flowersWhite}
+              className="md:ml-20px"
+            />
+            <p className="text-22px md:text-26px font-late-november font-bold w-155px leading-29px mt-26px md:mt-35px mb-32px md:mb-25px md:ml-20px">
+              {title}
+            </p>
+            <hr className="rounded border-t-2 border-b mb-23px -mx-12px md:mx-0px md:bg-white-pink" />
+            <p className="mb-40px md:ml-20px text-14px md:text-16px leading-24px font-light font-poppins text-white md:text-white-pink font-light">
+              {subtitle}
+            </p>
+            <UniversalLink link={link}>
+              <span className="md:ml-20px font-poppins font-light text-14px md:text-16px leading-19px underline w-max cursor-pointer md:text-white-pink">
+                {linkLabel.toUpperCase()}
+              </span>
+            </UniversalLink>
+          </div>
+          <div
+            className={`${
+              blackVariant ? "md:mr-313px lg:mr-400px md:ml-45px" : "md:ml-313px lg:ml-400px md:mr-45px"
+            } md:px-60px`}
+          >
+            <Slider className="w-full relative" ref={s => setSlider(s)} {...settings}>
+              {projects.map((project, index) => {
+                return isDesktop ? (
+                  <PremiumAndPrestigeTile
+                    key={index}
+                    id={project.contentful_id}
+                    image={project.projectPreviewImage}
+                    tileTitle={project.projectName}
+                    tileContent={project.projectPreviewShortText}
+                    tilePrice={project.projectMinPrice}
+                    buttonLink={project.fields.pageUrl}
+                    isLikeButton
+                    blackVariant={blackVariant ? true : false}
+                    className="mx-auto"
+                  />
+                ) : (
+                  <SmallTile
+                    key={index}
+                    id={project.contentful_id}
+                    image={project.projectPreviewImage}
+                    link={project.fields.pageUrl}
+                    title={project.projectName}
+                    location={project.projectCity.cityName}
+                    price={project.projectMinPrice}
+                    textColor="text-cream-pink"
+                    bgColor={blackVariant ? "bg-white-asphalt" : "bg-dark-green"}
+                    className="mb-25px mx-auto mb-70px"
+                  />
+                );
+              })}
+              {emptyTiles(projects, tileCount)}
+            </Slider>
+          </div>
         </div>
       </div>
     </div>

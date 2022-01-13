@@ -30,6 +30,11 @@ export default function sessionReducer(state = initial, action = null) {
       console.log(s.GOOGLE_LOGIN_CONFIRM_REDIRECT, action);
       return { ...state, googleLoginUrl: action.payload.url };
 
+    case s.GOOGLE_LOGOUT:
+      console.log(s.GOOGLE_LOGOUT, action);
+      localStorage.clear();
+      return { ...initial };
+
     default:
       return state;
   }

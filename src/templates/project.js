@@ -40,7 +40,7 @@ const ProjectPageTemplate = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" className="bg-white-pink md:bg-transparent" />
+      <Header logoLink="/" />
       <HeroSectionSlider
         images={project.projectImages}
         topText={projectPageData.heroTopText}
@@ -50,6 +50,7 @@ const ProjectPageTemplate = ({ data }) => {
         isFavorite={isFavorite}
         onClickSave={saveUnsaveProjectButton}
         isFixedHeader
+        className="bg-transparent"
       />
       <ProjectOverview
         title={projectPageData.overviewTitle}
@@ -70,18 +71,21 @@ const ProjectPageTemplate = ({ data }) => {
       />
       <ExploreTheArea
         title={projectPageData.additionalDescriptionTitle}
-        walkScoreLabel={projectPageData.walkScoreLabel}
-        bikeScoreLabel={projectPageData.bikeScoreLabel}
-        busScoreLabel={projectPageData.busScoreLabel}
+        walkScoreLabel={projectPageData.scores.walkScore.label}
+        walkScoreTooltip={projectPageData.scores.walkScore.tooltip}
+        bikeScoreLabel={projectPageData.scores.bikeScore.label}
+        bikeScoreTooltip={projectPageData.scores.bikeScore.tooltip}
+        busScoreLabel={projectPageData.scores.busScore.label}
+        busScoreTooltip={projectPageData.scores.busScore.tooltip}
         walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
         bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
         className="pb-31px"
       />
-      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px" />
-      <NeighborhoodMap geoLocation={project.projectAddressMapLocation} className="pt-40px" />
+      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-transparent" />
+      <NeighborhoodMap geoLocation={project.projectAddressMapLocation} className="pt-40px bg-transparent" />
 
-      <div className="border-t-2 md:border-t md:mx-120px border-gray-border md:border-white-pink md:my-40px"></div>
+      <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px border-gray-border md:my-40px"></div>
       <FloorPlans
         title={projectPageData.floorPlansTitle}
         subtitle={projectPageData.floorPlansSubtitle}
@@ -111,9 +115,10 @@ const ProjectPageTemplate = ({ data }) => {
         modalProjectPrice={projectPageData.priceColumnTitle}
         saveFloorPlanButtonLabel={projectPageData.modalSaveButtonLabel}
         requestInfoButtonLabel={projectPageData.heroRequestButtonLabel}
-        className="mx-auto"
+        isProject
+        className="mx-auto bg-transparent"
       />
-      <div className="border-t mx-120px border-white-pink"></div>
+      <div className="hidden md:block border-t md:mx-25px lg:mx-120px md:mt-42px border-gray-border"></div>
       <KeyInformation
         title={projectPageData.keyInformationTitle}
         statusLabel={projectPageData.keyInformationStatusLabel}
@@ -138,8 +143,9 @@ const ProjectPageTemplate = ({ data }) => {
         depositStructureValue={project.depositStructure}
         lockerMaintenanceLabel={projectPageData.keyInformationLockerMaintenanceLabel}
         lockerMaintenanceValue={project.lockerMaintenance}
+        className="bg-transparent"
       />
-      <div className="border-t mx-120px border-white-pink mt-42px mb-58px"></div>
+      <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
       {project.amenities ? (
         <Amenities
           title={projectPageData.amenitiesTitle}
@@ -223,9 +229,20 @@ export const query = graphql`
       keyInformationDepositStructureLabel
       keyInformationLockerMaintenanceLabel
       amenitiesTitle
-      walkScoreLabel
-      bikeScoreLabel
-      busScoreLabel
+      scores {
+        walkScore {
+          label
+          tooltip
+        }
+        bikeScore {
+          label
+          tooltip
+        }
+        busScore {
+          label
+          tooltip
+        }
+      }
     }
     contentfulProject(contentful_id: { eq: $project_contentful_id }) {
       contentful_id

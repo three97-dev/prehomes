@@ -25,7 +25,7 @@ const CityPageTemplate = ({ data }) => {
 
   return (
     <>
-      <Header className="bg-white-pink md:bg-transparent" />
+      <Header />
       <HeroSectionSlider
         images={city.cityImages}
         topText={cityPageData.heroTopText}
@@ -33,11 +33,20 @@ const CityPageTemplate = ({ data }) => {
         subtitle={city.citySubtitleText}
         isCity
         isFixedHeader
+        className="bg-transparent"
       />
-        <div className="md+:hidden border-t-2 border-gray-border w-full mb-40px"></div>
-      <div className="lg:px-120px pb-40px lg:pb-0px bg-white-pink md:bg-transparent">
-        <TextImageSection content={city.overviewText} image={city.overviewImage} />
-        <TextSection content={city.additionalDescription} className="mt-20px px-25px lg:px-0px" />
+      <div className="md+:hidden border-t-2 border-gray-border w-full mt-15px mb-30px"></div>
+      <div className="lg:px-120px md:pb-35px md+:pt-75px">
+        <TextImageSection
+          content={city.overviewText}
+          image={city.overviewImage}
+          className="pb-50px md:pb-0px"
+          textSectionStyle="pt-20px"
+        />
+        <TextSection
+          content={city.additionalDescription}
+          className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
+        />
         <ThreeStatsSection
           statOneLabel={cityPageData.averageCondoPrice}
           statOneValue={`$${city.averageCondoPrice.toLocaleString()}`}
@@ -45,14 +54,15 @@ const CityPageTemplate = ({ data }) => {
           statTwoValue={`$${city.averageDetachedPrice.toLocaleString()}`}
           statThreeLabel={cityPageData.averageDetachedPrice}
           statThreeValue={`$${city.averageTownhomePrice.toLocaleString()}`}
-          className="px-25px lg:0-px pb-40px"
+          className="px-25px lg:0-px"
         />
       </div>
-      <div className="border-t mx-120px border-white-pink"></div>
+      <hr className="bg-beige h-2px border-none bg-clip-content md:mx-25px lg:mx-120px mt-50px md:mt-10px mb-10px md:mb-0px" />
       <div className="double-slider-small-tiles-background">
         <SliderSmallTiles
           arrowsColor="black-gray-2"
           mainTitle={cityPageData.newestReleasesSliderTitle}
+          helpMarkTooltip={cityPageData.newestReleasesSliderTooltip}
           showHelpMark={true}
           smallTileData={newestReleasesProjects}
           bgWrapperClasses="bg-transparent"
@@ -62,10 +72,11 @@ const CityPageTemplate = ({ data }) => {
         <SliderSmallTiles
           arrowsColor="black-gray-2"
           mainTitle={cityPageData.launchingSoonSliderTitle}
+          helpMarkTooltip={cityPageData.launchingSoonSliderTooltip}
           showHelpMark={true}
           smallTileData={launchingSoonProjects}
           bgWrapperClasses="bg-transparent"
-          paddingTitleClasses="pt-70px"
+          paddingTitleClasses="pt-50px md:pt-70px"
           paddingSliderClasses="pt-70px pb-50px"
         />
       </div>
@@ -75,15 +86,15 @@ const CityPageTemplate = ({ data }) => {
         mainTitle={`${city.cityName} ${cityPageData.condoDevelopmentsSliderTitle}`}
         smallTileData={condoProjects}
         bgWrapperClasses="bg-transparent"
-        paddingTitleClasses="pt-95px"
-        paddingSliderClasses="pt-70px pb-50px"
+        paddingTitleClasses="pt-50px md:pt-95px"
+        paddingSliderClasses="pt-70px"
       />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
         mainTitle={`${city.cityName} ${cityPageData.townhouseDevelopmentsSliderTitle}`}
         smallTileData={townhouseProjects}
         bgWrapperClasses="bg-transparent"
-        paddingTitleClasses="pt-95px"
+        paddingTitleClasses="pt-50px md:pt-95px"
         paddingSliderClasses="pt-70px"
       />
       <SliderSmallTiles
@@ -91,8 +102,8 @@ const CityPageTemplate = ({ data }) => {
         mainTitle={`${city.cityName} ${cityPageData.detachedDevelopmentsSliderTitle}`}
         smallTileData={detachedProjects}
         bgWrapperClasses="bg-transparent"
-        paddingTitleClasses="pt-70px"
-        paddingSliderClasses="pt-70px pb-50px"
+        paddingTitleClasses="pt-50px md:pt-70px"
+        paddingSliderClasses="pt-70px"
       />
       <ContactRealtorFormSection />
       <Footer />
@@ -110,7 +121,9 @@ export const query = graphql`
       averageTownhomePrice
       averageDetachedPrice
       newestReleasesSliderTitle
+      newestReleasesSliderTooltip
       launchingSoonSliderTitle
+      launchingSoonSliderTooltip
       viewByLinksTitle
       condoDevelopmentsSliderTitle
       townhouseDevelopmentsSliderTitle

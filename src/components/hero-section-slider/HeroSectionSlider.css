@@ -1,5 +1,17 @@
 .header-hero-section {
-  height: calc(100vh - 205px);
+  height: 407px;
+}
+
+@media screen and (min-width: 700px) {
+  .header-hero-section {
+    height: 550px;
+  }
+}
+
+@media screen and (min-width: 834px) {
+  .header-hero-section {
+    height: calc(100vh - 205px);
+  }
 }
 
 .header-white-section {
@@ -11,43 +23,42 @@
   border-top: 100vh solid white;
 }
 
-.hero-title {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+@media screen and (min-width: 834px) {
+  .hero-title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .hero-image {
   width: calc(100vw - 350px);
 }
 
+.save-button-shadow {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
 .prev {
   position: absolute;
-  top: calc(50% - 17px);
-  left: 11px;
-  -ms-transform: translateX(calc(50% - 17px));
-  -webkit-transform: translate(calc(50% - 17px));
+  top: 50%;
+  left: 25px;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
 }
 
 .next {
   position: absolute;
-  top: calc(50% - 17px);
-  right: 21px;
-  -ms-transform: translateX(-50% - 17px);
-  -webkit-transform: translate(-50% - 17px);
+  top: 50%;
+  right: 25px;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 833px) {
-  .header-hero-section {
-    height: calc((100vh - 25%) - 150px);
-  }
   .hero-image {
     width: 100vw;
-  }
-  .hero-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }

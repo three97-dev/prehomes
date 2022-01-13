@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 
 import Input from "../basic/input/Input";
 import Button from "../basic/button/Button";
@@ -38,6 +39,8 @@ const ContactSalesFooter = ({
   const { title, nameInputPlaceholder, emailInputPlaceholder, buttonLabel, buttonLabelSubmitted } =
     contentfulContactSalesForm;
 
+  const { href } = useLocation();
+
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -64,12 +67,16 @@ const ContactSalesFooter = ({
               value: values.email,
             },
             {
-              name: "project name",
+              name: "project_name",
               value: projectName,
             },
             {
-              name: "floor plan name",
+              name: "floor_plan_identified",
               value: floorPlanName,
+            },
+            {
+              name: "page_url",
+              value: href,
             },
           ],
           Date.now(),

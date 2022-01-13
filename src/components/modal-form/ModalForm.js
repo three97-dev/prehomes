@@ -38,17 +38,17 @@ const ModalForm = ({ modalIsOpen, onClose, isSubmissionSuccessful }) => {
       >
         <div className="modal-form-container">
           <div className="modal-form-content justify-items-center">
-            <div className="text-29px leading-29px text-tundora font-bold font-metropolis">
+            <div className="text-29px leading-29px text-black-gray font-bold font-poppins">
               {isSubmissionSuccessful ? submittedTitle : errorTitle}
             </div>
-            <div className="text-16px leading-24px text-dark-gray font-metropolis text-center mt-20px modal-form-text">
+            <div className="text-16px leading-24px text-black-gray font-poppins text-center mt-20px modal-form-text">
               {isSubmissionSuccessful ? (
                 submittedText
               ) : (
                 <Markdown
                   data={errorText}
                   config={{
-                    p: "text-16px leading-24px text-dark-gray font-metropolis",
+                    p: "text-16px leading-24px text-black-gray font-poppins",
                   }}
                 />
               )}

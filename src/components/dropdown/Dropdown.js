@@ -5,8 +5,10 @@ import Select, { components } from "react-select";
 import DropdownArrow from "../dropdown-arrow/DropdownArrow";
 
 const FONT_STYLES = {
+  Poppins: "font-poppins text-12px leading-19px text-black-gray font-bold",
   Rosario: "font-rosario text-black text-18px leading-22px",
   Metropolis: "font-metropolis text-tundora text-14px leading-14px font-bold",
+  LateNovember: "font-late-november text-tundora text-14px leading-14px font-bold",
 };
 
 const resolveFont = font => {
@@ -36,7 +38,8 @@ const Dropdown = ({
       ...provided,
       width: "100%",
       height: height,
-      fontSize: fontSize ? fontSize : "14px",
+      minHeight: "34px",
+      fontSize: fontSize ? fontSize : "13px",
       padding: selectFieldPadding ? selectFieldPadding : "0px 0px 0px 2px",
       backgroundColor: "#fff",
       borderRadius: "15px",
@@ -45,7 +48,7 @@ const Dropdown = ({
       fontStyle: fontStyle,
       backspaceRemovesValue: false,
       cursor: "pointer",
-      boxShadow: undefined,
+      boxShadow: "0px 10px 20px -12px rgba(0, 0, 0, 0.1)",
       "&:hover": {
         borderColor: "none",
       },
@@ -70,7 +73,7 @@ const Dropdown = ({
       backgroundColor: "#fff",
       marginTop: "13px",
       borderRadius: "0px 0px 15px 15px",
-      boxShadow: "0px 18px 40px -12px rgba(0, 0, 0, 0.15)",
+      boxShadow: "0px 10px 20px -12px rgba(0, 0, 0, 0.1)",
     }),
     option: (provided, state) => ({
       ...provided,
@@ -95,14 +98,14 @@ const Dropdown = ({
     }),
   };
 
-  const defaultTitleClasses = "mb-10px ml-10px";
+  const defaultTitleClasses = "font-poppins text-12px leading-19px font-bold mb-10px ml-10px";
 
   const DropdownIndicator = props => {
     return (
       components.DropdownIndicator && (
         <components.DropdownIndicator {...props}>
           {sf ? (
-            <div className="font-metropolis font-bold text-14px text-tundora">SF</div>
+            <div className="font-poppins text-12px leading-19px font-bold text-black-gray">SF</div>
           ) : (
             <DropdownArrow color={arrowColor} />
           )}
@@ -112,7 +115,7 @@ const Dropdown = ({
   };
   return (
     <div className={containerClassName}>
-      <div className={`${resolveFont(font)} ${titleClassName ? titleClassName : defaultTitleClasses}`}>{title}</div>
+      <div className={`text-13px leading-19px font-bold ${resolveFont(font)} ${titleClassName ? titleClassName : defaultTitleClasses}`}>{title}</div>
       <Select
         value={value}
         onChange={onChange}
@@ -148,7 +151,7 @@ Dropdown.defaultProps = {
   title: "",
   placeholder: "",
   options: [{ label: "" }],
-  font: "Metropolis",
+  font: "Late November",
   fontStyle: "normal",
   arrowColor: "",
   height: "45px",

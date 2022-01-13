@@ -15,19 +15,19 @@ const ThreeElementsSection = ({
   const isDesktop = useApplyAfterWidth(599);
 
   return (
-    <div className={`sm+:three-elements-grid ${className}`}>
+    <div className={`sm+:three-elements-grid pt-10px sm+:pt-0px ${className}`}>
       <div>
         <div className="three-elements-grid-title">{isDesktop ? statOneLabel.toUpperCase() : statOneLabel}</div>
         <div className="three-elements-grid-description">{isDesktop ? statOneValue : statOneValue}</div>
       </div>
       <div>
         <div className="three-elements-grid-title">{isDesktop ? statTwoLabel.toUpperCase() : statTwoLabel}</div>
-        <div className="three-elements-grid-description">{isDesktop ? statTwoValue.toUpperCase() : statTwoValue}</div>
+        <div className="three-elements-grid-description">{isDesktop ? statTwoValue : statTwoValue}</div>
       </div>
       <div>
         <div className="three-elements-grid-title">{isDesktop ? statThreeLabel.toUpperCase() : statThreeLabel}</div>
         <div className="three-elements-grid-description">
-          {isDesktop ? statThreeValue.toUpperCase() : statThreeValue}
+          {isDesktop ? statThreeValue : statThreeValue}
         </div>
       </div>
     </div>

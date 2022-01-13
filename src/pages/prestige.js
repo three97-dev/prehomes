@@ -17,7 +17,7 @@ const PrestigePage = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" variant="prestige" className="bg-white-pink md:bg-transparent" />
+      <Header logoLink="/" variant="prestige" />
       <PremiumAndPrestigeHero
         image={prestigePageData.heroImage}
         title={prestigePageData.title}
@@ -25,8 +25,12 @@ const PrestigePage = ({ data }) => {
         heroContent={prestigePageData.heroContent}
       />
 
-      <div className="bg-dark-orange bg-opacity-75 w-full px-25px md:px-115px pt-49px md:pt-100px">
-        <PremiumAndPrestigeText title={prestigePageData.headTitle} textContent={prestigePageData.headContent} />
+      <div className="bg-dark-orange bg-opacity-75 w-full pt-49px md:pt-87px">
+        <PremiumAndPrestigeText
+          title={prestigePageData.headTitle}
+          textContent={prestigePageData.headContent}
+          prestigePage
+        />
         <PrestigeAndPremiumSlider title={prestigePageData.newReleasesSliderTitle} projects={newestReleasesProjects} />
         <PrestigeAndPremiumSlider title={prestigePageData.launchingSoonSliderTitle} projects={launchingSoonProjects} />
         {/* <PrestigeAndPremiumSlider

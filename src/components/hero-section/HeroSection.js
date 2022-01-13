@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 
 import Image from "../basic/image/Image";
 
-const HeroSection = ({ heroTopText, title, heroContent, heroContentCss, image, heroLogoImage, className }) => {
+const HeroSection = ({
+  heroTopText,
+  title,
+  heroContent,
+  heroContentCss,
+  image,
+  heroLogoImage,
+  isUserDashboard,
+  className,
+}) => {
   return (
     <div className={`w-full ${className}`}>
       <div className="mx-auto text-beige h-screen md:h-500px">
@@ -11,24 +20,23 @@ const HeroSection = ({ heroTopText, title, heroContent, heroContentCss, image, h
           <Image image={image} className="-z-10 w-full h-screen md:h-500px" />
         </div>
         <div
-          className={`z-100 md:flex md:pl-121px ${heroLogoImage ? "justify-between md:pr-93px" : "pt-295px md:pt-0px"}`}
+          className={`z-100 md:flex md:pl-121px ${
+            heroLogoImage ? "justify-between md:pr-93px" : "pt-295px md:pt-0px"
+          } ${isUserDashboard ? "pt-391px md:pt-0px" : ""}`}
         >
           {heroLogoImage ? <Image image={heroLogoImage} className="md:hidden -z-10 pt-247px" /> : null}
           <div className={`text-tundora md:ml-0px ${heroTopText ? "ml-27px" : ""}`}>
-            <div className="md:pt-217px text-11px md:text-14px leading-11px md:leading-12px font-bold font-metropolis text-dark-creamy">
+            <div className="md:pt-217px text-11px md:text-13px leading-24px md:leading-19px font-bold font-poppins text-black-gray md:text-dark-orange">
               {heroTopText.toUpperCase()}
             </div>
             <div
-              className={`text-29px md:text-47px leading-29px md:leading-54px font-late-november -mt-2px mb-18px ${
+              className={`text-47px md:text-53px leading-54px md:leading-61px font-late-november text-black-gray -mt-2px mb-18px ${
                 heroTopText ? null : "text-center md:pl-13px pt-15px"
               } `}
             >
               {title}
             </div>
-
-            <div className={`text-14px md:text-16px leading-16px md:leading-18px font-late-november max-w-318px md:max-w-430px ${heroContentCss}`}>
-              {heroContent}
-            </div>
+            <div className={`max-w-318px md:max-w-430px font-bold ${heroContentCss}`}>{heroContent}</div>
           </div>
           {heroLogoImage ? <Image image={heroLogoImage} className="hidden md:block -z-10 mt-197px" /> : null}
         </div>

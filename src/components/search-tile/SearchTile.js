@@ -28,7 +28,7 @@ function SearchTile({ id, image, title, city, neighborhood, price, link, classNa
   );
 
   return (
-    <div className={`relative rounded-15px overflow-hidden w-188px h-277px filter drop-shadow-tile ${className}`}>
+    <div className={`relative rounded-15px overflow-hidden w-188px h-292px filter drop-shadow-tile ${className}`}>
       <UniversalLink link={link}>
         {image ? (
           <Image image={image} className="h-full filter brightness-50 object-cover" />
@@ -38,18 +38,18 @@ function SearchTile({ id, image, title, city, neighborhood, price, link, classNa
         <FavoriteButton
           onClick={saveUnsaveProjectButton}
           isFavorite={isFavorite}
-          className="absolute top-13px right-11px w-30px h-27px m-6px"
+          className="absolute top-7px right-5px w-30px h-27px m-6px"
         />
-        <div className="absolute w-full top-138px">
-          <div className="w-148px text-white font-metropolis font-bold mx-auto">
-            <div className="flex items-end h-66px overflow-ellipsis overflow-hidden text-22px leading-22px">
+        <div className="absolute w-full top-62px">
+          <div className="w-148px text-white mx-auto">
+            <div className="flex items-end h-90px overflow-ellipsis overflow-hidden text-26px leading-30px font-late-november">
               {title}
             </div>
-            <div className="my-10px">
-              <div className="text-14px leading-14px -my-4px font-bold">{city}</div>
-              <div className="text-10px leading-10px font-normal mt-2px">{neighborhood}</div>
+            <div className="mt-10px mb-20px">
+              <div className="text-13px leading-19px font-poppins font-bold">{city.toUpperCase()}</div>
+              <div className="text-13px leading-19px font-poppins font-light">{neighborhood.toUpperCase()}</div>
             </div>
-            <div className="font-rosario text-14px leading-17px">{price}</div>
+            <div className="font-poppins text-20px leading-31px font-medium">{price}</div>
           </div>
         </div>
       </UniversalLink>

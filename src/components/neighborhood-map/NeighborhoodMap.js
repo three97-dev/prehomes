@@ -20,8 +20,8 @@ const NeighborhoodMapButton = ({ isSelected, onClick, label, className }) => {
       onClick={onClick}
       className={`${
         isSelected
-          ? "text-left text-14px md+:text-22px leading-14px md+:leading-22px font-metropolis font-bold text-black h-full w-full bg-beige p-20px"
-          : "text-left text-14px md+:text-22px leading-14px md+:leading-22px font-metropolis text-gray h-full w-full p-20px"
+          ? "text-left text-14px md+:text-20px leading-14px md+:leading-31px font-poppins font-bold md+:font-medium text-black h-full w-full bg-beige md+:bg-silver p-20px"
+          : "text-left text-14px md+:text-20px leading-14px md+:leading-31px font-poppins text-dark-gray h-full w-full p-20px"
       } ${className}`}
     >
       {label}

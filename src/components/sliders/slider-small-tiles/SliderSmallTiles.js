@@ -13,6 +13,7 @@ import "./SliderSmallTiles.css";
 const SliderSmallTiles = ({
   arrowsColor,
   mainTitle,
+  helpMarkTooltip,
   showHelpMark,
   smallTileData,
   bgWrapperClasses,
@@ -23,19 +24,8 @@ const SliderSmallTiles = ({
   const [tileCount, setTileCount] = useState(0);
 
   const settings = {
-    prevArrow: (
-      <SliderArrow
-        classNames="small-tile-prev-arrow py-8px px-8px"
-        color={arrowsColor === "dark-orange" ? "#AC9986" : arrowsColor === "black-gray-2" ? "#212121" : ""}
-      />
-    ),
-    nextArrow: (
-      <SliderArrow
-        rotate={true}
-        classNames="small-tile-next-arrow py-8px px-8px"
-        color={arrowsColor === "dark-orange" ? "#AC9986" : arrowsColor === "black-gray-2" ? "#212121" : ""}
-      />
-    ),
+    prevArrow: <SliderArrow classNames="small-tile-prev-arrow py-8px px-8px bg-white" />,
+    nextArrow: <SliderArrow rotate={true} classNames="small-tile-next-arrow py-8px px-8px bg-white" />,
     infinite: false,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -105,14 +95,14 @@ const SliderSmallTiles = ({
     return null;
   }
 
-  return (
+  return smallTileData.length === 0 ? null : (
     <div className={classNames(bgWrapperClasses)}>
       <div className="md:mx-60px">
         <div className={classNames("px-62px", paddingTitleClasses)}>
-          <div className="text-29px leading-29px text-tundora font-bold tracking-wide font-metropolis">
+          <div className="text-29px sm+:text-33px leading-43px sm+:leading-49px text-black-gray font-bold tracking-wide font-poppins">
             <div className="flex">
               {mainTitle}
-              {showHelpMark && <img src={helpMarkImage} className="ml-80px hidden md:block" alt="help mark image" />}
+              {showHelpMark && <img src={helpMarkImage} title={helpMarkTooltip} className="ml-80px hidden md:block" alt="help mark image" />}
             </div>
           </div>
         </div>
@@ -130,7 +120,7 @@ const SliderSmallTiles = ({
                       title={item.projectName}
                       location={item.projectCity.cityName}
                       price={item.projectMinPrice}
-                      className="mb-25px mx-auto"
+                      className="mb-75px md:mb-50px mx-auto"
                     />
                   );
                 })}

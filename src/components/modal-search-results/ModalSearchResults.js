@@ -13,11 +13,9 @@ const ModalSearchResults = ({ getIconByType, items, modalIsOpen, onForceLocation
       overlayClassName="modal-search-results-overlay"
     >
       <button onClick={onClose} className="close-button" />
-      <h1 className="text-center text-22px text-tundora leading-22px font-metropolis pb-15px">
-        Top <span className="font-bold">{items.length}</span> results for “
-        <span className="font-bold">{searchTerm}</span>”
+      <h1 className="text-center text-20px leading-30px font-medium font-poppins text-tundora pb-30px">
+        Top {items.length} results for “<span className="font-bold">{searchTerm}</span>”
       </h1>
-      <hr className={`item-line mr-40px`} />
       <ul className="modal-search-results-dropdown">
         {items.map(({ label, type, link, lat, lng }, index) => (
           <li
@@ -31,16 +29,22 @@ const ModalSearchResults = ({ getIconByType, items, modalIsOpen, onForceLocation
               onClose();
             }}
           >
+            <hr className="item-line" />
             <div className="modal-search-image">
               <img className="my-auto mx-auto" src={getIconByType(type)} alt="" />
             </div>
             <div className="text-wrapper">
-              <div className={`text-title item-title text-18px text-tundora leading-16px font-metropolis mb-7px`}>
-                {label}
+              <div
+                className={`text-title item-title text-14px md:text-16px text-black leading-20px md:leading-24px font-poppins font-bold`}
+              >
+                {label.toUpperCase()}
               </div>
-              <div className={`item-subtitle text-10px text-tundora font-metropolis font-bold`}>{type}</div>
+              <div
+                className={`item-subtitle text-14px md:text-16px leading-20px md:leading-24px text-black font-poppins`}
+              >
+                {type.toUpperCase()}
+              </div>
             </div>
-            <hr className="item-line" />
           </li>
         ))}
       </ul>

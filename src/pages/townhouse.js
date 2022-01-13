@@ -28,6 +28,7 @@ const TownhousePage = ({ data }) => {
         title={propertyType.heroTitle}
         heroTopText={propertyPageData.heroTopText}
         heroContent={propertyType.heroContent}
+        heroContentCss="text-11px md:text-16px leading-24px md:leading-19px text-black-gray font-poppins md:font-late-november md:font-normal text-black-gray"
       />
       <TextSection content={propertyType.overviewText} className="mx-25px lg:mx-117px mt-100px" />
       <div className="lg:px-120px pb-40px lg:pb-0px bg-white-pink md:bg-transparent">
@@ -38,13 +39,14 @@ const TownhousePage = ({ data }) => {
           statTwoValue={propertyType.averageSize}
           statThreeLabel={propertyPageData.marketTrend}
           statThreeValue={propertyType.marketTrend}
-          className="px-25px lg:0-px pb-40px"
+          className="px-25px lg:0-px pb-20px md:pb-40px"
         />
       </div>
-      <div className="border-t mx-120px border-white-pink"></div>
+      <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px md:mt-35px mb-10px md:-mb-10px border-gray-border md:border-white-pink"></div>
       <div className="double-slider-small-tiles-background">
         <SliderSmallTiles
           mainTitle={propertyPageData.newestReleasesSliderTitle}
+          helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
           showHelpMark={true}
           smallTileData={newestReleasesProjects}
           bgWrapperClasses="bg-transparent"
@@ -53,6 +55,7 @@ const TownhousePage = ({ data }) => {
         />
         <SliderSmallTiles
           mainTitle={propertyPageData.launchingSoonSliderTitle}
+          helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
           showHelpMark={true}
           smallTileData={launchingSoonProjects}
           bgWrapperClasses="bg-transparent"
@@ -64,6 +67,7 @@ const TownhousePage = ({ data }) => {
       <div className="double-slider-small-tiles-background">
         <SliderSmallTiles
           mainTitle={propertyPageData.newestReleasesSliderTitle}
+          helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
           showHelpMark={true}
           smallTileData={newestReleasesProjects}
           bgWrapperClasses="bg-transparent"
@@ -72,6 +76,7 @@ const TownhousePage = ({ data }) => {
         />
         <SliderSmallTiles
           mainTitle={propertyPageData.launchingSoonSliderTitle}
+          helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
           showHelpMark={true}
           smallTileData={launchingSoonProjects}
           bgWrapperClasses="bg-transparent"
@@ -96,7 +101,9 @@ export const query = graphql`
       averageSize
       marketTrend
       newestReleasesSliderTitle
+      newestReleasesSliderTooltip
       launchingSoonSliderTitle
+      launchingSoonSliderTooltip
       viewDevelopmentsByCity
       viewProjectsByDeveloper
     }

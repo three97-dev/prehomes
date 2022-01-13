@@ -32,9 +32,14 @@ function* sessionGoogleLoginVerify({ code }) {
   }
 }
 
+function* sessionLogout() {
+  yield put({ type: s.GOOGLE_LOGOUT });
+}
+
 function* sessionSaga() {
   yield takeLatest(s.GOOGLE_LOGIN_TRIGGER, sessionGoogleLoginInit);
   yield takeLatest(s.GOOGLE_LOGIN_VERIFY_CODE, sessionGoogleLoginVerify);
+  yield takeLatest(s.GOOGLE_LOGOUT_TRIGGER, sessionLogout);
 }
 
 export default sessionSaga;

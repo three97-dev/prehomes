@@ -12,17 +12,6 @@ import Image from "../basic/image/Image";
 import Favorite from "../../assets/tiles/favorite.svg";
 import FavoriteRed from "../../assets/tiles/favorite-red.svg";
 
-const HeroSliderArrow = ({ onClick, classNames, rotate }) => {
-  return (
-    <div
-      onClick={onClick}
-      className={`${classNames} z-30 h-65px w-65px bg-white cursor-pointer flex justify-center rounded-full`}
-    >
-      <SliderArrow color={"black"} rotate={rotate} classNames="my-auto" />
-    </div>
-  );
-};
-
 const HeroSectionSlider = ({
   images,
   topText,
@@ -34,6 +23,7 @@ const HeroSectionSlider = ({
   onClickRequest,
   isCity,
   isFavorite,
+  className,
 }) => {
   const [nav, setNav] = useState(0);
   const [slider, setSlider] = useState(null);
@@ -44,20 +34,25 @@ const HeroSectionSlider = ({
     return (
       <div className={`${className}`}>
         {isCity ? (
-          <div className="text-tundora">
-            <div className="text-11px md:text-14px leading-11px md:leading-12px font-bold font-metropolis text-dark-creamy">
+          <div>
+            <div className="text-11px md:text-13px leading-11px md:leading-19px font-bold font-poppins uppercase text-dark-orange">
               {topText}
             </div>
-            <div className={`text-29px md:text-47px leading-29px md:leading-54px font-late-november -mt-2px mb-18px `}>
+            <div
+              className={`text-47px md:text-53px leading-54px md:leading-61px font-late-november text-black-gray -mt-2px mb-10px md:mb-20px`}
+            >
               {title}
             </div>
-            <div className="text-14px md:text-16px leading-16px md:leading-18px font-late-november md:max-w-430px mx-auto md:mx-0px">
+            <div className="text-11px md:text-13px leading-24px md:leading-19px font-bold font-poppins text-black-gray md:max-w-430px mx-auto md:mx-0px">
               {subtitle}
             </div>
           </div>
         ) : (
-          <div className="md:w-270px">
-            <p className="text-tundora font-late-november text-29px md:text-47px leading-29px md:leading-54px">
+          <div className="md:w-270px md:mt-70px">
+            <div className="text-11px md:text-13px leading-24px md:leading-18px font-bold font-poppins text-dark-creamy">
+              {topText}
+            </div>
+            <p className="text-black-gray font-late-november text-46px md:text-53px leading-54px md:leading-61px">
               {title}
             </p>
             <div className="flex justify-center md:justify-start">
@@ -65,7 +60,7 @@ const HeroSectionSlider = ({
                 <Button
                   variants="black_gradient"
                   onClick={onClickSave}
-                  btnClasses="flex justify-center justify-self-center mt-29px text-14px leading-17px font-rosario font-bold w-154px h-54px md:mr-20px"
+                  btnClasses="flex justify-center justify-self-center mt-29px text-14px leading-17px font-rosario font-bold w-154px h-54px md:mr-20px save-button-shadow"
                 >
                   <div className="flex items-center my-auto">
                     <img className="w-22px h-19px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
@@ -89,8 +84,8 @@ const HeroSectionSlider = ({
     className: "center",
     afterChange: index => images[index] && setNav(index),
     focusOnSelect: true,
-    prevArrow: <HeroSliderArrow classNames="prev" />,
-    nextArrow: <HeroSliderArrow classNames="next" rotate />,
+    prevArrow: <SliderArrow classNames="prev bg-white" />,
+    nextArrow: <SliderArrow classNames="next bg-white" rotate />,
     onInit: useCallback(() => {
       if (slider) {
         setTileCount(slider.innerSlider.props.slidesToShow);
@@ -158,7 +153,7 @@ const HeroSectionSlider = ({
   };
 
   return (
-    <div className="relative h-screen overflow-hidden bg-peach-colour">
+    <div className={`md:relative md:h-screen md:overflow-hidden bg-peach-colour ${className}`}>
       <div className="header-hero-section relative w-screen">
         <div className="grid">
           <div className="header-white-section hidden md:block z-10"></div>
@@ -168,7 +163,7 @@ const HeroSectionSlider = ({
           <Image image={images[nav]} className="md:min-w-700px w-full h-full" />
         </div>
       </div>
-      <div className="absolute bg-white bottom-1/4 md:bottom-0px w-full z-20">
+      <div className="md:absolute bg-white md:bottom-0px w-full z-20 mb-50px md:mb-0px">
         <Slider ref={s => setSlider(s)} {...settings}>
           {images.map((img, index) => {
             return (
@@ -180,7 +175,7 @@ const HeroSectionSlider = ({
           {emptyTiles(images, tileCount)}
         </Slider>
       </div>
-      <div className="absolute w-full bottom-0px h-1/4">
+      <div className="md:absolute w-full md:bottom-0px md:h-1/4 mb-50px md:mb-0px">
         <div className="hero-title w-full text-center px-25px">
           <HeroTitle className="block md:hidden" />
         </div>

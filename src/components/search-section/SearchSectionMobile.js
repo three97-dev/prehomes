@@ -48,9 +48,9 @@ const SearchSectionMobile = ({
   return (
     <div className={className}>
       <div>
-        <div className="w-full border-b border-light-grey-2 pt-125px"></div>
-        <div className="relative h-45px w-full px-25px my-20px">
-          <button className="absolute top-8px right-35px z-10 p-5px">
+        <div className="w-full border-b border-light-grey-2 pt-125px bg-light-gray"></div>
+        <div className="relative h-45px w-full px-25px mt-14px mb-26px">
+          <button className="absolute top-8px right-35px z-20 p-5px">
             <img src={SearchIconMobile} alt="search" />
           </button>
           <SearchInput searchPlaceholder={searchPlaceholder} onForceLocationChange={onForceLocationChange} />
@@ -60,7 +60,7 @@ const SearchSectionMobile = ({
             onClick={() => {
               setIsModalFilterOpen(!isModalFilterOpen);
             }}
-            className="flex justify-center py-10px text-14px leading-24px font-metropolis text-dark-green w-98px cursor-pointer"
+            className="flex justify-center py-10px text-14px leading-24px font-poppins text-dark-green w-62px cursor-pointer"
           >
             Filters
           </button>
@@ -83,7 +83,7 @@ const SearchSectionMobile = ({
           />
           <button
             onClick={() => setIsListMode(!isListMode)}
-            className="flex justify-center py-10px text-14px leading-24px font-metropolis w-98px cursor-pointer text-dark-green"
+            className="flex justify-center py-10px text-14px leading-24px font-poppins w-84px cursor-pointer text-dark-green"
           >
             {isListMode ? "Map View" : "List View"}
           </button>
@@ -91,18 +91,21 @@ const SearchSectionMobile = ({
       </div>
       <div className="relative">
         {isListMode ? (
-          <div className="search-section-results-container-mobile w-full bg-peach-colour">
+          <div className="search-section-results-container-mobile w-full bg-light-gray">
             <div className="mx-auto max-w-619px px-25px">
-              <div className={`text-18px leading-18px font-metropolis text-tundora mb-7px pt-20px font-bold`}>
+              <div className={`text-29px leading-43px font-poppins text-tundora font-bold mb-7px pt-10px pl-10px`}>
                 New Homes for Sale
               </div>
-              <div className="flex justify-between items-center mb-13px">
-                <span className="text-tundora text-14px leading-14px font-metropolis">
+              <div className="flex justify-between items-center mb-17px">
+                <span className="text-tundora text-11px leading-24px font-poppins font-bold pl-10px">
                   {visibleTiles.length} {resultsLabel}
                 </span>
                 <Dropdown
                   options={options.sort}
-                  value={typeSort}
+                  value={{
+                    value: typeSort.value,
+                    label: "Sort: " + typeSort.label,
+                  }}
                   onChange={setTypeSort}
                   arrowColor="#212121"
                   titleClassName="hidden"
@@ -127,10 +130,12 @@ const SearchSectionMobile = ({
                         title={item.title}
                         location={item.city}
                         neighborhood={item.neighborhood}
-                        price={item.price}
+                        price={item.prices[0]}
                         link={item.link}
-                        className="mb-20px w-full search-section-tile-mobile"
+                        className="mb-22px w-full search-section-tile-mobile"
                         imageClassName="w-full"
+                        titleClassName="h-26px"
+                        subtitleClassName="mb-0px normal-case"
                       />
                     );
                   })

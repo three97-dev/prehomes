@@ -1,10 +1,10 @@
 .home-header-white-section {
   height: 100%;
   width: 800px;
-  border-bottom: 0 solid white;
+  border-bottom: 0 solid #202020;
   border-left: 0 solid transparent;
   border-right: 370px solid transparent;
-  border-top: 100vh solid white;
+  border-top: 100vh solid #202020;
 }
 
 .home-hero-image {

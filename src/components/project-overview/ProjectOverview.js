@@ -29,32 +29,36 @@ const ProjectOverview = ({
 }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const isDesktop = useApplyAfterWidth(1100);
-  
+
   return (
     <div
-      className={`md+:px-20px lg:px-120px w-full lg:pt-94px lg:pb-40px bg-white-pink md:bg-transparent ${className}`}
+      className={`md+:px-20px lg:px-120px w-full lg:pt-94px lg:pb-40px ${className}`}
     >
       <div className="md+:grid md+:project-overview-grid mx-auto font-metropolis font-bold md:gap-x-62px lg+:gap-x-160px">
         <div className="md+:hidden border-t-2 border-gray-border w-full mb-40px"></div>
         <div className="project-overview-price-area px-25px lg:px-0px">
           <div className="mx-auto">
-            <div className="pb-13px text-29px leading-30px text-tundora md:text-black">
+            <div className="pb-13px text-29px md:text-32px leading-44px md:leading-50px text-tundora md:text-black-gray font-poppins">
               ${minPrice.toLocaleString("en-US")} - ${maxPrice.toLocaleString("en-US")}
             </div>
-            <div className="pb-17px md+:pb-20px text-18px md+:text-22px leading-22px text-dark-orange">
+            <div className="pb-17px md+:pb-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
               {labelPriceSQFT}
             </div>
-            <div className="pb-17px md+:pb-25px text-14px md+:text-16px leading-16px">
+            <div className="pb-17px md+:pb-25px text-14px md+:text-16px leading-24px font-poppins font-normal">
               ${priceSQFT.toLocaleString("en-US")}{" "}
             </div>
-            <div className="pb-17px md+:pb-20px text-18px md+:text-22px leading-22px text-dark-orange">
+            <div className="pb-17px md+:pb-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
               {labelPriceNeighborhood}
             </div>
-            <div className="text-14px md+:text-16px leading-16px">${priceNeighborhood.toLocaleString("en-US")}</div>
-            <div className="py-17px md+:py-20px text-18px md+:text-22px leading-22px text-dark-orange">
+            <div className="text-14px md+:text-16px leading-24px font-poppins font-normal">
+              ${priceNeighborhood.toLocaleString("en-US")}
+            </div>
+            <div className="py-17px md+:py-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
               {labelPriceCity}
             </div>
-            <div className="text-14px md+:text-16px leading-16px">${priceCity.toLocaleString("en-US")}</div>
+            <div className="text-14px md+:text-16px leading-24px font-poppins font-normal">
+              ${priceCity.toLocaleString("en-US")}
+            </div>
           </div>
         </div>
         {isDesktop ? (
@@ -78,11 +82,13 @@ const ProjectOverview = ({
         <div className="md+:hidden border-t-2 border-gray-border w-full mt-50px mb-40px"></div>
 
         <div className="project-overview-content-area px-25px lg:px-0px">
-          <div className="ml-3px pb-13px text-29px leading-30px">{title}</div>
-          <div className="ml-3px pb-20px text-18px md+:text-22px leading-18px md+:leading-22px text-dark-orange">
+          <div className="ml-3px pb-13px text-29px md:text-32px leading-44px md:leading-50px font-poppins text-tundora md:text-black-gray">
+            {title}
+          </div>
+          <div className="ml-3px pb-20px text-22px md+:text-26px leading-26px md+:leading-30px font-late-november font-normal text-dark-orange">
             {address}
           </div>
-          <div className="text-14px md+:text-16px leading-24px font-normal">
+          <div className="text-14px md+:text-16px leading-24px font-light font-poppins text-black-gray">
             <RRenderer
               data={content}
               config={{

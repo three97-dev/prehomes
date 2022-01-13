@@ -4,6 +4,15 @@
   position: relative;
 }
 
+.home-hero-input-shadow::placeholder {
+  font-size: 11px;
+}
+@media screen and (min-width: 769px) {
+  .home-hero-input-shadow::placeholder {
+    font-size: 16px;
+  }
+}
+
 .dropdown-menu {
   position: absolute;
   top: 70%;
@@ -24,8 +33,9 @@
 }
 
 .list-item {
-  height: 44px;
+  height: 50px;
   padding: 6px;
+  margin: 10px;
 }
 
 .list-item:hover {
@@ -33,19 +43,15 @@
   background-color: #dfe2e5;
 }
 
-.list-item:last-child {
-  border-top: 1px solid #dfe2e5;
-}
-
 .item-search-for {
   width: 100%;
   text-align: center;
-  height: 31px;
+  height: 38px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 14px;
-  line-height: 31px;
+  font-size: 16px;
+  line-height: 38px;
 }
 
 .item-image {

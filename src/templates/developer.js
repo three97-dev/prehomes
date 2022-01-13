@@ -19,7 +19,7 @@ const DeveloperPageTemplate = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" className="bg-white-pink md:bg-transparent" />
+      <Header logoLink="/" />
       <HeroSection
         image={developer.developerPreviewImage}
         title={developer.developerName}
@@ -27,18 +27,18 @@ const DeveloperPageTemplate = ({ data }) => {
         heroContent={developer.developerSubtitleText}
         heroLogoImage={developer.developerPreviewLogo}
         isFixedHeader
+        heroContentCss="text-11px md:text-13px leading-24px md:leading-19px text-black-gray font-poppins md:font-normal"
       />
-      <div className="lg:px-120px flex flex-col items-center pt-100px bg-white-pink md:bg-transparent">
+      <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">
         <TextImageSection content={developer.overviewText} image={developer.overviewImage} />
       </div>
-      <div className="border-t border-white-pink mx-120px mt-23px"></div>
+      <hr className="hidden md:block bg-beige h-2px md:max-w-1130px border-none bg-clip-content md:mx-120px mt-23px" />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
         mainTitle={`${developerPageData.sliderTitle} ${developer.developerName}`}
-        showHelpMark={true}
         smallTileData={otherProjects}
-        bgWrapperClasses="bg-transparent"
-        paddingTitleClasses="pt-70px"
+        bgWrapperClasses="bg-white-pink md:bg-transparent"
+        paddingTitleClasses="pt-50px md:pt-30px"
         paddingSliderClasses="pt-70px pb-50px"
       />
       <ViewByLinks title={developerPageData.viewByLinksTitle} links={projectsByDeveloperLinks} />

@@ -19,7 +19,8 @@ const ModalFloorPlan = ({
   modalIsOpen,
   onClose,
   floorPlan,
-  projectData,
+  projectContentfulId,
+  projectName,
   projectNameLabel,
   suiteNameLabel,
   squareFootageLabel,
@@ -36,6 +37,7 @@ const ModalFloorPlan = ({
   const saveFloorPlan = useSelector(state => state.saveFloorPlan);
   const session = useSelector(state => state.session);
   const isFavorite = saveFloorPlan.savedFloorPlans.some(floorPlanId => floorPlanId === floorPlan?.contentful_id);
+  console.log(isFavorite);
 
   const saveUnsaveFloorPlanButton = useCallback(() => {
     if (isFavorite) {
@@ -43,14 +45,14 @@ const ModalFloorPlan = ({
         type: DELETE_FLOOR_PLAN_TRIGGER,
         email: session.email,
         floorPlanId: floorPlan?.contentful_id,
-        projectId: projectData.contentful_id,
+        projectId: projectContentfulId,
       });
     } else {
       dispatch({
         type: SAVE_FLOOR_PLAN_TRIGGER,
         email: session.email,
         floorPlanId: floorPlan?.contentful_id,
-        projectId: projectData.contentful_id,
+        projectId: projectContentfulId,
       });
     }
   }, [floorPlan, isFavorite, session, dispatch]);
@@ -72,7 +74,7 @@ const ModalFloorPlan = ({
         {isDesktop ? (
           <div className="modal-flor-plan-descriptions-area pt-30px md+:pt-45px">
             <div className="modal-floor-plan-titles">{projectNameLabel.toUpperCase()}</div>
-            <div className="modal-floor-plan-values">{projectData.projectName.toUpperCase()}</div>
+            <div className="modal-floor-plan-values">{projectName.toUpperCase()}</div>
             <div className="modal-floor-plan-titles">{suiteNameLabel.toUpperCase()}</div>
             <div className="modal-floor-plan-values">{floorPlan?.name?.toUpperCase()}</div>
             <div className="apartment-parameters-grid-area">

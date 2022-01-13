@@ -1,0 +1,71 @@
+.burger-menu {
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 436px;
+  max-height: 485px;
+  margin: 0 0 0 auto;
+}
+
+.burger-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  filter: drop-shadow(0px 18px 40px rgba(0, 0, 0, 0.3));
+}
+
+.burger-menu-container {
+  width: 100%;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: minmax(0, auto) 112px;
+  grid-template-rows: 98px auto;
+  grid-template-areas:
+    ". BurgerMenuButton"
+    "BurgerMenuList BurgerMenuList";
+}
+
+
+@media screen and (max-width: 768px) {
+  .burger-menu-container {
+    grid-template-columns: minmax(0, auto) 95px;
+  grid-template-rows: 101px auto;
+  }
+}
+
+.burger-menu-button {
+  grid-area: BurgerMenuButton;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  position: relative;
+}
+
+.burger-menu-button :after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border: 10px solid #fff;
+  position: absolute;
+  bottom: -10px;
+  border-top: 0;
+  border-left: 0;
+  border-radius: 0 0 15px 0;
+  left: -20px;
+}
+
+.burger-menu-list {
+  grid-area: BurgerMenuList;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.border-shadow {
+  box-shadow: inset 2px 0px 5px #e5e5e5;
+  border-color: #e9e9e9;
+}

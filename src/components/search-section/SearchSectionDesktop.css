@@ -1,0 +1,8 @@
+.search-section-shadow-border {
+  box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f1;
+}
+
+.search-section-switch-inner-shadow {
+  box-shadow: inset 0px 5px 20px 2px rgba(0, 0, 0, 0.15);
+}

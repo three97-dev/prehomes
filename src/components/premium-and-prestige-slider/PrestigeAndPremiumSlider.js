@@ -9,8 +9,8 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
   const [tileCount, setTileCount] = useState(0);
 
   const settings = {
-    prevArrow: <SliderArrow classNames="prev-arrow" />,
-    nextArrow: <SliderArrow rotate={true} classNames="next-arrow" />,
+    prevArrow: <SliderArrow classNames="prev-arrow bg-white" />,
+    nextArrow: <SliderArrow rotate={true} classNames="next-arrow bg-white" />,
     slidesToShow: 5,
     slidesToScroll: 1,
     infinite: false,
@@ -70,17 +70,17 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
     }
   };
 
-  return (
-    <div className="w-full">
-      <div className="flex justify-between text-peach-colour mb-70px w-full">
-        <div className="min-w-370px mr-20px font-metropolis white-pink font-bold text-23px md:text-29px leading-24px md:leading-29px">
+  return projects.length === 0 ? null : (
+    <div className="w-full md:px-112px">
+      <div className="flex justify-between text-peach-colour mb-50px md:mb-70px lg:mb-110px w-full px-25px md:px-0px">
+        <div className="min-w-370px mr-20px font-poppins text-white-pink font-bold text-29px md:text-32px leading-32px md:leading-50px tracking-wider">
           {title}
         </div>
-        <div className="w-full lg:pl-104px">
-          <hr className="mt-14px ml-auto" />
+        <div className="w-full lg:pl-94px lg:pr-10px">
+          <hr className="mt-14px md:mt-22px ml-auto" />
         </div>
       </div>
-      <div className="pb-95px">
+      <div className="pb-50px md:pb-95px">
         <Slider ref={s => setSlider(s)} {...settings}>
           {projects.map((project, index) => {
             return (

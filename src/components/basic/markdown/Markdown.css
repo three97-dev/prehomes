@@ -7,7 +7,7 @@ h1.markdown-default {
 }
 
 h2.markdown-default {
-  @apply text-29px leading-29px font-bold font-metropolis text-tundora mb-40px;
+  @apply text-29px md:text-33px leading-43px md:leading-50px font-bold font-poppins text-tundora md:text-black-gray mb-40px;
 }
 
 h3.markdown-default {
