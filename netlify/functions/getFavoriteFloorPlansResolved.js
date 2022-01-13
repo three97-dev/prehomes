@@ -45,6 +45,7 @@ exports.handler = async function (event, context) {
         priceForSquareFootage: floorPlan?.fields?.priceForSquareFootage,
         isAvailable: floorPlan?.fields?.isAvailable,
         projectName: project?.fields?.projectName,
+        projectContentfulId: savedFloorPlan.project_contentful_id,
         floorPlanImage: convertContentfulImageToGatsbyFormat(floorPlan?.fields?.floorPlanImage?.fields),
       };
     });
