@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
-import SortAZWhite from "../../assets/button/sort-az-white.svg";
 import SortAZGold from "../../assets/button/sort-az-gold.svg";
 
 const Dropdown = ({

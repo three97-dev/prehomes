@@ -20,6 +20,7 @@ const PremiumPage = ({ data }) => {
       <Header logoLink="/" variant="premium" />
 
       <PremiumAndPrestigeHero
+        isBlack
         image={premiumPageData.heroImage}
         title={premiumPageData.title}
         heroTopText={premiumPageData.heroTopText}

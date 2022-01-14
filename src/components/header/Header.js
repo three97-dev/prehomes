@@ -91,22 +91,18 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
         isStickyHeader || headerStyle ? "header-show" : ""
       } ${isStickyHeader ? "header-border" : ""}`}
     >
-      <div
-        className={`justify-between mx-auto flex pt-20px md:pt-5px mb-10px md:pb-5px ${
-          isStickyHeaderMobile ? "mt-10px" : ""
-        }`}
-      >
-        <UniversalLink link={logoLink} className={`mt-10px ${isStickyHeaderMobile ? "mt-20px mx-auto" : " mt-24px"}`}>
+      <div className="justify-between mx-auto flex pt-20px md:pt-5px mb-10px md:pb-5px">
+        <UniversalLink link={logoLink} className={`${isDesktop ? "mt-24px" : "mt-13px"}`}>
           <Image
             image={isStickyHeader || headerStyle ? (isDesktop ? headerLogo : headerLogoMobileBlack) : logoImage}
-            className={`${isStickyHeaderMobile ? "ml-45px w-140px" : ""}`}
+            className={`${isStickyHeaderMobile ? " w-194px" : ""}`}
           />
         </UniversalLink>
         <button
           onClick={() => setIsMenuActive(!isMenuActive)}
           className={`button-circle-shadow rounded-full w-45px h-45px md:w-68px md:h-65px ${
             variant === "prestige" || variant === "premium" ? "bg-white-pink" : "burger-menu-not-active-bg"
-          } mt-8px mb-8px mr-2px`}
+          } mt-8px mb-8px mr-3px`}
         >
           <img src={BurgerMenuNotActiveImage} alt="button-icon" className="mx-auto" />
         </button>

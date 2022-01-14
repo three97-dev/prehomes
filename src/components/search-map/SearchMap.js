@@ -82,7 +82,7 @@ function SearchMap({ allProjects, filteredProjects, centerPosition, zoom, onMapC
                 <InfoWindow position={{ lat: project.lat, lng: project.lng }} onCloseClick={() => setShowInfoWindow()}>
                   <div className="p-8px">
                     <UniversalLink link={project.link}>
-                      <p className="text-16px font-bold">{project.title}</p>
+                      <span className="link-font font-bold">{project.title}</span>
                     </UniversalLink>
                     <p className="mt-10px font-bold">{project.city.toUpperCase()}</p>
                     {project.neighborhood}

@@ -15,7 +15,7 @@ import CityIcon from "../../assets/hero/city-icon.svg";
 
 import "./SearchInput.css";
 
-const SearchInput = ({ searchPlaceholder, onForceLocationChange }) => {
+const SearchInput = ({ searchPlaceholder, onForceLocationChange, searchForLabel }) => {
   const [isSearchMenuShown, setIsSearchMenuShown] = useState(false);
   const inputRef = useRef();
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -68,7 +68,7 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange }) => {
     <div ref={inputMenu} className="relative">
       <input
         placeholder={searchPlaceholder}
-        className={`relative z-10 text-11px md:text-13px leading-24px md:leading-14px font-rosario md:font-late-november italic md:not-italic tracking-wider md:tracking-normal w-full h-45px pl-10px md:pl-52px pr-45px md:pr-20px rounded-15px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none search-section-input-shadow border border-silver`}
+        className="relative z-10 placeholder-font w-full h-45px pl-10px md:pl-52px pr-45px md:pr-20px rounded-15px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none search-section-input-shadow border border-silver"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
         onFocus={() => setIsSearchMenuShown(true)}
@@ -89,17 +89,15 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange }) => {
               <div className="item-image">
                 <img className="my-auto mx-auto" src={getIconByType(type)} alt="" />
               </div>
-              <div className="text-wrapper">
-                <div className={`text-title item-title text-18px text-tundora leading-16px font-late-november mb-7px`}>
-                  {label}
-                </div>
-                <div className={`item-subtitle text-10px text-tundora font-late-november font-bold`}>{type}</div>
+              <div className="text-wrapper mt-12px">
+                <div className="text-title item-title link-font text-black-gray mb-7px">{label}</div>
               </div>
             </li>
           ))}
           <li className="list-item" onMouseDown={openModal}>
-            <div className={`item-search-for uppercase text-tundora font-metropolis`}>
-              Search for <b>"{searchTerm}"</b>
+            <div className="item-search-for text-black-gray link-font">
+              {searchForLabel}
+              <b>"{searchTerm}"</b>
             </div>
           </li>
         </ul>

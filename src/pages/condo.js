@@ -28,7 +28,7 @@ const CondoPage = ({ data }) => {
         title={propertyType.heroTitle}
         heroTopText={propertyPageData.heroTopText}
         heroContent={propertyType.heroContent}
-        heroContentCss="text-11px md:text-16px leading-24px md:leading-19px text-black-gray font-poppins md:font-late-november md:font-normal text-black-gray"
+        heroContentCss="footer-font md:font-normal text-black-gray"
         isFixedHeader
       />
       <div className="bg-white-pink md:bg-transparent">

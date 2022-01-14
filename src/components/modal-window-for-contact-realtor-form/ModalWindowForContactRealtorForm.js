@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
-import { useStaticQuery, graphql } from "gatsby";
 
 import "./ModalWindowForContactRealtorForm.css";
 
@@ -18,8 +17,8 @@ const ModalForm = ({ modalIsOpen, onClose, title, text }) => {
       >
         <div className="modal-window-for-contact-realtor-form-container">
           <div className="modal-window-for-contact-realtor-form-content justify-items-center">
-            <div className="text-29px leading-29px text-tundora font-bold font-metropolis">{title}</div>
-            <div className="text-16px leading-24px text-dark-gray font-metropolis text-center mt-20px">{text}</div>
+            <h3 className="text-tundora font-bold">{title}</h3>
+            <p className="text-dark-gray text-center mt-20px">{text}</p>
           </div>
         </div>
       </Modal>

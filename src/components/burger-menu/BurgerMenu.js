@@ -18,7 +18,7 @@ const ListItem = ({ name, link, image, onClick }) => {
   return (
     <UniversalLink link={link} onClick={onClick} className="flex items-center w-full pt-27px pb-27px">
       <img src={image} alt={name} className="ml-4px mr-38px" />
-      <div className="text-16px leading-16px uppercase text-black font-bold font-metropolis">{name}</div>
+      <div className="link-font text-black">{name}</div>
     </UniversalLink>
   );
 };
@@ -70,9 +70,7 @@ const BurgerMenu = ({
           <div className="burger-menu-button bg-white grid justify-items-center">
             <button
               onClick={() => onClose()}
-              className={`button-circle-shadow rounded-full w-45px h-45px md:w-68px md:h-65px bg-black-gray ${
-                isStickyHeaderMobile ? "mt-38px" : "mt-28px"
-              } md:mt-13px`}
+              className={`button-circle-shadow rounded-full w-45px h-45px md:w-68px md:h-65px bg-black-gray mt-28px md:mt-13px`}
             >
               <img src={BurgerMenuActiveImage} alt="button-icon" className="mx-auto" />
             </button>

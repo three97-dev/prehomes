@@ -86,7 +86,7 @@
   width: 100%;
   border-radius: 15px;
   background-color: white;
-  @apply relative h-0px overflow-hidden;
+  @apply relative h-0px overflow-hidden filter drop-shadow-none;
 }
 
 .modal-video-iframe {

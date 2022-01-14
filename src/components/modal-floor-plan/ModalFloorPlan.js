@@ -37,7 +37,6 @@ const ModalFloorPlan = ({
   const saveFloorPlan = useSelector(state => state.saveFloorPlan);
   const session = useSelector(state => state.session);
   const isFavorite = saveFloorPlan.savedFloorPlans.some(floorPlanId => floorPlanId === floorPlan?.contentful_id);
-  console.log(isFavorite);
 
   const saveUnsaveFloorPlanButton = useCallback(() => {
     if (isFavorite) {
@@ -73,38 +72,38 @@ const ModalFloorPlan = ({
         </div>
         {isDesktop ? (
           <div className="modal-flor-plan-descriptions-area pt-30px md+:pt-45px">
-            <div className="modal-floor-plan-titles">{projectNameLabel.toUpperCase()}</div>
-            <div className="modal-floor-plan-values">{projectName.toUpperCase()}</div>
-            <div className="modal-floor-plan-titles">{suiteNameLabel.toUpperCase()}</div>
-            <div className="modal-floor-plan-values">{floorPlan?.name?.toUpperCase()}</div>
+            <span className="eyebrow-font text-black">{projectNameLabel.toUpperCase()}</span>
+            <p className="text-black mb-25px">{projectName.toUpperCase()}</p>
+            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
+            <p className="text-black mb-25px">{floorPlan?.name?.toUpperCase()}</p>
             <div className="apartment-parameters-grid-area">
-              <div className="grid-square-footage-title-area modal-floor-plan-titles justify-self-center">
+              <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-center">
                 {squareFootageLabel.toUpperCase()}
-              </div>
-              <div className="grid-square-footage-value-area modal-floor-plan-values justify-self-center">
+              </span>
+              <p className="grid-square-footage-value-area text-black justify-self-center">
                 {floorPlan?.squareFootage?.toLocaleString("en-US")}
-              </div>
-              <div className="grid-bedrooms-title-area modal-floor-plan-titles justify-self-center">
+              </p>
+              <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-center">
                 {bedroomsLabel.toUpperCase()}
-              </div>
-              <div className="grid-bedrooms-value-area modal-floor-plan-values justify-self-center">
+              </span>
+              <p className="grid-bedrooms-value-area text-black justify-self-center">
                 {floorPlan?.bedrooms?.toLocaleString()}
-              </div>
-              <div className="grid-bathrooms-title-area modal-floor-plan-titles justify-self-center">
+              </p>
+              <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-center">
                 {bathroomsLabel.toUpperCase()}
-              </div>
-              <div className="grid-bathrooms-value-area modal-floor-plan-values justify-self-center">
+              </span>
+              <p className="grid-bathrooms-value-area text-black justify-self-center">
                 {floorPlan?.bathrooms?.toLocaleString()}
-              </div>
+              </p>
             </div>
-            <div className="modal-floor-plan-titles">{modalProjectPrice.toUpperCase()}</div>
-            <div className="modal-floor-plan-price">${floorPlan?.price?.toLocaleString("en-US")}</div>
+            <div className="eyebrow-font text-black">{modalProjectPrice.toUpperCase()}</div>
+            <h3 className="mb-25px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
 
             <div className="flex items-center -ml-7px">
               {isLoggedIn ? (
                 <Button
                   onClick={saveUnsaveFloorPlanButton}
-                  btnClasses="flex items-center justify-center w-174px h-54px mr-20px text-14px leading-17px font-bold font-rosario text-white"
+                  btnClasses="flex items-center justify-center w-174px h-54px mr-20px button-font text-white"
                   variants="black_gradient"
                 >
                   <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
@@ -115,43 +114,43 @@ const ModalFloorPlan = ({
           </div>
         ) : (
           <div className={`modal-flor-plan-descriptions-area px-15px`}>
-            <div className="modal-floor-plan-titles">{modalProjectPrice.toUpperCase()}</div>
-            <div className="modal-floor-plan-price">${floorPlan?.price?.toLocaleString("en-US")}</div>
-            <div className="modal-floor-plan-titles">{suiteNameLabel.toUpperCase()}</div>
-            <div className="modal-floor-plan-values">{floorPlan?.name?.toUpperCase()}</div>
+            <span className="eyebrow-font text-black">{modalProjectPrice.toUpperCase()}</span>
+            <h3 className="mb-25px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
+            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
+            <p className="mb-25px text-black">{floorPlan?.name?.toUpperCase()}</p>
             <div className="apartment-parameters-grid-area">
-              <div className="grid-square-footage-title-area modal-floor-plan-titles justify-self-start">
+              <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-start">
                 {sizeColumnUnits.toUpperCase()}
-              </div>
-              <div className="grid-square-footage-value-area modal-floor-plan-values justify-self-start">
+              </span>
+              <p className="grid-square-footage-value-area text-black justify-self-start">
                 {floorPlan?.squareFootage?.toLocaleString("en-US")}
-              </div>
-              <div className="grid-bedrooms-title-area modal-floor-plan-titles justify-self-start">
+              </p>
+              <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-start">
                 {bedroomsLabel.toUpperCase()}
-              </div>
-              <div className="grid-bedrooms-value-area modal-floor-plan-values justify-self-start">
+              </span>
+              <p className="grid-bedrooms-value-area text-black justify-self-start">
                 {floorPlan?.bedrooms?.toLocaleString()}
-              </div>
-              <div className="grid-bathrooms-title-area modal-floor-plan-titles justify-self-start">
+              </p>
+              <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-start">
                 {bathroomsLabel.toUpperCase()}
-              </div>
-              <div className="grid-bathrooms-value-area modal-floor-plan-values justify-self-start">
+              </span>
+              <p className="grid-bathrooms-value-area text-black justify-self-start">
                 {floorPlan?.bathrooms?.toLocaleString()}
-              </div>
+              </p>
             </div>
 
             {isLoggedIn ? (
               <div className="buttons-grid">
                 <Button
                   onClick={saveUnsaveFloorPlanButton}
-                  btnClasses="flex items-center justify-center w-160px h-50px text-14px leading-14px font-bold font-metropolis text-white"
+                  btnClasses="flex items-center justify-center w-160px h-50px button-font text-white"
                   variants="black_gradient"
                 >
                   <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
                   {saveFloorPlanButtonLabel}
                 </Button>
                 <Button
-                  btnClasses="flex items-center justify-center w-160px h-50px text-14px leading-14px font-bold text-white"
+                  btnClasses="flex items-center justify-center w-160px h-50px button-font text-white"
                   variants="dark_orange"
                 >
                   Request Info

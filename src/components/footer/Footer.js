@@ -67,14 +67,14 @@ const Footer = ({ className }) => {
         <div className="pb-20px">{isDesktop ? <Image image={footerImage} /> : <Image image={footerImageMobile} />}</div>
         <div className="footer-grid-area">
           <div className="footer-grid-address-area">
-            <div className="text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold pb-25px">
+            <div className="footer-font text-white pb-25px">
               {addressBlockText}
             </div>
             <div>
               <Markdown
                 data={address}
                 config={{
-                  p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold",
+                  p: "footer-font text-white",
                 }}
               />
             </div>
@@ -83,12 +83,12 @@ const Footer = ({ className }) => {
             <Markdown
               data={disclaimer}
               config={{
-                p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold mb-24px",
+                p: "footer-font text-white mb-24px",
               }}
             />
           </div>
           <div className="footer-grid-social-media-area pt-16px md:pt-0px">
-            <div className="text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold pb-19px">{socialMediaText}</div>
+            <div className="footer-font text-white pb-19px">{socialMediaText}</div>
             <div className="pb-26px">
               <UniversalLink link={facebook}>
                 <img src={facebookIcon} className="inline-block mr-20px" />
@@ -105,7 +105,7 @@ const Footer = ({ className }) => {
             <Markdown
               data={contactUs}
               config={{
-                p: "text-11px md:text-13px leading-24px md:leading-19px text-white font-poppins font-bold",
+                p: "footer-font text-white",
               }}
             />
           </div>

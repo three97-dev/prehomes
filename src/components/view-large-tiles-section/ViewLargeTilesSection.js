@@ -35,18 +35,14 @@ const ViewLargeTilesSection = ({ title, firstTile, secondTile, thirdTile }) => {
     <div className="bg-light-gray lg:px-121px">
       {isDesktop ? (
         <>
-          <div className="text-33px leading-49px text-black-gray font-poppins font-bold text-center pt-85px pb-60px">
-            {title}
-          </div>
+          <h2 className="text-black-gray text-center pt-85px pb-60px">{title}</h2>
           <div className="grid justify-items-center text-center grid-cols-3 gap-x-38px max-w-1126px mx-auto pb-77px">
             {largeTiles}
           </div>
         </>
       ) : (
         <>
-          <div className="text-29px leading-43px text-black-gray font-poppins font-bold md:text-center pt-50px px-25px md:px-120px">
-            {title}
-          </div>
+          <h2 className="text-black-gray md:text-center pt-50px px-25px md:px-120px">{title}</h2>
           <Slider className="w-full relative" {...settings}>
             {largeTiles}
           </Slider>

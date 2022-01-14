@@ -46,7 +46,6 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
           arrows: false,
           touchMove: true,
           swipeToSlide: true,
-          centerMode: true,
           variableWidth: true,
         },
       },
@@ -101,15 +100,15 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
               src={blackVariant ? (isDesktop ? buildings : buildingsWhite) : isDesktop ? flowers : flowersWhite}
               className="md:ml-20px"
             />
-            <p className="text-22px md:text-26px font-late-november font-bold w-155px leading-29px mt-26px md:mt-35px mb-32px md:mb-25px md:ml-20px">
+            <h3 className="w-155px mt-26px md:mt-35px mb-32px md:mb-25px md:ml-20px">
               {title}
-            </p>
+            </h3>
             <hr className="rounded border-t-2 border-b mb-23px -mx-12px md:mx-0px md:bg-white-pink" />
-            <p className="mb-40px md:ml-20px text-14px md:text-16px leading-24px font-light font-poppins text-white md:text-white-pink font-light">
+            <p className="mb-40px md:ml-20px text-white md:text-white-pink">
               {subtitle}
             </p>
             <UniversalLink link={link}>
-              <span className="md:ml-20px font-poppins font-light text-14px md:text-16px leading-19px underline w-max cursor-pointer md:text-white-pink">
+              <span className="link-font md:ml-20px underline w-max cursor-pointer md:text-white-pink">
                 {linkLabel.toUpperCase()}
               </span>
             </UniversalLink>

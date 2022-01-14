@@ -27,7 +27,7 @@ const DeveloperPageTemplate = ({ data }) => {
         heroContent={developer.developerSubtitleText}
         heroLogoImage={developer.developerPreviewLogo}
         isFixedHeader
-        heroContentCss="text-11px md:text-13px leading-24px md:leading-19px text-black-gray font-poppins md:font-normal"
+        heroContentCss="footer-font md:font-normal text-black-gray"
       />
       <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">
         <TextImageSection content={developer.overviewText} image={developer.overviewImage} />

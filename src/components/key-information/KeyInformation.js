@@ -38,121 +38,85 @@ const KeyInformation = ({
 
   return (
     <div className={`grid bg-white-pink md:bg-transparent px-25px lg:px-120px pb-20px ${className}`}>
-      <div className="grid justify-items-start text-29px md:text-33px leading-44px md:leading-59px font-poppins text-black-gray font-bold mt-48px mb-20px">
-        {title}
-      </div>
+      <h2 className="text-tundora md:text-black-gray mt-48px mb-20px">{title}</h2>
       <div className="key-info-grid-area-wrapper-mobile md:key-info-grid-area-wrapper">
         {isDesktop ? (
           <div className="key-info-grid-status-area">
-            <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-              {statusLabel}
-            </div>
-            <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-              {statusValueToShow}
-            </div>
+            <h3 className="text-dark-orange">{statusLabel}</h3>
+            <p className="text-black-gray mt-20px">{statusValueToShow}</p>
           </div>
         ) : (
           <div className="key-info-grid-status-area">
-            <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-              {labelPriceSQFT}
-            </div>
-            <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-              {pricePerSqft}
-            </div>
+            <h3 className="text-dark-orange">{labelPriceSQFT}</h3>
+            <p className="text-black-gray mt-20px">{pricePerSqft}</p>
           </div>
         )}
 
         <div className="key-info-grid-type-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {typeLabel}
-          </div>
-          <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-            {typeValue}
-          </div>
+          <h3 className="text-dark-orange">{typeLabel}</h3>
+          <p className="text-black-gray mt-20px">{typeValue}</p>
         </div>
         <div className="key-info-grid-launch-date-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {launchDateLabel}
-          </div>
-          <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-            {DateTime.fromISO(launchDateValue).toFormat("dd / LL / yyyy")}
-          </div>
+          <h3 className="text-dark-orange">{launchDateLabel}</h3>
+          <p className="text-black-gray mt-20px">{DateTime.fromISO(launchDateValue).toFormat("dd / LL / yyyy")}</p>
         </div>
         <div className="key-info-grid-estimated-occupancy-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {estimatedOccupancyLabel}
-          </div>
-          <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
+          <h3 className="text-dark-orange">{estimatedOccupancyLabel}</h3>
+          <p className="text-black-gray mt-20px">
             {DateTime.fromISO(estimatedOccupancyValue).toFormat("dd / LL / yyyy")}
-          </div>
+          </p>
         </div>
         <div className="key-info-grid-major-intersection-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {majorIntersectionLabel}
-          </div>
+          <h3 className="text-dark-orange">{majorIntersectionLabel}</h3>
           <div className="mt-20px">
             <Markdown
               data={majorIntersectionValue}
               config={{
-                p: "text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px",
+                p: "text-black-gray mt-20px",
               }}
             />
           </div>
         </div>
         <div className="key-info-grid-architects-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {architectsLabel}
-          </div>
+          <h3 className="text-dark-orange">{architectsLabel}</h3>
           <div className="mt-20px">
             <Markdown
               data={architectsValue}
               config={{
-                p: "text-14px md:text-16px leading-24px font-light font-poppins text-black-gray",
+                p: "text-black-gray",
               }}
             />
           </div>
         </div>
         <div className="key-info-grid-deposit-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {depositLabel}
-          </div>
+          <h3 className="text-dark-orange">{depositLabel}</h3>
           <div className="mt-20px">
             <Markdown
               data={depositValue}
               config={{
-                p: "text-14px md:text-16px leading-24px font-light font-poppins text-black-gray",
+                p: "text-black-gray",
               }}
             />
           </div>
         </div>
         <div className="key-info-grid-cash-deposit-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {cashDepositLabel}
-          </div>
-          <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-            {cashDepositValue.toLocaleString("en-US")}
-          </div>
+          <h3 className="text-dark-orange">{cashDepositLabel}</h3>
+          <p className="text-black-gray mt-20px">{cashDepositValue.toLocaleString("en-US")}</p>
         </div>
         <div className="key-info-grid-deposit-structure-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {depositStructureLabel}
-          </div>
+          <h3 className="text-dark-orange">{depositStructureLabel}</h3>
           <div className="mt-20px">
             <Markdown
               data={depositStructureValue}
               config={{
-                p: "text-14px md:text-16px leading-24px font-light font-poppins text-black-gray",
+                p: "text-black-gray",
               }}
             />
           </div>
         </div>
         <div className="key-info-grid-locker-maintenance-area">
-          <div className="text-22px md:text-26px leading-26px md:leading-30px font-late-november font-normal text-dark-orange">
-            {lockerMaintenanceLabel}
-          </div>
-          <div className="text-14px md:text-16px leading-24px font-light font-poppins text-black-gray mt-20px">
-            ${lockerMaintenanceValue.toLocaleString("en-US")}
-          </div>
+          <h3 className="text-dark-orange">{lockerMaintenanceLabel}</h3>
+          <p className="text-black-gray mt-20px">${lockerMaintenanceValue.toLocaleString("en-US")}</p>
         </div>
       </div>
     </div>

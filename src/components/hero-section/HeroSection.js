@@ -26,16 +26,16 @@ const HeroSection = ({
         >
           {heroLogoImage ? <Image image={heroLogoImage} className="md:hidden -z-10 pt-247px" /> : null}
           <div className={`text-tundora md:ml-0px ${heroTopText ? "ml-27px" : ""}`}>
-            <div className="md:pt-217px text-11px md:text-13px leading-24px md:leading-19px font-bold font-poppins text-black-gray md:text-dark-orange">
+            <div className="md:pt-217px eyebrow-font text-black-gray md:text-dark-orange">
               {heroTopText.toUpperCase()}
             </div>
-            <div
-              className={`text-47px md:text-53px leading-54px md:leading-61px font-late-november text-black-gray -mt-2px mb-18px ${
+            <h1
+              className={`text-black-gray -mt-2px mb-18px ${
                 heroTopText ? null : "text-center md:pl-13px pt-15px"
               } `}
             >
               {title}
-            </div>
+            </h1>
             <div className={`max-w-318px md:max-w-430px font-bold ${heroContentCss}`}>{heroContent}</div>
           </div>
           {heroLogoImage ? <Image image={heroLogoImage} className="hidden md:block -z-10 mt-197px" /> : null}

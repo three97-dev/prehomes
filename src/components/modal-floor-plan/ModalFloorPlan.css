@@ -81,33 +81,6 @@
   }
 }
 
-.modal-floor-plan-titles {
-  @apply text-11px leading-11px font-bold font-metropolis text-black mb-20px;
-}
-@media screen and (min-width: 834px) {
-  .modal-floor-plan-titles {
-    @apply text-16px leading-16px;
-  }
-}
-
-.modal-floor-plan-values {
-  @apply text-18px leading-18px font-metropolis text-black mb-25px;
-}
-@media screen and (min-width: 834px) {
-  .modal-floor-plan-values {
-    @apply text-26px leading-26px;
-  }
-}
-
-.modal-floor-plan-price {
-  @apply text-18px leading-18px font-metropolis mb-25px;
-}
-@media screen and (min-width: 834px) {
-  .modal-floor-plan-price {
-    @apply text-42px leading-42px;
-  }
-}
-
 .apartment-parameters-grid-area {
   display: grid;
   grid-template-columns:

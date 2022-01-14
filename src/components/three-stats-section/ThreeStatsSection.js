@@ -1,5 +1,4 @@
 import React from "react";
-import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 import "./ThreeStatsSection.css";
 
@@ -12,23 +11,28 @@ const ThreeElementsSection = ({
   statThreeValue,
   className,
 }) => {
-  const isDesktop = useApplyAfterWidth(599);
-
   return (
     <div className={`sm+:three-elements-grid pt-10px sm+:pt-0px ${className}`}>
       <div>
-        <div className="three-elements-grid-title">{isDesktop ? statOneLabel.toUpperCase() : statOneLabel}</div>
-        <div className="three-elements-grid-description">{isDesktop ? statOneValue : statOneValue}</div>
+        <h3 className="three-elements-grid-title sm+:hidden">{statOneLabel}</h3>
+        <p className="three-elements-grid-description sm+:hidden">{statOneValue}</p>
+
+        <div className="three-elements-grid-title eyebrow-font hidden sm+:block">{statOneLabel}</div>
+        <h2 className="three-elements-grid-description hidden sm+:block">{statOneValue}</h2>
       </div>
       <div>
-        <div className="three-elements-grid-title">{isDesktop ? statTwoLabel.toUpperCase() : statTwoLabel}</div>
-        <div className="three-elements-grid-description">{isDesktop ? statTwoValue : statTwoValue}</div>
+        <h3 className="three-elements-grid-title sm+:hidden">{statTwoLabel}</h3>
+        <p className="three-elements-grid-description sm+:hidden">{statTwoValue}</p>
+
+        <div className="three-elements-grid-title eyebrow-font hidden sm+:block">{statTwoLabel}</div>
+        <h2 className="three-elements-grid-description hidden sm+:block">{statTwoValue}</h2>
       </div>
       <div>
-        <div className="three-elements-grid-title">{isDesktop ? statThreeLabel.toUpperCase() : statThreeLabel}</div>
-        <div className="three-elements-grid-description">
-          {isDesktop ? statThreeValue : statThreeValue}
-        </div>
+        <h3 className="three-elements-grid-title sm+:hidden">{statThreeLabel}</h3>
+        <p className="three-elements-grid-description sm+:hidden">{statThreeValue}</p>
+
+        <div className="three-elements-grid-title eyebrow-font hidden sm+:block">{statThreeLabel}</div>
+        <h2 className="three-elements-grid-description hidden sm+:block">{statThreeValue}</h2>
       </div>
     </div>
   );

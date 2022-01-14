@@ -48,7 +48,6 @@ const SliderSmallTiles = ({
           arrows: false,
           touchMove: true,
           swipeToSlide: true,
-          centerMode: true,
           variableWidth: true,
         },
       },
@@ -98,12 +97,17 @@ const SliderSmallTiles = ({
   return smallTileData.length === 0 ? null : (
     <div className={classNames(bgWrapperClasses)}>
       <div className="md:mx-60px">
-        <div className={classNames("px-62px", paddingTitleClasses)}>
-          <div className="text-29px sm+:text-33px leading-43px sm+:leading-49px text-black-gray font-bold tracking-wide font-poppins">
-            <div className="flex">
-              {mainTitle}
-              {showHelpMark && <img src={helpMarkImage} title={helpMarkTooltip} className="ml-80px hidden md:block" alt="help mark image" />}
-            </div>
+        <div className={classNames("px-25px md:px-62px", paddingTitleClasses)}>
+          <div className="flex">
+            <h2 className="text-black-gray">{mainTitle}</h2>
+            {showHelpMark && (
+              <img
+                src={helpMarkImage}
+                title={helpMarkTooltip}
+                className="ml-80px hidden md:block"
+                alt="help mark image"
+              />
+            )}
           </div>
         </div>
         <div className={paddingSliderClasses}>

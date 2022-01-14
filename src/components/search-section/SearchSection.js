@@ -26,6 +26,10 @@ const SearchSection = ({
   modalTitle,
   clearButtonLabel,
   applyButtonLabel,
+  newHomesForSaleLabel,
+  filtersLabel,
+  mapViewLabel,
+  listViewLabel,
   className,
 }) => {
   const location = useLocation();
@@ -211,6 +215,10 @@ const SearchSection = ({
             applyButtonLabel={applyButtonLabel}
             filter={filter}
             options={options}
+            newHomesForSaleLabel={newHomesForSaleLabel}
+            filtersLabel={filtersLabel}
+            mapViewLabel={mapViewLabel}
+            listViewLabel={listViewLabel}
           />
         ))}
     </div>

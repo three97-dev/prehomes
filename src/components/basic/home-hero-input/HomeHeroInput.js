@@ -68,7 +68,7 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
   return (
     <div ref={inputMenu} className={`${className} relative`}>
       <input
-        className={`home-hero-input-shadow text-11px md:text-13px leading-24px md:leading-14px font-poppins md:font-late-november font-bold md:font-normal italic md:not-italic w-full z-10 ${height} rounded-15px pl-20px pr-40px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none`}
+        className={`home-hero-input-shadow placeholder-font w-full z-10 ${height} rounded-15px pl-20px pr-40px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none`}
         type="text"
         placeholder={placeholder}
         onChange={e => setSearchTerm(e.target.value)}
@@ -82,18 +82,17 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
           {shortList.map(({ label, type, link, index }) => (
             <li key={index} className="list-item" onMouseDown={() => navigate(link)}>
               <div className="item-image">
-                <img className="my-auto mx-auto" src={getIconByType(type)} alt="" />
+                <img className="my-auto" src={getIconByType(type)} alt="" />
               </div>
-              <div className="text-wrapper">
-                <div className={`text-title item-title text-18px text-tundora leading-16px font-metropolis mb-7px`}>
+              <div className="text-wrapper mt-12px">
+                <div className={`text-title item-title link-font text-black-gray`}>
                   {label}
                 </div>
-                <div className={`item-subtitle text-10px text-tundora font-metropolis font-bold`}>{type}</div>
               </div>
             </li>
           ))}
           <li className="list-item" onMouseDown={openModal}>
-            <div className={`item-search-for uppercase text-tundora font-metropolis`}>
+            <div className={`item-search-for link-font text-black-gray`}>
               Search for <b>"{searchTerm}"</b>
             </div>
           </li>

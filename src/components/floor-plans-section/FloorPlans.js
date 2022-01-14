@@ -124,25 +124,21 @@ const FloorPlans = ({
   );
 
   return (
-    <div className={`relative pt-50px md:pt-30px bg-peach-colour md:bg-light-gray ${className}`}>
+    <div className={`relative pt-50px md:pt-30px bg-white-pink md:bg-light-gray ${className}`}>
       {isDesktop && (
-        <hr className="absolute left-0px top-330px md:top-294px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
+        <hr className="absolute left-0px top-330px md:top-288px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
       )}
       <div className="pl-25px lg:pl-120px">
-        <h2 className="text-29px md:text-32px leading-44px md:leading-50px font-poppins text-tundora md:text-black-gray font-bold mb-29px md:mb-20px">
-          {title}
-        </h2>
-        <h3 className="text-22px md+:text-26px leading-26px md+:leading-30px font-late-november font-normal text-dark-orange mb-21px md:mb-43px">
-          {subtitle}
-        </h3>
-        <p className="text-11px md:text-13px leading-24px md:leading-19px font-poppins mb-20px md:mb-40px">
+        <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">{title}</h2>
+        <h3 className="text-dark-orange mb-21px md:mb-43px">{subtitle}</h3>
+        <p className="mb-20px md:mb-40px">
           <span className="font-bold">{floors.length}</span> ({availableFloors.length} {available})
         </p>
       </div>
       <div
-        className={`table-filters flex justify-between items-center md:hidden h-44px text-14px leading-24px font-metropolis pl-35px pr-22px mb-25px`}
+        className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}
       >
-        <button className="w-80px h-24px text-dark-orange">Filters</button>
+        <button className="w-80px h-24px text-dark-orange button-font">Filters</button>
         <Dropdown
           options={options.sort}
           value={{
@@ -193,9 +189,9 @@ const FloorPlans = ({
         />
       </div>
       {sortedTiles.length === 0 ? (
-        <div className="w-full pt-100px pb-50px text-center text-14px leading-14px font-metropolis font-bold">
+        <h3 className="w-full pt-100px pb-50px text-center">
           {floorNoResults}
-        </div>
+        </h3>
       ) : (
         <div className="md:px-25px lg:px-120px">
           <table className="w-full">
@@ -204,13 +200,17 @@ const FloorPlans = ({
                 <tr className="table-head">
                   <th className=""></th>
                   <th className="table-head-item pl-20px md:pl-16px lg:pl-37px text-black-gray min-w-136px">
-                    {suiteNameColumnTitle}
+                    <h4>{suiteNameColumnTitle}</h4>
                   </th>
                   <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
-                    {suiteTypeColumnTitle}
+                    <h4>{suiteTypeColumnTitle}</h4>
                   </th>
-                  <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">{sizeColumnTitle}</th>
-                  <th className="table-head-item pl-20px md:pl-22px lg:pl-48px text-black-gray">{priceColumnTitle}</th>
+                  <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
+                    <h4>{sizeColumnTitle}</h4>
+                  </th>
+                  <th className="table-head-item pl-20px md:pl-22px lg:pl-48px text-black-gray">
+                    <h4>{priceColumnTitle}</h4>
+                  </th>
                   <th className="table-head-item"></th>
                 </tr>
               </thead>
@@ -227,10 +227,10 @@ const FloorPlans = ({
                           className="w-90px md:w-130px lg:w-160px max-w-160px h-120px"
                         />
                       </td>
-                      <td className="text-16px leading-16px font-bold font-metropolis pl-20px lg:pl-37px lg+:pl-30px">
-                        <div className="max-w-154px">{floorPlan.name}</div>
+                      <td className="pl-20px lg:pl-37px lg+:pl-30px">
+                        <div className="max-w-154px footer-font">{floorPlan.name}</div>
                       </td>
-                      <td className="text-16px leading-16px font-light font-poppins text-black-gray pl-20px lg:pl-37px">
+                      <td className="text-black-gray pl-20px lg:pl-37px">
                         <p className="mb-20px w-110px lg+:mb-12px lg+:mr-20px">
                           {floorPlan.bedrooms} {suiteNameColumnBedroomLabel}
                         </p>
@@ -238,10 +238,12 @@ const FloorPlans = ({
                           {floorPlan.bathrooms} {suiteNameColumnBathroomLabel}
                         </p>
                       </td>
-                      <td className="text-16px leading-16px font-light font-poppins text-black-gray pl-20px lg:pl-37px">
-                        {floorPlan.squareFootage.toLocaleString("en-US")} {sizeColumnUnits}
+                      <td className="text-black-gray pl-20px lg:pl-37px">
+                        <p>
+                          {floorPlan.squareFootage.toLocaleString("en-US")} {sizeColumnUnits}
+                        </p>
                       </td>
-                      <td className="text-16px leading-16px font-light font-poppins text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
+                      <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
                         <p className="mb-20px lg+:mb-12px lg+:mr-20px">${floorPlan.price.toLocaleString("en-US")}</p>
                         <p>
                           ${floorPlan.priceForSquareFootage.toLocaleString("en-US")} {priceColumnUnits}
@@ -253,7 +255,7 @@ const FloorPlans = ({
                           btnClasses="w-113px h-54px"
                           onClick={() => setMoreInfoModal(floorPlan)}
                         >
-                          <div className="text-16px leading-24px font-medium font-poppins">{moreInfoButtonLabel}</div>
+                          <div className="button-font">{moreInfoButtonLabel}</div>
                         </Button>
                       </td>
                     </tr>
@@ -270,22 +272,18 @@ const FloorPlans = ({
                       </td>
                       <td className="pl-20px lg:pl-37px lg+:pl-30px">
                         <div className="table-data">
-                          <div className="text-14px leading-14px font-bold font-metropolis mb-20px">
-                            {floorPlan.name.toUpperCase()}
-                          </div>
+                          <div className="footer-font mb-20px">{floorPlan.name.toUpperCase()}</div>
                           <div className="floor-info">
-                            <div className="w-100px text-11px leading-11px font-bold font-metropolis">
-                              ${floorPlan.price.toLocaleString("en-US")}
-                            </div>
-                            <div className="w-100px text-11px leading-11px font-bold font-metropolis">
+                            <p className="w-100px">${floorPlan.price.toLocaleString("en-US")}</p>
+                            <p className="w-100px">
                               {floorPlan.squareFootage.toLocaleString("en-US")} {sizeColumnUnits.toUpperCase()}
-                            </div>
-                            <div className="w-100px text-11px leading-11px font-metropolis text-black-gray">
+                            </p>
+                            <p className="w-100px text-black-gray">
                               {floorPlan.bathrooms} {suiteNameColumnBathroomLabel.toUpperCase()}
-                            </div>
-                            <div className="w-100px text-11px leading-11px font-metropolis text-black-gray">
+                            </p>
+                            <p className="w-100px text-black-gray">
                               {floorPlan.bedrooms} {suiteNameColumnBedroomLabel.toUpperCase()}
-                            </div>
+                            </p>
                           </div>
                         </div>
                       </td>

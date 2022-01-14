@@ -38,17 +38,15 @@ const ModalForm = ({ modalIsOpen, onClose, isSubmissionSuccessful }) => {
       >
         <div className="modal-form-container">
           <div className="modal-form-content justify-items-center">
-            <div className="text-29px leading-29px text-black-gray font-bold font-poppins">
-              {isSubmissionSuccessful ? submittedTitle : errorTitle}
-            </div>
-            <div className="text-16px leading-24px text-black-gray font-poppins text-center mt-20px modal-form-text">
+            <h2 className="text-black-gray">{isSubmissionSuccessful ? submittedTitle : errorTitle}</h2>
+            <div className="text-black-gray text-center mt-20px modal-form-text">
               {isSubmissionSuccessful ? (
                 submittedText
               ) : (
                 <Markdown
                   data={errorText}
                   config={{
-                    p: "text-16px leading-24px text-black-gray font-poppins",
+                    p: "text-black-gray",
                   }}
                 />
               )}
@@ -59,7 +57,7 @@ const ModalForm = ({ modalIsOpen, onClose, isSubmissionSuccessful }) => {
                 onClick={() => onClose(false)}
                 btnClasses="bg-dark-orange text-white w-250px h-54px mt-70px"
               >
-                <div className="text-16px leading-16px font-bold font-metropolis">{buttonLabel}</div>
+                <span className="button-font">{buttonLabel}</span>
               </Button>
             ) : null}
           </div>

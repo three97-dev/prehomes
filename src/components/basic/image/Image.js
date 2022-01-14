@@ -51,7 +51,7 @@ export const query = graphql`
       contentType
     }
     title
-    gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
+    gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
   }
   fragment SEOImage on ContentfulAsset {
     file {

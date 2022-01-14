@@ -109,7 +109,7 @@ const FormWithSelects = ({
             variants="black_gradient"
             btnClasses="form-with-selects-first-button-area text-white w-147px h-54px ml-auto pr-5px mt-30px"
           >
-            <div className="text-14px leading-17px font-rosario font-bold">{buttonLabel}</div>
+            <div className="button-font">{buttonLabel}</div>
           </Button>
         </form>
       </div>

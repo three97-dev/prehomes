@@ -6,12 +6,10 @@ import "./Input.css";
 const Input = ({
   placeholder,
   placeholderColor,
-  labelСonfigure,
   type,
   title,
   name,
   label,
-  font,
   height,
   border,
   paddingLeft,
@@ -27,8 +25,8 @@ const Input = ({
     <div className={`${className}`}>
       {label ? (
         <div className={`grid grid-flow-col w-full`}>
-          <label htmlFor={name} className={`justify-self-start typography-body-small sm+:ml-19px`}>
-            <div className={`font-rosario pb-8px ${labelСonfigure}`}>{label}</div>
+          <label htmlFor={name} className={`justify-self-start sm+:ml-19px`}>
+            <h2 className="field-labels-font text-black-gray pb-8px">{label}</h2>
           </label>
         </div>
       ) : null}
@@ -44,7 +42,7 @@ const Input = ({
         disabled={disabled}
         className={`${
           isShadow ? "input-shadow" : null
-        } placeholder-tracking-wider typography-body-small ${font} font-late-november text-dark-orange ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-15px ${border} focus-visible:outline-none ${placeholderColor}`}
+        } placeholder-font text-dark-orange ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-15px ${border} focus-visible:outline-none ${placeholderColor}`}
       />
     </div>
   );
@@ -56,8 +54,6 @@ Input.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
-  labelСonfigure: PropTypes.string,
-  font: PropTypes.string,
   height: PropTypes.string,
   border: PropTypes.string,
   paddingLeft: PropTypes.string,
@@ -73,14 +69,12 @@ Input.defaultProps = {
   type: "",
   name: "",
   border: "",
-  font: "text-12px leading-20px",
   height: "h-53px",
   paddingLeft: "pl-27px",
   id: "",
   label: "",
   placeholder: "",
   placeholderColor: "",
-  labelСonfigure: "text-14px leading-14px",
   className: "",
   onBlur: () => {},
   onChange: () => {},

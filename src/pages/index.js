@@ -145,19 +145,19 @@ export const query = graphql`
       viewProjectsByDeveloper
       searchByPropertyType
       townhousePreviewImage {
-        ...Image
+        ...SearchImage
       }
       townhouseTitle
       townhouseSubtitle
       townhouseLink
       condoPreviewImage {
-        ...Image
+        ...SearchImage
       }
       condoTitle
       condoSubtitle
       condoLink
       detachedHomesPreviewImage {
-        ...Image
+        ...SearchImage
       }
       detachedHomesTitle
       detachedHomesSubtitle

@@ -6,10 +6,11 @@
     }
 
     .three-elements-grid-title {
-      @apply text-22px sm+:text-13px leading-26px sm+:leading-19px sm+:font-bold font-late-november sm+:font-poppins sm+:text-center text-dark-orange mt-20px sm+:mt-40px mb-20px sm+:mb-39px;
+      @apply sm+:text-center text-dark-orange mt-20px sm+:mt-40px mb-20px sm+:mb-39px;
     }
+
     .three-elements-grid-description {
-      @apply text-14px sm+:text-33px leading-24px sm+:leading-26px sm+:font-bold font-poppins sm+:text-center text-black-gray;
+      @apply sm+:text-center text-black-gray;
     }
   }
 }

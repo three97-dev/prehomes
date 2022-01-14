@@ -45,9 +45,9 @@ const ModalSearchFilter = ({
       <div className="modal-search-filter-container">
         <div className="modal-search-filter-content items-stretch">
           <div className="grid grid-cols-2 justify-items-center gap-19px content-start">
-            <div className="col-span-full text-22px leading-24px font-metropolis font-bold text-black-gray">
+            <h4 className="col-span-full text-black-gray">
               {title}
-            </div>
+            </h4>
             <Dropdown
               title={typeFilterTitle}
               options={options.types}
@@ -55,10 +55,10 @@ const ModalSearchFilter = ({
               onChange={value => setCurrentFilter({ ...currentFilter, typeFilter: value })}
               arrowColor="#212121"
               containerClassName="col-span-full w-full"
-              font="Rosario"
-              fontSize="14px"
+              font="Poppins"
+              fontSize="11px"
               fontStyle="italic"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              titleClassName="field-labels-font mb-10px"
             />
             <Dropdown
               title={bedsFilterTitle}
@@ -67,10 +67,10 @@ const ModalSearchFilter = ({
               onChange={value => setCurrentFilter({ ...currentFilter, bedsFilter: value })}
               arrowColor="#212121"
               containerClassName="w-full"
-              font="Rosario"
-              fontSize="14px"
+              font="Poppins"
+              fontSize="11px"
               fontStyle="italic"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              titleClassName="field-labels-font mb-10px"
             />
             <Dropdown
               title={bathsFilterTitle}
@@ -79,10 +79,10 @@ const ModalSearchFilter = ({
               onChange={value => setCurrentFilter({ ...currentFilter, bathsFilter: value })}
               arrowColor="#212121"
               containerClassName="w-full"
-              font="Rosario"
-              fontSize="14px"
+              font="Poppins"
+              fontSize="11px"
               fontStyle="italic"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              titleClassName="field-labels-font mb-10px"
             />
             <Dropdown
               title={minPriceFilterTitle}
@@ -91,10 +91,10 @@ const ModalSearchFilter = ({
               onChange={value => setCurrentFilter({ ...currentFilter, minPriceFilter: value })}
               arrowColor="#212121"
               containerClassName="w-full"
-              font="Rosario"
-              fontSize="14px"
+              font="Poppins"
+              fontSize="11px"
               fontStyle="italic"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              titleClassName="field-labels-font mb-10px"
             />
             <Dropdown
               title={maxPriceFilterTitle}
@@ -103,10 +103,10 @@ const ModalSearchFilter = ({
               onChange={value => setCurrentFilter({ ...currentFilter, maxPriceFilter: value })}
               arrowColor="#212121"
               containerClassName="w-full"
-              font="Rosario"
-              fontSize="14px"
+              font="Poppins"
+              fontSize="11px"
               fontStyle="italic"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              titleClassName="field-labels-font mb-10px"
             />
             <FilterInput
               title={minSizeFilterTitle}
@@ -114,8 +114,8 @@ const ModalSearchFilter = ({
               value={currentFilter.minSizeFilter}
               onChange={event => setCurrentFilter({ ...currentFilter, minSizeFilter: event.target.value })}
               className="w-full"
-              inputClassName="text-14px italic modal-search-filter-input"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              inputClassName="placeholder-font"
+              titleClassName="field-labels-font mb-10px"
             />
             <FilterInput
               title={maxSizeFilterTitle}
@@ -123,14 +123,14 @@ const ModalSearchFilter = ({
               value={currentFilter.maxSizeFilter}
               onChange={event => setCurrentFilter({ ...currentFilter, maxSizeFilter: event.target.value })}
               className="w-full"
-              inputClassName="text-14px italic modal-search-filter-input"
-              titleClassName="font-metropolis uppercase font-bold modal-search-dropdown-text mb-10px"
+              inputClassName="placeholder-font"
+              titleClassName="field-labels-font mb-10px"
             />
           </div>
-          <div className="grid grid-cols-2 justify-items-center gap-19px mt-20px self-end text-white text-14px leading-14px font-metropolis pb-50px">
+          <div className="grid grid-cols-2 justify-items-center gap-19px mt-20px self-end text-white button-font pb-50px">
             <button
               onClick={() => onClear()}
-              className="flex items-center justify-center w-full bg-black h-54px rounded-15px font-bold"
+              className="flex items-center justify-center w-full bg-black h-54px rounded-15px font-medium"
             >
               {clearButtonLabel}
             </button>
@@ -138,7 +138,7 @@ const ModalSearchFilter = ({
               onClick={() => {
                 onApply({ ...currentFilter });
               }}
-              className="flex items-center justify-center w-full bg-dark-orange h-54px rounded-15px font-bold"
+              className="flex items-center justify-center w-full bg-dark-orange h-54px rounded-15px font-medium"
             >
               {applyButtonLabel}
             </button>

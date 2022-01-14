@@ -71,12 +71,3 @@
   transform: translate(-50%, -50%);
   z-index: 93;
 }
-
-.modal-search-dropdown-text {
-  line-height: 11px !important;
-  font-size: 11px !important;
-}
-
-.modal-search-filter-input {
-  font-family: "Rosario" !important;
-}

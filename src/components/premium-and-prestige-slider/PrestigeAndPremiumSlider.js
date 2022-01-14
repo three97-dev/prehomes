@@ -33,8 +33,13 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
           arrows: false,
           touchMove: true,
           swipeToSlide: true,
-          centerMode: true,
           variableWidth: true,
+        },
+      },
+      {
+        breakpoint: 970,
+        settings: {
+          slidesToShow: 1,
         },
       },
       {
@@ -72,12 +77,12 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
 
   return projects.length === 0 ? null : (
     <div className="w-full md:px-112px">
-      <div className="flex justify-between text-peach-colour mb-50px md:mb-70px lg:mb-110px w-full px-25px md:px-0px">
-        <div className="min-w-370px mr-20px font-poppins text-white-pink font-bold text-29px md:text-32px leading-32px md:leading-50px tracking-wider">
-          {title}
+      <div className="flex justify-between items-center text-white-pink mb-50px md:mb-70px lg:mb-110px w-full px-25px md:px-0px">
+        <div className="min-w-360px mr-20px">
+          <h2 className="text-white-pink">{title}</h2>
         </div>
         <div className="w-full lg:pl-94px lg:pr-10px">
-          <hr className="mt-14px md:mt-22px ml-auto" />
+          <hr className="ml-auto" />
         </div>
       </div>
       <div className="pb-50px md:pb-95px">

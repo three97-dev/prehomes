@@ -18,9 +18,7 @@ const HeroSectionSlider = ({
   subtitle,
   title,
   saveButton,
-  requestButton,
   onClickSave,
-  onClickRequest,
   isCity,
   isFavorite,
   className,
@@ -35,35 +33,23 @@ const HeroSectionSlider = ({
       <div className={`${className}`}>
         {isCity ? (
           <div>
-            <div className="text-11px md:text-13px leading-11px md:leading-19px font-bold font-poppins uppercase text-dark-orange">
-              {topText}
-            </div>
-            <div
-              className={`text-47px md:text-53px leading-54px md:leading-61px font-late-november text-black-gray -mt-2px mb-10px md:mb-20px`}
-            >
-              {title}
-            </div>
-            <div className="text-11px md:text-13px leading-24px md:leading-19px font-bold font-poppins text-black-gray md:max-w-430px mx-auto md:mx-0px">
-              {subtitle}
-            </div>
+            <div className="eyebrow-font text-dark-orange">{topText}</div>
+            <h1 className="text-black-gray -mt-2px mb-10px md:mb-20px">{title}</h1>
+            <div className="footer-font md:font-light text-black-gray md:max-w-430px mx-auto md:mx-0px">{subtitle}</div>
           </div>
         ) : (
           <div className="md:w-270px md:mt-70px">
-            <div className="text-11px md:text-13px leading-24px md:leading-18px font-bold font-poppins text-dark-creamy">
-              {topText}
-            </div>
-            <p className="text-black-gray font-late-november text-46px md:text-53px leading-54px md:leading-61px">
-              {title}
-            </p>
+            <div className="eyebrow-font text-dark-creamy">{topText}</div>
+            <h1 className="text-black-gray">{title}</h1>
             <div className="flex justify-center md:justify-start">
               {isLoggedIn && (
                 <Button
                   variants="black_gradient"
                   onClick={onClickSave}
-                  btnClasses="flex justify-center justify-self-center mt-29px text-14px leading-17px font-rosario font-bold w-154px h-54px md:mr-20px save-button-shadow"
+                  btnClasses="flex justify-center justify-self-center mt-29px button-font w-154px h-54px md:mr-20px save-button-shadow"
                 >
                   <div className="flex items-center my-auto">
-                    <img className="w-22px h-19px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
+                    <img className="w-22px h-19px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favorite" />
                     <div className="mr-10px">{saveButton}</div>
                   </div>
                 </Button>
@@ -153,7 +139,7 @@ const HeroSectionSlider = ({
   };
 
   return (
-    <div className={`md:relative md:h-screen md:overflow-hidden bg-peach-colour ${className}`}>
+    <div className={`md:relative md:h-screen md:overflow-hidden bg-white-pink ${className}`}>
       <div className="header-hero-section relative w-screen">
         <div className="grid">
           <div className="header-white-section hidden md:block z-10"></div>

@@ -4,17 +4,6 @@ import Select, { components } from "react-select";
 
 import DropdownArrow from "../dropdown-arrow/DropdownArrow";
 
-const FONT_STYLES = {
-  Poppins: "font-poppins text-12px leading-19px text-black-gray font-bold",
-  Rosario: "font-rosario text-black text-18px leading-22px",
-  Metropolis: "font-metropolis text-tundora text-14px leading-14px font-bold",
-  LateNovember: "font-late-november text-tundora text-14px leading-14px font-bold",
-};
-
-const resolveFont = font => {
-  return FONT_STYLES[font];
-};
-
 const Dropdown = ({
   title,
   placeholder,
@@ -81,7 +70,7 @@ const Dropdown = ({
       color: "#AC9986",
       fontFamily: font,
       fontStyle: fontStyle,
-      fontSize: "14px",
+      fontSize: fontSize ? fontSize : "14px",
       cursor: "pointer",
       "&:first-of-type": {
         color: "#000",
@@ -95,27 +84,24 @@ const Dropdown = ({
     placeholder: provided => ({
       ...provided,
       color: "#AC9986",
+      fontWeight: 100,
     }),
   };
 
-  const defaultTitleClasses = "font-poppins text-12px leading-19px font-bold mb-10px ml-10px";
+  const defaultTitleClasses = "field-labels-font mb-10px ml-10px text-black-gray";
 
   const DropdownIndicator = props => {
     return (
       components.DropdownIndicator && (
         <components.DropdownIndicator {...props}>
-          {sf ? (
-            <div className="font-poppins text-12px leading-19px font-bold text-black-gray">SF</div>
-          ) : (
-            <DropdownArrow color={arrowColor} />
-          )}
+          {sf ? <div className="field-labels-font text-black-gray">SF</div> : <DropdownArrow color={arrowColor} />}
         </components.DropdownIndicator>
       )
     );
   };
   return (
     <div className={containerClassName}>
-      <div className={`text-13px leading-19px font-bold ${resolveFont(font)} ${titleClassName ? titleClassName : defaultTitleClasses}`}>{title}</div>
+      <div className={titleClassName ? titleClassName : defaultTitleClasses}>{title}</div>
       <Select
         value={value}
         onChange={onChange}

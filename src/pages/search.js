@@ -31,7 +31,7 @@ const SearchPage = ({ data }) => {
 
   return (
     <>
-      <Header logoLink="/" className="" />
+      <Header logoLink="/" className="" isStickyHeader />
       <SearchSection
         searchPlaceholder={searchPageData.searchPlaceholder}
         typeFilterTitle={searchPageData.typeFilterTitle}
@@ -48,6 +48,10 @@ const SearchPage = ({ data }) => {
         clearButtonLabel={searchPageData.clearButtonLabel}
         applyButtonLabel={searchPageData.applyButtonLabel}
         allProjects={allProjects}
+        newHomesForSaleLabel={searchPageData.newHomesForSaleLabel}
+        filtersLabel={searchPageData.filtersLabel}
+        mapViewLabel={searchPageData.mapViewLabel}
+        listViewLabel={searchPageData.listViewLabel}
       />
     </>
   );
@@ -72,6 +76,10 @@ export const query = graphql`
       modalTitle
       clearButtonLabel
       applyButtonLabel
+      newHomesForSaleLabel
+      filtersLabel
+      mapViewLabel
+      listViewLabel
     }
     allContentfulProject(filter: { isTemplateSample: { ne: true } }) {
       nodes {

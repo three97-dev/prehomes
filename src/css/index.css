@@ -118,15 +118,155 @@ html body {
 }
 
 @layer utilities {
-  @variants responsive {
-    .component-margins-mobile {
-      margin-top: var(--margin-top-mobile);
-      margin-bottom: var(--margin-bottom-mobile);
+  h1 {
+    font-family: "Late November", "Roboto", "Arial", "sans-serif";
+    font-size: 4.66223464rem;
+    line-height: 4.66223464rem;
+  }
+
+  h2 {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 700;
+    font-size: 2.88148rem;
+    line-height: 2.88148rem;
+  }
+
+  h3 {
+    font-family: "Late November", "Roboto", "Arial", "sans-serif";
+    font-weight: 100;
+    font-size: 2.2652rem;
+    line-height: 2.2652rem;
+  }
+
+  h4 {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 600;
+    font-size: 1.7808rem;
+    line-height: 1.7808rem;
+  }
+
+  p {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 100;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+  }
+
+  .footer-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 700;
+    font-size: 1.10068rem;
+    line-height: 1.10068rem;
+  }
+
+  .link-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 100;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+  }
+
+  .eyebrow-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 700;
+    font-size: 1.10068rem;
+    line-height: 1.10068rem;
+  }
+
+  .eyebrow-alt-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 100;
+    font-size: 1.10068rem;
+    line-height: 1.10068rem;
+    text-transform: uppercase;
+  }
+
+  .button-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+  }
+
+  .field-labels-font {
+    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-weight: 700;
+    font-size: 1.10068rem;
+    line-height: 1.10068rem;
+  }
+
+  .placeholder-font {
+    font-family: "Late November", "Roboto", "Arial", "sans-serif";
+    font-size: 1.10068rem;
+    line-height: 1.10068rem;
+  }
+
+  .placeholder-font::placeholder {
+    font-weight: 100;
+    font-style: italic;
+  }
+
+  @media screen(md) {
+    h1 {
+      font-size: 5.32826816rem;
+      line-height: 5.32826816rem;
     }
 
-    .component-margins {
-      margin-top: var(--margin-top);
-      margin-bottom: var(--margin-bottom);
+    h2 {
+      font-size: 3.29312rem;
+      line-height: 3.29312rem;
+    }
+
+    h3 {
+      font-size: 2.5888rem;
+      line-height: 2.5888rem;
+    }
+
+    h4 {
+      font-size: 2.0352rem;
+      line-height: 2.0352rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+    }
+
+    .footer-font {
+      font-size: 1.25792rem;
+      line-height: 1.25792rem;
+    }
+
+    .link-font {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-font {
+      font-size: 1.25792rem;
+      line-height: 1.25792rem;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-alt-font {
+      font-size: 1.25792rem;
+      line-height: 1.25792rem;
+    }
+
+    .button-font {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+    }
+
+    .field-labels-font {
+      font-size: 1.25792rem;
+      line-height: 1.25792rem;
+    }
+
+    .placeholder-font {
+      font-size: 1.25792rem;
+      line-height: 1.25792rem;
     }
   }
 }

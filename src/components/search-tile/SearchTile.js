@@ -42,14 +42,14 @@ function SearchTile({ id, image, title, city, neighborhood, price, link, classNa
         />
         <div className="absolute w-full top-62px">
           <div className="w-148px text-white mx-auto">
-            <div className="flex items-end h-90px overflow-ellipsis overflow-hidden text-26px leading-30px font-late-november">
+            <h3 className="flex items-end h-90px overflow-ellipsis overflow-hidden">
               {title}
-            </div>
+            </h3>
             <div className="mt-10px mb-20px">
-              <div className="text-13px leading-19px font-poppins font-bold">{city.toUpperCase()}</div>
-              <div className="text-13px leading-19px font-poppins font-light">{neighborhood.toUpperCase()}</div>
+              <div className="eyebrow-font">{city.toUpperCase()}</div>
+              <div className="eyebrow-alt-font">{neighborhood.toUpperCase()}</div>
             </div>
-            <div className="font-poppins text-20px leading-31px font-medium">{price}</div>
+            <h4>{price}</h4>
           </div>
         </div>
       </UniversalLink>

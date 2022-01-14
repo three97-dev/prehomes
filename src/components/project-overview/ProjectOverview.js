@@ -31,34 +31,20 @@ const ProjectOverview = ({
   const isDesktop = useApplyAfterWidth(1100);
 
   return (
-    <div
-      className={`md+:px-20px lg:px-120px w-full lg:pt-94px lg:pb-40px ${className}`}
-    >
-      <div className="md+:grid md+:project-overview-grid mx-auto font-metropolis font-bold md:gap-x-62px lg+:gap-x-160px">
+    <div className={`md+:px-20px lg:px-120px w-full lg:pt-94px lg:pb-40px ${className}`}>
+      <div className="md+:grid md+:project-overview-grid mx-auto md:gap-x-62px lg+:gap-x-160px">
         <div className="md+:hidden border-t-2 border-gray-border w-full mb-40px"></div>
         <div className="project-overview-price-area px-25px lg:px-0px">
           <div className="mx-auto">
-            <div className="pb-13px text-29px md:text-32px leading-44px md:leading-50px text-tundora md:text-black-gray font-poppins">
+            <h2 className="pb-13px text-tundora md:text-black-gray">
               ${minPrice.toLocaleString("en-US")} - ${maxPrice.toLocaleString("en-US")}
-            </div>
-            <div className="pb-17px md+:pb-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
-              {labelPriceSQFT}
-            </div>
-            <div className="pb-17px md+:pb-25px text-14px md+:text-16px leading-24px font-poppins font-normal">
-              ${priceSQFT.toLocaleString("en-US")}{" "}
-            </div>
-            <div className="pb-17px md+:pb-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
-              {labelPriceNeighborhood}
-            </div>
-            <div className="text-14px md+:text-16px leading-24px font-poppins font-normal">
-              ${priceNeighborhood.toLocaleString("en-US")}
-            </div>
-            <div className="py-17px md+:py-20px text-22px md+:text-26px leading-26px md+:leading-30px text-dark-orange font-late-november font-normal">
-              {labelPriceCity}
-            </div>
-            <div className="text-14px md+:text-16px leading-24px font-poppins font-normal">
-              ${priceCity.toLocaleString("en-US")}
-            </div>
+            </h2>
+            <h3 className="pb-17px md+:pb-20px text-dark-orange">{labelPriceSQFT}</h3>
+            <p className="pb-17px md+:pb-25px">${priceSQFT.toLocaleString("en-US")} </p>
+            <h3 className="pb-17px md+:pb-20px text-dark-orange">{labelPriceNeighborhood}</h3>
+            <p>${priceNeighborhood.toLocaleString("en-US")}</p>
+            <h3 className="py-17px md+:py-20px text-dark-orange">{labelPriceCity}</h3>
+            <p>${priceCity.toLocaleString("en-US")}</p>
           </div>
         </div>
         {isDesktop ? (
@@ -68,7 +54,7 @@ const ProjectOverview = ({
               onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
               btnClasses="w-147px h-54px"
             >
-              <div className="text-14px leading-17px tracking-tighter font-bold font-rosario">{buttonLabel}</div>
+              <div className="button-font">{buttonLabel}</div>
             </Button>
             <ModalVideo modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} modalVideoLink={videoLink} />
             <div>
@@ -82,13 +68,9 @@ const ProjectOverview = ({
         <div className="md+:hidden border-t-2 border-gray-border w-full mt-50px mb-40px"></div>
 
         <div className="project-overview-content-area px-25px lg:px-0px">
-          <div className="ml-3px pb-13px text-29px md:text-32px leading-44px md:leading-50px font-poppins text-tundora md:text-black-gray">
-            {title}
-          </div>
-          <div className="ml-3px pb-20px text-22px md+:text-26px leading-26px md+:leading-30px font-late-november font-normal text-dark-orange">
-            {address}
-          </div>
-          <div className="text-14px md+:text-16px leading-24px font-light font-poppins text-black-gray">
+          <h2 className="ml-3px pb-13px text-tundora md:text-black-gray">{title}</h2>
+          <h3 className="ml-3px pb-20px text-dark-orange">{address}</h3>
+          <div className="text-black-gray">
             <RRenderer
               data={content}
               config={{

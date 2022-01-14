@@ -20,11 +20,11 @@ const NeighborhoodMapButton = ({ isSelected, onClick, label, className }) => {
       onClick={onClick}
       className={`${
         isSelected
-          ? "text-left text-14px md+:text-20px leading-14px md+:leading-31px font-poppins font-bold md+:font-medium text-black h-full w-full bg-beige md+:bg-silver p-20px"
-          : "text-left text-14px md+:text-20px leading-14px md+:leading-31px font-poppins text-dark-gray h-full w-full p-20px"
+          ? "text-left text-black md:text-black-gray h-full w-full bg-beige md+:bg-silver p-20px"
+          : "text-left text-gray md:text-dark-gray h-full w-full p-20px"
       } ${className}`}
     >
-      {label}
+      <h4>{label}</h4>
     </button>
   );
 };
@@ -114,9 +114,7 @@ const NeighborhoodMap = ({ geoLocation, className }) => {
   };
 
   return (
-    <div
-      className={`md+:switch-location-grid max-w-1126px mx-auto bg-white-pink md:bg-transparent ${className}`}
-    >
+    <div className={`md+:switch-location-grid max-w-1126px mx-auto bg-white-pink md:bg-transparent ${className}`}>
       <div className="switch-location-map-grid w-full md+:w-736px h-390px md+:h-369px pb-20px md+:pb-0px">
         <Map
           mapOptions={{

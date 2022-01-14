@@ -119,16 +119,16 @@ const ContactSalesFooter = ({
         onSubmit={formik.handleSubmit}
         className="contact-sales-footer-grid w-full h-75px mx-auto pl-20px pr-28px bg-white"
       >
-        <h2 className="gridTitleArea text-29px leading-29px font-bold font-metropolis text-tundora">{title}</h2>
+        <h2 className="gridTitleArea text-tundora">{title}</h2>
         <Input
           id="name"
           name="name"
           type="text"
-          placeholderColor="placeholder-dark-orange font-metropolis not-italic"
+          placeholderColor="placeholder-dark-orange"
           disabled={formik.isSubmitting || isFormDisabled}
           placeholder={nameInputPlaceholder}
-          font="text-14px leading-14px"
-          className="gridNameArea text-14px leading-14px font-metropolis"
+          font="placeholder-font"
+          className="gridNameArea"
           height="h-45px"
           border="border border-silver"
           paddingLeft="pl-23px"
@@ -141,11 +141,11 @@ const ContactSalesFooter = ({
           id="email"
           name="email"
           type="email"
-          placeholderColor="placeholder-dark-orange font-metropolis not-italic"
+          placeholderColor="placeholder-dark-orange"
           disabled={formik.isSubmitting || isFormDisabled}
           placeholder={emailInputPlaceholder}
-          font="text-14px leading-14px"
-          className="gridEmailArea text-14px leading-14px font-metropolis"
+          font="placeholder-font"
+          className="gridEmailArea"
           height="h-45px"
           border="border border-silver"
           paddingLeft="pl-23px"
@@ -155,7 +155,7 @@ const ContactSalesFooter = ({
           value={formik.values.email}
         />
         {isFormDisabled ? (
-          <div className="gridButtonArea border border-black h-54px text-16px leading-16px font-bold font-metropolis text-dark-grey flex items-center justify-center rounded-15px cursor-not-allowed">
+          <div className="gridButtonArea border border-black h-54px button-font text-dark-grey flex items-center justify-center rounded-15px cursor-not-allowed">
             {buttonLabelSubmitted}
           </div>
         ) : (
@@ -167,7 +167,7 @@ const ContactSalesFooter = ({
               formik.handleSubmit();
             }}
           >
-            <div className="text-16px leading-16px font-bold font-metropolis text-white">{buttonLabel}</div>
+            <div className="button-font text-white">{buttonLabel}</div>
           </Button>
         )}
       </form>

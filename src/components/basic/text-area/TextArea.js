@@ -6,7 +6,6 @@ import "./TextArea.css";
 const TextArea = ({
   placeholder,
   placeholderColor,
-  labelСonfigure,
   border,
   type,
   title,
@@ -22,8 +21,8 @@ const TextArea = ({
   return (
     <div className={`${className}`}>
       <div className={`grid grid-flow-col pb-8px w-full`}>
-        <label htmlFor={name} className={`justify-self-start typography-body-small text-3xl sm+:ml-20px`}>
-          <div className={`font-rosario ${labelСonfigure}`}>{label}</div>
+        <label htmlFor={name} className={`justify-self-start sm+:ml-20px`}>
+          <div className="field-labels-font text-black-gray">{label}</div>
         </label>
       </div>
       <textarea
@@ -37,7 +36,7 @@ const TextArea = ({
         value={value}
         className={`${
           isShadow ? "text-area-shadow" : null
-        } resize-none placeholder-tracking-wider typography-body-small text-12px leading-20px font-late-november text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
+        } placeholder-font resize-none text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
       />
     </div>
   );
@@ -49,7 +48,6 @@ TextArea.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
-  labelСonfigure: PropTypes.string,
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
   placeholderColor: PropTypes.string,
@@ -64,7 +62,6 @@ TextArea.defaultProps = {
   label: "",
   placeholder: "",
   placeholderColor: "",
-  labelСonfigure: "text-14px leading-14px",
   className: "",
   onBlur: () => {},
   onChange: () => {},

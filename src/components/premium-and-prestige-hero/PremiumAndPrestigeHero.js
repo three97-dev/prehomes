@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import flowerIcon from "../../assets/flower.svg";
 import flowerPink from "../../assets/flower-pink.svg";
 
 import Image from "../basic/image/Image";
@@ -9,27 +8,17 @@ import Image from "../basic/image/Image";
 const PremiumAndPrestigeHero = ({ heroTopText, title, heroContent, image, isBlack, className }) => {
   return (
     <div className={`w-full ${className}`}>
-      <div className="mx-auto text-beige h-screen sm+:h-500px">
+      <div className="mx-auto text-white-pink h-screen sm+:h-500px">
         <div className="w-full absolute -z-10 overflow-hidden">
           <Image image={image} className="-z-10 w-full h-screen sm+:h-500px" />
         </div>
         <div className="z-100 sm+:flex pt-263px sm+:pt-236px pl-25px sm+:pl-50px md:pl-124px pr-38px">
           <img src={flowerPink} className="sm+:hidden w-100px h-121px mb-35px" />
           <div>
+            <div className={`eyebrow-font ${isBlack ? "sm+:font-normal" : ""}`}>{heroTopText}</div>
+            <h1 className="mb-20px">{title}</h1>
             <div
-              className={`text-11px sm+:text-12px leading-24px sm+:leading-18px font-bold font-poppins ${
-                isBlack ? "sm+:font-normal" : ""
-              }`}
-            >
-              {heroTopText}
-            </div>
-            <div className="text-47px sm+:text-53px leading-54px sm+:leading-61px font-late-november mb-20px">
-              {title}
-            </div>
-            <div
-              className={`text-11px sm+:text-12px leading-24px sm+:leading-18px font-poppins max-w-352px ${
-                isBlack ? "sm+:font-normal" : "font-bold"
-              }
+              className={`max-w-352px footer-font ${isBlack ? "sm+:font-normal" : ""}
               `}
             >
               {heroContent}

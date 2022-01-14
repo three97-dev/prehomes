@@ -9,7 +9,6 @@ const InputPhone = ({
   name,
   title,
   label,
-  labelСonfigure,
   placeholder,
   border,
   value,
@@ -27,7 +26,7 @@ const InputPhone = ({
     <div className={`${className} input-phone`}>
       <div className={`grid grid-flow-col w-full`}>
         <label htmlFor={name} className={`justify-self-start typography-body-small text-3xl sm+:ml-20px`}>
-          <div className={`font-rosario pb-8px ${labelСonfigure}`}>{label}</div>
+          <div className="field-labels-font text-black-gray pb-8px">{label}</div>
         </label>
       </div>
       <PhoneInput
@@ -38,7 +37,7 @@ const InputPhone = ({
           onBlur: onBlur,
           className: `${
             isShadow ? "input-phone-shadow" : null
-          } placeholder-tracking-wider typography-body-small text-12px leading-20px font-late-november text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`,
+          } placeholder-font text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`,
         }}
         country={"us"}
         onlyCountries={["us"]}
@@ -61,7 +60,6 @@ InputPhone.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
   label: PropTypes.string,
-  labelСonfigure: PropTypes.string,
   placeholder: PropTypes.string,
   placeholderColor: PropTypes.string,
   value: PropTypes.string,
@@ -76,7 +74,6 @@ InputPhone.defaultProps = {
   name: "",
   title: "",
   label: "",
-  labelСonfigure: "text-14px leading-14px",
   placeholder: "",
   placeholderColor: "",
   onBlur: () => {},

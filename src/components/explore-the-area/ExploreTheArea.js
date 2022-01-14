@@ -23,9 +23,7 @@ const ExploreTheArea = ({
   const isDesktop = useApplyAfterWidth(768);
   return (
     <div className={`px-25px lg:px-120px pt-50px lg:pt-0px ${className}`}>
-      <div className="text-29px md:text-32px leading-44px md:leading-50px text-tundora md:text-black-gray font-poppins font-bold">
-        {title}
-      </div>
+      <h2 className="text-tundora md:text-black-gray">{title}</h2>
       {walkScoreNumber || bikeScoreNumber || busScoreNumber ? (
         <div className="grid md:grid-flow-col auto-cols-min gap-x-114px mt-29px">
           {walkScoreNumber ? (
@@ -33,12 +31,8 @@ const ExploreTheArea = ({
               <div className="walk-score-grid-pedestrian-area justify-self-end">
                 <img src={Pedestrian} />
               </div>
-              <div className="walk-score-grid-title-area text-22px md:text-26px leading-26px md:leading-30px text-dark-orange font-late-november font-normal">
-                {walkScoreLabel}
-              </div>
-              <div className="walk-score-grid-number-area text-22px md:text-26px leading-26px md:leading-30px text-tundora md:text-black-gray font-late-november font-normal">
-                {walkScoreNumber}
-              </div>
+              <h3 className="walk-score-grid-title-area text-dark-orange">{walkScoreLabel}</h3>
+              <h3 className="walk-score-grid-number-area text-tundora md:text-black-gray">{walkScoreNumber}</h3>
               <div className="hidden md:block walk-score-grid-helpmark-area">
                 <img src={helpMarkImage} title={walkScoreTooltip} />
               </div>
@@ -49,12 +43,8 @@ const ExploreTheArea = ({
               <div className="bike-score-grid-pedestrian-area">
                 <img src={Cyclist} />
               </div>
-              <div className="bike-score-grid-title-area text-22px md:text-26px leading-26px md:leading-30px text-dark-orange font-late-november font-normal">
-                {bikeScoreLabel}
-              </div>
-              <div className="bike-score-grid-number-area text-22px md:text-26px leading-26px md:leading-30px text-tundora md:text-black-gray font-late-november font-normal">
-                {bikeScoreNumber}
-              </div>
+              <h3 className="bike-score-grid-title-area text-dark-orange">{bikeScoreLabel}</h3>
+              <h3 className="bike-score-grid-number-area text-tundora md:text-black-gray">{bikeScoreNumber}</h3>
               <div className="hidden md:block bike-score-grid-helpmark-area">
                 <img src={helpMarkImage} title={bikeScoreTooltip} />
               </div>
@@ -65,12 +55,8 @@ const ExploreTheArea = ({
               <div className="transit-sckore-grid-pedestrian-area">
                 <img src={Bus} />
               </div>
-              <div className="transit-sckore-grid-title-area text-22px md:text-26px leading-26px md:leading-30px text-dark-orange font-late-november md:font-normal">
-                {busScoreLabel}
-              </div>
-              <div className="transit-sckore-grid-number-area text-22px md:text-26px leading-26px md:leading-30px text-tundora md:text-black-gray font-late-november md:font-normal">
-                {busScoreNumber}
-              </div>
+              <h3 className="transit-sckore-grid-title-area text-dark-orange">{busScoreLabel}</h3>
+              <h3 className="transit-sckore-grid-number-area text-tundora md:text-black-gray">{busScoreNumber}</h3>
               <div className="hidden md:block transit-sckore-grid-helpmark-area">
                 <img src={helpMarkImage} title="Lorem ipsen" />
               </div>

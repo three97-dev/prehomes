@@ -56,15 +56,15 @@ const PremiumAndPrestigeTile = ({
           />
         ) : null}
         <div className="pt-20px md:pt-15px pb-20px px-20px md:px-21px text-white md:text-white-pink">
-          <div className="flex items-center justify-center h-78px md:h-70px mb-11px md:mb-15px overflow-ellipsis overflow-hidden text-left md:text-center text-23px leading-26px font-late-november md:text-26px md:leading-29px tracking-wide">
+          <h3 className="flex items-center justify-center h-78px md:h-70px mb-11px md:mb-15px overflow-ellipsis overflow-hidden text-left md:text-center tracking-wide">
             {tileTitle}
-          </div>
-          <div className="md:h-96px mb-18px md:mb-19px overflow-ellipsis overflow-hidden text-left md:text-center text-11px md:text-16px leading-24px font-poppins font-bold md:font-light ">
+          </h3>
+          <p className="md:h-96px mb-18px md:mb-19px overflow-ellipsis overflow-hidden text-left md:text-center">
             {isDesktop ? tileContent : location}
-          </div>
-          <div className="text-left md:text-center text-18px md:text-16px leading-14px md:leading-16px font-poppins md:font-metropolis font-medium mb-5px md:mb-0px md:font-bold">
+          </p>
+          <h4 className="text-left md:text-center mb-5px md:mb-0px">
             {isDesktop ? "Starting from:" : "From:"} ${tilePrice.toLocaleString("en-US")}
-          </div>
+          </h4>
         </div>
       </UniversalLink>
     </div>

@@ -40,9 +40,9 @@ const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, 
         <div className="absolute home-header-white-section hidden md:block"></div>
         <div className="absolute block md:hidden bg-black w-full h-full bg-opacity-75"></div>
         <div className="absolute home-hero-title px-25px md:px-0px w-full z-100 md:pl-120px">
-          <div className="relative text-47px md:text-53px leading-54px md:leading-61px font-late-november md:w-540px mb-45px md:mb-16px text-center md:text-left text-cream-pink md:text-light-pink">
+          <h1 className="relative md:w-540px mb-45px md:mb-16px text-center md:text-left text-cream-pink md:text-white-pink">
             {title}
-          </div>
+          </h1>
           <HomeHeroInput placeholder={placeholder} className="relative md:max-w-632px md:-ml-20px" />
         </div>
         <div className="relative h-full min-h-600px">
@@ -63,7 +63,7 @@ const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, 
             </div>
             <div
               onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
-              className="flex mx-auto md:absolute cursor-pointer bottom-18px left-122px tracking-tight text-white md:text-light-pink mb-40px md:mb-0px text-11px md:text-13px leading-24px md:leading-19px font-poppins font-bold text-center"
+              className="flex mx-auto md:absolute cursor-pointer bottom-18px left-122px tracking-tight text-white md:text-white-pink mb-40px md:mb-0px eyebrow-font text-center"
             >
               <div className="mr-3px">{bottomText}</div>
               <div className="md:underline">{bottomTextUnderline}</div>

@@ -39,6 +39,7 @@ const SearchSectionDesktop = ({
   maxSizeFilterTitle,
   resultsLabel,
   noResultsLabel,
+  searchForLabel,
   className,
 }) => {
   const [isListMode, setIsListMode] = useState(false);
@@ -56,7 +57,11 @@ const SearchSectionDesktop = ({
             <button className="absolute top-38px left-10px z-20">
               <img src={SearchIcon} alt="search" />
             </button>
-            <SearchInput searchPlaceholder={searchPlaceholder} onForceLocationChange={onForceLocationChange} />
+            <SearchInput
+              searchPlaceholder={searchPlaceholder}
+              onForceLocationChange={onForceLocationChange}
+              searchForLabel={searchForLabel}
+            />
             <label className="relative inline-block w-57px h-45px select-none">
               <input
                 type="checkbox"
@@ -65,7 +70,9 @@ const SearchSectionDesktop = ({
               />
               <span
                 className={`absolute w-full h-full cursor-pointer rounded-15px ${
-                  isFiltersOpen ? "bg-dark-orange search-section-switch-inner-shadow" : "bg-white search-section-shadow-border"
+                  isFiltersOpen
+                    ? "bg-dark-orange search-section-switch-inner-shadow"
+                    : "bg-white search-section-shadow-border"
                 }`}
               >
                 <img src={isFiltersOpen ? FilterWhiteIcon : FilterGoldIcon} alt="filter" className="switch-image" />
@@ -133,7 +140,7 @@ const SearchSectionDesktop = ({
         </div>
         <div className="result-container">
           <div className="result-controls">
-            <span className="text-13px leading-14px font-poppins font-bold text-tundora">
+            <span className="footer-font text-tundora">
               {visibleTiles.length} {resultsLabel}
             </span>
             <DropdownSort options={options.sort} value={typeSort} onChange={setTypeSort} />
@@ -141,7 +148,9 @@ const SearchSectionDesktop = ({
               <input type="checkbox" onChange={() => setIsListMode(!isListMode)} className="w-0px h-0px opacity-0" />
               <span
                 className={`absolute w-full h-full cursor-pointer rounded-15px ${
-                  isListMode ? "bg-dark-orange search-section-switch-inner-shadow" : "bg-white search-section-shadow-border"
+                  isListMode
+                    ? "bg-dark-orange search-section-switch-inner-shadow"
+                    : "bg-white search-section-shadow-border"
                 }`}
               >
                 <img src={isListMode ? SquaresWhiteIcon : SquaresGoldIcon} alt="squares" className="switch-image" />
@@ -150,9 +159,7 @@ const SearchSectionDesktop = ({
           </div>
           <div className={`result-tiles-container ${isListMode ? "-mr-20px" : "-mr-40px"}`}>
             {visibleTiles.length === 0 ? (
-              <div className="w-full mt-100px mr-40px text-center text-14px leading-14px font-metropolis font-bold">
-                {noResultsLabel}
-              </div>
+              <h4 className="w-full mt-100px mr-40px text-center">{noResultsLabel}</h4>
             ) : (
               visibleTiles.map((item, i) => {
                 return (

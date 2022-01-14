@@ -28,10 +28,10 @@ const TownhousePage = ({ data }) => {
         title={propertyType.heroTitle}
         heroTopText={propertyPageData.heroTopText}
         heroContent={propertyType.heroContent}
-        heroContentCss="text-11px md:text-16px leading-24px md:leading-19px text-black-gray font-poppins md:font-late-november md:font-normal text-black-gray"
+        heroContentCss="footer-font md:font-normal text-black-gray"
       />
       <TextSection content={propertyType.overviewText} className="mx-25px lg:mx-117px mt-100px" />
-      <div className="lg:px-120px pb-40px lg:pb-0px bg-white-pink md:bg-transparent">
+      <div className="lg:px-120px pb-40px lg:pb-0px">
         <ThreeStatsSection
           statOneLabel={propertyPageData.averagePrice}
           statOneValue={propertyType.averagePrice}
