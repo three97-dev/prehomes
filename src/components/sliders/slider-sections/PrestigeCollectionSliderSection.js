@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Slider from "react-slick";
+import { StaticImage } from "gatsby-plugin-image";
 import PropTypes from "prop-types";
 
 import SliderArrow from "../../basic/slider-arrow/SliderArrow";
@@ -13,7 +14,6 @@ import flowers from "../../../assets/flower-pink.svg";
 import flowersWhite from "../../../assets/flower-white.svg";
 import buildings from "../../../assets/buildings.svg";
 import buildingsWhite from "../../../assets/buildings-white.svg";
-import prestigeBackground from "../../../assets/home/prestige-section-background.png";
 
 import "./PrestigeCollectionSliderSection.css";
 
@@ -84,7 +84,12 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
 
   return (
     <div className="relative w-full">
-      {blackVariant ? null : <img src={prestigeBackground} className="absolute w-full h-full object-cover" />}
+      {blackVariant ? null : (
+        <StaticImage
+          src="../../../assets/home/prestige-section-background.png"
+          className="absolute w-full h-full object-cover"
+        />
+      )}
       <div
         className={`relative w-full pb-20px pt-50px md:py-125px ${
           blackVariant ? "bg-black-gray md:bg-light-black" : "bg-dark-orange-85"
@@ -100,13 +105,9 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
               src={blackVariant ? (isDesktop ? buildings : buildingsWhite) : isDesktop ? flowers : flowersWhite}
               className="md:ml-20px"
             />
-            <h3 className="w-155px mt-26px md:mt-35px mb-32px md:mb-25px md:ml-20px">
-              {title}
-            </h3>
+            <h3 className="w-155px mt-26px md:mt-35px mb-32px md:mb-25px md:ml-20px">{title}</h3>
             <hr className="rounded border-t-2 border-b mb-23px -mx-12px md:mx-0px md:bg-white-pink" />
-            <p className="mb-40px md:ml-20px text-white md:text-white-pink">
-              {subtitle}
-            </p>
+            <p className="mb-40px md:ml-20px text-white md:text-white-pink">{subtitle}</p>
             <UniversalLink link={link}>
               <span className="link-font md:ml-20px underline w-max cursor-pointer md:text-white-pink">
                 {linkLabel.toUpperCase()}

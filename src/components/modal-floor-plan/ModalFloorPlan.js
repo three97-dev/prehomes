@@ -71,33 +71,29 @@ const ModalFloorPlan = ({
           <Image image={floorPlan?.floorPlanImage} />
         </div>
         {isDesktop ? (
-          <div className="modal-flor-plan-descriptions-area pt-30px md+:pt-45px">
-            <span className="eyebrow-font text-black">{projectNameLabel.toUpperCase()}</span>
-            <p className="text-black mb-25px">{projectName.toUpperCase()}</p>
-            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
-            <p className="text-black mb-25px">{floorPlan?.name?.toUpperCase()}</p>
-            <div className="apartment-parameters-grid-area">
-              <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-center">
-                {squareFootageLabel.toUpperCase()}
-              </span>
-              <p className="grid-square-footage-value-area text-black justify-self-center">
-                {floorPlan?.squareFootage?.toLocaleString("en-US")}
-              </p>
-              <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-center">
+          <div className="modal-flor-plan-descriptions-area pt-30px md+:pt-70px">
+            <span className="eyebrow-font text-black mb-18px">{projectNameLabel.toUpperCase()}</span>
+            <p className="text-black mb-31px">{projectName.toUpperCase()}</p>
+            <span className="eyebrow-font text-black mb-18px">{suiteNameLabel.toUpperCase()}</span>
+            <p className="text-black mb-31px">{floorPlan?.name?.toUpperCase()}</p>
+            <span className="eyebrow-font text-black mb-18px">{squareFootageLabel.toUpperCase()}</span>
+            <p className="text-black mb-31px">{floorPlan?.squareFootage?.toLocaleString("en-US")}</p>
+            <div className="apartment-parameters-grid-area mb-32px">
+              <span className="grid-bedrooms-title-area eyebrow-font text-black mb-18px">
                 {bedroomsLabel.toUpperCase()}
               </span>
-              <p className="grid-bedrooms-value-area text-black justify-self-center">
+              <p className="grid-bedrooms-value-area text-black">
                 {floorPlan?.bedrooms?.toLocaleString()}
               </p>
-              <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-center">
+              <span className="grid-bathrooms-title-area eyebrow-font text-black mb-18px">
                 {bathroomsLabel.toUpperCase()}
               </span>
-              <p className="grid-bathrooms-value-area text-black justify-self-center">
+              <p className="grid-bathrooms-value-area text-black">
                 {floorPlan?.bathrooms?.toLocaleString()}
               </p>
             </div>
-            <div className="eyebrow-font text-black">{modalProjectPrice.toUpperCase()}</div>
-            <h3 className="mb-25px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
+            <div className="eyebrow-font text-black mb-23px">{modalProjectPrice.toUpperCase()}</div>
+            <h3 className="mb-50px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
 
             <div className="flex items-center -ml-7px">
               {isLoggedIn ? (

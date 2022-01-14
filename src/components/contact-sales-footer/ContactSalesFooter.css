@@ -7,8 +7,8 @@
   display: grid;
   align-items: center;
   grid-template-columns:
-    minmax(auto, 197px)
-    minmax(auto, 71px)
+    minmax(auto, 220px)
+    minmax(auto, 50px)
     minmax(auto, 300px)
     minmax(auto, 15px)
     minmax(auto, 300px)

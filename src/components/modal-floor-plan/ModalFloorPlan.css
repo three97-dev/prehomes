@@ -85,24 +85,18 @@
   display: grid;
   grid-template-columns:
     minmax(auto, 15.4rem)
-    minmax(auto, 15.4rem)
     minmax(auto, 15.4rem);
   grid-template-areas:
-    "SquareFootageTitle BedroomsTitle BathroomsTitle"
-    "SquareFootageValue BedroomsValue BathroomsValue";
+    "BedroomsTitle BathroomsTitle"
+    "BedroomsValue BathroomsValue";
 }
 @media screen and (min-width: 834px) {
   .apartment-parameters-grid-area {
     display: grid;
-    grid-template-columns:
-      minmax(auto, 15.4rem)
-      minmax(auto, 9.8rem)
-      minmax(auto, 15.4rem)
-      minmax(auto, 4.4rem)
-      minmax(auto, 15.4rem);
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "SquareFootageTitle . BedroomsTitle . BathroomsTitle"
-      "SquareFootageValue . BedroomsValue . BathroomsValue";
+      "BedroomsTitle BathroomsTitle"
+      "BedroomsValue BathroomsValue";
   }
 }
 
