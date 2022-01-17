@@ -149,7 +149,7 @@ html body {
     font-family: "Poppins", "Roboto", "Arial", "sans-serif";
     font-weight: 100;
     font-size: 1.4rem;
-    line-height: 1.4rem;
+    line-height: 2.4rem;
   }
 
   .footer-font {
@@ -229,7 +229,7 @@ html body {
 
     p {
       font-size: 1.6rem;
-      line-height: 1.6rem;
+      line-height: 2.6rem;
     }
 
     .footer-font {
