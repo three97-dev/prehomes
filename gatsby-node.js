@@ -9,7 +9,7 @@ const developerTemplate = path.resolve("./src/templates/developer.js");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/utils/buildUrl");
 
-const notCmsTemplate = node => node.isTemplateSample === false;
+const notCmsTemplate = node => node?.isTemplateSample === false;
 
 const getUniquePrices = projectFloors => {
   return [...new Set(projectFloors.map(projectFloor => projectFloor.price))].sort((a, b) => {
