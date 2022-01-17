@@ -67,30 +67,26 @@ const ModalFloorPlan = ({
     >
       <button onClick={() => onClose()} className="close-button" />
       <div className="modal-flor-plan-grid">
-        <div className="modal-flor-plan-image-area w-200px md:w-490px h-200px md:h-490px mx-auto md:my-15px md:ml-15px">
+        <div className="modal-flor-plan-image-area w-200px md:w-full h-200px md:h-full mx-auto md:my-15px md:ml-15px">
           <Image image={floorPlan?.floorPlanImage} />
         </div>
         {isDesktop ? (
-          <div className="modal-flor-plan-descriptions-area pt-30px md+:pt-70px">
-            <span className="eyebrow-font text-black mb-18px">{projectNameLabel.toUpperCase()}</span>
-            <p className="text-black mb-31px">{projectName.toUpperCase()}</p>
-            <span className="eyebrow-font text-black mb-18px">{suiteNameLabel.toUpperCase()}</span>
-            <p className="text-black mb-31px">{floorPlan?.name?.toUpperCase()}</p>
-            <span className="eyebrow-font text-black mb-18px">{squareFootageLabel.toUpperCase()}</span>
-            <p className="text-black mb-31px">{floorPlan?.squareFootage?.toLocaleString("en-US")}</p>
+          <div className="modal-flor-plan-descriptions-area py-30px md+:py-70px">
+            <span className="eyebrow-font text-black">{projectNameLabel.toUpperCase()}</span>
+            <p className="text-black mt-18px mb-31px">{projectName.toUpperCase()}</p>
+            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
+            <p className="text-black mt-18px mb-31px">{floorPlan?.name?.toUpperCase()}</p>
+            <span className="eyebrow-font text-black">{squareFootageLabel.toUpperCase()}</span>
+            <p className="text-black mt-18px mb-31px">{floorPlan?.squareFootage?.toLocaleString("en-US")}</p>
             <div className="apartment-parameters-grid-area mb-32px">
               <span className="grid-bedrooms-title-area eyebrow-font text-black mb-18px">
                 {bedroomsLabel.toUpperCase()}
               </span>
-              <p className="grid-bedrooms-value-area text-black">
-                {floorPlan?.bedrooms?.toLocaleString()}
-              </p>
+              <p className="grid-bedrooms-value-area text-black">{floorPlan?.bedrooms?.toLocaleString()}</p>
               <span className="grid-bathrooms-title-area eyebrow-font text-black mb-18px">
                 {bathroomsLabel.toUpperCase()}
               </span>
-              <p className="grid-bathrooms-value-area text-black">
-                {floorPlan?.bathrooms?.toLocaleString()}
-              </p>
+              <p className="grid-bathrooms-value-area text-black">{floorPlan?.bathrooms?.toLocaleString()}</p>
             </div>
             <div className="eyebrow-font text-black mb-23px">{modalProjectPrice.toUpperCase()}</div>
             <h3 className="mb-50px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
@@ -136,22 +132,14 @@ const ModalFloorPlan = ({
             </div>
 
             {isLoggedIn ? (
-              <div className="buttons-grid">
-                <Button
-                  onClick={saveUnsaveFloorPlanButton}
-                  btnClasses="flex items-center justify-center w-160px h-50px button-font text-white"
-                  variants="black_gradient"
-                >
-                  <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
-                  {saveFloorPlanButtonLabel}
-                </Button>
-                <Button
-                  btnClasses="flex items-center justify-center w-160px h-50px button-font text-white"
-                  variants="dark_orange"
-                >
-                  Request Info
-                </Button>
-              </div>
+              <Button
+                onClick={saveUnsaveFloorPlanButton}
+                btnClasses="flex items-center justify-center w-160px h-50px mx-auto mt-57px md:mt-0px mb-28px md:mb-0px button-font text-white"
+                variants="black_gradient"
+              >
+                <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
+                {saveFloorPlanButtonLabel}
+              </Button>
             ) : null}
           </div>
         )}

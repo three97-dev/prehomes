@@ -1,0 +1,9 @@
+.search-tile-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: end;
+  -webkit-box-align: end;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

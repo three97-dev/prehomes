@@ -56,7 +56,7 @@ const PremiumAndPrestigeTile = ({
           />
         ) : null}
         <div className="pt-20px md:pt-15px pb-20px px-20px md:px-21px text-white md:text-white-pink">
-          <h3 className="flex items-center justify-center h-78px md:h-70px mb-11px md:mb-15px overflow-ellipsis overflow-hidden text-left md:text-center tracking-wide">
+          <h3 className="premium-and-prestige-tile-title flex items-center justify-center h-68px md:h-55px mb-11px md:mb-15px text-left md:text-center tracking-wide">
             {tileTitle}
           </h3>
           <p className="md:h-96px mb-18px md:mb-19px overflow-ellipsis overflow-hidden text-left md:text-center">

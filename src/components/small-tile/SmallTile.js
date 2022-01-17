@@ -10,7 +10,22 @@ import UniversalLink from "../../utils/UniversalLink";
 import { SAVE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 import { DELETE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 
-const SmallTile = ({ id, image, link, title, location, price, textColor, bgColor, className, imageClassName, titleClassName, subtitleClassName }) => {
+import "./SmallTile.css";
+
+const SmallTile = ({
+  id,
+  image,
+  link,
+  title,
+  location,
+  price,
+  textColor,
+  bgColor,
+  className,
+  imageClassName,
+  titleClassName,
+  subtitleClassName,
+}) => {
   const dispatch = useDispatch();
   const saveProject = useSelector(state => state.saveProject);
   const session = useSelector(state => state.session);
@@ -46,19 +61,9 @@ const SmallTile = ({ id, image, link, title, location, price, textColor, bgColor
             textColor ? textColor : "text-black-gray"
           }`}
         >
-          <h3 className={`md:h-55px overflow-ellipsis overflow-hidden ${titleClassName}`}>
-            {title}
-          </h3>
-          <div className={`eyebrow-font md:mb-5px mt-10px md:mt-7px ${subtitleClassName}`}>
-            {location}
-          </div>
-          <h4
-            className={`${
-              textColor ? textColor : "text-black-gray"
-            }`}
-          >
-            From: ${price.toLocaleString("en-US")}
-          </h4>
+          <h3 className={`small-tile-title md:h-55px overflow-ellipsis overflow-hidden ${titleClassName}`}>{title}</h3>
+          <div className={`eyebrow-font md:mb-5px mt-10px md:mt-7px ${subtitleClassName}`}>{location}</div>
+          <h4 className={`${textColor ? textColor : "text-black-gray"}`}>From: ${price.toLocaleString("en-US")}</h4>
         </div>
       </UniversalLink>
     </div>
@@ -85,7 +90,7 @@ SmallTile.defaultProps = {
   textColor: "",
   bgColor: "",
   className: "",
-  titleClassName: "h-78px",
+  titleClassName: "h-68px",
   subtitleClassName: "mb-10px uppercase",
 };
 

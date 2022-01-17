@@ -85,10 +85,12 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
   return (
     <div className="relative w-full">
       {blackVariant ? null : (
-        <StaticImage
-          src="../../../assets/home/prestige-section-background.png"
-          className="absolute w-full h-full object-cover"
-        />
+        <div className="absolute w-full h-full">
+          <StaticImage
+            src="../../../assets/home/prestige-section-background.png"
+            className="w-full h-full object-cover"
+          />
+        </div>
       )}
       <div
         className={`relative w-full pb-20px pt-50px md:py-125px ${

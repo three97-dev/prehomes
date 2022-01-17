@@ -13,7 +13,7 @@
     top: 50%;
     width: 100%;
     max-width: 1410px;
-    max-height: 520px;
+    max-height: 685px;
   }
 }
 
@@ -76,7 +76,8 @@
 @media screen and (min-width: 834px) {
   .modal-flor-plan-grid {
     display: grid;
-    grid-template-columns: minmax(auto, 49rem) minmax(auto, 19.4rem) minmax(auto, 70rem);
+    grid-template-rows: auto;
+    grid-template-columns: auto minmax(auto, 19.4rem) minmax(auto, 55rem);
     grid-template-areas: "ModalImage . ModalDescriptions";
   }
 }
@@ -85,10 +86,11 @@
   display: grid;
   grid-template-columns:
     minmax(auto, 15.4rem)
+    minmax(auto, 15.4rem)
     minmax(auto, 15.4rem);
   grid-template-areas:
-    "BedroomsTitle BathroomsTitle"
-    "BedroomsValue BathroomsValue";
+    "SquareFootageTitle BedroomsTitle BathroomsTitle"
+    "SquareFootageValue BedroomsValue BathroomsValue";
 }
 @media screen and (min-width: 834px) {
   .apartment-parameters-grid-area {
@@ -128,6 +130,8 @@
 }
 .modal-flor-plan-descriptions-area {
   grid-area: ModalDescriptions;
+  display: grid;
+  align-items: center;
 }
 
 .button-favourite {

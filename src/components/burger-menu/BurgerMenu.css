@@ -7,6 +7,10 @@
   margin: 0 0 0 auto;
 }
 
+.burger-menu:focus {
+  outline: none;
+}
+
 .burger-menu-overlay {
   position: fixed;
   top: 0;
@@ -29,11 +33,10 @@
     "BurgerMenuList BurgerMenuList";
 }
 
-
 @media screen and (max-width: 768px) {
   .burger-menu-container {
     grid-template-columns: minmax(0, auto) 95px;
-  grid-template-rows: 101px auto;
+    grid-template-rows: 101px auto;
   }
 }
 

@@ -1,8 +1,4 @@
-.box-shadow {
-  box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.1);
-}
-
-.premium-and-prestige-tile-title {
+.small-tile-title {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -11,7 +7,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .premium-and-prestige-tile-title {
+  .small-tile-title {
     -webkit-line-clamp: 2;
   }
 }

@@ -8,8 +8,9 @@
   border-bottom: 1px solid #c4c4c4;
 }
 
+.paginate-block a:focus,
 .prev-next-button-outline:focus {
-  outline-style: hidden;
+  outline: none;
 }
 
 @media screen and (min-width: 713px) {
@@ -21,6 +22,7 @@
     padding-left: 142px;
   }
 
+  .paginate-block a:focus,
   .prev-next-button-outline:focus {
     outline: 5px auto Highlight;
     outline: 5px auto -webkit-focus-ring-color;

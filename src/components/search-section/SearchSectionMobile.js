@@ -139,7 +139,7 @@ const SearchSectionMobile = ({
                         link={item.link}
                         className="mb-22px w-full search-section-tile-mobile"
                         imageClassName="w-full"
-                        titleClassName="h-26px"
+                        titleClassName="h-24px"
                         subtitleClassName="mb-0px normal-case"
                       />
                     );

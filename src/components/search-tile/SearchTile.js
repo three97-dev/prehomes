@@ -9,6 +9,8 @@ import UniversalLink from "../../utils/UniversalLink";
 import { SAVE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 import { DELETE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 
+import "./SearchTile.css";
+
 function SearchTile({ id, image, title, city, neighborhood, price, link, className }) {
   const dispatch = useDispatch();
   const saveProject = useSelector(state => state.saveProject);
@@ -42,9 +44,7 @@ function SearchTile({ id, image, title, city, neighborhood, price, link, classNa
         />
         <div className="absolute w-full top-62px">
           <div className="w-148px text-white mx-auto">
-            <h3 className="flex items-end h-90px overflow-ellipsis overflow-hidden">
-              {title}
-            </h3>
+            <h3 className="search-tile-title h-80px">{title}</h3>
             <div className="mt-10px mb-20px">
               <div className="eyebrow-font">{city.toUpperCase()}</div>
               <div className="eyebrow-alt-font">{neighborhood.toUpperCase()}</div>
