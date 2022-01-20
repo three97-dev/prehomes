@@ -21,23 +21,13 @@ const ContactSalesFooter = ({
   onSubmit,
   onSubmitWithError,
 }) => {
-  const { contentfulContactSalesForm, hubspotForm } = useStaticQuery(graphql`
+  const { hubspotForm } = useStaticQuery(graphql`
     query ContactSalesFooter {
       hubspotForm(id: { eq: "bf71af5f-a12c-44a2-ab3f-07dbb53c0915" }) {
         guid
       }
-      contentfulContactSalesForm(contentful_id: { eq: "68Lq3qf7P5tWUsZ27tbEyo" }) {
-        title
-        nameInputPlaceholder
-        emailInputPlaceholder
-        buttonLabel
-        buttonLabelSubmitted
-      }
     }
   `);
-
-  const { title, nameInputPlaceholder, emailInputPlaceholder, buttonLabel, buttonLabelSubmitted } =
-    contentfulContactSalesForm;
 
   const { href } = useLocation();
 
@@ -119,14 +109,14 @@ const ContactSalesFooter = ({
         onSubmit={formik.handleSubmit}
         className="contact-sales-footer-grid w-full h-75px mx-auto pl-20px pr-28px bg-white"
       >
-        <h2 className="gridTitleArea text-tundora">{title}</h2>
+        <h2 className="gridTitleArea text-tundora">Request Info</h2>
         <Input
           id="name"
           name="name"
           type="text"
           placeholderColor="placeholder-dark-orange"
           disabled={formik.isSubmitting || isFormDisabled}
-          placeholder={nameInputPlaceholder}
+          placeholder="Name"
           font="placeholder-font"
           className="gridNameArea"
           height="h-45px"
@@ -143,7 +133,7 @@ const ContactSalesFooter = ({
           type="email"
           placeholderColor="placeholder-dark-orange"
           disabled={formik.isSubmitting || isFormDisabled}
-          placeholder={emailInputPlaceholder}
+          placeholder="Email Address"
           font="placeholder-font"
           className="gridEmailArea"
           height="h-45px"
@@ -156,7 +146,7 @@ const ContactSalesFooter = ({
         />
         {isFormDisabled ? (
           <div className="gridButtonArea border border-black h-54px button-font text-dark-grey flex items-center justify-center rounded-15px cursor-not-allowed">
-            {buttonLabelSubmitted}
+            Submitted
           </div>
         ) : (
           <Button
@@ -167,7 +157,7 @@ const ContactSalesFooter = ({
               formik.handleSubmit();
             }}
           >
-            <div className="button-font text-white">{buttonLabel}</div>
+            <div className="button-font text-white">Submit</div>
           </Button>
         )}
       </form>

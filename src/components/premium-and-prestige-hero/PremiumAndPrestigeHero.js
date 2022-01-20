@@ -3,15 +3,11 @@ import PropTypes from "prop-types";
 
 import flowerPink from "../../assets/flower-pink.svg";
 
-import Image from "../basic/image/Image";
-
 const PremiumAndPrestigeHero = ({ heroTopText, title, heroContent, image, isBlack, className }) => {
   return (
     <div className={`w-full ${className}`}>
       <div className="mx-auto text-white-pink h-screen sm+:h-500px">
-        <div className="w-full absolute -z-10 overflow-hidden">
-          <Image image={image} className="-z-10 w-full h-screen sm+:h-500px" />
-        </div>
+        <div className="w-full absolute -z-10 overflow-hidden">{image}</div>
         <div className="z-100 sm+:flex pt-263px sm+:pt-236px pl-25px sm+:pl-50px md:pl-124px pr-38px">
           <img src={flowerPink} className="sm+:hidden w-100px h-121px mb-35px" />
           <div>

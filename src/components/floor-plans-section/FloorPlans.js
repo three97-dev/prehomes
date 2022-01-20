@@ -38,14 +38,6 @@ const FloorPlans = ({
   options,
   floors,
   projectData,
-  projectNameLabel,
-  suiteNameLabel,
-  squareFootageLabel,
-  bedroomsLabel,
-  bathroomsLabel,
-  modalProjectPrice,
-  saveFloorPlanButtonLabel,
-  requestInfoButtonLabel,
   isProject,
   className,
 }) => {
@@ -129,15 +121,13 @@ const FloorPlans = ({
         <hr className="absolute left-0px top-330px md:top-288px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
       )}
       <div className="pl-25px lg:pl-120px">
-        <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">{title}</h2>
-        <h3 className="text-dark-orange mb-21px md:mb-43px">{subtitle}</h3>
+        <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">Saved Floor Plans</h2>
+        <h3 className="text-dark-orange mb-21px md:mb-43px">Total Floor Plans:</h3>
         <p className="mb-20px md:mb-40px">
-          <span className="font-bold">{floors.length}</span> ({availableFloors.length} {available})
+          <span className="font-bold">{floors.length}</span> ({availableFloors.length} Available)
         </p>
       </div>
-      <div
-        className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}
-      >
+      <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}>
         <button className="w-80px h-24px text-dark-orange button-font">Filters</button>
         <Dropdown
           options={options.sort}
@@ -156,7 +146,7 @@ const FloorPlans = ({
       </div>
       <div className="drop-down-grid absolute right-25px md+right-90px lg:right-120px top-136px">
         <Dropdown
-          title={sizeFilterTitle}
+          title="Size"
           options={options.sizes}
           value={sizeFilter}
           onChange={setSizeFilter}
@@ -164,7 +154,7 @@ const FloorPlans = ({
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
-          title={bedsFilterTitle}
+          title="Beds"
           options={options.beds}
           value={bedsFilter}
           onChange={setBedsFilter}
@@ -172,7 +162,7 @@ const FloorPlans = ({
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
-          title={bathsFilterTitle}
+          title="Baths"
           options={options.baths}
           value={bathsFilter}
           onChange={setBathsFilter}
@@ -180,7 +170,7 @@ const FloorPlans = ({
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
-          title={availabilityFilterTitle}
+          title="Availability"
           options={options.availability}
           value={availabilityFilter}
           onChange={setAvailabilityFilter}
@@ -189,27 +179,25 @@ const FloorPlans = ({
         />
       </div>
       {sortedTiles.length === 0 ? (
-        <h3 className="w-full pt-100px pb-50px text-center">
-          {floorNoResults}
-        </h3>
+        <h3 className="w-full pt-100px pb-50px text-center">No results</h3>
       ) : (
         <div className="md:px-25px lg:px-120px">
           <table className="w-full">
             {isDesktop && (
               <thead>
                 <tr className="table-head">
-                  <th className=""></th>
+                  <th></th>
                   <th className="table-head-item pl-20px md:pl-16px lg:pl-37px text-black-gray min-w-136px">
-                    <h4>{suiteNameColumnTitle}</h4>
+                    <h4>Suite Name</h4>
                   </th>
                   <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
-                    <h4>{suiteTypeColumnTitle}</h4>
+                    <h4>Suite Type</h4>
                   </th>
                   <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
-                    <h4>{sizeColumnTitle}</h4>
+                    <h4>Size</h4>
                   </th>
                   <th className="table-head-item pl-20px md:pl-22px lg:pl-48px text-black-gray">
-                    <h4>{priceColumnTitle}</h4>
+                    <h4>Price</h4>
                   </th>
                   <th className="table-head-item"></th>
                 </tr>
@@ -231,23 +219,15 @@ const FloorPlans = ({
                         <div className="max-w-154px footer-font">{floorPlan.name}</div>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-37px">
-                        <p className="mb-20px w-110px lg+:mb-12px lg+:mr-20px">
-                          {floorPlan.bedrooms} {suiteNameColumnBedroomLabel}
-                        </p>
-                        <p className="w-110px">
-                          {floorPlan.bathrooms} {suiteNameColumnBathroomLabel}
-                        </p>
+                        <p className="mb-20px w-110px lg+:mb-12px lg+:mr-20px">{floorPlan.bedrooms} Bedroom</p>
+                        <p className="w-110px">{floorPlan.bathrooms} Bathroom</p>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-37px">
-                        <p>
-                          {floorPlan.squareFootage.toLocaleString("en-US")} {sizeColumnUnits}
-                        </p>
+                        <p>{floorPlan.squareFootage.toLocaleString("en-US")} sq.ft</p>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
                         <p className="mb-20px lg+:mb-12px lg+:mr-20px">${floorPlan.price.toLocaleString("en-US")}</p>
-                        <p>
-                          ${floorPlan.priceForSquareFootage.toLocaleString("en-US")} {priceColumnUnits}
-                        </p>
+                        <p>${floorPlan.priceForSquareFootage.toLocaleString("en-US")} /sq.ft</p>
                       </td>
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
                         <Button
@@ -255,7 +235,7 @@ const FloorPlans = ({
                           btnClasses="w-113px h-54px"
                           onClick={() => setMoreInfoModal(floorPlan)}
                         >
-                          <div className="button-font">{moreInfoButtonLabel}</div>
+                          <div className="button-font">More info</div>
                         </Button>
                       </td>
                     </tr>
@@ -299,15 +279,6 @@ const FloorPlans = ({
                 <ModalFloorPlan
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
                   projectContentfulId={moreInfoModal?.projectContentfulId || projectData?.contentful_id}
-                  projectNameLabel={projectNameLabel}
-                  suiteNameLabel={suiteNameLabel}
-                  squareFootageLabel={squareFootageLabel}
-                  bedroomsLabel={bedroomsLabel}
-                  bathroomsLabel={bathroomsLabel}
-                  modalProjectPrice={modalProjectPrice}
-                  saveFloorPlanButtonLabel={saveFloorPlanButtonLabel}
-                  requestInfoButtonLabel={requestInfoButtonLabel}
-                  sizeColumnUnits={sizeColumnUnits}
                   floorPlan={moreInfoModal}
                   modalIsOpen={moreInfoModal ? true : false}
                   onClose={closeModal}

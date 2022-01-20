@@ -15,13 +15,17 @@ const ViewByLinks = ({ title, links }) => {
         >
           {links.map((linksColumn, index) => (
             <ul key={index} className={index === links.length - 1 ? "" : "pr-25px sm+:pr-0px"}>
-              {linksColumn.map((link, index) => (
-                <li key={index} className="view-by-links-item">
-                  <a className="link-font text-white" href={link.url}>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {linksColumn.map((link, index) =>
+                link ? (
+                  <li key={index} className="view-by-links-item">
+                    <a className="link-font text-white" href={link.url.pageUrl}>
+                      {link.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li className="h-19px sm+:h-22px mb-20px"></li>
+                )
+              )}
             </ul>
           ))}
         </div>

@@ -43,7 +43,7 @@ async function getWalkScore(lat, lon) {
     const result = await axios.get(url);
     return result.data;
   } catch (err) {
-    console.log("Walk Score API error:", err);
+    console.log("Walk Score API error:", err.message);
   }
 }
 
@@ -61,9 +61,12 @@ exports.sourceNodes = async args => {
     const lat = project.projectAddressMapLocation.lat;
     const lon = project.projectAddressMapLocation.lon;
     const score = await getWalkScore(lat, lon);
-    const walkScore = score.walkscore;
-    const bikeScore = score.bike?.score;
-    const transitScore = score.transit?.score;
+    if (score?.status !== 1) {
+      console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
+    }
+    const walkScore = score?.walkscore || 0;
+    const bikeScore = score?.bike?.score || 0;
+    const transitScore = score?.transit?.score || 0;
 
     let status;
     if (project.isSoldOut) {
@@ -116,12 +119,12 @@ exports.sourceNodes = async args => {
     createNodeField({
       node: project,
       name: "bikeScore",
-      value: bikeScore ? bikeScore : "none",
+      value: bikeScore,
     });
     createNodeField({
       node: project,
       name: "transitScore",
-      value: transitScore ? transitScore : "none",
+      value: transitScore,
     });
   }
 
@@ -149,7 +152,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const projectsData = await graphql(`
     {
-      allContentfulProject(filter: { isTemplateSample: { ne: true } }) {
+      allContentfulProject {
         nodes {
           contentful_id
           fields {
@@ -157,7 +160,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allContentfulCity(filter: { isTemplateSample: { ne: true } }) {
+      allContentfulCity {
         nodes {
           contentful_id
           fields {
@@ -165,7 +168,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allContentfulDeveloper(filter: { isTemplateSample: { ne: true } }) {
+      allContentfulDeveloper {
         nodes {
           contentful_id
           fields {

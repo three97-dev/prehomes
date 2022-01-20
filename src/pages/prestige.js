@@ -1,6 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 
+import { StaticImage } from "gatsby-plugin-image";
+
 import {
   Header,
   PremiumAndPrestigeHero,
@@ -9,32 +11,52 @@ import {
   ContactRealtorFormSection,
   Footer,
 } from "../components";
+// import Seo from "../seo/Seo";
 
 const PrestigePage = ({ data }) => {
-  const prestigePageData = data.contentfulPrestigePage;
   const newestReleasesProjects = data.newestReleasesProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
 
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: "Prestige",
+          seoDescription: "Prestige building",
+        }}
+      /> */}
       <Header logoLink="/" variant="prestige" />
       <PremiumAndPrestigeHero
-        image={prestigePageData.heroImage}
-        title={prestigePageData.title}
-        heroTopText={prestigePageData.heroTopText}
-        heroContent={prestigePageData.heroContent}
+        image={
+          <StaticImage
+            src="../assets/prestige-page/heroImage.png"
+            alt="Prestige hero section background"
+            className="-z-10 w-full h-screen sm+:h-500px object-fill"
+          />
+        }
+        title="Penthouse"
+        heroTopText="COLLECTIONS"
+        heroContent="The capital of Ontario and the financial hub of Canada. Home to over 3M residents."
       />
 
       <div className="bg-dark-orange bg-opacity-75 w-full pt-49px md:pt-87px">
         <PremiumAndPrestigeText
-          title={prestigePageData.headTitle}
-          textContent={prestigePageData.headContent}
+          title="The Penthouse Collection"
+          textContent={
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+          }
           prestigePage
         />
-        <PrestigeAndPremiumSlider title={prestigePageData.newReleasesSliderTitle} projects={newestReleasesProjects} />
-        <PrestigeAndPremiumSlider title={prestigePageData.launchingSoonSliderTitle} projects={launchingSoonProjects} />
+        <PrestigeAndPremiumSlider title="Spotlight Projects" projects={newestReleasesProjects} />
+        <PrestigeAndPremiumSlider title="Launching Soon" projects={launchingSoonProjects} />
         {/* <PrestigeAndPremiumSlider
-          title={prestigePageData.allPenthousePropertiesSliderTitle}
+          title="All Penthouse Properties"
           projects={tileData.sliderTileContent}
         /> */}
       </div>
@@ -48,27 +70,8 @@ export default PrestigePage;
 
 export const query = graphql`
   query {
-    contentfulPrestigePage(isTemplateSample: { ne: true }) {
-      heroTopText
-      title
-      heroContent
-      heroImage {
-        ...Image
-      }
-      headTitle
-      headContent {
-        raw
-      }
-      newReleasesSliderTitle
-      launchingSoonSliderTitle
-      allPenthousePropertiesSliderTitle
-    }
     newestReleasesProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        fields: { projectStatus: { eq: "newest-releases" } }
-        projectCollection: { eq: "Prestige" }
-      }
+      filter: { fields: { projectStatus: { eq: "newest-releases" } }, projectCollection: { eq: "Prestige" } }
     ) {
       nodes {
         contentful_id
@@ -87,11 +90,7 @@ export const query = graphql`
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        fields: { projectStatus: { eq: "launching-soon" } }
-        projectCollection: { eq: "Prestige" }
-      }
+      filter: { fields: { projectStatus: { eq: "launching-soon" } }, projectCollection: { eq: "Prestige" } }
     ) {
       nodes {
         contentful_id

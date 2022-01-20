@@ -1,16 +1,16 @@
 export const pageToSeoObject = pageData => {
   const pageSEO = {
     title: pageData?.seoTitle,
-    description: pageData?.seoDescription?.seoDescription,
-    image: pageData?.seoImage?.file?.url,
+    description: pageData?.seoDescription,
+    image: pageData?.seoImage,
 
     og_title: pageData?.seoOgTitle,
-    og_description: pageData?.seoOgDescription?.seoOgDescription,
-    og_image: pageData?.seoOgImage?.file?.url,
+    og_description: pageData?.seoOgDescription,
+    og_image: pageData?.seoOgImage,
 
     twitter_title: pageData?.seoTwitterTitle,
-    twitter_description: pageData?.seoTwitterDescription?.seoTwitterDescription,
-    twitter_image: pageData?.seoTwitterImage?.file?.url,
+    twitter_description: pageData?.seoTwitterDescription,
+    twitter_image: pageData?.seoTwitterImage,
   };
 
   return pageSEO;
@@ -21,8 +21,8 @@ export const siteDefaultSeoToSeoObject = (defaultSEOFromCMS, pathname) => {
     url: `${defaultSEOFromCMS?.seoSiteUrl}${pathname}`,
     titleTemplate: defaultSEOFromCMS?.seoTitleTemplate,
     title: defaultSEOFromCMS?.seoTitle,
-    description: defaultSEOFromCMS?.seoDescription?.seoDescription,
-    image: defaultSEOFromCMS?.seoImage?.file?.url,
+    description: defaultSEOFromCMS?.seoDescription,
+    image: defaultSEOFromCMS?.seoImage,
     twitter_username: defaultSEOFromCMS?.seoTwitterUsername,
   };
 

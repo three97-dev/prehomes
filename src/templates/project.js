@@ -20,9 +20,9 @@ import { options } from "../utils/filterOptions";
 
 import { SAVE_PROJECT_TRIGGER } from "../redux/actions/save-project";
 import { DELETE_PROJECT_TRIGGER } from "../redux/actions/save-project";
+// import Seo from "../seo/Seo";
 
 const ProjectPageTemplate = ({ data }) => {
-  const projectPageData = data.contentfulProjectPage;
   const project = data.contentfulProject;
 
   const dispatch = useDispatch();
@@ -40,20 +40,26 @@ const ProjectPageTemplate = ({ data }) => {
 
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: project.projectName,
+          seoDescription: project.projectAddress,
+        }}
+      /> */}
       <Header logoLink="/" />
       <HeroSectionSlider
         images={project.projectImages}
-        topText={projectPageData.heroTopText}
+        topText="PROJECT VIEW"
         title={project.projectName}
-        saveButton={projectPageData.heroSaveButtonLabel}
-        requestButton={projectPageData.heroRequestButtonLabel}
+        saveButton="Save Listing"
+        requestButton="Request Info"
         isFavorite={isFavorite}
         onClickSave={saveUnsaveProjectButton}
         isFixedHeader
         className="bg-transparent"
       />
       <ProjectOverview
-        title={projectPageData.overviewTitle}
+        title="Overview"
         address={project.projectAddress}
         content={project.overviewText}
         minPrice={project.projectMinPrice}
@@ -61,22 +67,22 @@ const ProjectPageTemplate = ({ data }) => {
         priceSQFT={project.pricePerSqft}
         priceNeighborhood={project.priceNeighborhoodAverage}
         priceCity={project.priceCityAverage}
-        labelPriceSQFT={projectPageData.overviewPriceSqftLabel}
-        labelPriceNeighborhood={projectPageData.overviewPriceNeighborhoodLabel}
-        labelPriceCity={projectPageData.overviewPriceCityLabel}
-        buttonLabel={projectPageData.overviewButtonLabel}
+        labelPriceSQFT="Price per sq.ft:"
+        labelPriceNeighborhood="Neighborhood average:"
+        labelPriceCity="City average"
+        buttonLabel="Watch Video"
         videoLink={project.overviewVideoLink}
         videoPreviewImage={project.overviewVideoPreviewImage}
         className="overflow-hidden"
       />
       <ExploreTheArea
-        title={projectPageData.additionalDescriptionTitle}
-        walkScoreLabel={projectPageData.scores.walkScore.label}
-        walkScoreTooltip={projectPageData.scores.walkScore.tooltip}
-        bikeScoreLabel={projectPageData.scores.bikeScore.label}
-        bikeScoreTooltip={projectPageData.scores.bikeScore.tooltip}
-        busScoreLabel={projectPageData.scores.busScore.label}
-        busScoreTooltip={projectPageData.scores.busScore.tooltip}
+        title="Explore the Area"
+        walkScoreLabel="Walk Score"
+        walkScoreTooltip="Walk Score Tooltip"
+        bikeScoreLabel="Bike Score"
+        bikeScoreTooltip="Bike Score Tooltip"
+        busScoreLabel="Bus Score"
+        busScoreTooltip="Bus Score Tooltip"
         walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
         bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
@@ -87,71 +93,42 @@ const ProjectPageTemplate = ({ data }) => {
 
       <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px border-gray-border md:my-40px"></div>
       <FloorPlans
-        title={projectPageData.floorPlansTitle}
-        subtitle={projectPageData.floorPlansSubtitle}
-        available={projectPageData.floorPlansAvailable}
         options={options}
-        sizeFilterTitle={projectPageData.sizeFilterTitle}
-        bedsFilterTitle={projectPageData.bedsFilterTitle}
-        bathsFilterTitle={projectPageData.bathsFilterTitle}
-        availabilityFilterTitle={projectPageData.availabilityFilterTitle}
-        floorNoResults={projectPageData.floorNoResults}
-        suiteNameColumnTitle={projectPageData.suiteNameColumnTitle}
-        suiteTypeColumnTitle={projectPageData.suiteTypeColumnTitle}
-        sizeColumnTitle={projectPageData.sizeColumnTitle}
-        priceColumnTitle={projectPageData.priceColumnTitle}
-        suiteNameColumnBedroomLabel={projectPageData.suiteNameColumnBedroomLabel}
-        suiteNameColumnBathroomLabel={projectPageData.suiteNameColumnBathroomLabel}
-        sizeColumnUnits={projectPageData.sizeColumnUnits}
-        priceColumnUnits={projectPageData.priceColumnUnits}
-        moreInfoButtonLabel={projectPageData.moreInfoButtonLabel}
-        floors={project.projectFloorPlans}
         projectData={project}
-        projectNameLabel={projectPageData.modalProjectNameLabel}
-        suiteNameLabel={projectPageData.suiteNameColumnTitle}
-        squareFootageLabel={projectPageData.modalSquareFootageLabel}
-        bedroomsLabel={projectPageData.modalBedroomsLabel}
-        bathroomsLabel={projectPageData.modalBathroomsLabel}
-        modalProjectPrice={projectPageData.priceColumnTitle}
-        saveFloorPlanButtonLabel={projectPageData.modalSaveButtonLabel}
-        requestInfoButtonLabel={projectPageData.heroRequestButtonLabel}
+        floors={project.projectFloorPlans}
         isProject
         className="mx-auto bg-transparent"
       />
       <div className="hidden md:block border-t md:mx-25px lg:mx-120px md:mt-42px border-gray-border"></div>
       <KeyInformation
-        title={projectPageData.keyInformationTitle}
-        statusLabel={projectPageData.keyInformationStatusLabel}
+        title="Key Information"
+        statusLabel="Status"
         statusValue={project.fields.projectStatus}
-        labelPriceSQFT={projectPageData.overviewPriceSqftLabel}
+        labelPriceSQFT="Price per sq.ft:"
         pricePerSqft={project.pricePerSqft}
-        typeLabel={projectPageData.keyInformationTypeLabel}
+        typeLabel="Type"
         typeValue={project.projectType.name}
-        launchDateLabel={projectPageData.keyInformationLaunchDateLabel}
+        launchDateLabel="Launch Date"
         launchDateValue={project.launchDate}
-        estimatedOccupancyLabel={projectPageData.keyInformationEstimatedOccupancyLabel}
+        estimatedOccupancyLabel="Occupancy"
         estimatedOccupancyValue={project.estimatedOccupancy}
-        majorIntersectionLabel={projectPageData.keyInformationMajorIntersectionLabel}
+        majorIntersectionLabel="Major Intersection"
         majorIntersectionValue={project.majorIntersection}
-        architectsLabel={projectPageData.keyInformationArchitectsLabel}
+        architectsLabel="Architects"
         architectsValue={project.architects}
-        depositLabel={projectPageData.keyInformationDepositLabel}
+        depositLabel="Deposit"
         depositValue={project.deposit}
-        cashDepositLabel={projectPageData.keyInformationCashDepositLabel}
+        cashDepositLabel="Cash Deposit"
         cashDepositValue={project.cashDeposit}
-        depositStructureLabel={projectPageData.keyInformationDepositStructureLabel}
+        depositStructureLabel="Deposit Structure"
         depositStructureValue={project.depositStructure}
-        lockerMaintenanceLabel={projectPageData.keyInformationLockerMaintenanceLabel}
+        lockerMaintenanceLabel="Locker Maintenance"
         lockerMaintenanceValue={project.lockerMaintenance}
         className="bg-transparent"
       />
       <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
       {project.amenities ? (
-        <Amenities
-          title={projectPageData.amenitiesTitle}
-          amenities={project.amenities}
-          className="pb-40px px-25px lg:px-120px"
-        />
+        <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
       ) : null}
       {/* <FormWithSelects
         title="Looking for a Condo?"
@@ -185,65 +162,6 @@ export default ProjectPageTemplate;
 
 export const query = graphql`
   query ProjectTemplate($project_contentful_id: String!) {
-    contentfulProjectPage(isTemplateSample: { ne: true }) {
-      heroTopText
-      heroSaveButtonLabel
-      heroRequestButtonLabel
-      overviewTitle
-      overviewPriceSqftLabel
-      overviewPriceNeighborhoodLabel
-      overviewPriceCityLabel
-      overviewButtonLabel
-      additionalDescriptionTitle
-      floorPlansTitle
-      floorPlansSubtitle
-      floorPlansAvailable
-      sizeFilterTitle
-      bedsFilterTitle
-      bathsFilterTitle
-      availabilityFilterTitle
-      floorNoResults
-      suiteNameColumnTitle
-      suiteTypeColumnTitle
-      sizeColumnTitle
-      priceColumnTitle
-      suiteNameColumnBedroomLabel
-      suiteNameColumnBathroomLabel
-      sizeColumnUnits
-      priceColumnUnits
-      moreInfoButtonLabel
-      modalProjectNameLabel
-      modalSquareFootageLabel
-      modalBedroomsLabel
-      modalBathroomsLabel
-      modalSaveButtonLabel
-      keyInformationTitle
-      keyInformationStatusLabel
-      keyInformationTypeLabel
-      keyInformationLaunchDateLabel
-      keyInformationEstimatedOccupancyLabel
-      keyInformationMajorIntersectionLabel
-      keyInformationArchitectsLabel
-      keyInformationDepositLabel
-      keyInformationCashDepositLabel
-      keyInformationDepositStructureLabel
-      keyInformationLockerMaintenanceLabel
-      amenitiesTitle
-      scores {
-        walkScore {
-          label
-          tooltip
-        }
-        bikeScore {
-          label
-          tooltip
-        }
-        busScore {
-          label
-          tooltip
-        }
-      }
-    }
     contentfulProject(contentful_id: { eq: $project_contentful_id }) {
       contentful_id
       projectName

@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 import {
   Header,
@@ -11,36 +12,41 @@ import {
   Footer,
   ViewLargeTilesSection,
 } from "../components";
+// import Seo from "../seo/Seo";
+
+import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 
 const IndexPage = ({ data }) => {
-  const homePageData = data.contentfulHomePage;
-  const developmentsByCityLinks = data.developmentsByCityLinks.links.columns;
-  const projectsByDeveloperLinks = data.projectsByDeveloperLinks.links.columns;
+  const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
+  const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
   const newestReleasesProjects = data.newestReleasesProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const premiumProjects = data.premiumProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
 
   const firstTile = {
-    link: homePageData.townhouseLink,
-    image: homePageData.townhousePreviewImage,
-    title: homePageData.townhouseTitle,
-    description: homePageData.townhouseSubtitle,
-    viewAll: homePageData.propertyTypeViewAllButtonLabel,
+    link: "/townhouse",
+    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
+    title: "Townhouse",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    viewAll: "View All",
   };
   const secondTile = {
-    link: homePageData.condoLink,
-    image: homePageData.condoPreviewImage,
-    title: homePageData.condoTitle,
-    description: homePageData.condoSubtitle,
-    viewAll: homePageData.propertyTypeViewAllButtonLabel,
+    link: "/condo",
+    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
+    title: "Condos",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    viewAll: "View All",
   };
   const thirdTile = {
-    link: homePageData.detachedHomeLink,
-    image: homePageData.detachedHomesPreviewImage,
-    title: homePageData.detachedHomesTitle,
-    description: homePageData.detachedHomesSubtitle,
-    viewAll: homePageData.propertyTypeViewAllButtonLabel,
+    link: "/detached-home",
+    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
+    title: "Detached Homes",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    viewAll: "View All",
   };
 
   const inputAutocompleteItems = [
@@ -56,30 +62,42 @@ const IndexPage = ({ data }) => {
   ];
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: "Home",
+          seoDescription: "All building in the world",
+        }}
+      /> */}
       <Header logoLink="/" variant="home" />
       <HeroHome
-        title={homePageData.heroTitle}
-        image={homePageData.heroImage}
+        title="Explore new construction homes."
+        image={
+          <StaticImage
+            src="../assets/hero/home-hero-image.jpg"
+            alt="Home hero page background"
+            className="home-hero-image absolute min-w-700px w-full -z-10 right-0px h-screen"
+          />
+        }
         inputAutocompleteItems={inputAutocompleteItems}
-        placeholder={homePageData.searchPlaceholder}
-        bottomText={homePageData.videoLinkLabel}
-        bottomTextUnderline={homePageData.videoLinkLabelUnderline}
+        placeholder="Type in a city, neighborhood, or new development"
+        bottomText="New to prehomes?"
+        bottomTextUnderline="Watch our video."
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle={homePageData.platinumAccessProjectsSliderTitle}
-        helpMarkTooltip={homePageData.platinumAccessProjectsSliderTooltip}
+        mainTitle="Spotlight Projects"
+        helpMarkTooltip="Spotlight Projects Tooltip"
         showHelpMark={true}
         smallTileData={newestReleasesProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks title={homePageData.viewDevelopmentsByCity} links={developmentsByCityLinks} />
+      <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle={homePageData.newestReleasesSliderTitle}
-        helpMarkTooltip={homePageData.newestReleasesSliderTooltip}
+        mainTitle="Platinum Access"
+        helpMarkTooltip="Platinum Access Tooltip"
         showHelpMark={true}
         smallTileData={newestReleasesProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
@@ -88,33 +106,33 @@ const IndexPage = ({ data }) => {
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle={homePageData.launchingSoonSliderTitle}
-        helpMarkTooltip={homePageData.launchingSoonSliderTooltip}
+        mainTitle="Launching Soon"
+        helpMarkTooltip="Launching Soon Tooltip"
         showHelpMark={true}
         smallTileData={launchingSoonProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-70px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks title={homePageData.viewProjectsByDeveloper} links={projectsByDeveloperLinks} />
+      <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
       <ViewLargeTilesSection
-        title={homePageData.searchByPropertyType}
+        title="Search by Property Type"
         firstTile={firstTile}
         secondTile={secondTile}
         thirdTile={thirdTile}
       />
       <PrestigeCollectionSliderSection
-        title={homePageData.prestigeSliderTitle}
-        subtitle={homePageData.prestigeSliderSubtitle}
-        link={homePageData.prestigeSliderLink}
-        linkLabel={homePageData.prestigeSliderLinkLabel}
+        title="Penthouse Collection"
+        subtitle="The highest standard in construction and interior development."
+        link="/prestige"
+        linkLabel="View the collection"
         projects={premiumProjects}
       />
       <PrestigeCollectionSliderSection
-        title={homePageData.premiumSliderTitle}
-        subtitle={homePageData.premiumSliderSubtitle}
-        link={homePageData.premiumSliderLink}
-        linkLabel={homePageData.premiumSliderLinkLabel}
+        title="Prestige Collection"
+        subtitle="These developments standout for their attention to detail and renowned reputation."
+        link="/premium"
+        linkLabel="View the collection"
         projects={prestigeProjects}
         blackVariant
       />
@@ -127,76 +145,23 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    contentfulHomePage(isTemplateSample: { ne: true }) {
-      heroTitle
-      searchPlaceholder
-      videoLinkLabel
-      videoLinkLabelUnderline
-      heroImage {
-        ...Image
-      }
-      platinumAccessProjectsSliderTitle
-      platinumAccessProjectsSliderTooltip
-      viewDevelopmentsByCity
-      newestReleasesSliderTitle
-      newestReleasesSliderTooltip
-      launchingSoonSliderTitle
-      launchingSoonSliderTooltip
-      viewProjectsByDeveloper
-      searchByPropertyType
-      townhousePreviewImage {
-        ...SearchImage
-      }
-      townhouseTitle
-      townhouseSubtitle
-      townhouseLink
-      condoPreviewImage {
-        ...SearchImage
-      }
-      condoTitle
-      condoSubtitle
-      condoLink
-      detachedHomesPreviewImage {
-        ...SearchImage
-      }
-      detachedHomesTitle
-      detachedHomesSubtitle
-      detachedHomeLink
-      propertyTypeViewAllButtonLabel
-      prestigeSliderTitle
-      prestigeSliderSubtitle
-      prestigeSliderLink
-      prestigeSliderLinkLabel
-      premiumSliderTitle
-      premiumSliderSubtitle
-      premiumSliderLink
-      premiumSliderLinkLabel
-    }
-    developmentsByCityLinks: contentfulViewByLinks(
-      isTemplateSample: { ne: true }
-      contentful_id: { eq: "2S8Kg18rPYTpffWMMJmuzN" }
-    ) {
-      links {
-        columns {
-          label
-          url
+    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+      nodes {
+        label: cityName
+        url: fields {
+          pageUrl
         }
       }
     }
-    projectsByDeveloperLinks: contentfulViewByLinks(
-      isTemplateSample: { ne: true }
-      contentful_id: { eq: "2uerc7Heo2j9jBJAklhIjW" }
-    ) {
-      links {
-        columns {
-          label
-          url
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+      nodes {
+        label: developerName
+        url: fields {
+          pageUrl
         }
       }
     }
-    newestReleasesProjects: allContentfulProject(
-      filter: { isTemplateSample: { ne: true }, fields: { projectStatus: { eq: "newest-releases" } } }
-    ) {
+    newestReleasesProjects: allContentfulProject(filter: { fields: { projectStatus: { eq: "newest-releases" } } }) {
       nodes {
         contentful_id
         projectName
@@ -212,9 +177,7 @@ export const query = graphql`
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(
-      filter: { isTemplateSample: { ne: true }, fields: { projectStatus: { eq: "launching-soon" } } }
-    ) {
+    launchingSoonProjects: allContentfulProject(filter: { fields: { projectStatus: { eq: "launching-soon" } } }) {
       nodes {
         contentful_id
         projectName
@@ -230,9 +193,7 @@ export const query = graphql`
         }
       }
     }
-    premiumProjects: allContentfulProject(
-      filter: { isTemplateSample: { ne: true }, projectCollection: { eq: "Premium" } }
-    ) {
+    premiumProjects: allContentfulProject(filter: { projectCollection: { eq: "Premium" } }) {
       nodes {
         contentful_id
         projectName
@@ -249,9 +210,7 @@ export const query = graphql`
         }
       }
     }
-    prestigeProjects: allContentfulProject(
-      filter: { isTemplateSample: { ne: true }, projectCollection: { eq: "Prestige" } }
-    ) {
+    prestigeProjects: allContentfulProject(filter: { projectCollection: { eq: "Prestige" } }) {
       nodes {
         contentful_id
         projectName

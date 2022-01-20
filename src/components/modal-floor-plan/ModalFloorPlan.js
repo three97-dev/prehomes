@@ -15,21 +15,7 @@ import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 import "./ModalFloorPlan.css";
 
-const ModalFloorPlan = ({
-  modalIsOpen,
-  onClose,
-  floorPlan,
-  projectContentfulId,
-  projectName,
-  projectNameLabel,
-  suiteNameLabel,
-  squareFootageLabel,
-  sizeColumnUnits,
-  bedroomsLabel,
-  bathroomsLabel,
-  modalProjectPrice,
-  saveFloorPlanButtonLabel,
-}) => {
+const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, projectName }) => {
   const { isLoggedIn } = useSelector(state => state.session);
   const isDesktop = useApplyAfterWidth(833);
 
@@ -72,23 +58,19 @@ const ModalFloorPlan = ({
         </div>
         {isDesktop ? (
           <div className="modal-flor-plan-descriptions-area py-30px md+:py-70px">
-            <span className="eyebrow-font text-black">{projectNameLabel.toUpperCase()}</span>
+            <span className="eyebrow-font text-black">PROJECT NAME</span>
             <p className="text-black mt-18px mb-31px">{projectName.toUpperCase()}</p>
-            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
+            <span className="eyebrow-font text-black">SUITE NAME</span>
             <p className="text-black mt-18px mb-31px">{floorPlan?.name?.toUpperCase()}</p>
-            <span className="eyebrow-font text-black">{squareFootageLabel.toUpperCase()}</span>
+            <span className="eyebrow-font text-black">SQUARE FOOTAGE</span>
             <p className="text-black mt-18px mb-31px">{floorPlan?.squareFootage?.toLocaleString("en-US")}</p>
             <div className="apartment-parameters-grid-area mb-32px">
-              <span className="grid-bedrooms-title-area eyebrow-font text-black mb-18px">
-                {bedroomsLabel.toUpperCase()}
-              </span>
+              <span className="grid-bedrooms-title-area eyebrow-font text-black mb-18px">BEDROOMS</span>
               <p className="grid-bedrooms-value-area text-black">{floorPlan?.bedrooms?.toLocaleString()}</p>
-              <span className="grid-bathrooms-title-area eyebrow-font text-black mb-18px">
-                {bathroomsLabel.toUpperCase()}
-              </span>
+              <span className="grid-bathrooms-title-area eyebrow-font text-black mb-18px">BATHROOMS</span>
               <p className="grid-bathrooms-value-area text-black">{floorPlan?.bathrooms?.toLocaleString()}</p>
             </div>
-            <div className="eyebrow-font text-black mb-23px">{modalProjectPrice.toUpperCase()}</div>
+            <div className="eyebrow-font text-black mb-23px">PRICE</div>
             <h3 className="mb-50px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
 
             <div className="flex items-center -ml-7px">
@@ -99,33 +81,27 @@ const ModalFloorPlan = ({
                   variants="black_gradient"
                 >
                   <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
-                  {saveFloorPlanButtonLabel}
+                  Save Floor Plan
                 </Button>
               ) : null}
             </div>
           </div>
         ) : (
           <div className={`modal-flor-plan-descriptions-area px-15px`}>
-            <span className="eyebrow-font text-black">{modalProjectPrice.toUpperCase()}</span>
+            <span className="eyebrow-font text-black">PRICE</span>
             <h3 className="mb-25px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
-            <span className="eyebrow-font text-black">{suiteNameLabel.toUpperCase()}</span>
+            <span className="eyebrow-font text-black">SUITE NAME</span>
             <p className="mb-25px text-black">{floorPlan?.name?.toUpperCase()}</p>
             <div className="apartment-parameters-grid-area">
-              <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-start">
-                {sizeColumnUnits.toUpperCase()}
-              </span>
+              <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-start">SQ.FT</span>
               <p className="grid-square-footage-value-area text-black justify-self-start">
                 {floorPlan?.squareFootage?.toLocaleString("en-US")}
               </p>
-              <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-start">
-                {bedroomsLabel.toUpperCase()}
-              </span>
+              <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-start">BEDROOMS</span>
               <p className="grid-bedrooms-value-area text-black justify-self-start">
                 {floorPlan?.bedrooms?.toLocaleString()}
               </p>
-              <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-start">
-                {bathroomsLabel.toUpperCase()}
-              </span>
+              <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-start">BATHROOMS</span>
               <p className="grid-bathrooms-value-area text-black justify-self-start">
                 {floorPlan?.bathrooms?.toLocaleString()}
               </p>
@@ -138,7 +114,7 @@ const ModalFloorPlan = ({
                 variants="black_gradient"
               >
                 <img className="w-23px h-20px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favourite" />
-                {saveFloorPlanButtonLabel}
+                Save Floor Plan
               </Button>
             ) : null}
           </div>

@@ -102,7 +102,7 @@ const SearchSectionMobile = ({
         {isListMode ? (
           <div className="search-section-results-container-mobile w-full bg-light-gray">
             <div className="mx-auto max-w-619px px-25px">
-              <h2 className="text-tundora mb-7px pt-10px pl-10px">{newHomesForSaleLabel}</h2>
+              <h2 className="text-tundora mb-17px pt-17px pl-10px">{newHomesForSaleLabel}</h2>
               <div className="flex justify-between items-center mb-17px">
                 <p className="text-tundora inline font-bold pl-10px">
                   {visibleTiles.length} {resultsLabel}

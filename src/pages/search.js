@@ -2,9 +2,9 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import { Header, SearchSection } from "../components";
+// import Seo from "../seo/Seo";
 
 const SearchPage = ({ data }) => {
-  const searchPageData = data.contentfulSearchPage;
   const projects = data.allContentfulProject.nodes;
 
   const allProjects = projects.map(project => {
@@ -31,27 +31,33 @@ const SearchPage = ({ data }) => {
 
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: "Search",
+          seoDescription: "Search for suitable projects",
+        }}
+      /> */}
       <Header logoLink="/" className="" isStickyHeader />
       <SearchSection
-        searchPlaceholder={searchPageData.searchPlaceholder}
-        typeFilterTitle={searchPageData.typeFilterTitle}
-        bedsFilterTitle={searchPageData.bedsFilterTitle}
-        bathsFilterTitle={searchPageData.bathsFilterTitle}
-        minPriceFilterTitle={searchPageData.minPriceFilterTitle}
-        maxPriceFilterTitle={searchPageData.maxPriceFilterTitle}
-        minSizeFilterTitle={searchPageData.minSizeFilterTitle}
-        maxSizeFilterTitle={searchPageData.maxSizeFilterTitle}
-        searchForLabel={searchPageData.searchFor}
-        resultsLabel={searchPageData.results}
-        noResultsLabel={searchPageData.noResults}
-        modalTitle={searchPageData.modalTitle}
-        clearButtonLabel={searchPageData.clearButtonLabel}
-        applyButtonLabel={searchPageData.applyButtonLabel}
+        searchPlaceholder="Search by City, Neighborhood, or Address"
+        typeFilterTitle="Type"
+        bedsFilterTitle="Beds"
+        bathsFilterTitle="Baths"
+        minPriceFilterTitle="Min Price"
+        maxPriceFilterTitle="Max Price"
+        minSizeFilterTitle="Min Size"
+        maxSizeFilterTitle="Max Size"
+        searchForLabel="Search for"
+        resultsLabel="Results"
+        noResultsLabel="No results"
+        modalTitle="Filters"
+        clearButtonLabel="Clear"
+        applyButtonLabel="Apply"
         allProjects={allProjects}
-        newHomesForSaleLabel={searchPageData.newHomesForSaleLabel}
-        filtersLabel={searchPageData.filtersLabel}
-        mapViewLabel={searchPageData.mapViewLabel}
-        listViewLabel={searchPageData.listViewLabel}
+        newHomesForSaleLabel="New Homes for Sale"
+        filtersLabel="Filters"
+        mapViewLabel="Map View"
+        listViewLabel="List View"
       />
     </>
   );
@@ -61,27 +67,7 @@ export default SearchPage;
 
 export const query = graphql`
   query {
-    contentfulSearchPage(isTemplateSample: { ne: true }) {
-      searchPlaceholder
-      typeFilterTitle
-      bedsFilterTitle
-      bathsFilterTitle
-      minPriceFilterTitle
-      maxPriceFilterTitle
-      minSizeFilterTitle
-      maxSizeFilterTitle
-      searchFor
-      results
-      noResults
-      modalTitle
-      clearButtonLabel
-      applyButtonLabel
-      newHomesForSaleLabel
-      filtersLabel
-      mapViewLabel
-      listViewLabel
-    }
-    allContentfulProject(filter: { isTemplateSample: { ne: true } }) {
+    allContentfulProject {
       nodes {
         contentful_id
         projectName

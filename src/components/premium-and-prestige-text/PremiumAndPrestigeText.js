@@ -10,12 +10,7 @@ const PremiumAndPrestigeText = ({ title, textContent, prestigePage }) => {
           <hr className="mt-15px md:mt-17px ml-auto" />
         </div>
       </div>
-      <RRenderer
-        data={textContent}
-        config={{
-          p: `mb-50px md+:mb-33px ${prestigePage ? "text-white-pink" : "text-beige"}`,
-        }}
-      />
+      <div className={`mb-50px md+:mb-33px ${prestigePage ? "text-white-pink" : "text-beige"}`}>{textContent}</div>
     </div>
   );
 };

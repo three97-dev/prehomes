@@ -13,22 +13,30 @@ import {
   Footer,
 } from "../components";
 
+import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+// import Seo from "../seo/Seo";
+
 const CityPageTemplate = ({ data }) => {
-  const cityPageData = data.contentfulCityPage;
   const city = data.contentfulCity;
   const newestReleasesProjects = data.newestReleasesProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
-  const developmentsByCityLinks = data.developmentsByCityLinks.links.columns;
+  const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const condoProjects = data.condoProjects.nodes;
   const townhouseProjects = data.townhouseProjects.nodes;
   const detachedProjects = data.detachedProjects.nodes;
 
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: city.cityName,
+          seoDescription: city.citySubtitleText,
+        }}
+      /> */}
       <Header />
       <HeroSectionSlider
         images={city.cityImages}
-        topText={cityPageData.heroTopText}
+        topText="City View"
         title={city.cityName}
         subtitle={city.citySubtitleText}
         isCity
@@ -48,11 +56,11 @@ const CityPageTemplate = ({ data }) => {
           className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
         />
         <ThreeStatsSection
-          statOneLabel={cityPageData.averageCondoPrice}
+          statOneLabel="Average Condo Price"
           statOneValue={`$${city.averageCondoPrice.toLocaleString()}`}
-          statTwoLabel={cityPageData.averageTownhomePrice}
+          statTwoLabel="Average Townhome Price"
           statTwoValue={`$${city.averageDetachedPrice.toLocaleString()}`}
-          statThreeLabel={cityPageData.averageDetachedPrice}
+          statThreeLabel="Average Detached Price"
           statThreeValue={`$${city.averageTownhomePrice.toLocaleString()}`}
           className="px-25px lg:0-px"
         />
@@ -61,8 +69,8 @@ const CityPageTemplate = ({ data }) => {
       <div className="double-slider-small-tiles-background">
         <SliderSmallTiles
           arrowsColor="black-gray-2"
-          mainTitle={cityPageData.newestReleasesSliderTitle}
-          helpMarkTooltip={cityPageData.newestReleasesSliderTooltip}
+          mainTitle="Newest Releases"
+          helpMarkTooltip="Newest Releases Slider Tooltip"
           showHelpMark={true}
           smallTileData={newestReleasesProjects}
           bgWrapperClasses="bg-transparent"
@@ -71,8 +79,8 @@ const CityPageTemplate = ({ data }) => {
         />
         <SliderSmallTiles
           arrowsColor="black-gray-2"
-          mainTitle={cityPageData.launchingSoonSliderTitle}
-          helpMarkTooltip={cityPageData.launchingSoonSliderTooltip}
+          mainTitle="Launching Soon"
+          helpMarkTooltip="Launching Soon Slider Tooltip"
           showHelpMark={true}
           smallTileData={launchingSoonProjects}
           bgWrapperClasses="bg-transparent"
@@ -80,10 +88,10 @@ const CityPageTemplate = ({ data }) => {
           paddingSliderClasses="pt-70px pb-50px"
         />
       </div>
-      <ViewByLinks title={cityPageData.viewByLinksTitle} links={developmentsByCityLinks} />
+      <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
-        mainTitle={`${city.cityName} ${cityPageData.condoDevelopmentsSliderTitle}`}
+        mainTitle={`${city.cityName} Condo Developments`}
         smallTileData={condoProjects}
         bgWrapperClasses="bg-transparent"
         paddingTitleClasses="pt-50px md:pt-95px"
@@ -91,7 +99,7 @@ const CityPageTemplate = ({ data }) => {
       />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
-        mainTitle={`${city.cityName} ${cityPageData.townhouseDevelopmentsSliderTitle}`}
+        mainTitle={`${city.cityName} Townhouse Developments`}
         smallTileData={townhouseProjects}
         bgWrapperClasses="bg-transparent"
         paddingTitleClasses="pt-50px md:pt-95px"
@@ -99,7 +107,7 @@ const CityPageTemplate = ({ data }) => {
       />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
-        mainTitle={`${city.cityName} ${cityPageData.detachedDevelopmentsSliderTitle}`}
+        mainTitle={`${city.cityName} Detached Developments`}
         smallTileData={detachedProjects}
         bgWrapperClasses="bg-transparent"
         paddingTitleClasses="pt-50px md:pt-70px"
@@ -115,20 +123,6 @@ export default CityPageTemplate;
 
 export const query = graphql`
   query CityTemplate($city_contentful_id: String!) {
-    contentfulCityPage(isTemplateSample: { ne: true }) {
-      heroTopText
-      averageCondoPrice
-      averageTownhomePrice
-      averageDetachedPrice
-      newestReleasesSliderTitle
-      newestReleasesSliderTooltip
-      launchingSoonSliderTitle
-      launchingSoonSliderTooltip
-      viewByLinksTitle
-      condoDevelopmentsSliderTitle
-      townhouseDevelopmentsSliderTitle
-      detachedDevelopmentsSliderTitle
-    }
     contentfulCity(contentful_id: { eq: $city_contentful_id }) {
       cityName
       cityImages {
@@ -150,7 +144,6 @@ export const query = graphql`
     }
     newestReleasesProjects: allContentfulProject(
       filter: {
-        isTemplateSample: { ne: true }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         fields: { projectStatus: { eq: "newest-releases" } }
       }
@@ -172,7 +165,6 @@ export const query = graphql`
     }
     launchingSoonProjects: allContentfulProject(
       filter: {
-        isTemplateSample: { ne: true }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         fields: { projectStatus: { eq: "launching-soon" } }
       }
@@ -192,23 +184,16 @@ export const query = graphql`
         projectMinPrice
       }
     }
-    developmentsByCityLinks: contentfulViewByLinks(
-      isTemplateSample: { ne: true }
-      contentful_id: { eq: "2S8Kg18rPYTpffWMMJmuzN" }
-    ) {
-      links {
-        columns {
-          label
-          url
+    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+      nodes {
+        label: cityName
+        url: fields {
+          pageUrl
         }
       }
     }
     condoProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { type: { eq: "condo" } }
-      }
+      filter: { projectCity: { contentful_id: { eq: $city_contentful_id } }, projectType: { type: { eq: "condo" } } }
     ) {
       nodes {
         contentful_id
@@ -227,7 +212,6 @@ export const query = graphql`
     }
     townhouseProjects: allContentfulProject(
       filter: {
-        isTemplateSample: { ne: true }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         projectType: { type: { eq: "townhouse" } }
       }
@@ -248,11 +232,7 @@ export const query = graphql`
       }
     }
     detachedProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { type: { eq: "detached" } }
-      }
+      filter: { projectCity: { contentful_id: { eq: $city_contentful_id } }, projectType: { type: { eq: "detached" } } }
     ) {
       nodes {
         contentful_id

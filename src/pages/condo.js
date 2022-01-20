@@ -1,10 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 import {
   Header,
   HeroSection,
-  TextSection,
   ThreeStatsSection,
   SliderSmallTiles,
   ViewByLinks,
@@ -12,35 +12,58 @@ import {
   Footer,
 } from "../components";
 
+import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+// import Seo from "../seo/Seo";
+
 const CondoPage = ({ data }) => {
-  const propertyPageData = data.contentfulPropertyPage;
-  const propertyType = data.contentfulPagePropertyType;
   const newestReleasesProjects = data.newestReleasesProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
-  const developmentsByCityLinks = data.developmentsByCityLinks.links.columns;
-  const projectsByDeveloperLinks = data.projectsByDeveloperLinks.links.columns;
+  const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
+  const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
 
   return (
     <div>
+      {/* <Seo
+        seo={{
+          seoTitle: "Condo",
+          seoDescription: "This is where we’d write some friendly text about how we appealing a condo is to own.",
+        }}
+      /> */}
       <Header logoLink="/" />
       <HeroSection
-        image={propertyType.heroImage}
-        title={propertyType.heroTitle}
-        heroTopText={propertyPageData.heroTopText}
-        heroContent={propertyType.heroContent}
+        image={
+          <StaticImage
+            src="../assets/hero/condo-hero-image.png"
+            alt="Condo hero section background"
+            className="-z-10 w-full h-screen md:h-500px"
+          />
+        }
+        title="Condo"
+        heroTopText="PROPERTY TYPE"
+        heroContent="This is where we’d write some friendly text about how we appealing a condo is to own."
         heroContentCss="footer-font md:font-normal text-black-gray"
         isFixedHeader
+        isStaticImage
       />
       <div className="bg-white-pink md:bg-transparent">
-        <TextSection content={propertyType.overviewText} className="mx-25px lg:mx-120px pt-50px md:pt-100px" />
+        <div className="mx-25px lg:mx-120px pt-50px md:pt-100px mb-24px">
+          <h2 className="mb-40px">Owning a Condo</h2>
+          <p>
+            Toronto is Canada’s largest city, with one of the most diverse populations in the world. The structure of
+            Toronto’s population has changed over time, influencing population health status and other social outcomes,
+            and shaping the city in a dynamic fashion. Demographic information reflecting the city’s changing size and
+            composition, helps public health and other service providers prepare to respond to issues and demands
+            arising from population growth, aging, migration, and other changes.
+          </p>
+        </div>
         <div className="lg:px-120px pb-30px sm+:pb-40px lg:pb-0px">
           <ThreeStatsSection
-            statOneLabel={propertyPageData.averagePrice}
-            statOneValue={propertyType.averagePrice}
-            statTwoLabel={propertyPageData.averageSize}
-            statTwoValue={propertyType.averageSize}
-            statThreeLabel={propertyPageData.marketTrend}
-            statThreeValue={propertyType.marketTrend}
+            statOneLabel="Average Condo Price"
+            statOneValue="$545,000"
+            statTwoLabel="Average Condo SIZE"
+            statTwoValue="716 sq.ft"
+            statThreeLabel="Acondo market trend"
+            statThreeValue="+17% yoy"
             className="px-25px lg:0-px pb-20px md:pb-40px"
           />
         </div>
@@ -48,8 +71,8 @@ const CondoPage = ({ data }) => {
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle={propertyPageData.newestReleasesSliderTitle}
-            helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
+            mainTitle="Newest Releases"
+            helpMarkTooltip="Newest Releases Slider Tooltip"
             showHelpMark={true}
             smallTileData={newestReleasesProjects}
             bgWrapperClasses="bg-transparent"
@@ -58,8 +81,8 @@ const CondoPage = ({ data }) => {
           />
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle={propertyPageData.launchingSoonSliderTitle}
-            helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
+            mainTitle="Launching Soon"
+            helpMarkTooltip="Launching Soon Slider Tooltip"
             showHelpMark={true}
             smallTileData={launchingSoonProjects}
             bgWrapperClasses="bg-transparent"
@@ -67,12 +90,12 @@ const CondoPage = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks title={propertyPageData.viewDevelopmentsByCity} links={developmentsByCityLinks} />
+        <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle={propertyPageData.newestReleasesSliderTitle}
-            helpMarkTooltip={propertyPageData.newestReleasesSliderTooltip}
+            mainTitle="Newest Releases"
+            helpMarkTooltip="Newest Releases Slider Tooltip"
             showHelpMark={true}
             smallTileData={newestReleasesProjects}
             bgWrapperClasses="bg-transparent"
@@ -81,8 +104,8 @@ const CondoPage = ({ data }) => {
           />
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle={propertyPageData.launchingSoonSliderTitle}
-            helpMarkTooltip={propertyPageData.launchingSoonSliderTooltip}
+            mainTitle="Launching Soon"
+            helpMarkTooltip="Launching Soon Slider Tooltip"
             showHelpMark={true}
             smallTileData={launchingSoonProjects}
             bgWrapperClasses="bg-transparent"
@@ -90,7 +113,7 @@ const CondoPage = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks title={propertyPageData.viewProjectsByDeveloper} links={projectsByDeveloperLinks} />
+        <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
         <ContactRealtorFormSection />
         <Footer />
       </div>
@@ -102,31 +125,6 @@ export default CondoPage;
 
 export const query = graphql`
   query {
-    contentfulPropertyPage(isTemplateSample: { ne: true }) {
-      heroTopText
-      averagePrice
-      averageSize
-      marketTrend
-      newestReleasesSliderTitle
-      newestReleasesSliderTooltip
-      launchingSoonSliderTitle
-      launchingSoonSliderTooltip
-      viewDevelopmentsByCity
-      viewProjectsByDeveloper
-    }
-    contentfulPagePropertyType(cmsName: { eq: "Condo" }) {
-      heroTitle
-      heroContent
-      heroImage {
-        ...Image
-      }
-      overviewText {
-        raw
-      }
-      averagePrice
-      averageSize
-      marketTrend
-    }
     newestReleasesProjects: allContentfulProject(
       filter: {
         isTemplateSample: { ne: true }
@@ -171,25 +169,19 @@ export const query = graphql`
         }
       }
     }
-    developmentsByCityLinks: contentfulViewByLinks(
-      isTemplateSample: { ne: true }
-      contentful_id: { eq: "2S8Kg18rPYTpffWMMJmuzN" }
-    ) {
-      links {
-        columns {
-          label
-          url
+    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+      nodes {
+        label: cityName
+        url: fields {
+          pageUrl
         }
       }
     }
-    projectsByDeveloperLinks: contentfulViewByLinks(
-      isTemplateSample: { ne: true }
-      contentful_id: { eq: "2uerc7Heo2j9jBJAklhIjW" }
-    ) {
-      links {
-        columns {
-          label
-          url
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+      nodes {
+        label: developerName
+        url: fields {
+          pageUrl
         }
       }
     }

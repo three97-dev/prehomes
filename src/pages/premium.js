@@ -1,6 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 
+import { StaticImage } from "gatsby-plugin-image";
+
 import {
   Header,
   PremiumAndPrestigeHero,
@@ -9,37 +11,52 @@ import {
   ContactRealtorFormSection,
   Footer,
 } from "../components";
+// import Seo from "../seo/Seo";
 
 const PremiumPage = ({ data }) => {
-  const premiumPageData = data.contentfulPremiumPage;
   const newestReleasesProjects = data.newestReleasesProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
 
   return (
     <>
+      {/* <Seo
+        seo={{
+          seoTitle: "Premium",
+          seoDescription: "Premium building",
+        }}
+      /> */}
       <Header logoLink="/" variant="premium" />
 
       <PremiumAndPrestigeHero
         isBlack
-        image={premiumPageData.heroImage}
-        title={premiumPageData.title}
-        heroTopText={premiumPageData.heroTopText}
-        heroContent={premiumPageData.heroContent}
+        image={
+          <StaticImage
+            src="../assets/premium-page/premiumHeroImage.png"
+            alt="Premium hero section background"
+            className="-z-10 w-full h-screen sm+:h-500px object-fill"
+          />
+        }
+        title="Prestige"
+        heroTopText="COLLECTIONS"
+        heroContent="The capital of Ontario and the financial hub of Canada. Home to over 3M residents."
       />
       <div className="bg-black-gray w-full pt-50px md:pt-87px">
-        <PremiumAndPrestigeText title={premiumPageData.headTitle} textContent={premiumPageData.headContent} />
-        <PrestigeAndPremiumSlider
-          title={premiumPageData.newReleasesSliderTitle}
-          projects={newestReleasesProjects}
-          blackVariant
+        <PremiumAndPrestigeText
+          title="The Prestige Collection"
+          textContent={
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+          }
         />
-        <PrestigeAndPremiumSlider
-          title={premiumPageData.launchingSoonSliderTitle}
-          projects={launchingSoonProjects}
-          blackVariant
-        />
+        <PrestigeAndPremiumSlider title="Spotlight Projects" projects={newestReleasesProjects} blackVariant />
+        <PrestigeAndPremiumSlider title="Launching Soon" projects={launchingSoonProjects} blackVariant />
         {/* <PrestigeAndPremiumSlider
-          title={premiumPageData.allPrestigePropertiesSliderTitle}
+          title="All Prestige Properties"
           sliderData={[]}
           blackVariant
         /> */}
@@ -54,27 +71,8 @@ export default PremiumPage;
 
 export const query = graphql`
   query {
-    contentfulPremiumPage(isTemplateSample: { ne: true }) {
-      heroTopText
-      title
-      heroContent
-      heroImage {
-        ...Image
-      }
-      headTitle
-      headContent {
-        raw
-      }
-      newReleasesSliderTitle
-      launchingSoonSliderTitle
-      allPrestigePropertiesSliderTitle
-    }
     newestReleasesProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        fields: { projectStatus: { eq: "newest-releases" } }
-        projectCollection: { eq: "Premium" }
-      }
+      filter: { fields: { projectStatus: { eq: "newest-releases" } }, projectCollection: { eq: "Premium" } }
     ) {
       nodes {
         contentful_id
@@ -93,11 +91,7 @@ export const query = graphql`
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: {
-        isTemplateSample: { ne: true }
-        fields: { projectStatus: { eq: "launching-soon" } }
-        projectCollection: { eq: "Premium" }
-      }
+      filter: { fields: { projectStatus: { eq: "launching-soon" } }, projectCollection: { eq: "Premium" } }
     ) {
       nodes {
         contentful_id

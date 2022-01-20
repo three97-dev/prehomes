@@ -88,6 +88,7 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
         <div className="absolute w-full h-full">
           <StaticImage
             src="../../../assets/home/prestige-section-background.png"
+            alt="Prestige section background"
             className="w-full h-full object-cover"
           />
         </div>

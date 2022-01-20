@@ -1,52 +1,16 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
-import { useStaticQuery, graphql } from "gatsby";
 
 import { pageToSeoObject, siteDefaultSeoToSeoObject, mergeSeo } from "./seoUtils";
 
+import defaultSeoConfig from "../config/seoSettings.js";
+
 const Seo = ({ seo, children }) => {
   const { pathname } = useLocation();
-  // const { contentfulDefaultSeo } = useStaticQuery(graphql`
-  //   query DefaultSEOQuery {
-  //     contentfulDefaultSeo(contentful_id: { eq: "3Ki5C4SzAEXDPkyh6nAcMu" }) {
-  //       seoSiteUrl
-  //       seoTitleTemplate
-  //       seoTitle
-  //       seoDescription {
-  //         seoDescription
-  //       }
-  //       seoImage {
-  //         file {
-  //           url
-  //         }
-  //       }
-  //       seoOgTitle
-  //       seoOgDescription {
-  //         seoOgDescription
-  //       }
-  //       seoOgImage {
-  //         file {
-  //           url
-  //         }
-  //       }
-  //       seoTwitterUsername
-  //       seoTwitterTitle
-  //       seoTwitterDescription {
-  //         seoTwitterDescription
-  //       }
-  //       seoTwitterImage {
-  //         file {
-  //           url
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
-  let contentfulDefaultSeo = {};
 
   const pageSEO = pageToSeoObject(seo);
-  const defaultSEO = siteDefaultSeoToSeoObject(contentfulDefaultSeo, pathname);
+  const defaultSEO = siteDefaultSeoToSeoObject(defaultSeoConfig, pathname);
 
   const mergedSEO = mergeSeo(defaultSEO, pageSEO);
 

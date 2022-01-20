@@ -1,73 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useStaticQuery, graphql, navigate } from "gatsby";
+import React, { useCallback, useState } from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import PropTypes from "prop-types";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-import Image from "../basic/image/Image";
+import BurgerMenu from "../burger-menu/BurgerMenu";
+
 import UniversalLink from "../../utils/UniversalLink";
 import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
-import BurgerMenu from "../burger-menu/BurgerMenu";
 
 import BurgerMenuNotActiveImage from "../../assets/header/burger-menu-inactive.svg";
 
 import "./Header.css";
 
 const Header = ({ logoLink, variant, isStickyHeader, className }) => {
-  const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      contentfulHeader(isTemplateSample: { ne: true }) {
-        headerLogo {
-          ...Image
-        }
-        headerLogoHome {
-          ...Image
-        }
-        headerLogoPremium {
-          ...Image
-        }
-        headerLogoPrestige {
-          ...Image
-        }
-        headerLogoMobileBlack {
-          ...Image
-        }
-        headerLogoMobileWhite {
-          ...Image
-        }
-        headerLoginLabel
-        headerLogoutLabel
-        childrenContentfulHeaderHeaderLinksJsonNode {
-          name
-          link
-          image
-        }
-      }
-    }
-  `);
-  const {
-    headerLogo,
-    headerLogoHome,
-    headerLogoPremium,
-    headerLogoPrestige,
-    headerLogoMobileWhite,
-    headerLogoMobileBlack,
-    headerLoginLabel,
-    headerLogoutLabel,
-    childrenContentfulHeaderHeaderLinksJsonNode,
-  } = data.contentfulHeader;
-
   const isDesktop = useApplyAfterWidth(833);
-
-  let logoImage;
-  if (variant === "prestige") {
-    logoImage = isDesktop ? headerLogoPrestige : headerLogoMobileWhite;
-  } else if (variant === "premium") {
-    logoImage = isDesktop ? headerLogoPremium : headerLogoMobileWhite;
-  } else if (variant === "home") {
-    logoImage = isDesktop ? headerLogoHome : headerLogoMobileWhite;
-  } else {
-    logoImage = isDesktop ? headerLogo : headerLogoMobileBlack;
-  }
 
   const [headerStyle, setHeaderStyle] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
@@ -84,7 +30,43 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
     [headerStyle]
   );
 
-  const isStickyHeaderMobile = isStickyHeader || headerStyle ? (isDesktop ? null : headerLogoMobileBlack) : null;
+  const isStickyHeaderMobile =
+    isStickyHeader || headerStyle ? (
+      isDesktop ? null : (
+        <StaticImage src="../../assets/header/header-logo-mobile-black.png" className="w-194px" />
+      )
+    ) : null;
+
+  const imageClassName = isStickyHeaderMobile ? " w-194px" : "";
+  const altText = "logo";
+
+  let logoImage;
+  if (variant === "prestige") {
+    logoImage = isDesktop ? (
+      <StaticImage src="../../assets/header/header-logo-prestige.png" className={imageClassName} alt={altText} />
+    ) : (
+      <StaticImage src="../../assets/header/header-logo-mobile-white.png" className={imageClassName} alt={altText} />
+    );
+  } else if (variant === "premium") {
+    logoImage = isDesktop ? (
+      <StaticImage src="../../assets/header/header-logo-premium.png" className={imageClassName} alt={altText} />
+    ) : (
+      <StaticImage src="../../assets/header/header-logo-mobile-white.png" className={imageClassName} alt={altText} />
+    );
+  } else if (variant === "home") {
+    logoImage = isDesktop ? (
+      <StaticImage src="../../assets/header/header-logo-home.png" className={imageClassName} alt={altText} />
+    ) : (
+      <StaticImage src="../../assets/header/header-logo-mobile-white.png" className={imageClassName} alt={altText} />
+    );
+  } else {
+    logoImage = isDesktop ? (
+      <StaticImage src="../../assets/header/header-logo.svg" className={imageClassName} alt={altText} />
+    ) : (
+      <StaticImage src="../../assets/header/header-logo-mobile-black.png" className={imageClassName} alt={altText} />
+    );
+  }
+
   return (
     <div
       className={`absolute w-full pl-27px pr-22px md:px-20px z-100 ${className} ${
@@ -93,10 +75,19 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
     >
       <div className="justify-between mx-auto flex pt-20px md:pt-5px mb-10px md:pb-5px">
         <UniversalLink link={logoLink} className={`${isDesktop ? "mt-24px" : "mt-13px"}`}>
-          <Image
-            image={isStickyHeader || headerStyle ? (isDesktop ? headerLogo : headerLogoMobileBlack) : logoImage}
-            className={`${isStickyHeaderMobile ? " w-194px" : ""}`}
-          />
+          {isStickyHeader || headerStyle ? (
+            isDesktop ? (
+              <StaticImage src="../../assets/header/header-logo.svg" className={imageClassName} alt={altText} />
+            ) : (
+              <StaticImage
+                src="../../assets/header/header-logo-mobile-black.png"
+                className={imageClassName}
+                alt={altText}
+              />
+            )
+          ) : (
+            logoImage
+          )}
         </UniversalLink>
         <button
           onClick={() => setIsMenuActive(!isMenuActive)}
@@ -106,14 +97,7 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
         >
           <img src={BurgerMenuNotActiveImage} alt="button-icon" className="mx-auto" />
         </button>
-        <BurgerMenu
-          modalIsOpen={isMenuActive ? true : false}
-          onClose={closeModal}
-          headerLoginLabel={headerLoginLabel}
-          headerLogoutLabel={headerLogoutLabel}
-          headerLinks={childrenContentfulHeaderHeaderLinksJsonNode}
-          isStickyHeaderMobile={isStickyHeaderMobile}
-        />
+        <BurgerMenu modalIsOpen={isMenuActive ? true : false} onClose={closeModal} />
       </div>
     </div>
   );
@@ -123,7 +107,7 @@ Header.propTypes = {
   image: PropTypes.object,
   logoLink: PropTypes.string,
   isStickyHeader: PropTypes.bool,
-  variant: PropTypes.oneOf(["prestige", "premium"]),
+  variant: PropTypes.oneOf(["prestige", "premium", "home"]),
   className: PropTypes.string,
 };
 

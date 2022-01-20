@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql, navigate } from "gatsby";
 
 import HomeHeroInput from "../basic/home-hero-input/HomeHeroInput";
-import Image from "../basic/image/Image";
 import ModalVideo from "../modal-video/ModalVideo";
 
 import UniversalLink from "../../utils/UniversalLink";
+import socialMediaLinks from "../../config/socialMediaLinks";
 
 import facebookIcon from "../../assets/home/logo-facebook.svg";
 import twitterIcon from "../../assets/home/logo-twitter.svg";
 import linkedInIcon from "../../assets/home/logo-linkedin.svg";
-
 import facebookIconMobile from "../../assets/home-mobile/logo-facebook.svg";
 import twitterIconMobile from "../../assets/home-mobile/logo-twitter.svg";
 import linkedInIconMobile from "../../assets/home-mobile/logo-linkedin.svg";
@@ -20,22 +18,12 @@ import "./HeroHome.css";
 
 const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, className }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const data = useStaticQuery(graphql`
-    query HeroSocialLinksQuery {
-      contentfulFooter(isTemplateSample: { ne: true }) {
-        facebook
-        twitter
-        linkedin
-      }
-    }
-  `);
-  const { facebook, twitter, linkedin } = data.contentfulFooter;
 
   return (
     <div className={`z-20 w-full bg-cream-white ${className}`}>
       <div className="relative z-20 justify-end mx-auto h-screen">
         <div className="absolute flex justify-end w-full">
-          <Image image={image} className="home-hero-image absolute min-w-700px w-full -z-10 right-0px h-screen" />
+          {image}
         </div>
         <div className="absolute home-header-white-section hidden md:block"></div>
         <div className="absolute block md:hidden bg-black w-full h-full bg-opacity-75"></div>
@@ -48,17 +36,17 @@ const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, 
         <div className="relative h-full min-h-600px">
           <div className="absolute md:static flex flex-col bottom-80px home-hero-links">
             <div className="md:absolute flex justify-around md:flex-col bottom-20px left-20px order-last md:order-none">
-              <UniversalLink link={facebook}>
-                <img className="hidden md:block" src={facebookIcon} />
-                <img className="block md:hidden" src={facebookIconMobile} />
+              <UniversalLink link={socialMediaLinks.facebook}>
+                <img className="hidden md:block" src={facebookIcon} alt="facebook" />
+                <img className="block md:hidden" src={facebookIconMobile} alt="facebook" />
               </UniversalLink>
-              <UniversalLink link={twitter} className="md:my-40px">
-                <img className="hidden md:block" src={twitterIcon} />
-                <img className="block md:hidden" src={twitterIconMobile} />
+              <UniversalLink link={socialMediaLinks.twitter} className="md:my-40px">
+                <img className="hidden md:block" src={twitterIcon} alt="twitter" />
+                <img className="block md:hidden" src={twitterIconMobile} alt="twitter" />
               </UniversalLink>
-              <UniversalLink link={linkedin}>
-                <img className="hidden md:block" src={linkedInIcon} />
-                <img className="block md:hidden" src={linkedInIconMobile} />
+              <UniversalLink link={socialMediaLinks.linkedin}>
+                <img className="hidden md:block" src={linkedInIcon} alt="linkedIn" />
+                <img className="block md:hidden" src={linkedInIconMobile} alt="linkedIn" />
               </UniversalLink>
             </div>
             <div

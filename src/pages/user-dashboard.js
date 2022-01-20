@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { graphql } from "gatsby";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { StaticImage } from "gatsby-plugin-image";
 
 import { Header, HeroSection, SliderSmallTiles, ContactRealtorFormSection, FloorPlans, Footer } from "../components";
 import { options } from "../utils/filterOptions";
 
-const UserDashboardPage = ({ data }) => {
-  const dashboardPageData = data.contentfulDashboardPage;
-  const projectPageData = data.contentfulProjectPage;
-
+const UserDashboardPage = () => {
   const [favoriteProjects, setFavoriteProjects] = useState(null);
   const [favoriteFloorPlans, setFavoriteFloorPlans] = useState(null);
 
@@ -37,15 +34,22 @@ const UserDashboardPage = ({ data }) => {
     <div>
       <Header logoLink="/" />
       <HeroSection
-        image={dashboardPageData.heroImage}
-        title={session.name ? `${dashboardPageData.heroTitle}, ${session.name}` : null}
+        image={
+          <StaticImage
+            src="../assets/user-dashboard/dashboard-hero.png"
+            alt="Dashboard hero section background"
+            className="-z-10 w-full h-screen md:h-500px"
+          />
+        }
+        title={session.name ? `Hi, ${session.name}` : null}
         isUserDashboard
+        isStaticImage
       />
       {favoriteProjects ? (
         <SliderSmallTiles
           arrowsColor="black-gray-2"
-          mainTitle={dashboardPageData.myFavoritesLabel}
-          helpMarkTooltip={dashboardPageData.myFavoritesTooltip}
+          mainTitle="My Favourites"
+          helpMarkTooltip="My Favorites Tooltip"
           showHelpMark={true}
           smallTileData={favoriteProjects}
           bgWrapperClasses="bg-white-pink md:bg-light-gray"
@@ -54,38 +58,7 @@ const UserDashboardPage = ({ data }) => {
         />
       ) : null}
 
-      {favoriteFloorPlans ? (
-        <FloorPlans
-          title={projectPageData.floorPlansTitle}
-          subtitle={projectPageData.floorPlansSubtitle}
-          available={projectPageData.floorPlansAvailable}
-          options={options}
-          sizeFilterTitle={projectPageData.sizeFilterTitle}
-          bedsFilterTitle={projectPageData.bedsFilterTitle}
-          bathsFilterTitle={projectPageData.bathsFilterTitle}
-          availabilityFilterTitle={projectPageData.availabilityFilterTitle}
-          floorNoResults={projectPageData.floorNoResults}
-          suiteNameColumnTitle={projectPageData.suiteNameColumnTitle}
-          suiteTypeColumnTitle={projectPageData.suiteTypeColumnTitle}
-          sizeColumnTitle={projectPageData.sizeColumnTitle}
-          priceColumnTitle={projectPageData.priceColumnTitle}
-          suiteNameColumnBedroomLabel={projectPageData.suiteNameColumnBedroomLabel}
-          suiteNameColumnBathroomLabel={projectPageData.suiteNameColumnBathroomLabel}
-          sizeColumnUnits={projectPageData.sizeColumnUnits}
-          priceColumnUnits={projectPageData.priceColumnUnits}
-          moreInfoButtonLabel={projectPageData.moreInfoButtonLabel}
-          floors={favoriteFloorPlans}
-          projectNameLabel={projectPageData.modalProjectNameLabel}
-          suiteNameLabel={projectPageData.suiteNameColumnTitle}
-          squareFootageLabel={projectPageData.modalSquareFootageLabel}
-          bedroomsLabel={projectPageData.modalBedroomsLabel}
-          bathroomsLabel={projectPageData.modalBathroomsLabel}
-          modalProjectPrice={projectPageData.priceColumnTitle}
-          saveFloorPlanButtonLabel={projectPageData.modalSaveButtonLabel}
-          requestInfoButtonLabel={projectPageData.heroRequestButtonLabel}
-          className="mx-auto"
-        />
-      ) : null}
+      {favoriteFloorPlans ? <FloorPlans floors={favoriteFloorPlans} options={options} className="mx-auto" /> : null}
       <ContactRealtorFormSection />
       <Footer />
     </div>
@@ -93,61 +66,3 @@ const UserDashboardPage = ({ data }) => {
 };
 
 export default UserDashboardPage;
-
-export const query = graphql`
-  query {
-    contentfulDashboardPage(isTemplateSample: { ne: true }) {
-      heroTitle
-      heroImage {
-        ...Image
-      }
-      myFavoritesLabel
-      myFavoritesTooltip
-    }
-    contentfulProjectPage(isTemplateSample: { ne: true }) {
-      heroTopText
-      heroSaveButtonLabel
-      heroRequestButtonLabel
-      overviewTitle
-      overviewPriceSqftLabel
-      overviewPriceNeighborhoodLabel
-      overviewPriceCityLabel
-      overviewButtonLabel
-      additionalDescriptionTitle
-      floorPlansTitle
-      floorPlansSubtitle
-      floorPlansAvailable
-      sizeFilterTitle
-      bedsFilterTitle
-      bathsFilterTitle
-      availabilityFilterTitle
-      floorNoResults
-      suiteNameColumnTitle
-      suiteTypeColumnTitle
-      sizeColumnTitle
-      priceColumnTitle
-      suiteNameColumnBedroomLabel
-      suiteNameColumnBathroomLabel
-      sizeColumnUnits
-      priceColumnUnits
-      moreInfoButtonLabel
-      modalProjectNameLabel
-      modalSquareFootageLabel
-      modalBedroomsLabel
-      modalBathroomsLabel
-      modalSaveButtonLabel
-      keyInformationTitle
-      keyInformationStatusLabel
-      keyInformationTypeLabel
-      keyInformationLaunchDateLabel
-      keyInformationEstimatedOccupancyLabel
-      keyInformationMajorIntersectionLabel
-      keyInformationArchitectsLabel
-      keyInformationDepositLabel
-      keyInformationCashDepositLabel
-      keyInformationDepositStructureLabel
-      keyInformationLockerMaintenanceLabel
-      amenitiesTitle
-    }
-  }
-`;

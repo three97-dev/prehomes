@@ -12,12 +12,13 @@ const HeroSection = ({
   heroLogoImage,
   isUserDashboard,
   className,
+  isStaticImage,
 }) => {
   return (
     <div className={`w-full ${className}`}>
       <div className="mx-auto text-beige h-screen md:h-500px">
         <div className="absolute w-full -z-10 overflow-hidden">
-          <Image image={image} className="-z-10 w-full h-screen md:h-500px" />
+          {isStaticImage ? image : <Image image={image} className="-z-10 w-full h-screen sm+:h-500px" />}
         </div>
         <div
           className={`z-100 md:flex md:pl-121px ${
@@ -29,11 +30,7 @@ const HeroSection = ({
             <div className="md:pt-217px eyebrow-font text-black-gray md:text-dark-orange">
               {heroTopText.toUpperCase()}
             </div>
-            <h1
-              className={`text-black-gray -mt-2px mb-18px ${
-                heroTopText ? null : "text-center md:pl-13px pt-15px"
-              } `}
-            >
+            <h1 className={`text-black-gray -mt-2px mb-18px ${heroTopText ? null : "text-center md:pl-13px pt-15px"} `}>
               {title}
             </h1>
             <div className={`max-w-318px md:max-w-430px font-bold ${heroContentCss}`}>{heroContent}</div>
