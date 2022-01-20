@@ -33,7 +33,7 @@ module.exports = {
     DEV_SSR: false,
   },
   siteMetadata: {
-    siteUrl: `https://demo-amplify.netlify.app/`,
+    siteUrl: `https://demo-prehomes.netlify.app/`,
   },
   plugins: [
     {
@@ -64,8 +64,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Amplify`,
-        short_name: `Amplify`,
+        name: `Prehomes`,
+        short_name: `Prehomes`,
         start_url: `/`,
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
