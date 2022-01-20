@@ -78,7 +78,7 @@ export const query = graphql`
         ...Image
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16) {
       nodes {
         label: developerName
         url: fields {

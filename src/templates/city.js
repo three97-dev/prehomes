@@ -184,7 +184,7 @@ export const query = graphql`
         projectMinPrice
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByCityLinks: allContentfulCity(limit: 16) {
       nodes {
         label: cityName
         url: fields {

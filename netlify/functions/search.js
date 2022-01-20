@@ -46,8 +46,6 @@ const getAutocompletePlaces = async searchTerm => {
 const searchProjectsByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "project",
-    //select: "sys.id,fields.projectName",
-    "fields.isTemplateSample[ne]": true,
     "fields.projectName[match]": searchTerm,
   });
 
@@ -57,8 +55,6 @@ const searchProjectsByName = async searchTerm => {
 const searchCitiesByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "city",
-    //select: "sys.id,fields.projectName",
-    "fields.isTemplateSample[ne]": true,
     "fields.cityName[match]": searchTerm,
   });
 
@@ -67,8 +63,6 @@ const searchCitiesByName = async searchTerm => {
 const searchDevelopersByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "developer",
-    //select: "sys.id,fields.projectName",
-    "fields.isTemplateSample[ne]": true,
     "fields.developerName[match]": searchTerm,
   });
 
@@ -89,8 +83,6 @@ const searchProjectsByLocation = async places => {
 
       return contentfulClient.getEntries({
         content_type: "project",
-        //select: "sys.id,fields.projectName",
-        "fields.isTemplateSample[ne]": true,
         "fields.projectAddressMapLocation[within]": locationQuery,
       });
     })

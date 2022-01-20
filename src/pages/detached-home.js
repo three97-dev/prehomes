@@ -155,7 +155,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByCityLinks: allContentfulCity(limit: 16) {
       nodes {
         label: cityName
         url: fields {
@@ -163,7 +163,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16) {
       nodes {
         label: developerName
         url: fields {

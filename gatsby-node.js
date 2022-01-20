@@ -9,8 +9,6 @@ const developerTemplate = path.resolve("./src/templates/developer.js");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/utils/buildUrl");
 
-const notCmsTemplate = node => node?.isTemplateSample === false;
-
 const getUniquePrices = projectFloors => {
   return [...new Set(projectFloors.map(projectFloor => projectFloor.price))].sort((a, b) => {
     return a - b;
@@ -51,9 +49,9 @@ exports.sourceNodes = async args => {
   const { actions, getNodesByType, getNode } = args;
   const { createNodeField } = actions;
 
-  const projects = getNodesByType("ContentfulProject").filter(notCmsTemplate);
+  const projects = getNodesByType("ContentfulProject");
   for (const project of projects) {
-    const floorNodes = project.projectFloorPlans___NODE.map(id => getNode(id)).filter(notCmsTemplate);
+    const floorNodes = project.projectFloorPlans___NODE.map(id => getNode(id));
     const prices = getUniquePrices(floorNodes);
     const maxBeds = getMaxProjectBeds(floorNodes);
     const maxBaths = getMaxProjectBaths(floorNodes);
@@ -128,7 +126,7 @@ exports.sourceNodes = async args => {
     });
   }
 
-  const cities = getNodesByType("ContentfulCity").filter(notCmsTemplate);
+  const cities = getNodesByType("ContentfulCity");
   for (const city of cities) {
     createNodeField({
       node: city,
@@ -137,7 +135,7 @@ exports.sourceNodes = async args => {
     });
   }
 
-  const developers = getNodesByType("ContentfulDeveloper").filter(notCmsTemplate);
+  const developers = getNodesByType("ContentfulDeveloper");
   for (const developer of developers) {
     createNodeField({
       node: developer,

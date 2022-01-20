@@ -127,7 +127,6 @@ export const query = graphql`
   query {
     newestReleasesProjects: allContentfulProject(
       filter: {
-        isTemplateSample: { ne: true }
         fields: { projectStatus: { eq: "newest-releases" } }
         projectType: { type: { eq: "condo" } }
       }
@@ -149,7 +148,6 @@ export const query = graphql`
     }
     launchingSoonProjects: allContentfulProject(
       filter: {
-        isTemplateSample: { ne: true }
         fields: { projectStatus: { eq: "launching-soon" } }
         projectType: { type: { eq: "condo" } }
       }
@@ -169,7 +167,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByCityLinks: allContentfulCity(limit: 16) {
       nodes {
         label: cityName
         url: fields {
@@ -177,7 +175,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, filter: { isTemplateSample: { ne: true } }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16) {
       nodes {
         label: developerName
         url: fields {
