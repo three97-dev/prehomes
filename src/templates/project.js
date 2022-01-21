@@ -195,10 +195,12 @@ export const query = graphql`
         bathrooms
         name
         price
-        priceForSquareFootage
         isAvailable
         floorPlanImage {
           ...Image
+        }
+        fields {
+          pricePerSquareFoot
         }
       }
       fields {

@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import {
   Header,
   HeroSectionSlider,
-  TextImageSection,
+  TextMapSection,
   TextSection,
   ThreeStatsSection,
   SliderSmallTiles,
@@ -45,13 +45,16 @@ const CityPageTemplate = ({ data }) => {
       />
       <div className="md+:hidden border-t-2 border-gray-border w-full mt-15px mb-30px"></div>
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
-        <TextImageSection
+        <TextMapSection
+          title={`About ${city.cityName}`}
           content={city.overviewText}
-          image={city.overviewImage}
+          mapZoom={9}
+          centerPosition={city.cityLocation}
           className="pb-50px md:pb-0px"
           textSectionStyle="pt-20px"
         />
         <TextSection
+          title={`Why invest In ${city.cityName}`}
           content={city.additionalDescription}
           className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
         />
@@ -132,8 +135,9 @@ export const query = graphql`
       overviewText {
         raw
       }
-      overviewImage {
-        ...Image
+      cityLocation {
+        lat
+        lon
       }
       additionalDescription {
         raw
@@ -184,7 +188,7 @@ export const query = graphql`
         projectMinPrice
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16) {
+    projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {

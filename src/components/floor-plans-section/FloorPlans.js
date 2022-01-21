@@ -227,7 +227,7 @@ const FloorPlans = ({
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
                         <p className="mb-20px lg+:mb-12px lg+:mr-20px">${floorPlan.price.toLocaleString("en-US")}</p>
-                        <p>${floorPlan.priceForSquareFootage.toLocaleString("en-US")} /sq.ft</p>
+                        <p>${floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft</p>
                       </td>
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
                         <Button

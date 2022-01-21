@@ -11,7 +11,7 @@ const FavoriteButton = ({ isFavorite, onClick, className }) => {
   const { isLoggedIn } = useSelector(state => state.session);
 
   return isLoggedIn ? (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={`outline-none ${className}`}>
       <img src={isFavorite ? FavoriteRed : Favorite} alt="favorite" className="favoriteButton" />
     </button>
   ) : null;

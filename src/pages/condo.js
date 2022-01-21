@@ -167,7 +167,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16) {
+    projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
@@ -175,7 +175,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {

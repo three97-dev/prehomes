@@ -61,8 +61,8 @@ const SmallTile = ({
             textColor ? textColor : "text-black-gray"
           }`}
         >
-          <h3 className={`small-tile-title md:h-55px overflow-ellipsis overflow-hidden ${titleClassName}`}>{title}</h3>
-          <div className={`eyebrow-font md:mb-5px mt-10px md:mt-7px ${subtitleClassName}`}>{location}</div>
+          <h3 className={`small-tile-title md:h-54px overflow-ellipsis overflow-hidden ${titleClassName}`}>{title}</h3>
+          <div className={`eyebrow-font mb-10px mt-10px ${subtitleClassName}`}>{location}</div>
           <h4 className={`${textColor ? textColor : "text-black-gray"}`}>From: ${price.toLocaleString("en-US")}</h4>
         </div>
       </UniversalLink>
@@ -90,7 +90,7 @@ SmallTile.defaultProps = {
   textColor: "",
   bgColor: "",
   className: "",
-  titleClassName: "h-68px",
+  titleClassName: "h-69px",
   subtitleClassName: "mb-10px uppercase",
 };
 

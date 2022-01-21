@@ -8,6 +8,7 @@ const cityTemplate = path.resolve("./src/templates/city.js");
 const developerTemplate = path.resolve("./src/templates/developer.js");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/utils/buildUrl");
+const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSquareFoot");
 
 const getUniquePrices = projectFloors => {
   return [...new Set(projectFloors.map(projectFloor => projectFloor.price))].sort((a, b) => {
@@ -123,6 +124,15 @@ exports.sourceNodes = async args => {
       node: project,
       name: "transitScore",
       value: transitScore,
+    });
+  }
+
+  const floorPlans = getNodesByType("ContentfulFloorPlan");
+  for (const floorPlan of floorPlans) {
+    createNodeField({
+      node: floorPlan,
+      name: "pricePerSquareFoot",
+      value: calculatePricePerSquareFoot(floorPlan.price, floorPlan.squareFootage),
     });
   }
 

@@ -45,19 +45,17 @@ const UserDashboardPage = () => {
         isUserDashboard
         isStaticImage
       />
-      {favoriteProjects ? (
         <SliderSmallTiles
           arrowsColor="black-gray-2"
           mainTitle="My Favourites"
           helpMarkTooltip="My Favorites Tooltip"
+          showNoProjects={true}
           showHelpMark={true}
           smallTileData={favoriteProjects}
           bgWrapperClasses="bg-white-pink md:bg-light-gray"
           paddingTitleClasses="pt-95px"
           paddingSliderClasses="pt-70px pb-50px"
         />
-      ) : null}
-
       {favoriteFloorPlans ? <FloorPlans floors={favoriteFloorPlans} options={options} className="mx-auto" /> : null}
       <ContactRealtorFormSection />
       <Footer />

@@ -14,6 +14,7 @@ const SliderSmallTiles = ({
   arrowsColor,
   mainTitle,
   helpMarkTooltip,
+  showNoProjects,
   showHelpMark,
   smallTileData,
   bgWrapperClasses,
@@ -90,11 +91,11 @@ const SliderSmallTiles = ({
     }
   };
 
-  if (!smallTileData || smallTileData.length === 0) {
+  if (!smallTileData || smallTileData.length === 0 && !showNoProjects) {
     return null;
   }
 
-  return smallTileData.length === 0 ? null : (
+  return (
     <div className={classNames(bgWrapperClasses)}>
       <div className="md:mx-60px">
         <div className={classNames("px-25px md:px-62px", paddingTitleClasses)}>
@@ -110,29 +111,35 @@ const SliderSmallTiles = ({
             )}
           </div>
         </div>
-        <div className={paddingSliderClasses}>
-          <div className="flex md:px-20px">
-            <div className="w-full">
-              <Slider ref={s => setSlider(s)} {...settings} className="relative">
-                {smallTileData.map((item, index) => {
-                  return (
-                    <SmallTile
-                      key={index}
-                      id={item.contentful_id}
-                      image={item.projectPreviewImage}
-                      link={item.fields.pageUrl}
-                      title={item.projectName}
-                      location={item.projectCity.cityName}
-                      price={item.projectMinPrice}
-                      className="mb-75px md:mb-50px mx-auto"
-                    />
-                  );
-                })}
-                {emptyTiles(smallTileData, tileCount)}
-              </Slider>
+        {smallTileData && smallTileData.length > 0 ? (
+          <div className={paddingSliderClasses}>
+            <div className="flex md:px-20px">
+              <div className="w-full">
+                <Slider ref={s => setSlider(s)} {...settings} className="relative">
+                  {smallTileData.map((item, index) => {
+                    return (
+                      <SmallTile
+                        key={index}
+                        id={item.contentful_id}
+                        image={item.projectPreviewImage}
+                        link={item.fields.pageUrl}
+                        title={item.projectName}
+                        location={item.projectCity.cityName}
+                        price={item.projectMinPrice}
+                        className="mb-75px md:mb-50px mx-auto"
+                      />
+                    );
+                  })}
+                  {emptyTiles(smallTileData, tileCount)}
+                </Slider>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <h3 className="text-black-gray font-poppins font-normal pt-25px md:pt-40px pb-30px px-25px md:px-62px">
+            No Projects
+          </h3>
+        )}
       </div>
     </div>
   );
@@ -140,10 +147,12 @@ const SliderSmallTiles = ({
 
 SliderSmallTiles.propTypes = {
   showHelpMark: PropTypes.bool,
+  smallTileData: PropTypes.array,
 };
 
 SliderSmallTiles.defaultProps = {
   showHelpMark: false,
+  smallTileData: [],
 };
 
 export default SliderSmallTiles;

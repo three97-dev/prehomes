@@ -5,7 +5,7 @@ import {
   Header,
   Footer,
   HeroSection,
-  TextImageSection,
+  TextMapSection,
   ViewByLinks,
   ContactRealtorFormSection,
   SliderSmallTiles,
@@ -38,7 +38,13 @@ const DeveloperPageTemplate = ({ data }) => {
         heroContentCss="footer-font md:font-normal text-black-gray"
       />
       <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">
-        <TextImageSection content={developer.overviewText} image={developer.overviewImage} />
+        <TextMapSection
+          title={`About ${developer.developerName}`}
+          content={developer.overviewText}
+          mapZoom={15}
+          centerPosition={developer.developerLocation}
+          isMarkerVisible
+        />
       </div>
       <hr className="hidden md:block bg-beige h-2px md:max-w-1130px border-none bg-clip-content md:mx-120px mt-23px" />
       <SliderSmallTiles
@@ -74,11 +80,12 @@ export const query = graphql`
       overviewText {
         raw
       }
-      overviewImage {
-        ...Image
+      developerLocation {
+        lat
+        lon
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {

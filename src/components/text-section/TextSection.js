@@ -1,9 +1,10 @@
 import React from "react";
 import Markdown from "../basic/markdown/Markdown";
 
-const TextSection = ({ content, className }) => {
+const TextSection = ({ title, content, className }) => {
   return (
     <div className={`text-black-gray -mb-24px ${className}`}>
+      <h2 className="mb-40px">{title}</h2>
       <Markdown
         data={content}
         config={{

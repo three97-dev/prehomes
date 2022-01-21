@@ -15,6 +15,7 @@ module.exports = {
   theme: {
     minHeight: {
       "600px": "600px",
+      "321px": "321px",
     },
     extend: {
       dropShadow: {
@@ -133,6 +134,7 @@ module.exports = {
       "65px": "6.5rem",
       "66px": "6.6rem",
       "68px": "6.8rem",
+      "69px": "6.9rem",
       "70px": "7rem",
       "71px": "7.1rem",
       "72px": "7.2rem",

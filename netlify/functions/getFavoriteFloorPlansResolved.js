@@ -2,6 +2,7 @@ const contentful = require(`contentful`);
 
 const db = require("../../src/db");
 const convertContentfulImageToGatsbyFormat = require("../../src/db/transformImage");
+const { calculatePricePerSquareFoot } = require("../../src/utils/calculatePricePerSquareFoot");
 
 const contentfulConfig = {
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -42,7 +43,9 @@ exports.handler = async function (event, context) {
         bathrooms: floorPlan?.fields?.bathrooms,
         name: floorPlan?.fields?.name,
         price: floorPlan?.fields?.price,
-        priceForSquareFootage: floorPlan?.fields?.priceForSquareFootage,
+        fields: {
+          pricePerSquareFoot: calculatePricePerSquareFoot(floorPlan?.fields?.price, floorPlan?.fields?.squareFootage),
+        },
         isAvailable: floorPlan?.fields?.isAvailable,
         projectName: project?.fields?.projectName,
         projectContentfulId: savedFloorPlan.project_contentful_id,

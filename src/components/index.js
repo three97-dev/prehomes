@@ -43,7 +43,7 @@ import SearchTile from "./search-tile/SearchTile";
 import PrestigeCollectionSliderSection from "./sliders/slider-sections/PrestigeCollectionSliderSection";
 import SliderSmallTiles from "./sliders/slider-small-tiles/SliderSmallTiles";
 import SmallTile from "./small-tile/SmallTile";
-import TextImageSection from "./text-image-section/TextImageSection";
+import TextMapSection from "./text-map-section/TextMapSection";
 import TextSection from "./text-section/TextSection";
 import ThreeStatsSection from "./three-stats-section/ThreeStatsSection";
 import ViewByLinks from "./view-by-links/ViewByLinks";
@@ -92,7 +92,7 @@ export {
   PrestigeCollectionSliderSection,
   SliderSmallTiles,
   SmallTile,
-  TextImageSection,
+  TextMapSection,
   TextSection,
   ThreeStatsSection,
   ViewByLinks,
