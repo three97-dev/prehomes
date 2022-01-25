@@ -30,7 +30,7 @@ const Markdown = ({ data, config }) => {
     },
   };
 
-  return <div>{renderRichText(data, options)}</div>;
+  return <div>{data ? renderRichText(data, options) : ""}</div>;
 };
 
 export default Markdown;
