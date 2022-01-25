@@ -60,11 +60,11 @@ const CityPageTemplate = ({ data }) => {
         />
         <ThreeStatsSection
           statOneLabel="Average Condo Price"
-          statOneValue={`$${city.averageCondoPrice.toLocaleString()}`}
+          statOneValue={`$${city.averageCondoPrice ? city.averageCondoPrice.toLocaleString() : ""}`}
           statTwoLabel="Average Townhome Price"
-          statTwoValue={`$${city.averageDetachedPrice.toLocaleString()}`}
+          statTwoValue={`$${city.averageDetachedPrice ? city.averageDetachedPrice.toLocaleString() : ""}`}
           statThreeLabel="Average Detached Price"
-          statThreeValue={`$${city.averageTownhomePrice.toLocaleString()}`}
+          statThreeValue={`$${city.averageTownhomePrice ? city.averageTownhomePrice.toLocaleString() : ""}`}
           className="px-25px lg:0-px"
         />
       </div>

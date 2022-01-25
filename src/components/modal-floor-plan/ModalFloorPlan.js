@@ -63,15 +63,15 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
             <span className="eyebrow-font text-black">SUITE NAME</span>
             <p className="text-black mt-18px mb-31px">{floorPlan?.name?.toUpperCase()}</p>
             <span className="eyebrow-font text-black">SQUARE FOOTAGE</span>
-            <p className="text-black mt-18px mb-31px">{floorPlan?.squareFootage?.toLocaleString("en-US")}</p>
+            <p className="text-black mt-18px mb-31px">{floorPlan?.squareFootage ? floorPlan?.squareFootage?.toLocaleString("en-US") : ""}</p>
             <div className="apartment-parameters-grid-area mb-32px">
               <span className="grid-bedrooms-title-area eyebrow-font text-black mb-18px">BEDROOMS</span>
-              <p className="grid-bedrooms-value-area text-black">{floorPlan?.bedrooms?.toLocaleString()}</p>
+              <p className="grid-bedrooms-value-area text-black">{floorPlan?.bedrooms ? floorPlan?.bedrooms?.toLocaleString() : ""}</p>
               <span className="grid-bathrooms-title-area eyebrow-font text-black mb-18px">BATHROOMS</span>
-              <p className="grid-bathrooms-value-area text-black">{floorPlan?.bathrooms?.toLocaleString()}</p>
+              <p className="grid-bathrooms-value-area text-black">{floorPlan?.bathrooms ? floorPlan?.bathrooms?.toLocaleString() : ""}</p>
             </div>
             <div className="eyebrow-font text-black mb-23px">PRICE</div>
-            <h3 className="mb-50px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
+            <h3 className="mb-50px">${floorPlan?.price ? floorPlan?.price?.toLocaleString("en-US") : ""}</h3>
 
             <div className="flex items-center -ml-7px">
               {isLoggedIn ? (
@@ -89,21 +89,21 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
         ) : (
           <div className={`modal-flor-plan-descriptions-area px-15px`}>
             <span className="eyebrow-font text-black">PRICE</span>
-            <h3 className="mb-25px">${floorPlan?.price?.toLocaleString("en-US")}</h3>
+            <h3 className="mb-25px">${floorPlan?.price ? floorPlan?.price?.toLocaleString("en-US") : ""}</h3>
             <span className="eyebrow-font text-black">SUITE NAME</span>
             <p className="mb-25px text-black">{floorPlan?.name?.toUpperCase()}</p>
             <div className="apartment-parameters-grid-area">
               <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-start">SQ.FT</span>
               <p className="grid-square-footage-value-area text-black justify-self-start">
-                {floorPlan?.squareFootage?.toLocaleString("en-US")}
+                {floorPlan?.squareFootage ? floorPlan?.squareFootage?.toLocaleString("en-US") : ""}
               </p>
               <span className="grid-bedrooms-title-area eyebrow-font text-black justify-self-start">BEDROOMS</span>
               <p className="grid-bedrooms-value-area text-black justify-self-start">
-                {floorPlan?.bedrooms?.toLocaleString()}
+                {floorPlan?.bedrooms ? floorPlan?.bedrooms?.toLocaleString() : ""}
               </p>
               <span className="grid-bathrooms-title-area eyebrow-font text-black justify-self-start">BATHROOMS</span>
               <p className="grid-bathrooms-value-area text-black justify-self-start">
-                {floorPlan?.bathrooms?.toLocaleString()}
+                {floorPlan?.bathrooms ? floorPlan?.bathrooms?.toLocaleString() : ""}
               </p>
             </div>
 

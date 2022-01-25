@@ -8,8 +8,8 @@ const SearchPage = ({ data }) => {
   const projects = data.allContentfulProject.nodes;
 
   const allProjects = projects.map(project => {
-    const minPrice = project.fields.prices[0].toLocaleString();
-    const maxPrice = project.fields.prices[project.fields.prices.length - 1].toLocaleString();
+    const minPrice = project.fields.prices[0] ? project.fields.prices[0].toLocaleString() : "";
+    const maxPrice = project.fields.prices[project.fields.prices.length - 1] ? project.fields.prices[project.fields.prices.length - 1].toLocaleString() : "";
 
     return {
       id: project.contentful_id,

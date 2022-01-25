@@ -3,26 +3,22 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 
 import Dropdown from "../../components/dropdown/Dropdown";
-import FilterInput from "../../components/filter-input/FilterInput";
 
 import { options } from "../../utils/filterOptions";
 
-import "./ModalSearchFilter.css";
+import "./ModalFloorPlansFilter.css";
 
-const ModalSearchFilter = ({
+const ModalFloorPlansFilter = ({
   onApply,
   onClear,
   onClose,
   title,
   clearButtonLabel,
   applyButtonLabel,
-  typeFilterTitle,
+  sizeFilterTitle,
   bedsFilterTitle,
   bathsFilterTitle,
-  minPriceFilterTitle,
-  maxPriceFilterTitle,
-  minSizeFilterTitle,
-  maxSizeFilterTitle,
+  availabilityFilterTitle,
   modalIsOpen,
   filter,
 }) => {
@@ -38,21 +34,21 @@ const ModalSearchFilter = ({
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
       onRequestClose={() => onClose()}
-      className="modal-search-filter"
-      overlayClassName="modal-search-filter-overlay"
+      className="modal-floor-plans-filter"
+      overlayClassName="modal-floor-plans-filter-overlay"
     >
-      <button onClick={() => onClose()} className="modal-search-filter-close-button" />
-      <div className="modal-search-filter-container">
-        <div className="modal-search-filter-content items-stretch">
+      <button onClick={() => onClose()} className="modal-floor-plans-filter-close-button" />
+      <div className="modal-floor-plans-filter-container">
+        <div className="modal-floor-plans-filter-content items-stretch">
           <div className="grid grid-cols-2 justify-items-center gap-19px content-start">
-            <h4 className="col-span-full text-black-gray">{title}</h4>
+            <h4 className="col-span-full mb-16px text-black-gray">{title}</h4>
             <Dropdown
-              title={typeFilterTitle}
-              options={options.types}
-              value={currentFilter.typeFilter}
-              onChange={value => setCurrentFilter({ ...currentFilter, typeFilter: value })}
+              title={sizeFilterTitle}
+              options={options.sizes}
+              value={currentFilter.sizeFilter}
+              onChange={value => setCurrentFilter({ ...currentFilter, sizeFilter: value })}
               arrowColor="#212121"
-              containerClassName="col-span-full w-full"
+              containerClassName="w-full"
               font="Poppins"
               fontSize="11px"
               fontStyle="italic"
@@ -83,45 +79,15 @@ const ModalSearchFilter = ({
               titleClassName="field-labels-font mb-10px"
             />
             <Dropdown
-              title={minPriceFilterTitle}
-              options={options.minPrice}
-              value={currentFilter.minPriceFilter}
-              onChange={value => setCurrentFilter({ ...currentFilter, minPriceFilter: value })}
+              title={availabilityFilterTitle}
+              options={options.availability}
+              value={currentFilter.availabilityFilter}
+              onChange={value => setCurrentFilter({ ...currentFilter, availabilityFilter: value })}
               arrowColor="#212121"
               containerClassName="w-full"
               font="Poppins"
               fontSize="11px"
               fontStyle="italic"
-              titleClassName="field-labels-font mb-10px"
-            />
-            <Dropdown
-              title={maxPriceFilterTitle}
-              options={options.maxPrice}
-              value={currentFilter.maxPriceFilter}
-              onChange={value => setCurrentFilter({ ...currentFilter, maxPriceFilter: value })}
-              arrowColor="#212121"
-              containerClassName="w-full"
-              font="Poppins"
-              fontSize="11px"
-              fontStyle="italic"
-              titleClassName="field-labels-font mb-10px"
-            />
-            <FilterInput
-              title={minSizeFilterTitle}
-              placeholder={"No Min"}
-              value={currentFilter.minSizeFilter}
-              onChange={event => setCurrentFilter({ ...currentFilter, minSizeFilter: event.target.value })}
-              className="w-full"
-              inputClassName="placeholder-font"
-              titleClassName="field-labels-font mb-10px"
-            />
-            <FilterInput
-              title={maxSizeFilterTitle}
-              placeholder={"No Max"}
-              value={currentFilter.maxSizeFilter}
-              onChange={event => setCurrentFilter({ ...currentFilter, maxSizeFilter: event.target.value })}
-              className="w-full"
-              inputClassName="placeholder-font"
               titleClassName="field-labels-font mb-10px"
             />
           </div>
@@ -151,37 +117,31 @@ const ModalSearchFilter = ({
   );
 };
 
-ModalSearchFilter.propTypes = {
+ModalFloorPlansFilter.propTypes = {
   onApply: PropTypes.func,
   onClear: PropTypes.func,
   onClose: PropTypes.func,
   title: PropTypes.string,
   clearButtonLabel: PropTypes.string,
   applyButtonLabel: PropTypes.string,
-  typeFilterTitle: PropTypes.string,
+  sizeFilterTitle: PropTypes.string,
   bedsFilterTitle: PropTypes.string,
   bathsFilterTitle: PropTypes.string,
-  minPriceFilterTitle: PropTypes.string,
-  maxPriceFilterTitle: PropTypes.string,
-  minSizeFilterTitle: PropTypes.string,
-  maxSizeFilterTitle: PropTypes.string,
+  availabilityFilterTitle: PropTypes.string,
   modalIsOpen: PropTypes.bool,
   options: PropTypes.object,
   filter: PropTypes.object,
 };
 
-ModalSearchFilter.defaultProps = {
+ModalFloorPlansFilter.defaultProps = {
   title: "",
   clearButtonLabel: "",
   applyButtonLabel: "",
-  modalIsOpen: false,
-  typeFilterTitle: "",
+  sizeFilterTitle: "",
   bedsFilterTitle: "",
   bathsFilterTitle: "",
-  minPriceFilterTitle: "",
-  maxPriceFilterTitle: "",
-  minSizeFilterTitle: "",
-  maxSizeFilterTitle: "",
+  availabilityFilterTitle: "",
+  modalIsOpen: false,
 };
 
-export default ModalSearchFilter;
+export default ModalFloorPlansFilter;

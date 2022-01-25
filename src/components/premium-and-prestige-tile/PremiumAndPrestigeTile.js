@@ -63,7 +63,7 @@ const PremiumAndPrestigeTile = ({
             {isDesktop ? tileContent : location}
           </p>
           <h4 className="text-left md:text-center mb-5px">
-            {isDesktop ? "Starting from:" : "From:"} ${tilePrice.toLocaleString("en-US")}
+            {isDesktop ? "Starting from:" : "From:"} ${tilePrice ? tilePrice.toLocaleString("en-US") : ""}
           </h4>
         </div>
       </UniversalLink>

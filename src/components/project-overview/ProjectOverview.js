@@ -37,14 +37,14 @@ const ProjectOverview = ({
         <div className="project-overview-price-area px-25px lg:px-0px">
           <div className="mx-auto">
             <h2 className="pb-13px text-tundora md:text-black-gray">
-              ${minPrice.toLocaleString("en-US")} - ${maxPrice.toLocaleString("en-US")}
+              ${minPrice ? minPrice.toLocaleString("en-US") : ""} - ${maxPrice ? maxPrice.toLocaleString("en-US") : ""}
             </h2>
             <h3 className="pb-17px md+:pb-20px text-dark-orange">{labelPriceSQFT}</h3>
-            <p className="pb-17px md+:pb-25px">${priceSQFT.toLocaleString("en-US")} </p>
+            <p className="pb-17px md+:pb-25px">${priceSQFT ? priceSQFT.toLocaleString("en-US") : ""} </p>
             <h3 className="pb-17px md+:pb-20px text-dark-orange">{labelPriceNeighborhood}</h3>
-            <p>${priceNeighborhood.toLocaleString("en-US")}</p>
+            <p>${priceNeighborhood ? priceNeighborhood.toLocaleString("en-US") : ""}</p>
             <h3 className="py-17px md+:py-20px text-dark-orange">{labelPriceCity}</h3>
-            <p>${priceCity.toLocaleString("en-US")}</p>
+            <p>${priceCity ? priceCity.toLocaleString("en-US") : ""}</p>
           </div>
         </div>
         {isDesktop ? (

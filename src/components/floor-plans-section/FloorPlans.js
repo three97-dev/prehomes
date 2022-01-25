@@ -8,8 +8,8 @@ import ModalFloorPlan from "../modal-floor-plan/ModalFloorPlan";
 import ModalForm from "../modal-form/ModalForm";
 import ContactSalesFooter from "../contact-sales-footer/ContactSalesFooter";
 import Paginator from "../paginator/Paginator";
+import ModalFloorPlansFilter from "../modal-floor-plans-filter/ModalFloorPlansFilter";
 
-import { useIsDesktop } from "../../utils/useApplyAfterWidth";
 import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 import "./FloorPlans.css";
@@ -17,44 +17,45 @@ import "./FloorPlans.css";
 const ITEMS_PER_PAGE_MOBILE = 4;
 const ITEMS_PER_PAGE_DESKTOP = 8;
 
-const FloorPlans = ({
-  title,
-  subtitle,
-  available,
-  sizeFilterTitle,
-  bedsFilterTitle,
-  bathsFilterTitle,
-  availabilityFilterTitle,
-  floorNoResults,
-  suiteNameColumnTitle,
-  suiteTypeColumnTitle,
-  sizeColumnTitle,
-  priceColumnTitle,
-  suiteNameColumnBedroomLabel,
-  suiteNameColumnBathroomLabel,
-  sizeColumnUnits,
-  priceColumnUnits,
-  moreInfoButtonLabel,
-  options,
-  floors,
-  projectData,
-  isProject,
-  className,
-}) => {
-  const [sizeFilter, setSizeFilter] = useState(options.sizes[0]);
-  const [bedsFilter, setBedsFilter] = useState(options.beds[0]);
-  const [bathsFilter, setBathsFilter] = useState(options.baths[0]);
-  const [availabilityFilter, setAvailabilityFilter] = useState(options.availability[0]);
+const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
   const [moreInfoModal, setMoreInfoModal] = useState(null);
   const [isSubmittedContactSales, setIsSubmittedContactSales] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [alreadySubmittedFloorPlans, setAlreadySubmittedFloorPlans] = useState([]);
   const [pageOffset, setPageOffset] = useState(0);
   const [typeSort, setTypeSort] = useState(options.sort[0]);
+  const [isModalFilterOpen, setIsModalFilterOpen] = useState(false);
 
-  const isBiggerDesktop = useApplyAfterWidth(833);
-  const isDesktop = useIsDesktop();
+  const defaultFilters = {
+    sizeFilter: options.sizes[0],
+    bedsFilter: options.beds[0],
+    bathsFilter: options.baths[0],
+    availabilityFilter: options.availability[0],
+  };
+
+  const [filter, setFilter] = useState(defaultFilters);
+
+  const isDesktop = useApplyAfterWidth(833);
   const itemsPerPage = isDesktop ? ITEMS_PER_PAGE_DESKTOP : ITEMS_PER_PAGE_MOBILE;
+
+  const closeFilterModal = useCallback(() => {
+    setIsModalFilterOpen(false);
+  }, [setIsModalFilterOpen]);
+
+  const onClear = useCallback(() => {
+    setFilter(defaultFilters);
+  }, [setFilter, defaultFilters]);
+
+  const onApply = useCallback(
+    values => {
+      setFilter(values);
+    },
+    [setFilter]
+  );
+
+  useEffect(() => {
+    setFilter(filter);
+  }, [filter]);
 
   const closeModal = useCallback(() => {
     setMoreInfoModal(null);
@@ -68,15 +69,15 @@ const FloorPlans = ({
 
   const filteredFloors = useMemo(() => {
     const shownFloors = floors.filter(floorPlan => {
-      if (sizeFilter.value && sizeFilter.value > floorPlan.squareFootage) return false;
-      if (bedsFilter.value && bedsFilter.value > floorPlan.bedrooms) return false;
-      if (bathsFilter.value && bathsFilter.value > floorPlan.bathrooms) return false;
-      if (availabilityFilter.value && availabilityFilter.value > floorPlan.isAvailable) return false;
+      if (filter.sizeFilter.value && filter.sizeFilter.value > floorPlan.squareFootage) return false;
+      if (filter.bedsFilter.value && filter.bedsFilter.value > floorPlan.bedrooms) return false;
+      if (filter.bathsFilter.value && filter.bathsFilter.value > floorPlan.bathrooms) return false;
+      if (filter.availabilityFilter.value && filter.availabilityFilter.value > floorPlan.isAvailable) return false;
 
       return true;
     });
     return shownFloors;
-  }, [floors, sizeFilter, bedsFilter, bathsFilter, availabilityFilter]);
+  }, [floors, filter]);
 
   const currentItems = useMemo(() => {
     const newCurrentItems = filteredFloors.slice(pageOffset, pageOffset + itemsPerPage);
@@ -118,7 +119,7 @@ const FloorPlans = ({
   return (
     <div className={`relative pt-50px md:pt-30px bg-white-pink md:bg-light-gray ${className}`}>
       {isDesktop && (
-        <hr className="absolute left-0px top-330px md:top-288px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
+        <hr className="absolute left-0px top-265px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
       )}
       <div className="pl-25px lg:pl-120px">
         <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">Saved Floor Plans</h2>
@@ -128,7 +129,28 @@ const FloorPlans = ({
         </p>
       </div>
       <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}>
-        <button className="w-80px h-24px text-dark-orange button-font">Filters</button>
+        <button
+          onClick={() => {
+            setIsModalFilterOpen(!isModalFilterOpen);
+          }}
+          className="w-80px h-24px text-dark-orange button-font"
+        >
+          Filters
+        </button>
+        <ModalFloorPlansFilter
+          onApply={onApply}
+          onClear={onClear}
+          onClose={closeFilterModal}
+          title="Filters"
+          clearButtonLabel="Clear"
+          applyButtonLabel="Apply"
+          sizeFilterTitle="Size"
+          bedsFilterTitle="Beds"
+          bathsFilterTitle="Baths"
+          availabilityFilterTitle="Availability"
+          modalIsOpen={isModalFilterOpen}
+          filter={filter}
+        />
         <Dropdown
           options={options.sort}
           value={{
@@ -148,32 +170,32 @@ const FloorPlans = ({
         <Dropdown
           title="Size"
           options={options.sizes}
-          value={sizeFilter}
-          onChange={setSizeFilter}
+          value={filter.sizeFilter}
+          onChange={value => setFilter({ ...filter, sizeFilter: value })}
           arrowColor="#212121"
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
           title="Beds"
           options={options.beds}
-          value={bedsFilter}
-          onChange={setBedsFilter}
+          value={filter.bedsFilter}
+          onChange={value => setFilter({ ...filter, bedsFilter: value })}
           arrowColor="#212121"
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
           title="Baths"
           options={options.baths}
-          value={bathsFilter}
-          onChange={setBathsFilter}
+          value={filter.bathsFilter}
+          onChange={value => setFilter({ ...filter, bathsFilter: value })}
           arrowColor="#212121"
           containerClassName="floor-plans-dropdown-shadow"
         />
         <Dropdown
           title="Availability"
           options={options.availability}
-          value={availabilityFilter}
-          onChange={setAvailabilityFilter}
+          value={filter.availabilityFilter}
+          onChange={value => setFilter({ ...filter, availabilityFilter: value })}
           arrowColor="#212121"
           containerClassName="floor-plans-dropdown-shadow"
         />
@@ -223,11 +245,19 @@ const FloorPlans = ({
                         <p className="w-110px">{floorPlan.bathrooms} Bathroom</p>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-37px">
-                        <p>{floorPlan.squareFootage.toLocaleString("en-US")} sq.ft</p>
+                        <p>{floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} sq.ft</p>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
-                        <p className="mb-20px lg+:mb-12px lg+:mr-20px">${floorPlan.price.toLocaleString("en-US")}</p>
-                        <p>${floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft</p>
+                        <p className="mb-20px lg+:mb-12px lg+:mr-20px">
+                          ${floorPlan.price ? floorPlan.price.toLocaleString("en-US") : ""}
+                        </p>
+                        <p>
+                          $
+                          {floorPlan.fields.pricePerSquareFoot
+                            ? floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")
+                            : ""}{" "}
+                          /sq.ft
+                        </p>
                       </td>
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
                         <Button
@@ -254,16 +284,12 @@ const FloorPlans = ({
                         <div className="table-data">
                           <div className="footer-font mb-20px">{floorPlan.name.toUpperCase()}</div>
                           <div className="floor-info">
-                            <p className="w-100px">${floorPlan.price.toLocaleString("en-US")}</p>
+                            <p className="w-100px">${floorPlan.price ? floorPlan.price.toLocaleString("en-US") : ""}</p>
                             <p className="w-100px">
-                              {floorPlan.squareFootage.toLocaleString("en-US")} {sizeColumnUnits.toUpperCase()}
+                              {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} SQ.FT
                             </p>
-                            <p className="w-100px text-black-gray">
-                              {floorPlan.bathrooms} {suiteNameColumnBathroomLabel.toUpperCase()}
-                            </p>
-                            <p className="w-100px text-black-gray">
-                              {floorPlan.bedrooms} {suiteNameColumnBedroomLabel.toUpperCase()}
-                            </p>
+                            <p className="w-100px text-black-gray">{floorPlan.bathrooms} BATHROOM</p>
+                            <p className="w-100px text-black-gray">{floorPlan.bedrooms} BEDROOM</p>
                           </div>
                         </div>
                       </td>
@@ -284,7 +310,7 @@ const FloorPlans = ({
                   onClose={closeModal}
                 />
               )}
-              {isBiggerDesktop && (
+              {isDesktop && (
                 <ContactSalesFooter
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
                   floorPlanName={moreInfoModal?.name}

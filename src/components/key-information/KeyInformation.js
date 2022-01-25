@@ -101,7 +101,7 @@ const KeyInformation = ({
         </div>
         <div className="key-info-grid-cash-deposit-area">
           <h3 className="text-dark-orange">{cashDepositLabel}</h3>
-          <p className="text-black-gray mt-20px">{cashDepositValue.toLocaleString("en-US")}</p>
+          <p className="text-black-gray mt-20px">{cashDepositValue ? cashDepositValue.toLocaleString("en-US") : ""}</p>
         </div>
         <div className="key-info-grid-deposit-structure-area">
           <h3 className="text-dark-orange">{depositStructureLabel}</h3>
@@ -116,7 +116,7 @@ const KeyInformation = ({
         </div>
         <div className="key-info-grid-locker-maintenance-area">
           <h3 className="text-dark-orange">{lockerMaintenanceLabel}</h3>
-          <p className="text-black-gray mt-20px">${lockerMaintenanceValue.toLocaleString("en-US")}</p>
+          <p className="text-black-gray mt-20px">${lockerMaintenanceValue ? lockerMaintenanceValue.toLocaleString("en-US") : ""}</p>
         </div>
       </div>
     </div>
