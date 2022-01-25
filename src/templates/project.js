@@ -86,7 +86,7 @@ const ProjectPageTemplate = ({ data }) => {
         walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
         bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
-        className="pb-29px md:pb-40px"
+        className="pb-12px md:pb-40px"
       />
       <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-transparent" />
       <NeighborhoodMap geoLocation={project.projectAddressMapLocation} className="pt-40px bg-transparent" />
