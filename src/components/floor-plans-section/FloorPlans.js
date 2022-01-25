@@ -17,7 +17,7 @@ import "./FloorPlans.css";
 const ITEMS_PER_PAGE_MOBILE = 4;
 const ITEMS_PER_PAGE_DESKTOP = 8;
 
-const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
+const FloorPlans = ({ options, floors = [], projectData, isProject, className }) => {
   const [moreInfoModal, setMoreInfoModal] = useState(null);
   const [isSubmittedContactSales, setIsSubmittedContactSales] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
