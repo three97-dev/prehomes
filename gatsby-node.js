@@ -11,12 +11,20 @@ const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/util
 const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSquareFoot");
 
 const getUniquePrices = projectFloors => {
+  if (!projectFloors || projectFloors.length === 0) {
+    return [];
+  }
+
   return [...new Set(projectFloors.map(projectFloor => projectFloor.price))].sort((a, b) => {
     return a - b;
   });
 };
 
 const getMaxProjectBeds = projectFloors => {
+  if (!projectFloors || projectFloors.length === 0) {
+    return null;
+  }
+
   const sortedByBeds = projectFloors.sort((a, b) => {
     return b.bedrooms - a.bedrooms;
   });
@@ -25,6 +33,10 @@ const getMaxProjectBeds = projectFloors => {
 };
 
 const getMaxProjectBaths = projectFloors => {
+  if (!projectFloors || projectFloors.length === 0) {
+    return null;
+  }
+
   const sortedByBaths = projectFloors.sort((a, b) => {
     return b.bathrooms - a.bathrooms;
   });
@@ -37,6 +49,10 @@ const getUniqueSquareFootages = projectFloors => {
 };
 
 async function getWalkScore(lat, lon) {
+  if (!lat || !lon) {
+    return null;
+  }
+
   try {
     const url = `https://api.walkscore.com/score?format=json&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=${process.env.WALK_SCORE_API_KEY}`;
     const result = await axios.get(url);
@@ -52,13 +68,15 @@ exports.sourceNodes = async args => {
 
   const projects = getNodesByType("ContentfulProject");
   for (const project of projects) {
-    const floorNodes = project.projectFloorPlans___NODE.map(id => getNode(id));
+    const floorNodes = project.projectFloorPlans___NODE
+      ? project.projectFloorPlans___NODE.map(id => getNode(id))
+      : [];
     const prices = getUniquePrices(floorNodes);
     const maxBeds = getMaxProjectBeds(floorNodes);
     const maxBaths = getMaxProjectBaths(floorNodes);
     const squareFootages = getUniqueSquareFootages(floorNodes);
-    const lat = project.projectAddressMapLocation.lat;
-    const lon = project.projectAddressMapLocation.lon;
+    const lat = project?.projectAddressMapLocation?.lat;
+    const lon = project?.projectAddressMapLocation?.lon;
     const score = await getWalkScore(lat, lon);
     if (score?.status !== 1) {
       console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
