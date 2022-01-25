@@ -17,7 +17,7 @@ import "./FloorPlans.css";
 const ITEMS_PER_PAGE_MOBILE = 4;
 const ITEMS_PER_PAGE_DESKTOP = 8;
 
-const FloorPlans = ({ options, floors = [], projectData, isProject, className }) => {
+const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
   const [moreInfoModal, setMoreInfoModal] = useState(null);
   const [isSubmittedContactSales, setIsSubmittedContactSales] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -62,20 +62,32 @@ const FloorPlans = ({ options, floors = [], projectData, isProject, className })
     setIsSubmittedContactSales(false);
   }, [setMoreInfoModal, setIsSubmittedContactSales]);
 
-  const availableFloors = floors.filter(floorPlan => {
-    if (floorPlan.isAvailable) return true;
-    else return false;
-  });
+  const availableFloors = floors
+    ? floors.filter(floorPlan => {
+        if (floorPlan.isAvailable) return true;
+        else return false;
+      })
+    : [];
 
   const filteredFloors = useMemo(() => {
-    const shownFloors = floors.filter(floorPlan => {
-      if (filter.sizeFilter.value && filter.sizeFilter.value > floorPlan.squareFootage) return false;
-      if (filter.bedsFilter.value && filter.bedsFilter.value > floorPlan.bedrooms) return false;
-      if (filter.bathsFilter.value && filter.bathsFilter.value > floorPlan.bathrooms) return false;
-      if (filter.availabilityFilter.value && filter.availabilityFilter.value > floorPlan.isAvailable) return false;
+    const shownFloors = floors
+      ? floors.filter(floorPlan => {
+          if (filter.sizeFilter.value && filter.sizeFilter.value > floorPlan.squareFootage) {
+            return false;
+          }
+          if (filter.bedsFilter.value && filter.bedsFilter.value > floorPlan.bedrooms) {
+            return false;
+          }
+          if (filter.bathsFilter.value && filter.bathsFilter.value > floorPlan.bathrooms) {
+            return false;
+          }
+          if (filter.availabilityFilter.value && filter.availabilityFilter.value > floorPlan.isAvailable) {
+            return false;
+          }
 
-      return true;
-    });
+          return true;
+        })
+      : [];
     return shownFloors;
   }, [floors, filter]);
 
@@ -125,7 +137,7 @@ const FloorPlans = ({ options, floors = [], projectData, isProject, className })
         <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">Saved Floor Plans</h2>
         <h3 className="text-dark-orange mb-21px md:mb-43px">Total Floor Plans:</h3>
         <p className="mb-20px md:mb-40px">
-          <span className="font-bold">{floors.length}</span> ({availableFloors.length} Available)
+          <span className="font-bold">{floors ? floors.length : 0}</span> ({availableFloors.length} Available)
         </p>
       </div>
       <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}>
