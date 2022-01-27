@@ -161,7 +161,9 @@ export const query = graphql`
         }
       }
     }
-    newestReleasesProjects: allContentfulProject(filter: { fields: { projectStatus: { eq: "newest-releases" } } }) {
+    newestReleasesProjects: allContentfulProject(
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "newest-releases" } } }
+    ) {
       nodes {
         contentful_id
         projectName
@@ -170,14 +172,16 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(filter: { fields: { projectStatus: { eq: "launching-soon" } } }) {
+    launchingSoonProjects: allContentfulProject(
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "launching-soon" } } }
+    ) {
       nodes {
         contentful_id
         projectName
@@ -186,14 +190,14 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
-    premiumProjects: allContentfulProject(filter: { projectCollection: { eq: "Premium" } }) {
+    premiumProjects: allContentfulProject(filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Premium" } }) {
       nodes {
         contentful_id
         projectName
@@ -202,15 +206,17 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
         projectPreviewShortText
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
-    prestigeProjects: allContentfulProject(filter: { projectCollection: { eq: "Prestige" } }) {
+    prestigeProjects: allContentfulProject(
+      filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Prestige" } }
+    ) {
       nodes {
         contentful_id
         projectName
@@ -219,9 +225,9 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
         projectPreviewShortText
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

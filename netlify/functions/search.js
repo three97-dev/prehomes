@@ -46,10 +46,18 @@ const getAutocompletePlaces = async searchTerm => {
 const searchProjectsByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "project",
+    "fields.isSoldOut": false,
     "fields.projectName[match]": searchTerm,
   });
 
-  return contentfulProjects?.items || [];
+  const contentfulProjectsByNeighborhood = await contentfulClient.getEntries({
+    content_type: "project",
+    "fields.isSoldOut": false,
+    "fields.projectNeighborhood.sys.contentType.sys.id": "neighborhood",
+    "fields.projectNeighborhood.fields.neighborhoodName[match]": searchTerm,
+  });
+
+  return [...(contentfulProjects?.items || []), ...(contentfulProjectsByNeighborhood?.items || [])];
 };
 
 const searchCitiesByName = async searchTerm => {
@@ -83,6 +91,7 @@ const searchProjectsByLocation = async places => {
 
       return contentfulClient.getEntries({
         content_type: "project",
+        "fields.isSoldOut": false,
         "fields.projectAddressMapLocation[within]": locationQuery,
       });
     })

@@ -45,9 +45,9 @@ function SearchTile({ id, image, title, city, neighborhood, price, link, classNa
         <div className="absolute w-full top-62px">
           <div className="w-148px text-white mx-auto">
             <h3 className="search-tile-title h-80px">{title}</h3>
-            <div className="mt-10px mb-20px">
-              <div className="eyebrow-font">{city.toUpperCase()}</div>
-              <div className="eyebrow-alt-font">{neighborhood.toUpperCase()}</div>
+            <div className="my-20px">
+              <div className="eyebrow-font h-19px">{city && city.toUpperCase()}</div>
+              <div className="eyebrow-alt-font h-19px">{neighborhood && neighborhood.toUpperCase()}</div>
             </div>
             <h4>{price}</h4>
           </div>

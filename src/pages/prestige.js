@@ -71,7 +71,10 @@ export default PrestigePage;
 export const query = graphql`
   query {
     newestReleasesProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "newest-releases" } }, projectCollection: { eq: "Prestige" } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "newest-releases" } }
+        projectCollection: { eq: "Prestige" } }
     ) {
       nodes {
         contentful_id
@@ -81,16 +84,19 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
         projectPreviewShortText
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "launching-soon" } }, projectCollection: { eq: "Prestige" } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "launching-soon" } }
+        projectCollection: { eq: "Prestige" } }
     ) {
       nodes {
         contentful_id
@@ -100,9 +106,9 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
         projectPreviewShortText
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

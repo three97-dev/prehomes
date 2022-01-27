@@ -91,7 +91,7 @@ const SliderSmallTiles = ({
     }
   };
 
-  if (!smallTileData || smallTileData.length === 0 && !showNoProjects) {
+  if ((!smallTileData || smallTileData.length === 0) && !showNoProjects) {
     return null;
   }
 
@@ -125,7 +125,7 @@ const SliderSmallTiles = ({
                         link={item.fields.pageUrl}
                         title={item.projectName}
                         location={item.projectCity.cityName}
-                        price={item.projectMinPrice}
+                        price={item.fields.projectMinPrice}
                         className="mb-75px md:mb-50px mx-auto"
                       />
                     );

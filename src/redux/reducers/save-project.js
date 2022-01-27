@@ -24,7 +24,7 @@ export default function saveProjectReducer(state = initial, action = null) {
       return {
         ...state,
         isPending: false,
-        savedProjects: [...state.savedProjects.filter(id => id != action.projectId)],
+        savedProjects: [...state.savedProjects.filter(id => id !== action.projectId)],
       };
 
     case s.DELETE_PROJECT_TRIGGER:

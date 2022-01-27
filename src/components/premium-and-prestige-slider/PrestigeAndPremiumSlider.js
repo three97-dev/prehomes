@@ -95,7 +95,7 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
                 image={project.projectPreviewImage}
                 tileTitle={project.projectName}
                 tileContent={project.projectPreviewShortText}
-                tilePrice={project.projectMinPrice}
+                tilePrice={project.fields.projectMinPrice}
                 buttonLink={project.fields.pageUrl}
                 buttonLabel="View more"
                 location={project.projectCity.cityName}

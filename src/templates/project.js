@@ -36,7 +36,7 @@ const ProjectPageTemplate = ({ data }) => {
     } else {
       dispatch({ type: SAVE_PROJECT_TRIGGER, email: session.email, projectId: project.contentful_id });
     }
-  }, [isFavorite, session, dispatch]);
+  }, [isFavorite, session, project, dispatch]);
 
   return (
     <>
@@ -62,11 +62,11 @@ const ProjectPageTemplate = ({ data }) => {
         title="Overview"
         address={project.projectAddress}
         content={project.overviewText}
-        minPrice={project.projectMinPrice}
-        maxPrice={project.projectMaxPrice}
-        priceSQFT={project.pricePerSqft}
-        priceNeighborhood={project.priceNeighborhoodAverage}
-        priceCity={project.priceCityAverage}
+        minPrice={project.fields.projectMinPrice}
+        maxPrice={project.fields.projectMaxPrice}
+        priceSQFT={project.fields.pricePerSqft}
+        priceNeighborhood={project.fields.priceNeighborhoodAverage}
+        priceCity={project.fields.priceCityAverage}
         labelPriceSQFT="Price per sq.ft:"
         labelPriceNeighborhood="Neighborhood average:"
         labelPriceCity="City average"
@@ -105,7 +105,7 @@ const ProjectPageTemplate = ({ data }) => {
         statusLabel="Status"
         statusValue={project.fields.projectStatus}
         labelPriceSQFT="Price per sq.ft:"
-        pricePerSqft={project.pricePerSqft}
+        pricePerSqft={project.fields.pricePerSqft}
         typeLabel="Type"
         typeValue={project.projectType.name}
         launchDateLabel="Launch Date"
@@ -116,14 +116,22 @@ const ProjectPageTemplate = ({ data }) => {
         majorIntersectionValue={project.majorIntersection}
         architectsLabel="Architects"
         architectsValue={project.architects}
-        depositLabel="Deposit"
-        depositValue={project.deposit}
-        cashDepositLabel="Cash Deposit"
-        cashDepositValue={project.cashDeposit}
+        depositAmountLabel="Deposit Amount"
+        depositAmountValue={project.depositAmount}
+        lockerPriceLabel="Locker Price"
+        lockerPriceValue={project.lockerPrice}
         depositStructureLabel="Deposit Structure"
         depositStructureValue={project.depositStructure}
         lockerMaintenanceLabel="Locker Maintenance"
         lockerMaintenanceValue={project.lockerMaintenance}
+        maintenanceFeeLabel="Maintenance Fee"
+        maintenanceFeeValue={project.maintenanceFee}
+        parkingPriceLabel="Parking Price"
+        parkingPriceValue={project.parkingPrice}
+        totalSuitesLabel="Total Suites"
+        totalSuitesValue={project.totalSuites}
+        parkingMaintenanceLabel="Parking Maintenance"
+        parkingMaintenanceValue={project.parkingMaintenance}
         className="bg-transparent"
       />
       <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
@@ -180,11 +188,6 @@ export const query = graphql`
       overviewVideoPreviewImage {
         ...Image
       }
-      projectMinPrice
-      projectMaxPrice
-      pricePerSqft
-      priceNeighborhoodAverage
-      priceCityAverage
       additionalDescription {
         raw
       }
@@ -208,6 +211,11 @@ export const query = graphql`
         walkScore
         bikeScore
         transitScore
+        projectMinPrice
+        projectMaxPrice
+        pricePerSqft
+        priceCityAverage
+        priceNeighborhoodAverage
       }
       projectType {
         name
@@ -220,14 +228,20 @@ export const query = graphql`
       architects {
         raw
       }
-      deposit {
+      depositAmount {
         raw
       }
-      cashDeposit
+      lockerPrice
       depositStructure {
         raw
       }
       lockerMaintenance
+      maintenanceFee
+      parkingPrice
+      totalSuites {
+        raw
+      }
+      parkingMaintenance
       amenities {
         label
       }

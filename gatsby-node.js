@@ -9,6 +9,8 @@ const developerTemplate = path.resolve("./src/templates/developer.js");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/utils/buildUrl");
 const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSquareFoot");
+const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft");
+const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 
 const getUniquePrices = projectFloors => {
   if (!projectFloors || projectFloors.length === 0) {
@@ -72,6 +74,9 @@ exports.sourceNodes = async args => {
       ? project.projectFloorPlans___NODE.map(id => getNode(id))
       : [];
     const prices = getUniquePrices(floorNodes);
+    const projectMinPrice = prices.length > 0 ? prices[0] : 0;
+    const projectMaxPrice = prices.length > 0 ? prices[prices.length - 1] : 0;
+    const pricePerSqft = getProjectPricePerSqft(floorNodes);
     const maxBeds = getMaxProjectBeds(floorNodes);
     const maxBaths = getMaxProjectBaths(floorNodes);
     const squareFootages = getUniqueSquareFootages(floorNodes);
@@ -120,6 +125,21 @@ exports.sourceNodes = async args => {
     });
     createNodeField({
       node: project,
+      name: "projectMinPrice",
+      value: projectMinPrice,
+    });
+    createNodeField({
+      node: project,
+      name: "projectMaxPrice",
+      value: projectMaxPrice,
+    });
+    createNodeField({
+      node: project,
+      name: "pricePerSqft",
+      value: pricePerSqft,
+    });
+    createNodeField({
+      node: project,
       name: "squareFootages",
       value: squareFootages,
     });
@@ -142,6 +162,34 @@ exports.sourceNodes = async args => {
       node: project,
       name: "transitScore",
       value: transitScore,
+    });
+  }
+
+  for (const project of projects) {
+    const pricesPerSqftByCity = projects
+      .filter(p => p.isSoldOut === false && p.projectCity___NODE === project.projectCity___NODE)
+      .map(p => p.fields.pricePerSqft);
+    const priceCityAverage = project.projectCity___NODE // city is null
+      ? calculateAveragePrice(pricesPerSqftByCity)
+      : 0;
+
+    const pricesPerSqftByNeighborhood = projects
+      .filter(p => p.isSoldOut === false && p.projectNeighborhood___NODE === project.projectNeighborhood___NODE)
+      .map(project => project.fields.pricePerSqft);
+
+    const priceNeighborhoodAverage = project.projectNeighborhood___NODE // neighborhood is null
+      ? calculateAveragePrice(pricesPerSqftByNeighborhood)
+      : 0;
+
+    createNodeField({
+      node: project,
+      name: "priceCityAverage",
+      value: priceCityAverage,
+    });
+    createNodeField({
+      node: project,
+      name: "priceNeighborhoodAverage",
+      value: priceNeighborhoodAverage,
     });
   }
 

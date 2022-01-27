@@ -56,7 +56,7 @@ const NeighborhoodMap = ({ geoLocation, className }) => {
   const [map, setMap] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [isSelected, setIsSelected] = useState({
-    transportation: false,
+    transportation: true,
     shopping: false,
     restaurants: false,
     cafeAndBars: false,

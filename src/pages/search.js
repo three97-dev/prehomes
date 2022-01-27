@@ -15,12 +15,12 @@ const SearchPage = ({ data }) => {
       id: project.contentful_id,
       image: project.projectPreviewImage,
       title: project.projectName,
-      city: project.projectCity.cityName,
-      neighborhood: "Neighborhood",
-      prices: project.fields.prices,
+      city: project?.projectCity?.cityName,
+      neighborhood: project?.projectNeighborhood?.neighborhoodName,
+      prices: project?.fields?.prices,
       price: `$${minPrice} - $${maxPrice}`,
-      lat: project.projectAddressMapLocation.lat,
-      lng: project.projectAddressMapLocation.lon,
+      lat: project?.projectAddressMapLocation?.lat,
+      lng: project?.projectAddressMapLocation?.lon,
       type: project.projectType.type,
       maxBeds: project.fields.maxBeds,
       maxBaths: project.fields.maxBaths,
@@ -67,12 +67,19 @@ export default SearchPage;
 
 export const query = graphql`
   query {
-    allContentfulProject {
+    allContentfulProject(
+      filter: {
+        isSoldOut: { eq: false }
+      }
+    ) {
       nodes {
         contentful_id
         projectName
         projectCity {
           cityName
+        }
+        projectNeighborhood {
+          neighborhoodName
         }
         fields {
           maxBeds

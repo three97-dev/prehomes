@@ -121,7 +121,13 @@ export default TownhousePage;
 export const query = graphql`
   query {
     newestReleasesProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "newest-releases" } }, projectType: { type: { eq: "townhouse" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { 
+          projectStatus: { eq: "newest-releases" }
+        }
+        projectType: { type: { eq: "townhouse" } }
+      }
     ) {
       nodes {
         contentful_id
@@ -131,15 +137,21 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "launching-soon" } }, projectType: { type: { eq: "townhouse" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: {
+          projectStatus: { eq: "launching-soon" } 
+        }
+        projectType: { type: { eq: "townhouse" } } 
+      }
     ) {
       nodes {
         contentful_id
@@ -149,8 +161,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

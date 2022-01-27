@@ -22,7 +22,8 @@ exports.handler = async function (event, context) {
     const savedProjects = await db.getSavedProjects({ user_identification });
     const contentfulProjects = await client.getEntries({
       content_type: "project",
-      select: "sys.id,fields.projectName,fields.projectCity,fields.projectMinPrice,fields.projectPreviewImage",
+      select: "sys.id,fields.projectName,fields.projectCity,fields.projectFloorPlans,fields.projectPreviewImage",
+      "fields.isSoldOut": false,
       "sys.id[in]": savedProjects.map(savedProject => savedProject.project_contentful_id).join(),
     });
 
@@ -35,8 +36,8 @@ exports.handler = async function (event, context) {
         },
         fields: {
           pageUrl: buildProjectUrl({ projectName: project?.fields?.projectName }),
+          projectMinPrice: Math.min(...project?.fields?.projectFloorPlans.map(floor => floor.fields.price)),
         },
-        projectMinPrice: project?.fields?.projectMinPrice,
         projectPreviewImage: convertContentfulImageToGatsbyFormat(project?.fields?.projectPreviewImage?.fields, {
           width: 300,
         }),

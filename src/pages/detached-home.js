@@ -40,7 +40,7 @@ const DetachedHomePage = ({ data }) => {
         title="Detached Home"
         heroTopText="PROPERTY TYPE"
         heroContent="This is where we’d write some friendly text about how we appealing a condo is to own."
-        heroContentCss="footer-font font-normal text-black-gray"
+        heroContentCss="footer-font md:font-normal text-black-gray"
         isStaticImage
       />
       <div className="bg-white-pink md:bg-transparent">
@@ -120,7 +120,11 @@ export default DetachedHomePage;
 export const query = graphql`
   query {
     newestReleasesProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "newest-releases" } }, projectType: { type: { eq: "detached" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "newest-releases" } }
+        projectType: { type: { eq: "detached" } }
+      }
     ) {
       nodes {
         contentful_id
@@ -130,15 +134,19 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: { fields: { projectStatus: { eq: "launching-soon" } }, projectType: { type: { eq: "detached" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "launching-soon" } }
+        projectType: { type: { eq: "detached" } }
+      }
     ) {
       nodes {
         contentful_id
@@ -148,8 +156,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

@@ -131,7 +131,7 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
                     image={project.projectPreviewImage}
                     tileTitle={project.projectName}
                     tileContent={project.projectPreviewShortText}
-                    tilePrice={project.projectMinPrice}
+                    tilePrice={project.fields.projectMinPrice}
                     buttonLink={project.fields.pageUrl}
                     isLikeButton
                     blackVariant={blackVariant ? true : false}
@@ -145,7 +145,7 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
                     link={project.fields.pageUrl}
                     title={project.projectName}
                     location={project.projectCity.cityName}
-                    price={project.projectMinPrice}
+                    price={project.fields.projectMinPrice}
                     textColor="text-cream-pink"
                     bgColor={blackVariant ? "bg-white-asphalt" : "bg-dark-green"}
                     className="mb-25px mx-auto mb-70px"

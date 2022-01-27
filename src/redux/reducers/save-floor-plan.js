@@ -24,7 +24,7 @@ export default function saveFloorPlanReducer(state = initial, action = null) {
       return {
         ...state,
         isPending: false,
-        savedFloorPlans: [...state.savedFloorPlans.filter(id => id != action.floorPlanId)],
+        savedFloorPlans: [...state.savedFloorPlans.filter(id => id !== action.floorPlanId)],
       };
 
     case s.DELETE_FLOOR_PLAN_TRIGGER:

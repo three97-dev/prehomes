@@ -148,6 +148,7 @@ export const query = graphql`
     }
     newestReleasesProjects: allContentfulProject(
       filter: {
+        isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         fields: { projectStatus: { eq: "newest-releases" } }
       }
@@ -163,12 +164,13 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
       }
     }
     launchingSoonProjects: allContentfulProject(
       filter: {
+        isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         fields: { projectStatus: { eq: "launching-soon" } }
       }
@@ -184,8 +186,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
       }
     }
     projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
@@ -197,7 +199,11 @@ export const query = graphql`
       }
     }
     condoProjects: allContentfulProject(
-      filter: { projectCity: { contentful_id: { eq: $city_contentful_id } }, projectType: { type: { eq: "condo" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        projectCity: { contentful_id: { eq: $city_contentful_id } }
+        projectType: { type: { eq: "condo" } }
+      }
     ) {
       nodes {
         contentful_id
@@ -210,12 +216,13 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
       }
     }
     townhouseProjects: allContentfulProject(
       filter: {
+        isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
         projectType: { type: { eq: "townhouse" } }
       }
@@ -231,12 +238,16 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
       }
     }
     detachedProjects: allContentfulProject(
-      filter: { projectCity: { contentful_id: { eq: $city_contentful_id } }, projectType: { type: { eq: "detached" } } }
+      filter: {
+        isSoldOut: { eq: false }
+        projectCity: { contentful_id: { eq: $city_contentful_id } }
+        projectType: { type: { eq: "detached" } }
+      }
     ) {
       nodes {
         contentful_id
@@ -249,8 +260,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
       }
     }
   }

@@ -127,6 +127,7 @@ export const query = graphql`
   query {
     newestReleasesProjects: allContentfulProject(
       filter: {
+        isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "newest-releases" } }
         projectType: { type: { eq: "condo" } }
       }
@@ -139,8 +140,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }
@@ -148,6 +149,7 @@ export const query = graphql`
     }
     launchingSoonProjects: allContentfulProject(
       filter: {
+        isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" } }
         projectType: { type: { eq: "condo" } }
       }
@@ -160,8 +162,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

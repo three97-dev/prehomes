@@ -67,7 +67,6 @@ export default DeveloperPageTemplate;
 export const query = graphql`
   query DeveloperTemplate($developer_contentful_id: String!) {
     contentfulDeveloper(contentful_id: { eq: $developer_contentful_id }) {
-      cmsName
       contentful_id
       developerName
       developerSubtitleText
@@ -94,7 +93,9 @@ export const query = graphql`
       }
     }
     otherProjects: allContentfulProject(
-      filter: { projectDeveloper: { contentful_id: { eq: $developer_contentful_id } } }
+      filter: { 
+        isSoldOut: { eq: false }
+        projectDeveloper: { contentful_id: { eq: $developer_contentful_id } } }
     ) {
       nodes {
         contentful_id
@@ -104,8 +105,8 @@ export const query = graphql`
         }
         fields {
           pageUrl
+          projectMinPrice
         }
-        projectMinPrice
         projectPreviewImage {
           ...SearchImage
         }

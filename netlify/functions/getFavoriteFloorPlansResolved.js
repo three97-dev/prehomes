@@ -28,30 +28,39 @@ exports.handler = async function (event, context) {
     const contentfulProjects = await client.getEntries({
       content_type: "project",
       select: "sys.id,fields.projectName",
+      "fields.isSoldOut": false,
       "sys.id[in]": savedFloorPlans.map(savedFloorPlans => savedFloorPlans.project_contentful_id).join(),
     });
 
-    const responseData = contentfulFloorPlans.items.map(floorPlan => {
-      const savedFloorPlan = savedFloorPlans.find(
-        savedFloorPlan => savedFloorPlan.floor_plan_contentful_id === floorPlan?.sys?.id
-      );
-      const project = contentfulProjects.items.find(project => project?.sys?.id === savedFloorPlan.project_contentful_id);
-      return {
-        contentful_id: floorPlan?.sys?.id,
-        squareFootage: floorPlan?.fields?.squareFootage,
-        bedrooms: floorPlan?.fields?.bedrooms,
-        bathrooms: floorPlan?.fields?.bathrooms,
-        name: floorPlan?.fields?.name,
-        price: floorPlan?.fields?.price,
-        fields: {
-          pricePerSquareFoot: calculatePricePerSquareFoot(floorPlan?.fields?.price, floorPlan?.fields?.squareFootage),
-        },
-        isAvailable: floorPlan?.fields?.isAvailable,
-        projectName: project?.fields?.projectName,
-        projectContentfulId: savedFloorPlan.project_contentful_id,
-        floorPlanImage: convertContentfulImageToGatsbyFormat(floorPlan?.fields?.floorPlanImage?.fields),
-      };
-    });
+    const responseData = contentfulFloorPlans.items
+      .map(floorPlan => {
+        const savedFloorPlan = savedFloorPlans.find(
+          savedFloorPlan => savedFloorPlan.floor_plan_contentful_id === floorPlan?.sys?.id
+        );
+        const project = contentfulProjects.items.find(
+          project => project?.sys?.id === savedFloorPlan.project_contentful_id
+        );
+
+        if (!project) {
+          return null;
+        }
+        return {
+          contentful_id: floorPlan?.sys?.id,
+          squareFootage: floorPlan?.fields?.squareFootage,
+          bedrooms: floorPlan?.fields?.bedrooms,
+          bathrooms: floorPlan?.fields?.bathrooms,
+          name: floorPlan?.fields?.name,
+          price: floorPlan?.fields?.price,
+          fields: {
+            pricePerSquareFoot: calculatePricePerSquareFoot(floorPlan?.fields?.price, floorPlan?.fields?.squareFootage),
+          },
+          isAvailable: floorPlan?.fields?.isAvailable,
+          projectName: project?.fields?.projectName,
+          projectContentfulId: savedFloorPlan.project_contentful_id,
+          floorPlanImage: convertContentfulImageToGatsbyFormat(floorPlan?.fields?.floorPlanImage?.fields),
+        };
+      })
+      .filter(responseItem => responseItem);
 
     return {
       statusCode: 200,
