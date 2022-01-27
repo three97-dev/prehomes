@@ -112,6 +112,7 @@ const SearchSection = ({
   }, [typeSort, visibleTiles]);
 
   const onForceLocationChange = ({ lat, lng }) => {
+    setZoom(15);
     setCenterPosition({ lat, lng });
   };
 
