@@ -82,6 +82,7 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange, searchForLabel 
               onMouseDown={() => {
                 navigate(link);
                 if (type === "place") {
+                  setIsSearchMenuShown(false);
                   onForceLocationChange({ lat, lng });
                 }
               }}
