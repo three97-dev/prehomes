@@ -30,8 +30,6 @@ const getAutocompletePlaces = async searchTerm => {
 
   const places = response?.data?.predictions || [];
 
-  console.log("response", response)
-
   const responses = await Promise.all(
     places.map(place =>
       mapsClient.placeDetails({

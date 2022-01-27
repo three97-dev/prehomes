@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 
 import UniversalLink from "../../utils/UniversalLink";
 
-import "./LargeTile.css";
-
 const LargeTile = ({ link, image, title, description }) => {
   return (
-    <div className="shadow-tile w-250px lg:w-349px filter drop-shadow-none mx-12px lg:px-0px my-50px lg:my-0px rounded-15px overflow-hidden">
+    <div className="w-250px lg:w-349px filter drop-shadow-tile mx-12px lg:px-0px my-50px lg:my-0px rounded-15px overflow-hidden">
       <UniversalLink link={link}>
         {image}
         <div className="text-center p-20px bg-white">
