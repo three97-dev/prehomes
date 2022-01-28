@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-const Image = ({ image, className, width, height, objectFill }) => {
+const Image = ({ image, className, width, height, objectFill, imgStyle }) => {
   if (!image) {
     return <div className={className}>missing image data</div>;
   }
@@ -18,6 +18,7 @@ const Image = ({ image, className, width, height, objectFill }) => {
     return (
       <GatsbyImage
         objectFit={objectFill && "fill"}
+        imgStyle={imgStyle}
         image={image.gatsbyImageData}
         alt={image.title}
         className={className}
@@ -28,10 +29,12 @@ const Image = ({ image, className, width, height, objectFill }) => {
 
 Image.propTypes = {
   className: PropTypes.string,
+  imgStyle: PropTypes.object,
 };
 
 Image.defaultProps = {
   className: "",
+  imgStyle: {},
 };
 
 export default Image;

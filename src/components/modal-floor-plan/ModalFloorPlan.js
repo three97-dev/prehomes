@@ -53,8 +53,8 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
     >
       <button onClick={() => onClose()} className="close-button" />
       <div className="modal-flor-plan-grid">
-        <div className="modal-flor-plan-image-area w-200px md:w-full h-200px md:h-full mx-auto md:my-15px md:ml-15px">
-          <Image image={floorPlan?.floorPlanImage} />
+        <div className="modal-flor-plan-image-area w-200px md:w-full h-200px md:h-full mx-auto md:py-15px md:pl-15px">
+          <Image image={floorPlan?.floorPlanImage} className="w-full h-full" imgStyle={{ objectFit: `contain` }} />
         </div>
         {isDesktop ? (
           <div className="modal-flor-plan-descriptions-area py-30px md+:py-70px">

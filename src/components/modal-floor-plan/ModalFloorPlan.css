@@ -127,6 +127,7 @@
 }
 .modal-flor-plan-image-area {
   grid-area: ModalImage;
+  max-height: 635px;
 }
 .modal-flor-plan-descriptions-area {
   grid-area: ModalDescriptions;

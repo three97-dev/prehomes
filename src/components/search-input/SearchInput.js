@@ -84,6 +84,7 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange, searchForLabel 
                 if (type === "place") {
                   setIsSearchMenuShown(false);
                   onForceLocationChange({ lat, lng });
+                  setSearchTerm(label);
                 }
               }}
             >

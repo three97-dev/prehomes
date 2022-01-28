@@ -47,7 +47,7 @@ const SearchPage = ({ data }) => {
         maxPriceFilterTitle="Max Price"
         minSizeFilterTitle="Min Size"
         maxSizeFilterTitle="Max Size"
-        searchForLabel="Search for"
+        searchForLabel="Search for "
         resultsLabel="Results"
         noResultsLabel="No results"
         modalTitle="Filters"
