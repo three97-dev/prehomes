@@ -134,9 +134,11 @@ const ProjectPageTemplate = ({ data }) => {
         parkingMaintenanceValue={project.parkingMaintenance}
         className="bg-transparent"
       />
-      <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
       {project.amenities ? (
-        <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
+        <>
+          <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
+          <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
+        </>
       ) : null}
       <ContactRealtorFormSection isProjectPage={true} />
       <Footer />
