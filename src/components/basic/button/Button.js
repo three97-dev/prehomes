@@ -20,11 +20,14 @@ const resolveButton = variants => {
   return resolvedCss;
 };
 
-const Button = ({ children, btnClasses, link, onClick, variants, type }) => {
+const Button = ({ children, btnClasses, link, onClick, variants, disabled, type }) => {
   const buttonClasses = classNames(
     btnClasses,
     resolveButton(variants),
-    "focus-visible:outline-none focus:outline-none"
+    "focus-visible:outline-none focus:outline-none",
+    {
+      "button-disabled": disabled
+    }
   );
 
   if (link) {
@@ -36,7 +39,7 @@ const Button = ({ children, btnClasses, link, onClick, variants, type }) => {
   }
 
   return (
-    <button type={type ? type : "button"} onClick={onClick} className={buttonClasses}>
+    <button type={type ? type : "button"} disabled={disabled} onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );
@@ -47,11 +50,13 @@ Button.propTypes = {
   link: PropTypes.string,
   variants: PropTypes.oneOf(["black_gradient", "beige_gradient", "dark_orange"]),
   btnClasses: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   onClick: () => {},
   btnClasses: "",
+  disabled: false,
 };
 
 export default Button;

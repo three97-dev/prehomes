@@ -10,10 +10,10 @@ import {
   ExploreTheArea,
   TextSection,
   NeighborhoodMap,
-  FormWithSelects,
   FloorPlans,
   HeroSectionSlider,
   Footer,
+  ContactRealtorFormSection,
 } from "../components";
 
 import { options } from "../utils/filterOptions";
@@ -138,29 +138,7 @@ const ProjectPageTemplate = ({ data }) => {
       {project.amenities ? (
         <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
       ) : null}
-      {/* <FormWithSelects
-        title="Looking for a Condo?"
-        content="Fill out the form below and provide some details about your search and we’ll assign someone to help out."
-        firstNameInputLabel="First Name"
-        firstNameInputPlaceholder="Placeholder Text"
-        lastNameInputLabel="Last Name"
-        lastNameInputPlaceholder="Placeholder Text"
-        emailInputLabel="Email Address"
-        emailInputPlaceholder="Placeholder Text"
-        phoneInputLabel="Phone Number"
-        phoneInputPlaceholder="Placeholder Text"
-        dropdownRealtorLabel="Are you a realtor?"
-        dropdownRealtorPlaceholder="Placeholder Text"
-        dropdownRealtorOptions={options}
-        dropdownPurchaseLabel="Type of  purchase?"
-        dropdownPurchasePlaceholder="Placeholder Text"
-        dropdownPurchaseOptions={options}
-        dropdowHearAboutUsLabel="Where did you hear about us?"
-        dropdownHearAboutUsPlaceholder="Placeholder Text"
-        dropdowHearAboutUsOptions={options}
-        buttonLabel="Button Text"
-        className=""
-      /> */}
+      <ContactRealtorFormSection isProjectPage={true} />
       <Footer />
     </>
   );

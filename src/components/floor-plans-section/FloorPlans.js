@@ -246,6 +246,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                           width="160px"
                           height="120px"
                           image={floorPlan.floorPlanImage}
+                          imgStyle={{ objectFit: `contain` }}
                           className="w-90px md:w-130px lg:w-160px max-w-160px h-120px"
                         />
                       </td>
@@ -289,6 +290,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                           width="100px"
                           height="96px"
                           image={floorPlan.floorPlanImage}
+                          imgStyle={{ objectFit: `contain` }}
                           className="w-100px h-96px md:w-130px lg:w-full max-w-160px"
                         />
                       </td>

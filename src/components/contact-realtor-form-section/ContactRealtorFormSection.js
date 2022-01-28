@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 
 import Input from "../basic/input/Input";
 import TextArea from "../basic/text-area/TextArea";
@@ -14,7 +15,7 @@ import { submitForm } from "../../utils/submitForm";
 
 import "./ContactRealtorFormSection.css";
 
-const ContactRealtorFormSection = ({ onSubmit, className }) => {
+const ContactRealtorFormSection = ({ isProjectPage, className }) => {
   const { hubspotForm } = useStaticQuery(graphql`
     query ContactRealtorForm {
       hubspotForm(id: { eq: "bf71af5f-a12c-44a2-ab3f-07dbb53c0915" }) {
@@ -23,6 +24,9 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
     }
   `);
 
+  const { href } = useLocation();
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [showError, setShowError] = useState(null);
 
   const phoneRegExp = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
@@ -43,34 +47,36 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        let data = await submitForm(
-          hubspotForm.guid,
-          [
-            {
-              name: "firstName",
-              value: values.firstName,
-            },
-            {
-              name: "lastName",
-              value: values.lastName,
-            },
-            {
-              name: "email",
-              value: values.email,
-            },
-            {
-              name: "phone",
-              value: values.phone,
-            },
-            {
-              name: "message",
-              value: values.message,
-            },
-          ],
-          Date.now(),
-          true
-        );
-        onSubmit();
+        const payload = [
+          {
+            name: "firstName",
+            value: values.firstName,
+          },
+          {
+            name: "lastName",
+            value: values.lastName,
+          },
+          {
+            name: "email",
+            value: values.email,
+          },
+          {
+            name: "phone",
+            value: values.phone,
+          },
+          {
+            name: "message",
+            value: values.message,
+          },
+        ];
+        if (isProjectPage) {
+          payload.push({
+            name: "page_url",
+            value: href,
+          });
+        }
+        let data = await submitForm(hubspotForm.guid, payload, Date.now(), true);
+        setIsSubmitted(true);
       } catch (e) {
         console.log(`Form is not submitted: ${e.message}`, e);
         setShowError(e.message);
@@ -183,12 +189,12 @@ const ContactRealtorFormSection = ({ onSubmit, className }) => {
               {showError}
             </div>
             <Button
-              disabled={formik.isSubmitting || !formik.dirty}
+              disabled={formik.isSubmitting || !formik.dirty || isSubmitted}
               onClick={formik.handleSubmit}
               variants="dark_orange"
               btnClasses="contact-realtor-form-button-area bg-dark-orange text-white w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow"
             >
-              <div className="button-font text-white">Submit</div>
+              <div className="button-font text-white">{isSubmitted ? "Submitted" : "Submit"}</div>
             </Button>
           </form>
         </div>
