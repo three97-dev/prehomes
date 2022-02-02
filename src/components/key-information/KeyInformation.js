@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
 import Markdown from "../basic/markdown/Markdown";
+import { statusResolver } from "../../utils/translationResolvers";
 
 import "./KeyInformation.css";
-import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
-import { statusResolver } from "../../utils/translationResolvers";
 
 const KeyInformation = ({
   title,
@@ -15,8 +14,6 @@ const KeyInformation = ({
   typeValue,
   launchDateLabel,
   launchDateValue,
-  labelPriceSQFT,
-  pricePerSqft,
   estimatedOccupancyLabel,
   estimatedOccupancyValue,
   majorIntersectionLabel,
@@ -41,7 +38,6 @@ const KeyInformation = ({
   parkingMaintenanceValue,
   className,
 }) => {
-  const isDesktop = useApplyAfterWidth(768);
   const statusValueToShow = statusResolver(statusValue);
 
   return (
@@ -140,8 +136,8 @@ const KeyInformation = ({
               ? lockerMaintenanceValue.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
                 })
               : ""}
           </p>
@@ -153,8 +149,8 @@ const KeyInformation = ({
               ? maintenanceFeeValue.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
                 })
               : ""}
           </p>
@@ -192,8 +188,8 @@ const KeyInformation = ({
               ? parkingMaintenanceValue.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
                 })
               : ""}
           </p>
