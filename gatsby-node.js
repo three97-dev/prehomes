@@ -80,10 +80,16 @@ exports.sourceNodes = async args => {
     const squareFootages = getUniqueSquareFootages(floorNodes);
     const lat = project?.projectAddressMapLocation?.lat;
     const lon = project?.projectAddressMapLocation?.lon;
-    const score = {}; //await getWalkScore(lat, lon);
-    if (score?.status !== 1) {
-      console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
+    let score = {};
+    if (process.env.SKIP_WALKSCORE_API_USAGE === "true") {
+      console.log(`Skip WalkScore API call for "${project.projectName}"`);
+    } else {
+      score = await getWalkScore(lat, lon);
+      if (score?.status !== 1) {
+        console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
+      }
     }
+    
     const walkScore = score?.walkscore || 0;
     const bikeScore = score?.bike?.score || 0;
     const transitScore = score?.transit?.score || 0;
