@@ -16,8 +16,9 @@ import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 // import Seo from "../seo/Seo";
 
 const TownhousePage = ({ data }) => {
-  const newestReleasesProjects = data.newestReleasesProjects.nodes;
+  const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
+  const sellingProjects = data.sellingProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
 
@@ -69,10 +70,10 @@ const TownhousePage = ({ data }) => {
         <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px md:mt-35px mb-10px md:-mb-10px border-gray-border md:border-white-pink"></div>
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
-            mainTitle="Newest Releases"
-            helpMarkTooltip="Newest Releases Slider Tooltip"
+            mainTitle="Platinum Access"
+            helpMarkTooltip="Platinum Access Slider Tooltip"
             showHelpMark={true}
-            smallTileData={newestReleasesProjects}
+            smallTileData={platinumAccessProjects}
             bgWrapperClasses="bg-transparent"
             paddingTitleClasses="pt-40px"
             paddingSliderClasses="pt-70px"
@@ -90,21 +91,12 @@ const TownhousePage = ({ data }) => {
         <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
-            mainTitle="Newest Releases"
-            helpMarkTooltip="Newest Releases Slider Tooltip"
+            mainTitle="Selling"
+            helpMarkTooltip="Selling Slider Tooltip"
             showHelpMark={true}
-            smallTileData={newestReleasesProjects}
+            smallTileData={sellingProjects}
             bgWrapperClasses="bg-transparent"
             paddingTitleClasses="pt-95px"
-            paddingSliderClasses="pt-70px"
-          />
-          <SliderSmallTiles
-            mainTitle="Launching Soon"
-            helpMarkTooltip="Launching Soon Slider Tooltip"
-            showHelpMark={true}
-            smallTileData={launchingSoonProjects}
-            bgWrapperClasses="bg-transparent"
-            paddingTitleClasses="pt-70px"
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
@@ -120,12 +112,10 @@ export default TownhousePage;
 
 export const query = graphql`
   query {
-    newestReleasesProjects: allContentfulProject(
+    platinumAccessProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
-        fields: { 
-          projectStatus: { eq: "newest-releases" }
-        }
+        fields: { projectStatus: { eq: "platinum-access" } }
         projectType: { type: { eq: "townhouse" } }
       }
     ) {
@@ -147,10 +137,30 @@ export const query = graphql`
     launchingSoonProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
-        fields: {
-          projectStatus: { eq: "launching-soon" } 
+        fields: { projectStatus: { eq: "launching-soon" } }
+        projectType: { type: { eq: "townhouse" } }
+      }
+    ) {
+      nodes {
+        contentful_id
+        projectName
+        projectCity {
+          cityName
         }
-        projectType: { type: { eq: "townhouse" } } 
+        fields {
+          pageUrl
+          projectMinPrice
+        }
+        projectPreviewImage {
+          ...SearchImage
+        }
+      }
+    }
+    sellingProjects: allContentfulProject(
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "selling" } }
+        projectType: { type: { eq: "townhouse" } }
       }
     ) {
       nodes {

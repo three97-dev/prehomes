@@ -1,7 +1,8 @@
 const STATUSES = {
-  "sold-out": "Sold out",
-  "newest-releases": "Newest releases",
+  "platinum-access": "Platinum Access",
   "launching-soon": "Launching soon",
+  planning: "Planning",
+  selling: "Selling",
 };
 
 export const statusResolver = status => {

@@ -1,6 +1,5 @@
 require("dotenv").config();
 const path = require("path");
-const { DateTime } = require("luxon");
 const axios = require("axios");
 
 const projectTemplate = path.resolve("./src/templates/project.js");
@@ -11,6 +10,7 @@ const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/util
 const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSquareFoot");
 const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft");
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
+const { resolveStatus } = require("./src/utils/resolveStatus");
 
 const getUniquePrices = projectFloors => {
   if (!projectFloors || projectFloors.length === 0) {
@@ -70,9 +70,7 @@ exports.sourceNodes = async args => {
 
   const projects = getNodesByType("ContentfulProject");
   for (const project of projects) {
-    const floorNodes = project.projectFloorPlans___NODE
-      ? project.projectFloorPlans___NODE.map(id => getNode(id))
-      : [];
+    const floorNodes = project.projectFloorPlans___NODE ? project.projectFloorPlans___NODE.map(id => getNode(id)) : [];
     const prices = getUniquePrices(floorNodes);
     const projectMinPrice = prices.length > 0 ? prices[0] : 0;
     const projectMaxPrice = prices.length > 0 ? prices[prices.length - 1] : 0;
@@ -82,7 +80,7 @@ exports.sourceNodes = async args => {
     const squareFootages = getUniqueSquareFootages(floorNodes);
     const lat = project?.projectAddressMapLocation?.lat;
     const lon = project?.projectAddressMapLocation?.lon;
-    const score = await getWalkScore(lat, lon);
+    const score = {}; //await getWalkScore(lat, lon);
     if (score?.status !== 1) {
       console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
     }
@@ -90,18 +88,7 @@ exports.sourceNodes = async args => {
     const bikeScore = score?.bike?.score || 0;
     const transitScore = score?.transit?.score || 0;
 
-    let status;
-    if (project.isSoldOut) {
-      status = "sold-out";
-    } else {
-      const launchDate = DateTime.fromISO(project.launchDate);
-      const soonThreshold = DateTime.now().plus({ month: 6 });
-      if (launchDate < soonThreshold) {
-        status = "newest-releases";
-      } else {
-        status = "launching-soon";
-      }
-    }
+    let status = resolveStatus(project.launchDate);
 
     createNodeField({
       node: project,

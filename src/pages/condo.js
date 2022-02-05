@@ -16,8 +16,9 @@ import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 // import Seo from "../seo/Seo";
 
 const CondoPage = ({ data }) => {
-  const newestReleasesProjects = data.newestReleasesProjects.nodes;
+  const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
+  const sellingProjects = data.sellingProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
 
@@ -71,10 +72,10 @@ const CondoPage = ({ data }) => {
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle="Newest Releases"
-            helpMarkTooltip="Newest Releases Slider Tooltip"
+            mainTitle="Platinum Access"
+            helpMarkTooltip="Platinum Access Slider Tooltip"
             showHelpMark={true}
-            smallTileData={newestReleasesProjects}
+            smallTileData={platinumAccessProjects}
             bgWrapperClasses="bg-transparent"
             paddingTitleClasses="pt-40px"
             paddingSliderClasses="pt-70px"
@@ -94,22 +95,12 @@ const CondoPage = ({ data }) => {
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
-            mainTitle="Newest Releases"
-            helpMarkTooltip="Newest Releases Slider Tooltip"
+            mainTitle="Selling"
+            helpMarkTooltip="Selling Slider Tooltip"
             showHelpMark={true}
-            smallTileData={newestReleasesProjects}
+            smallTileData={sellingProjects}
             bgWrapperClasses="bg-transparent"
             paddingTitleClasses="pt-95px"
-            paddingSliderClasses="pt-70px"
-          />
-          <SliderSmallTiles
-            arrowsColor="black-gray-2"
-            mainTitle="Launching Soon"
-            helpMarkTooltip="Launching Soon Slider Tooltip"
-            showHelpMark={true}
-            smallTileData={launchingSoonProjects}
-            bgWrapperClasses="bg-transparent"
-            paddingTitleClasses="pt-70px"
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
@@ -125,10 +116,10 @@ export default CondoPage;
 
 export const query = graphql`
   query {
-    newestReleasesProjects: allContentfulProject(
+    platinumAccessProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "newest-releases" } }
+        fields: { projectStatus: { eq: "platinum-access" } }
         projectType: { type: { eq: "condo" } }
       }
     ) {
@@ -151,6 +142,28 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" } }
+        projectType: { type: { eq: "condo" } }
+      }
+    ) {
+      nodes {
+        contentful_id
+        projectName
+        projectCity {
+          cityName
+        }
+        fields {
+          pageUrl
+          projectMinPrice
+        }
+        projectPreviewImage {
+          ...SearchImage
+        }
+      }
+    }
+    sellingProjects: allContentfulProject(
+      filter: {
+        isSoldOut: { eq: false }
+        fields: { projectStatus: { eq: "selling" } }
         projectType: { type: { eq: "condo" } }
       }
     ) {

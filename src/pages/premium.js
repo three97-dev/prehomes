@@ -14,9 +14,8 @@ import {
 // import Seo from "../seo/Seo";
 
 const PremiumPage = ({ data }) => {
-  const newestReleasesProjects = data.newestReleasesProjects.nodes;
+  const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
-
   return (
     <>
       {/* <Seo
@@ -53,7 +52,7 @@ const PremiumPage = ({ data }) => {
             </p>
           }
         />
-        <PrestigeAndPremiumSlider title="Spotlight Projects" projects={newestReleasesProjects} blackVariant />
+        <PrestigeAndPremiumSlider title="Platinum Access" projects={platinumAccessProjects} blackVariant />
         <PrestigeAndPremiumSlider title="Launching Soon" projects={launchingSoonProjects} blackVariant />
         {/* <PrestigeAndPremiumSlider
           title="All Prestige Properties"
@@ -71,11 +70,12 @@ export default PremiumPage;
 
 export const query = graphql`
   query {
-    newestReleasesProjects: allContentfulProject(
-      filter: { 
+    platinumAccessProjects: allContentfulProject(
+      filter: {
         isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "newest-releases" } }
-        projectCollection: { eq: "Premium" } }
+        fields: { projectStatus: { eq: "platinum-access" } }
+        projectCollection: { eq: "Premium" }
+      }
     ) {
       nodes {
         contentful_id
@@ -97,7 +97,8 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" } }
-        projectCollection: { eq: "Premium" } }
+        projectCollection: { eq: "Premium" }
+      }
     ) {
       nodes {
         contentful_id

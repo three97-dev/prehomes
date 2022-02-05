@@ -19,8 +19,9 @@ import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 const IndexPage = ({ data }) => {
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
-  const newestReleasesProjects = data.newestReleasesProjects.nodes;
+  const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
+  const sellingProjects = data.sellingProjects.nodes;
   const premiumProjects = data.premiumProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
 
@@ -85,10 +86,10 @@ const IndexPage = ({ data }) => {
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle="Spotlight Projects"
-        helpMarkTooltip="Spotlight Projects Tooltip"
+        mainTitle="Platinum Access"
+        helpMarkTooltip="Platinum Access Tooltip"
         showHelpMark={true}
-        smallTileData={newestReleasesProjects}
+        smallTileData={platinumAccessProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
@@ -96,20 +97,20 @@ const IndexPage = ({ data }) => {
       <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle="Platinum Access"
-        helpMarkTooltip="Platinum Access Tooltip"
+        mainTitle="Launching Soon"
+        helpMarkTooltip="Launching Soon Tooltip"
         showHelpMark={true}
-        smallTileData={newestReleasesProjects}
+        smallTileData={launchingSoonProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px"
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
-        mainTitle="Launching Soon"
-        helpMarkTooltip="Launching Soon Tooltip"
+        mainTitle="Special Incentives"
+        helpMarkTooltip="Special Incentives Tooltip"
         showHelpMark={true}
-        smallTileData={launchingSoonProjects}
+        smallTileData={sellingProjects}
         bgWrapperClasses="bg-light-gray mx-auto"
         paddingTitleClasses="pt-70px"
         paddingSliderClasses="pt-70px pb-50px"
@@ -161,8 +162,8 @@ export const query = graphql`
         }
       }
     }
-    newestReleasesProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "newest-releases" } } }
+    platinumAccessProjects: allContentfulProject(
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "platinum-access" } } }
     ) {
       nodes {
         contentful_id
@@ -181,6 +182,24 @@ export const query = graphql`
     }
     launchingSoonProjects: allContentfulProject(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "launching-soon" } } }
+    ) {
+      nodes {
+        contentful_id
+        projectName
+        projectCity {
+          cityName
+        }
+        fields {
+          pageUrl
+          projectMinPrice
+        }
+        projectPreviewImage {
+          ...SearchImage
+        }
+      }
+    }
+    sellingProjects: allContentfulProject(
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "selling" } } }
     ) {
       nodes {
         contentful_id

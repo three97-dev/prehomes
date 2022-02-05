@@ -18,7 +18,7 @@ import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 
 const CityPageTemplate = ({ data }) => {
   const city = data.contentfulCity;
-  const newestReleasesProjects = data.newestReleasesProjects.nodes;
+  const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const condoProjects = data.condoProjects.nodes;
@@ -72,10 +72,10 @@ const CityPageTemplate = ({ data }) => {
       <div className="double-slider-small-tiles-background">
         <SliderSmallTiles
           arrowsColor="black-gray-2"
-          mainTitle="Newest Releases"
+          mainTitle="Platinum Access"
           helpMarkTooltip="Newest Releases Slider Tooltip"
           showHelpMark={true}
-          smallTileData={newestReleasesProjects}
+          smallTileData={platinumAccessProjects}
           bgWrapperClasses="bg-transparent"
           paddingTitleClasses="pt-40px"
           paddingSliderClasses="pt-70px"
@@ -146,11 +146,11 @@ export const query = graphql`
       averageDetachedPrice
       averageTownhomePrice
     }
-    newestReleasesProjects: allContentfulProject(
+    platinumAccessProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
-        fields: { projectStatus: { eq: "newest-releases" } }
+        fields: { projectStatus: { eq: "platinum-access" } }
       }
     ) {
       nodes {
