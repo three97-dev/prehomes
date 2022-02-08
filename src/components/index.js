@@ -23,6 +23,7 @@ import Header from "./header/Header";
 import HeroHome from "./hero-home/HeroHome";
 import HeroSection from "./hero-section/HeroSection";
 import HeroSectionSlider from "./hero-section-slider/HeroSectionSlider";
+import InformationPanel from "./information-panel/InformationPanel";
 import KeyInformation from "./key-information/KeyInformation";
 import LargeTile from "./large-tile/LargeTile";
 import SearchMap from "./search-map/SearchMap";
@@ -72,6 +73,7 @@ export {
   HeroHome,
   HeroSection,
   HeroSectionSlider,
+  InformationPanel,
   KeyInformation,
   LargeTile,
   SearchMap,

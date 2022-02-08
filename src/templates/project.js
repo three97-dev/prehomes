@@ -14,6 +14,7 @@ import {
   HeroSectionSlider,
   Footer,
   ContactRealtorFormSection,
+  InformationPanel,
 } from "../components";
 
 import { options } from "../utils/filterOptions";
@@ -58,6 +59,13 @@ const ProjectPageTemplate = ({ data }) => {
         isFixedHeader
         className="bg-transparent"
       />
+      {project.googleDriveLink && session.email?.includes("@thezadegangroup.com") ? (
+        <InformationPanel
+          title="Agent Information Panel"
+          subTitle="Google Drive Link"
+          buttonLink={project.googleDriveLink}
+        />
+      ) : null}
       <ProjectOverview
         title="Overview"
         address={project.projectAddress}
@@ -197,6 +205,7 @@ export const query = graphql`
         priceCityAverage
         priceNeighborhoodAverage
       }
+      googleDriveLink
       projectType {
         name
       }
