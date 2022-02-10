@@ -9,13 +9,12 @@ const mapsClient = new Client({
   },
 });
 
-exports.getNeighborhood = async (sessionToken, project) => {
+exports.getNeighborhood = async (project) => {
   const { lat, lon } = project.projectAddressMapLocation;
 
   const geocodeResp = await mapsClient.reverseGeocode({
     params: {
       latlng: [lat, lon],
-      result_type: ["neighborhood"],
     },
   });
 
@@ -30,25 +29,23 @@ exports.getNeighborhood = async (sessionToken, project) => {
     return neighborhoodName.long_name;
   }
 
-  // const placeResponse = await mapsClient.placeDetails({
-  //   params: {
-  //     fields: "address_component",
-  //     place_id: mostLikelyLocation.place_id,
-  //     sessiontoken: sessionToken,
-  //   },
-  // });
+  const localityComponent = geoPlace.find(place =>
+    place.address_components.some(part => part.types.includes("locality"))
+  );
+  if (localityComponent) {
+    const localityName = localityComponent.address_components.find(part => part.types.includes("locality"));
 
-  // placeAddressComponents = placeResponse?.data?.result?.address_components;
+    return localityName.long_name;
+  }
 
-  // const sublocalityComponent = placeAddressComponents.find(part => part.types.includes("sublocality"));
-  // if (sublocalityComponent) {
-  //   return sublocalityComponent.long_name;
-  // }
+  const sublocalityComponent = geoPlace.find(place =>
+    place.address_components.some(part => part.types.includes("sublocality"))
+  );
+  if (sublocalityComponent) {
+    const sublocalityName = sublocalityComponent.address_components.find(part => part.types.includes("sublocality"));
 
-  // const localityComponent = placeAddressComponents.find(part => part.types.includes("locality"));
-  // if (localityComponent) {
-  //   return localityComponent.long_name;
-  // }
+    return sublocalityName.long_name;
+  }
 
   return null;
 };

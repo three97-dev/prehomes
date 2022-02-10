@@ -9,14 +9,24 @@ const SearchPage = ({ data }) => {
 
   const allProjects = projects.map(project => {
     const minPrice = project.fields.prices[0] ? project.fields.prices[0].toLocaleString() : "";
-    const maxPrice = project.fields.prices[project.fields.prices.length - 1] ? project.fields.prices[project.fields.prices.length - 1].toLocaleString() : "";
+    const maxPrice = project.fields.prices[project.fields.prices.length - 1]
+      ? project.fields.prices[project.fields.prices.length - 1].toLocaleString()
+      : "";
+
+    let neighborhoodStr = project?.fields?.neighborhood;
+    const cityNameStr = project?.projectCity?.cityName || "";
+
+    if (neighborhoodStr && neighborhoodStr.toLowerCase() === cityNameStr.toLowerCase()) {
+      // do not show neighborhood with same value as city
+      neighborhoodStr = null;
+    }
 
     return {
       id: project.contentful_id,
       image: project.projectPreviewImage,
       title: project.projectName,
       city: project?.projectCity?.cityName,
-      neighborhood: project?.fields?.neighborhood,
+      neighborhood: neighborhoodStr,
       prices: project?.fields?.prices,
       price: `$${minPrice} - $${maxPrice}`,
       lat: project?.projectAddressMapLocation?.lat,
@@ -67,11 +77,7 @@ export default SearchPage;
 
 export const query = graphql`
   query {
-    allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-      }
-    ) {
+    allContentfulProject(filter: { isSoldOut: { eq: false } }) {
       nodes {
         contentful_id
         projectName

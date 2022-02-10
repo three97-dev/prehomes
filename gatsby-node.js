@@ -70,8 +70,6 @@ exports.sourceNodes = async args => {
   const { actions, getNodesByType, getNode } = args;
   const { createNodeField } = actions;
 
-  const googleMapsSessionToken = uuidv4();
-
   const projects = getNodesByType("ContentfulProject");
   for (const project of projects) {
     const floorNodes = project.projectFloorPlans___NODE ? project.projectFloorPlans___NODE.map(id => getNode(id)) : [];
@@ -100,7 +98,7 @@ exports.sourceNodes = async args => {
 
     const status = resolveStatus(project.launchDate);
 
-    const neighborhood = await getNeighborhood(googleMapsSessionToken, project);
+    const neighborhood = await getNeighborhood(project);
 
     createNodeField({
       node: project,
