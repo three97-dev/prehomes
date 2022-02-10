@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -26,10 +26,19 @@ import { DELETE_PROJECT_TRIGGER } from "../redux/actions/save-project";
 const ProjectPageTemplate = ({ data }) => {
   const project = data.contentfulProject;
 
+  const [showInfoPanel, setShowInfoPanel] = useState(false);
+
   const dispatch = useDispatch();
   const saveProject = useSelector(state => state.saveProject);
   const session = useSelector(state => state.session);
   const isFavorite = saveProject.savedProjects.some(projectId => projectId === project.contentful_id);
+
+  useEffect(() => {
+    if (session) {
+      const isAgent = session.email?.includes("@thezadegangroup.com");
+      setShowInfoPanel(isAgent);
+    }
+  }, [session]);
 
   const saveUnsaveProjectButton = useCallback(() => {
     if (isFavorite) {
@@ -59,7 +68,7 @@ const ProjectPageTemplate = ({ data }) => {
         isFixedHeader
         className="bg-transparent"
       />
-      {project.googleDriveLink && session.email?.includes("@thezadegangroup.com") ? (
+      {project.googleDriveLink && showInfoPanel ? (
         <InformationPanel
           title="Agent Information Panel"
           subTitle="Google Drive Link"
