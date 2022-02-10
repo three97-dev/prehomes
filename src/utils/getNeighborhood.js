@@ -29,15 +29,6 @@ exports.getNeighborhood = async (project) => {
     return neighborhoodName.long_name;
   }
 
-  const localityComponent = geoPlace.find(place =>
-    place.address_components.some(part => part.types.includes("locality"))
-  );
-  if (localityComponent) {
-    const localityName = localityComponent.address_components.find(part => part.types.includes("locality"));
-
-    return localityName.long_name;
-  }
-
   const sublocalityComponent = geoPlace.find(place =>
     place.address_components.some(part => part.types.includes("sublocality"))
   );
@@ -45,6 +36,15 @@ exports.getNeighborhood = async (project) => {
     const sublocalityName = sublocalityComponent.address_components.find(part => part.types.includes("sublocality"));
 
     return sublocalityName.long_name;
+  }
+
+  const localityComponent = geoPlace.find(place =>
+    place.address_components.some(part => part.types.includes("locality"))
+  );
+  if (localityComponent) {
+    const localityName = localityComponent.address_components.find(part => part.types.includes("locality"));
+
+    return localityName.long_name;
   }
 
   return null;
