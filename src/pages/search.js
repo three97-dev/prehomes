@@ -16,12 +16,12 @@ const SearchPage = ({ data }) => {
       image: project.projectPreviewImage,
       title: project.projectName,
       city: project?.projectCity?.cityName,
-      neighborhood: project?.projectNeighborhood?.neighborhoodName,
+      neighborhood: project?.fields?.neighborhood,
       prices: project?.fields?.prices,
       price: `$${minPrice} - $${maxPrice}`,
       lat: project?.projectAddressMapLocation?.lat,
       lng: project?.projectAddressMapLocation?.lon,
-      type: project.projectType.type,
+      type: project?.projectType?.type,
       maxBeds: project.fields.maxBeds,
       maxBaths: project.fields.maxBaths,
       squareFootages: project.fields.squareFootages,
@@ -78,14 +78,12 @@ export const query = graphql`
         projectCity {
           cityName
         }
-        projectNeighborhood {
-          neighborhoodName
-        }
         fields {
           maxBeds
           maxBaths
           prices
           squareFootages
+          neighborhood
         }
         projectType {
           type

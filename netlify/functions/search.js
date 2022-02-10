@@ -1,7 +1,8 @@
 const contentful = require(`contentful`);
-const { Client } = require("@googlemaps/google-maps-services-js");
+const { v4: uuidv4 } = require("uuid");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("../../src/utils/buildUrl");
+const { getAutocompletePlaces } = require("../../src/utils/getAutocompletePlaces");
 
 const contentfulConfig = {
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -10,39 +11,6 @@ const contentfulConfig = {
 };
 const contentfulClient = contentful.createClient(contentfulConfig);
 
-const mapsClient = new Client({
-  config: {
-    params: {
-      key: "AIzaSyBi76kzF9HZr3hjSUvBA45aqIJTwe-zR9g",
-    },
-    timeout: 10000, // milliseconds
-  },
-});
-
-const getAutocompletePlaces = async searchTerm => {
-  const response = await mapsClient.placeAutocomplete({
-    params: {
-      input: searchTerm,
-      types: "geocode",
-      components: ["country:ca", "country:us"],
-    },
-  });
-
-  const places = response?.data?.predictions || [];
-
-  const responses = await Promise.all(
-    places.map(place =>
-      mapsClient.placeDetails({
-        params: {
-          place_id: place.place_id,
-        },
-      })
-    )
-  );
-
-  return responses.map(response => response?.data?.result || []);
-};
-
 const searchProjectsByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "project",
@@ -50,16 +18,8 @@ const searchProjectsByName = async searchTerm => {
     "fields.projectName[match]": searchTerm,
   });
 
-  const contentfulProjectsByNeighborhood = await contentfulClient.getEntries({
-    content_type: "project",
-    "fields.isSoldOut": false,
-    "fields.projectNeighborhood.sys.contentType.sys.id": "neighborhood",
-    "fields.projectNeighborhood.fields.neighborhoodName[match]": searchTerm,
-  });
-
-  return [...(contentfulProjects?.items || []), ...(contentfulProjectsByNeighborhood?.items || [])];
+  return [...(contentfulProjects?.items || [])];
 };
-
 const searchCitiesByName = async searchTerm => {
   const contentfulProjects = await contentfulClient.getEntries({
     content_type: "city",
@@ -200,8 +160,11 @@ exports.handler = async function (event, context) {
     const data = JSON.parse(event.body);
     const searchTerm = data.searchTerm || "";
 
+    const googleMapsSessionToken = data.sessiontoken || uuidv4();
+
+
     const [places, projectMatchesByName, citiesMatchesByName, developersMatchesByName] = await Promise.all([
-      getAutocompletePlaces(searchTerm),
+      getAutocompletePlaces(googleMapsSessionToken, searchTerm),
       searchProjectsByName(searchTerm),
       searchCitiesByName(searchTerm),
       searchDevelopersByName(searchTerm),

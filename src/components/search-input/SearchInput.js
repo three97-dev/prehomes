@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { navigate } from "@reach/router";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 import ModalSearchResults from "../modal-search-results/ModalSearchResults";
 
@@ -26,11 +27,20 @@ const SearchInput = ({ searchPlaceholder, onForceLocationChange, searchForLabel 
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
+  const [gmapSessionToken, setGmapSessionToken] = useState(null);
+
+  useEffect(() => {
+    if (!gmapSessionToken) {
+      setGmapSessionToken(uuidv4());
+    }
+  }, []);
+
   useEffect(() => {
     async function fetchResults(searchTermStr) {
       try {
         const res = await axios.post("/.netlify/functions/search", {
           searchTerm: searchTermStr,
+          sessiontoken: gmapSessionToken,
         });
 
         setShortList(res.data.shortList);

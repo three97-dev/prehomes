@@ -1,6 +1,7 @@
 require("dotenv").config();
 const path = require("path");
 const axios = require("axios");
+const { v4: uuidv4 } = require("uuid");
 
 const projectTemplate = path.resolve("./src/templates/project.js");
 const cityTemplate = path.resolve("./src/templates/city.js");
@@ -11,6 +12,7 @@ const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSq
 const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft");
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 const { resolveStatus } = require("./src/utils/resolveStatus");
+const { getNeighborhood } = require("./src/utils/getNeighborhood");
 
 const getUniquePrices = projectFloors => {
   if (!projectFloors || projectFloors.length === 0) {
@@ -68,6 +70,8 @@ exports.sourceNodes = async args => {
   const { actions, getNodesByType, getNode } = args;
   const { createNodeField } = actions;
 
+  const googleMapsSessionToken = uuidv4();
+
   const projects = getNodesByType("ContentfulProject");
   for (const project of projects) {
     const floorNodes = project.projectFloorPlans___NODE ? project.projectFloorPlans___NODE.map(id => getNode(id)) : [];
@@ -89,13 +93,20 @@ exports.sourceNodes = async args => {
         console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
       }
     }
-    
+
     const walkScore = score?.walkscore || 0;
     const bikeScore = score?.bike?.score || 0;
     const transitScore = score?.transit?.score || 0;
 
-    let status = resolveStatus(project.launchDate);
+    const status = resolveStatus(project.launchDate);
 
+    const neighborhood = await getNeighborhood(googleMapsSessionToken, project);
+
+    createNodeField({
+      node: project,
+      name: "neighborhood",
+      value: neighborhood,
+    });
     createNodeField({
       node: project,
       name: "pageUrl",

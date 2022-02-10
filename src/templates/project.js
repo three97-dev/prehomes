@@ -115,7 +115,7 @@ const ProjectPageTemplate = ({ data }) => {
         labelPriceSQFT="Price per sq.ft:"
         pricePerSqft={project.fields.pricePerSqft}
         typeLabel="Type"
-        typeValue={project.projectType.name}
+        typeValue={project?.projectType?.name}
         launchDateLabel="Launch Date"
         launchDateValue={project.launchDate}
         estimatedOccupancyLabel="Occupancy"
