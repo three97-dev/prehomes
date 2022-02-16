@@ -126,6 +126,7 @@ const SliderSmallTiles = ({
                         title={item.projectName}
                         location={item.projectCity.cityName}
                         price={item.fields.projectMinPrice}
+                        specialIncentive={item.specialIncentive}
                         className="mb-75px md:mb-50px mx-auto"
                       />
                     );
