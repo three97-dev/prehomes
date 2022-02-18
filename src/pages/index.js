@@ -214,6 +214,9 @@ export const query = graphql`
         projectPreviewImage {
           ...SearchImage
         }
+        specialIncentive {
+          specialIncentiveDescription
+        }
       }
     }
     premiumProjects: allContentfulProject(filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Premium" } }) {
