@@ -28,6 +28,9 @@ exports.handler = async function (event, context) {
     });
 
     const responseData = contentfulProjects.items.map(project => {
+      const projectFloorPrices = roject?.fields?.projectFloorPlans
+        ? project?.fields?.projectFloorPlans.map(floor => floor.fields.price)
+        : [0];
       return {
         contentful_id: project?.sys?.id,
         projectName: project?.fields?.projectName,
@@ -36,7 +39,7 @@ exports.handler = async function (event, context) {
         },
         fields: {
           pageUrl: buildProjectUrl({ projectName: project?.fields?.projectName }),
-          projectMinPrice: Math.min(...project?.fields?.projectFloorPlans.map(floor => floor.fields.price)),
+          projectMinPrice: Math.min(...projectFloorPrices),
         },
         projectPreviewImage: convertContentfulImageToGatsbyFormat(project?.fields?.projectPreviewImage?.fields, {
           width: 300,

@@ -27,6 +27,7 @@ const ProjectPageTemplate = ({ data }) => {
   const project = data.contentfulProject;
 
   const [showInfoPanel, setShowInfoPanel] = useState(false);
+  const [showFullInfoPanel, setShowFullInfoPanel] = useState(false);
 
   const dispatch = useDispatch();
   const saveProject = useSelector(state => state.saveProject);
@@ -37,6 +38,13 @@ const ProjectPageTemplate = ({ data }) => {
     if (session) {
       const isAgent = session.email?.includes("@thezadegangroup.com");
       setShowInfoPanel(isAgent);
+
+      const isPrivilegeAgent =
+        session.email === "jonathan@thezadegangroup.com" ||
+        session.email === "daniel@thezadegangroup.com" ||
+        session.email === "ari@thezadegangroup.com" ||
+        session.email === "mike@thezadegangroup.com";
+      setShowFullInfoPanel(isPrivilegeAgent);
     }
   }, [session]);
 
@@ -71,8 +79,15 @@ const ProjectPageTemplate = ({ data }) => {
       {project.googleDriveLink && showInfoPanel ? (
         <InformationPanel
           title="Agent Information Panel"
-          subTitle="Google Drive Link"
-          buttonLink={project.googleDriveLink}
+          googleDriveLinkLabel="Google Drive Link"
+          googleDriveLinkValue={project.googleDriveLink}
+          salesCentreEmailLabel="Sales Centre Email"
+          salesCentreEmailValue={project.salesCentreEmail}
+          salesCentrePhoneLabel="Sales Centre Phone"
+          salesCentrePhoneValue={project.salesCentrePhone}
+          cooperatingCommissionLabel="Cooperating Commission"
+          cooperatingCommissionValue={project.cooperatingCommission}
+          showFullInfoPanel={showFullInfoPanel}
         />
       ) : null}
       <ProjectOverview
@@ -157,7 +172,14 @@ const ProjectPageTemplate = ({ data }) => {
           <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
         </>
       ) : null}
-      <ContactRealtorFormSection isProjectPage={true} />
+      <ContactRealtorFormSection
+        additionalFields={[
+          {
+            name: "project_name",
+            value: project.projectName,
+          },
+        ]}
+      />
       <Footer />
     </>
   );
@@ -215,6 +237,9 @@ export const query = graphql`
         priceNeighborhoodAverage
       }
       googleDriveLink
+      salesCentreEmail
+      salesCentrePhone
+      cooperatingCommission
       projectType {
         name
       }

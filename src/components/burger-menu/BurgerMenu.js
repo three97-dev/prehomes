@@ -32,14 +32,23 @@ const BurgerMenu = ({ modalIsOpen, onClose }) => {
   const linksWithoutDashboard = headerLinks.filter(item => item.link !== "/user-dashboard");
   const shownLinks = session.isLoggedIn ? headerLinks : linksWithoutDashboard;
 
-  const userButton = useCallback(() => {
+  const loginButton = useCallback(() => {
     if (session.isLoggedIn === false) {
       dispatch({ type: GOOGLE_LOGIN_TRIGGER });
+
+      // clean up unsuccessful favorite click (without finished login)
+      localStorage.removeItem("page");
+
       setWaitingForLoginRedirect(true);
     } else {
       navigate("/user-dashboard");
     }
   }, [session, dispatch, setWaitingForLoginRedirect]);
+
+  const logoutButton = useCallback(() => {
+    dispatch({ type: GOOGLE_LOGOUT_TRIGGER });
+    onClose();
+  }, [onClose, dispatch]);
 
   useEffect(() => {
     if (waitingForLoginRedirect && session.googleLoginUrl) {
@@ -76,7 +85,7 @@ const BurgerMenu = ({ modalIsOpen, onClose }) => {
             </React.Fragment>
           ))}
           <ListItem
-            onClick={session.isLoggedIn ? () => dispatch({ type: GOOGLE_LOGOUT_TRIGGER }) : userButton}
+            onClick={session.isLoggedIn ? logoutButton : loginButton}
             name={session.isLoggedIn ? "Logout" : "Login"}
             image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuOTE2NjcgNC43NUM3LjkxNjY3IDQuMzMwMDcgOC4wODM0OCAzLjkyNzM1IDguMzgwNDEgMy42MzA0MUM4LjY3NzM1IDMuMzMzNDggOS4wODAwNyAzLjE2NjY3IDkuNSAzLjE2NjY3QzkuOTE5OTMgMy4xNjY2NyAxMC4zMjI3IDMuMzMzNDggMTAuNjE5NiAzLjYzMDQxQzEwLjkxNjUgMy45MjczNSAxMS4wODMzIDQuMzMwMDcgMTEuMDgzMyA0Ljc1VjcuOTE2NjdIMTQuMjVWNC43NUMxNC4yNSAzLjQ5MDIyIDEzLjc0OTYgMi4yODIwNCAxMi44NTg4IDEuMzkxMjRDMTEuOTY4IDAuNTAwNDQ1IDEwLjc1OTggMCA5LjUgMEM4LjI0MDIyIDAgNy4wMzIwNCAwLjUwMDQ0NSA2LjE0MTI0IDEuMzkxMjRDNS4yNTA0NSAyLjI4MjA0IDQuNzUgMy40OTAyMiA0Ljc1IDQuNzVWNy45MTY2N0g3LjkxNjY3VjQuNzVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMTUuODMyIDkuNUgzLjE2NTM2QzIuMjkwOTEgOS41IDEuNTgyMDMgMTAuMjA4OSAxLjU4MjAzIDExLjA4MzNWMTcuNDE2N0MxLjU4MjAzIDE4LjI5MTEgMi4yOTA5MSAxOSAzLjE2NTM2IDE5SDE1LjgzMkMxNi43MDY1IDE5IDE3LjQxNTQgMTguMjkxMSAxNy40MTU0IDE3LjQxNjdWMTEuMDgzM0MxNy40MTU0IDEwLjIwODkgMTYuNzA2NSA5LjUgMTUuODMyIDkuNVoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo="
           />

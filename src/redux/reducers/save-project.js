@@ -1,5 +1,5 @@
 import * as s from "../actions/save-project";
-const initial = { isPending: false, savedProjects: [] };
+const initial = { isPending: false, isFetched: false, savedProjects: [] };
 
 export default function saveProjectReducer(state = initial, action = null) {
   switch (action.type) {
@@ -37,11 +37,15 @@ export default function saveProjectReducer(state = initial, action = null) {
 
     case s.GET_PROJECTS_SUCCESS:
       console.log(s.GET_PROJECTS_SUCCESS, action);
-      return { ...state, isPending: false, savedProjects: action.payload };
+      return { ...state, isPending: false, isFetched: true, savedProjects: action.payload };
 
     case s.GET_PROJECTS_TRIGGER:
       console.log(s.GET_PROJECTS_TRIGGER, action);
       return { ...state, isPending: true };
+
+    case s.PROJECTS_RESET_ON_LOGOUT:
+      console.log(s.PROJECTS_RESET_ON_LOGOUT, action);
+      return { ...initial };
 
     default:
       return state;

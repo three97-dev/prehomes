@@ -1,6 +1,13 @@
 import * as s from "../actions/session";
 
-const initial = { isLoggedIn: false, email: null, name: null, given_name: null, family_name: null };
+const initial = {
+  isLoggedIn: false,
+  email: null,
+  name: null,
+  given_name: null,
+  family_name: null,
+  hubspotContact: null,
+};
 const initialCopy = Object.assign({}, initial);
 
 if (typeof window !== "undefined") {
@@ -12,6 +19,7 @@ if (typeof window !== "undefined") {
     initialCopy.name = sessionParsed.name;
     initialCopy.given_name = sessionParsed.given_name;
     initialCopy.family_name = sessionParsed.family_name;
+    initialCopy.hubspotContact =  sessionParsed.hubspotContact;
     initialCopy.isLoggedIn = true;
   }
 }
