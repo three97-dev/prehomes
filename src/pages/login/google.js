@@ -15,12 +15,24 @@ const GoogleLoginPage = () => {
   const [waitingForCodeVerification, setWaitingForCodeVerification] = useState(false);
 
   useEffect(() => {
-    if (session.isLoggedIn) {
-      navigate("/user-dashboard");
-    } else if (googleLoginCode && waitingForCodeVerification === false) {
-      dispatch({ type: GOOGLE_LOGIN_VERIFY_CODE, code: googleLoginCode });
-      navigate("/user-dashboard");
-      setWaitingForCodeVerification(true);
+    const page = JSON.parse(localStorage.getItem("page"));
+
+    if (page) {
+      if (session.isLoggedIn) {
+        navigate(page.pageUrl);
+      } else if (googleLoginCode && waitingForCodeVerification === false) {
+        dispatch({ type: GOOGLE_LOGIN_VERIFY_CODE, code: googleLoginCode });
+        navigate(page.pageUrl);
+        setWaitingForCodeVerification(true);
+      }
+    } else {
+      if (session.isLoggedIn) {
+        navigate("/user-dashboard");
+      } else if (googleLoginCode && waitingForCodeVerification === false) {
+        dispatch({ type: GOOGLE_LOGIN_VERIFY_CODE, code: googleLoginCode });
+        navigate("/user-dashboard");
+        setWaitingForCodeVerification(true);
+      }
     }
   }, [googleLoginCode, dispatch, session]);
 

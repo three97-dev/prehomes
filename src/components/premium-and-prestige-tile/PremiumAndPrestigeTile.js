@@ -1,14 +1,10 @@
-import React, { useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 
 import Image from "../basic/image/Image";
-import Button from "../basic/button/Button";
 import FavoriteButton from "../favorite-button/FavoriteButton";
 import UniversalLink from "../../utils/UniversalLink";
 
-import { SAVE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
-import { DELETE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 import "./PremiumAndPrestigeTile.css";
@@ -24,37 +20,21 @@ const PremiumAndPrestigeTile = ({
   tilePrice,
   className,
 }) => {
-  const dispatch = useDispatch();
-  const saveProject = useSelector(state => state.saveProject);
-  const session = useSelector(state => state.session);
-  const isFavorite = saveProject.savedProjects.some(projectId => projectId === id);
-  const saveUnsaveProjectButton = useCallback(
-    e => {
-      e.preventDefault();
-      if (isFavorite) {
-        dispatch({ type: DELETE_PROJECT_TRIGGER, email: session.email, projectId: id });
-      } else {
-        dispatch({ type: SAVE_PROJECT_TRIGGER, email: session.email, projectId: id });
-      }
-    },
-    [isFavorite, session, dispatch]
-  );
   const isDesktop = useApplyAfterWidth(833);
+
   return (
     <div
       className={`box-shadow relative w-196px md:w-346px text-center rounded-15px overflow-hidden filter drop-shadow-none ${
         blackVariant ? "bg-white-asphalt box-shadow" : "bg-dark-green"
       } ${className}`}
     >
+      <FavoriteButton
+        buttonProjectId={id}
+        className="absolute top-13px right-11px m-6px z-10"
+      />
       <UniversalLink link={buttonLink}>
         <Image image={image} className="h-192px md:h-265px" />
-        {session && session.isLoggedIn ? (
-          <FavoriteButton
-            onClick={saveUnsaveProjectButton}
-            isFavorite={isFavorite}
-            className="absolute top-13px right-11px m-6px"
-          />
-        ) : null}
+
         <div className="pt-20px md:pt-22px pb-20px px-20px md:px-21px text-white md:text-white-pink">
           <h3 className="premium-and-prestige-tile-title flex items-center justify-center h-68px md:h-55px mb-11px md:mb-18px text-left md:text-center tracking-wide">
             {tileTitle}

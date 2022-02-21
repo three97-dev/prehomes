@@ -3,6 +3,9 @@ import { call, put, takeLatest } from "redux-saga/effects";
 
 import * as s from "../actions/session";
 
+import { PROJECTS_RESET_ON_LOGOUT } from "../actions/save-project";
+import { FLOORS_RESET_ON_LOGOUT } from "../actions/save-floor-plan";
+
 const GOOGLE_LOGIN_INIT_URL = "/.netlify/functions/googleAccount";
 const GOOGLE_LOGIN_VERIFY_URL = "/.netlify/functions/googleCallback";
 
@@ -34,6 +37,8 @@ function* sessionGoogleLoginVerify({ code }) {
 
 function* sessionLogout() {
   yield put({ type: s.GOOGLE_LOGOUT });
+  yield put({ type: PROJECTS_RESET_ON_LOGOUT });
+  yield put({ type: FLOORS_RESET_ON_LOGOUT });
 }
 
 function* sessionSaga() {

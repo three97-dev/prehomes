@@ -31,7 +31,7 @@ const ProjectOverview = ({
   const isDesktop = useApplyAfterWidth(1100);
 
   return (
-    <div className={`md+:px-20px lg:px-120px w-full lg:pt-94px lg:pb-40px ${className}`}>
+    <div className={`md+:px-20px lg:px-120px w-full md+:pt-94px lg:pb-40px ${className}`}>
       <div className="md+:grid md+:project-overview-grid mx-auto md:gap-x-62px lg+:gap-x-160px">
         <div className="md+:hidden border-t-2 border-gray-border w-full mb-40px"></div>
         <div className="project-overview-price-area px-25px lg:px-0px">

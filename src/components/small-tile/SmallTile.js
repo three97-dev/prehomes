@@ -1,14 +1,10 @@
-import React, { useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 
 import Image from "../basic/image/Image";
 import FavoriteButton from "../favorite-button/FavoriteButton";
 
 import UniversalLink from "../../utils/UniversalLink";
-
-import { SAVE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
-import { DELETE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 
 import ribbon from "../../assets/ribbon/ribbon.svg";
 
@@ -29,35 +25,20 @@ const SmallTile = ({
   subtitleClassName,
   specialIncentive,
 }) => {
-  const dispatch = useDispatch();
-  const saveProject = useSelector(state => state.saveProject);
-  const session = useSelector(state => state.session);
-  const isFavorite = saveProject.savedProjects.some(projectId => projectId === id);
-
-  const saveUnsaveProjectButton = useCallback(
-    e => {
-      e.preventDefault();
-      if (isFavorite) {
-        dispatch({ type: DELETE_PROJECT_TRIGGER, email: session.email, projectId: id });
-      } else {
-        dispatch({ type: SAVE_PROJECT_TRIGGER, email: session.email, projectId: id });
-      }
-    },
-    [isFavorite, session, dispatch]
-  );
-
   return (
     <div
-      className={`w-216px md:w-291px h-323px md:h-379px rounded-15px filter drop-shadow-tile px-10px md:px-20px ${className}`}
+      className={`relative w-216px md:w-291px h-323px md:h-379px rounded-15px filter drop-shadow-tile px-10px md:px-20px ${className}`}
     >
+      <div className="absolute z-10 top-9px md:top-13px right-17px md:right-31px">
+        <FavoriteButton
+          buttonProjectId={id}
+          className="m-6px"
+        />
+      </div>
       <UniversalLink link={link}>
         <div
-          className={`relative rounded-t-15px overflow-hidden w-196px md:w-251px h-192px md:h-246px filter drop-shadow-none ${imageClassName}`}
+          className={` rounded-t-15px overflow-hidden w-196px md:w-251px h-192px md:h-246px filter drop-shadow-none ${imageClassName}`}
         >
-          <Image image={image} className="w-full h-full object-cover" />
-          <div className="absolute top-9px md:top-13px right-7px md:right-11px">
-            <FavoriteButton onClick={saveUnsaveProjectButton} isFavorite={isFavorite} className="m-6px" />
-          </div>
           {specialIncentive && (
             <div className="ribbon-wrapper">
               <div
@@ -70,6 +51,7 @@ const SmallTile = ({
               </div>
             </div>
           )}
+          <Image image={image} className="w-full h-full object-cover" />
         </div>
         <div
           className={`rounded-b-15px pt-20px md:pt-12px pb-20px md:pb-25px px-20px ${bgColor ? bgColor : "bg-white"} ${

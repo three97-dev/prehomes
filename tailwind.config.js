@@ -38,6 +38,8 @@ module.exports = {
     },
     colors: {
       "white-gray": "#FFFBFB",
+      "light-blue": "#E9F1FF",
+      blue: "#4285F4",
       "premium-gray": "#515151",
       beige: "#E5E5E5",
       "white-pink": "#FFEEEE",
@@ -286,6 +288,7 @@ module.exports = {
       "292px": "29.2rem",
       "294px": "29.4rem",
       "295px": "29.5rem",
+      "298px": "29.8rem",
       "300px": "30rem",
       "303px": "30.3rem",
       "306px": "30.6rem",
@@ -538,6 +541,7 @@ module.exports = {
     },
     borderRadius: {
       "8px": "0.8rem",
+      "9px": "0.9rem",
       "15px": "1.5rem",
       "16px": "1.6rem",
       "24px": "2.4rem",

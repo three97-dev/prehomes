@@ -42,7 +42,9 @@ export default function saveFloorPlanReducer(state = initial, action = null) {
     case s.GET_FLOOR_PLANS_TRIGGER:
       console.log(s.GET_FLOOR_PLANS_TRIGGER, action);
       return { ...state, isPending: true };
-
+    case s.FLOORS_RESET_ON_LOGOUT: 
+      console.log(s.FLOORS_RESET_ON_LOGOUT, action);
+      return { ...initial };
     default:
       return state;
   }

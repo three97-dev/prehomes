@@ -15,7 +15,7 @@ import { submitForm } from "../../utils/submitForm";
 
 import "./ContactRealtorFormSection.css";
 
-const ContactRealtorFormSection = ({ isProjectPage, className }) => {
+const ContactRealtorFormSection = ({ additionalFields, className }) => {
   const { hubspotForm } = useStaticQuery(graphql`
     query ContactRealtorForm {
       hubspotForm(id: { eq: "bf71af5f-a12c-44a2-ab3f-07dbb53c0915" }) {
@@ -69,11 +69,8 @@ const ContactRealtorFormSection = ({ isProjectPage, className }) => {
             value: values.message,
           },
         ];
-        if (isProjectPage) {
-          payload.push({
-            name: "page_url",
-            value: href,
-          });
+        if (additionalFields) {
+          payload.push(...additionalFields);
         }
         let data = await submitForm(hubspotForm.guid, payload, Date.now(), true);
         setIsSubmitted(true);
