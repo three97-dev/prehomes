@@ -28,7 +28,7 @@ exports.handler = async function (event, context) {
     });
 
     const responseData = contentfulProjects.items.map(project => {
-      const projectFloorPrices = roject?.fields?.projectFloorPlans
+      const projectFloorPrices = project?.fields?.projectFloorPlans
         ? project?.fields?.projectFloorPlans.map(floor => floor.fields.price)
         : [0];
       return {
