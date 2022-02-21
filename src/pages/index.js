@@ -178,6 +178,9 @@ export const query = graphql`
         projectPreviewImage {
           ...SearchImage
         }
+        specialIncentive {
+          specialIncentiveDescription
+        }
       }
     }
     launchingSoonProjects: allContentfulProject(
@@ -196,6 +199,9 @@ export const query = graphql`
         projectPreviewImage {
           ...SearchImage
         }
+        specialIncentive {
+          specialIncentiveDescription
+        }
       }
     }
     sellingProjects: allContentfulProject(
@@ -213,6 +219,9 @@ export const query = graphql`
         }
         projectPreviewImage {
           ...SearchImage
+        }
+        specialIncentive {
+          specialIncentiveDescription
         }
       }
     }

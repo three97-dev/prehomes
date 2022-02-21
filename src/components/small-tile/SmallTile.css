@@ -6,6 +6,26 @@
   text-overflow: ellipsis;
 }
 
+.ribbon-wrapper {
+  @apply h-full w-full absolute top-0px left-0px flex items-center;
+}
+
+.ribbon-wrapper p {
+  line-height: 1;
+  @apply text-white font-semibold text-12px px-10px;
+}
+
+.ribbon-wrapper .ribbon {
+  height: 58px;
+  @apply w-11/12 flex items-center bg-no-repeat bg-contain md:bg-cover;
+}
+
+@media screen and (max-width: 768px) {
+  .ribbon-wrapper .ribbon {
+    height: 47px;
+  }
+}
+
 @media screen and (min-width: 834px) {
   .small-tile-title {
     -webkit-line-clamp: 2;

@@ -6,6 +6,8 @@ import FavoriteButton from "../favorite-button/FavoriteButton";
 
 import UniversalLink from "../../utils/UniversalLink";
 
+import ribbon from "../../assets/ribbon/ribbon.svg";
+
 import "./SmallTile.css";
 
 const SmallTile = ({
@@ -21,6 +23,7 @@ const SmallTile = ({
   imageClassName,
   titleClassName,
   subtitleClassName,
+  specialIncentive,
 }) => {
   return (
     <div
@@ -36,6 +39,18 @@ const SmallTile = ({
         <div
           className={` rounded-t-15px overflow-hidden w-196px md:w-251px h-192px md:h-246px filter drop-shadow-none ${imageClassName}`}
         >
+          {specialIncentive && (
+            <div className="ribbon-wrapper">
+              <div
+                className="ribbon"
+                style={{
+                  backgroundImage: `url(${ribbon})`,
+                }}
+              >
+                <p>{specialIncentive.specialIncentiveDescription}</p>
+              </div>
+            </div>
+          )}
           <Image image={image} className="w-full h-full object-cover" />
         </div>
         <div
@@ -63,6 +78,7 @@ SmallTile.propTypes = {
   textColor: PropTypes.string,
   bgColor: PropTypes.string,
   className: PropTypes.string,
+  specialIncentive: PropTypes.object,
 };
 
 SmallTile.defaultProps = {
@@ -76,6 +92,7 @@ SmallTile.defaultProps = {
   className: "",
   titleClassName: "h-69px",
   subtitleClassName: "mb-10px uppercase",
+  specialIncentive: null,
 };
 
 export default SmallTile;
