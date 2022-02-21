@@ -31,3 +31,7 @@
     -webkit-line-clamp: 2;
   }
 }
+
+.ribbon {
+  z-index: 100;
+}
