@@ -14,9 +14,9 @@ const GoogleLoginPage = () => {
   const session = useSelector(state => state.session);
   const [waitingForCodeVerification, setWaitingForCodeVerification] = useState(false);
 
-  const page = JSON.parse(localStorage.getItem("page"));
-
   useEffect(() => {
+    const page = JSON.parse(localStorage.getItem("page"));
+
     if (page) {
       if (session.isLoggedIn) {
         navigate(page.pageUrl);
@@ -34,7 +34,7 @@ const GoogleLoginPage = () => {
         setWaitingForCodeVerification(true);
       }
     }
-  }, [googleLoginCode, dispatch, session, page]);
+  }, [googleLoginCode, dispatch, session]);
 
   return <>Loading...</>;
 };
