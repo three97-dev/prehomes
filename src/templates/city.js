@@ -46,16 +46,26 @@ const CityPageTemplate = ({ data }) => {
       <div className="md+:hidden border-t-2 border-gray-border w-full mt-15px mb-30px"></div>
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
         <TextMapSection
-          title={`About ${city.cityName}`}
-          content={city.overviewText}
+          title={`Why invest In ${city.cityName}`}
+          content={city.additionalDescription}
           mapZoom={9}
           centerPosition={city.cityLocation}
           className="pb-50px md:pb-0px"
           textSectionStyle="pt-20px"
         />
         <TextSection
-          title={`Why invest In ${city.cityName}`}
-          content={city.additionalDescription}
+          title={`Things To Do In ${city.cityName}`}
+          content={city.thingsToDo}
+          className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
+        />
+        <TextSection
+          title={`Education & Employment In ${city.cityName}`}
+          content={city.educationEmployment}
+          className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
+        />
+        <TextSection
+          title={`Transit & Connectivity In ${city.cityName}`}
+          content={city.transitConnectivity}
           className="mt-0px md+:mt-100px px-25px lg:px-0px md+:pb-0px"
         />
         <ThreeStatsSection
@@ -140,6 +150,15 @@ export const query = graphql`
         lon
       }
       additionalDescription {
+        raw
+      }
+      thingsToDo {
+        raw
+      }
+      educationEmployment {
+        raw
+      }
+      transitConnectivity {
         raw
       }
       averageCondoPrice
