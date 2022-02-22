@@ -49,6 +49,8 @@ import TextSection from "./text-section/TextSection";
 import ThreeStatsSection from "./three-stats-section/ThreeStatsSection";
 import ViewByLinks from "./view-by-links/ViewByLinks";
 import ViewLargeTilesSection from "./view-large-tiles-section/ViewLargeTilesSection";
+import CitiesSection from "./cities-section/CitiesSection";
+import City from "./city/City";
 
 export {
   Button,
@@ -99,4 +101,6 @@ export {
   ThreeStatsSection,
   ViewByLinks,
   ViewLargeTilesSection,
+  CitiesSection,
+  City,
 };
