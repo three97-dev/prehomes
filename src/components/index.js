@@ -51,6 +51,7 @@ import ViewByLinks from "./view-by-links/ViewByLinks";
 import ViewLargeTilesSection from "./view-large-tiles-section/ViewLargeTilesSection";
 import CitiesSection from "./cities-section/CitiesSection";
 import HorizontalCard from "./horizontal-card/HorizontalCard";
+import DevelopersSection from "./developers-section/DevelopersSection";
 
 export {
   Button,
@@ -103,4 +104,5 @@ export {
   ViewLargeTilesSection,
   CitiesSection,
   HorizontalCard,
+  DevelopersSection,
 };
