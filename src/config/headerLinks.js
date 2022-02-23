@@ -7,6 +7,16 @@ const headerLinks = [
     image: search,
   },
   {
+    link: "/cities",
+    name: "Cities",
+    image: search,
+  },
+  {
+    link: "/developers",
+    name: "Developers",
+    image: search,
+  },
+  {
     link: "/user-dashboard",
     name: "Favourites",
     image: favorite,
