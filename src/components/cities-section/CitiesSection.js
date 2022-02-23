@@ -6,7 +6,7 @@ import searchImage from "../../assets/search.svg";
 
 import TextSection from "../text-section/TextSection";
 import Input from "../basic/input/Input";
-import City from "../city/City";
+import HorizontalCard from "../horizontal-card/HorizontalCard";
 import Paginator from "../paginator/Paginator";
 
 const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
@@ -63,7 +63,12 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
         {currentItems.length > 0 ? (
           <div className="flex justify-between flex-wrap">
             {currentItems.map(city => (
-              <City city={city} key={city.contentful_id} />
+              <HorizontalCard
+                pageUrl={city.fields.pageUrl}
+                title={city.cityName}
+                image={city.cityImages[0]}
+                key={city.contentful_id}
+              />
             ))}
           </div>
         ) : (

@@ -50,7 +50,7 @@ import ThreeStatsSection from "./three-stats-section/ThreeStatsSection";
 import ViewByLinks from "./view-by-links/ViewByLinks";
 import ViewLargeTilesSection from "./view-large-tiles-section/ViewLargeTilesSection";
 import CitiesSection from "./cities-section/CitiesSection";
-import City from "./city/City";
+import HorizontalCard from "./horizontal-card/HorizontalCard";
 
 export {
   Button,
@@ -102,5 +102,5 @@ export {
   ViewByLinks,
   ViewLargeTilesSection,
   CitiesSection,
-  City,
+  HorizontalCard,
 };
