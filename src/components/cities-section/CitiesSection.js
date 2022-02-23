@@ -16,16 +16,19 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
   const itemsPerPage = 8;
 
   const pageCount = useMemo(() => {
-    const newPageCount = Math.ceil(searchTerm.length / itemsPerPage);
+    const newPageCount = Math.ceil(filteredCities.length / itemsPerPage);
     return newPageCount;
-  }, [searchTerm, itemsPerPage]);
+  }, [filteredCities, itemsPerPage]);
 
   const handlePageClick = useCallback(
     event => {
-      const newOffset = (event.selected * itemsPerPage) % searchTerm.length;
+      console.log(event.selected);
+      console.log(itemsPerPage);
+      console.log(filteredCities.length);
+      const newOffset = (event.selected * itemsPerPage) % filteredCities.length;
       setPageOffset(newOffset);
     },
-    [itemsPerPage, setPageOffset]
+    [itemsPerPage, setPageOffset, filteredCities]
   );
 
   const currentItems = useMemo(() => {

@@ -17,9 +17,7 @@ const Paginator = ({ pageCount, handlePageClick }) => {
           isDesktop ? (
             <SliderArrow color="#212121" />
           ) : (
-            <button className="w-80px text-center link-font text-dark-green prev-next-button-outline">
-              Prev
-            </button>
+            <button className="w-80px text-center link-font text-dark-green prev-next-button-outline">Prev</button>
           )
         }
         nextLabel={
@@ -35,7 +33,7 @@ const Paginator = ({ pageCount, handlePageClick }) => {
         pageCount={pageCount}
         className={`paginate-block flex justify-center items-center relative`} //style of all paginate block
         pageClassName="link-font text-black pr-9px" //style of all paginate numbers
-        activeClassName="font-bold" //style of active number
+        activeClassName="active-page" //style of active number
         previousClassName={isDesktop ? "absolute left-142px" : "absolute left-35px"}
         nextClassName={isDesktop ? "absolute right-142px" : "absolute right-35px"}
       />
