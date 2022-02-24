@@ -8,6 +8,10 @@
   border-bottom: 1px solid #c4c4c4;
 }
 
+.active-page {
+  @apply font-bold !important;
+}
+
 .paginate-block a:focus,
 .prev-next-button-outline:focus {
   outline: none;

@@ -1,0 +1,36 @@
+.horizontal-card-wrapper {
+  width: 49%;
+}
+
+.horizontal-card-wrapper .stat-value {
+  @apply text-black-gray;
+}
+
+.horizontal-card-wrapper .stat-title {
+  @apply font-normal text-dark-green;
+}
+
+.horizontal-card-wrapper .stat-container {
+  @apply flex space-x-10px;
+}
+
+.horizontal-card-wrapper .horizontal-card-name {
+  @apply md:mb-20px mb-10px;
+}
+
+@media screen and (max-width: 768px) {
+  .horizontal-card-wrapper .stat-title,
+  .horizontal-card-wrapper .stat-value {
+    @apply text-11px;
+  }
+
+  .horizontal-card-wrapper .horizontal-card-name {
+    @apply text-18px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .horizontal-card-wrapper {
+    width: 100%;
+  }
+}
