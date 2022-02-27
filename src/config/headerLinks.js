@@ -1,5 +1,8 @@
 import search from "../assets/search.svg";
 import favorite from "../assets/button/favorite-black.svg";
+import developer from "../assets/hero/developer-icon.svg";
+import city from "../assets/hero/city-icon.svg";
+
 const headerLinks = [
   {
     link: "/search",
@@ -9,12 +12,12 @@ const headerLinks = [
   {
     link: "/cities",
     name: "Cities",
-    image: search,
+    image: city,
   },
   {
     link: "/developers",
     name: "Developers",
-    image: search,
+    image: developer,
   },
   {
     link: "/user-dashboard",
