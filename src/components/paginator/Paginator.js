@@ -9,7 +9,6 @@ import "./Paginator.css";
 
 const Paginator = ({ pageCount, handlePageClick }) => {
   const isDesktop = useIsDesktop();
-  console.log(isDesktop);
   return (
     <div>
       <ReactPaginate
@@ -31,6 +30,7 @@ const Paginator = ({ pageCount, handlePageClick }) => {
         }
         onPageChange={handlePageClick}
         pageCount={pageCount}
+        breakClassName="mr-10px"
         className={`paginate-block flex justify-center items-center relative`} //style of all paginate block
         pageClassName="link-font text-black pr-9px" //style of all paginate numbers
         activeClassName="active-page" //style of active number

@@ -9,35 +9,37 @@ import Input from "../basic/input/Input";
 import HorizontalCard from "../horizontal-card/HorizontalCard";
 import Paginator from "../paginator/Paginator";
 
-const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
-  const [filteredCities, setFilteredCities] = useState(cities);
+const DevelopersSection = ({ title, showHelpMark, helpMarkTooltip, developers }) => {
+  const [filteredDevelopers, setFilteredDevelopers] = useState(developers);
   const [pageOffset, setPageOffset] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const itemsPerPage = 8;
 
   const pageCount = useMemo(() => {
-    const newPageCount = Math.ceil(filteredCities.length / itemsPerPage);
+    const newPageCount = Math.ceil(filteredDevelopers.length / itemsPerPage);
     return newPageCount;
-  }, [filteredCities, itemsPerPage]);
+  }, [filteredDevelopers, itemsPerPage]);
 
   const handlePageClick = useCallback(
     event => {
-      const newOffset = (event.selected * itemsPerPage) % filteredCities.length;
+      const newOffset = (event.selected * itemsPerPage) % filteredDevelopers.length;
       setPageOffset(newOffset);
     },
-    [itemsPerPage, setPageOffset, filteredCities]
+    [itemsPerPage, setPageOffset, filteredDevelopers]
   );
 
   const currentItems = useMemo(() => {
-    const newCurrentItems = filteredCities.slice(pageOffset, pageOffset + itemsPerPage);
+    const newCurrentItems = filteredDevelopers.slice(pageOffset, pageOffset + itemsPerPage);
     return newCurrentItems;
-  }, [filteredCities, itemsPerPage, pageOffset]);
+  }, [filteredDevelopers, itemsPerPage, pageOffset]);
 
   useEffect(() => {
     if (searchTerm) {
-      setFilteredCities(cities.filter(city => city.cityName.toLowerCase().includes(searchTerm.toLowerCase())));
+      setFilteredDevelopers(
+        developers.filter(developer => developer.developerName.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
     } else {
-      setFilteredCities(cities);
+      setFilteredDevelopers(developers);
     }
   }, [searchTerm]);
 
@@ -53,7 +55,7 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
           <Input
             value={searchTerm}
             type="text"
-            placeholder="Search for City"
+            placeholder="Search for Developer"
             placeholderColor="placeholder-dark-orange"
             onChange={e => setSearchTerm(e.target.value)}
           />
@@ -62,37 +64,38 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
       <div className="mt-60px">
         {currentItems.length > 0 ? (
           <div className="flex justify-between flex-wrap">
-            {currentItems.map(city => (
+            {currentItems.map(developer => (
               <HorizontalCard
-                pageUrl={city.fields.pageUrl}
-                title={city.cityName}
-                image={city.cityImages[0]}
-                key={city.contentful_id}
-                isCity
+                pageUrl={developer.fields.pageUrl}
+                title={developer.developerName}
+                image={developer.developerPreviewImage}
+                key={developer.contentful_id}
               />
             ))}
           </div>
         ) : (
-          <p className="text-center">No cities found.</p>
+          <p className="text-center">No developers found.</p>
         )}
-        {filteredCities.length > itemsPerPage && <Paginator pageCount={pageCount} handlePageClick={handlePageClick} />}
+        {filteredDevelopers.length > itemsPerPage && (
+          <Paginator pageCount={pageCount} handlePageClick={handlePageClick} />
+        )}
       </div>
     </div>
   );
 };
 
-CitiesSection.propTypes = {
+DevelopersSection.propTypes = {
   title: PropTypes.string,
   showHelpMark: PropTypes.bool,
   helpMarkTooltip: PropTypes.string,
-  cities: PropTypes.array,
+  developers: PropTypes.array,
 };
 
-CitiesSection.defaultProps = {
+DevelopersSection.defaultProps = {
   title: "",
   helpMarkTooltip: "",
   showHelpMark: false,
-  cities: [],
+  developers: [],
 };
 
-export default CitiesSection;
+export default DevelopersSection;
