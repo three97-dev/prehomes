@@ -35,6 +35,7 @@ const BurgerMenu = ({ modalIsOpen, onClose }) => {
   const loginButton = useCallback(() => {
     if (session.isLoggedIn === false) {
       dispatch({ type: GOOGLE_LOGIN_TRIGGER });
+      localStorage.setItem("greeting", JSON.stringify({ isShownModal: true }));
 
       // clean up unsuccessful favorite click (without finished login)
       localStorage.removeItem("page");

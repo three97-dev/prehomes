@@ -10,7 +10,42 @@ import { submitForm } from "../../utils/submitForm";
 
 import "./ModalCongratulations.css";
 
-const ModalCongratulations = ({ modalIsOpen, onClose }) => {
+const ContentModalFavoriteButton = () => {
+  return (
+    <div>
+      <p className="text-black-gray mt-20px modal-form-text">
+        We’re so happy to have you onboard.{" "}
+        <span className="font-bold"> We’ve just added your first project to your personalized list.</span> You can
+        access the list below, or through the menu button.
+      </p>
+      <p className="text-black-gray mt-24px modal-form-text">
+        Last but not least, we’d like to offer you the opportunity to opt-in to email updates. We’re not careless about
+        outbound emails, we just want to let you know whats important for you as it relates to your favourites, and
+        upcoming projects you might be interested in.
+      </p>
+    </div>
+  );
+};
+
+const ContentModalUserDashboard = () => {
+  return (
+    <div>
+      <p className="text-black-gray mt-20px modal-form-text">
+        <span className="font-bold">
+          This is where you will find all of the projects and floor plans you’ve liked throughout your journey.
+        </span>
+        This dashboard is a quick way to view your favourtes and stay updated.
+      </p>
+      <p className="text-black-gray mt-24px modal-form-text">
+        Last but not least, we’d like to offer you the opportunity to opt-in to email updates. We’re not careless about
+        outbound emails, we just want to let you know whats important for you as it relates to your favourites, and
+        upcoming projects you might be interested in.
+      </p>
+    </div>
+  );
+};
+
+const ModalCongratulations = ({ modalIsOpen, onClose, title, content }) => {
   const session = useSelector(state => state.session);
   const { hubspotForm } = useStaticQuery(graphql`
     query ModalCongratulationsForm {
@@ -44,6 +79,16 @@ const ModalCongratulations = ({ modalIsOpen, onClose }) => {
     return null;
   }
 
+  const ContentModal = () => {
+    if (content === "favorite-button") {
+      return <ContentModalFavoriteButton />;
+    } else if (content === "user-dashboard") {
+      return <ContentModalUserDashboard />;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -58,19 +103,8 @@ const ModalCongratulations = ({ modalIsOpen, onClose }) => {
     >
       <div className="modal-congratulations-container">
         <div className="modal-congratulations-content justify-items-center">
-          <h2 className="text-tundora">Congratulations. Your List Awaits</h2>
-          <div>
-            <p className="text-black-gray mt-20px modal-form-text">
-              We’re so happy to have you onboard.{" "}
-              <span className="font-bold"> We’ve just added your first project to your personalized list.</span> You can
-              access the list below, or through the menu button.
-            </p>
-            <p className="text-black-gray mt-24px modal-form-text">
-              Last but not least, we’d like to offer you the opportunity to opt-in to email updates. We’re not careless
-              about outbound emails, we just want to let you know whats important for you as it relates to your
-              favourites, and upcoming projects you might be interested in.
-            </p>
-          </div>
+          <h2 className="text-tundora">{title}</h2>
+          {ContentModal()}
           <div className="mt-45px flex w-full justify-between items-center">
             <button onClick={() => onSubmitForm()} className="cursor-pointer">
               <p className="underline">No, Thank You</p>
@@ -95,12 +129,16 @@ ModalCongratulations.propTypes = {
   modalIsOpen: PropTypes.bool,
   onClose: PropTypes.func,
   isSubmissionSuccessful: PropTypes.bool,
+  title: PropTypes.string,
+  content: PropTypes.string,
 };
 
 ModalCongratulations.defaultProps = {
   modalIsOpen: false,
   onClose: () => {},
   isSubmissionSuccessful: false,
+  title: "",
+  content: "",
 };
 
 export default ModalCongratulations;

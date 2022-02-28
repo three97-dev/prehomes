@@ -8,7 +8,6 @@ import FavoriteRed from "../../assets/tiles/favorite-red.svg";
 import ModalLogin from "../modal-login/ModalLogin";
 import ModalCongratulations from "../modal-congratulations/ModalCongratulations";
 
-
 import { SAVE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 import { DELETE_PROJECT_TRIGGER } from "../../redux/actions/save-project";
 
@@ -44,7 +43,6 @@ const FavoriteButton = ({ className, buttonProjectId }) => {
     }
   }, [session, saveProject]);
 
-
   const saveUnsaveProjectButton = useCallback(
     e => {
       e.preventDefault();
@@ -69,6 +67,8 @@ const FavoriteButton = ({ className, buttonProjectId }) => {
         onClose={() => {
           setIsModalCongratulationsOpen(false);
         }}
+        title="Congratulations. Your List Awaits"
+        content="favorite-button"
       />
       <button
         onClick={

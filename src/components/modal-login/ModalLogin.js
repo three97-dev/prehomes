@@ -26,6 +26,7 @@ const ModalLogin = ({ modalIsOpen, onClose, favoriteButtonId }) => {
           "page",
           JSON.stringify({ pageUrl: location.pathname, pageScrollPosition: window.pageYOffset, id: favoriteButtonId })
         );
+        localStorage.removeItem("greeting");
       }
     },
     [session, dispatch, setWaitingForLoginRedirect]

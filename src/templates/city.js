@@ -142,9 +142,6 @@ export const query = graphql`
         ...Image
       }
       citySubtitleText
-      overviewText {
-        raw
-      }
       cityLocation {
         lat
         lon
