@@ -2,6 +2,9 @@ require("dotenv").config();
 const path = require("path");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
+const hubspot = require("@hubspot/api-client");
+
+const hubspotClient = new hubspot.Client({ apiKey: process.env.HUBSPOT_API_KEY });
 
 const projectTemplate = path.resolve("./src/templates/project.js");
 const cityTemplate = path.resolve("./src/templates/city.js");
@@ -63,6 +66,36 @@ async function getWalkScore(lat, lon) {
     return result.data;
   } catch (err) {
     console.log("Walk Score API error:", err.message);
+  }
+}
+
+async function processHubspotProject(project) {
+  const { projectName, contentful_id } = project;
+
+  const searchResponse = await hubspotClient.crm.objects.searchApi.doSearch("PROJECT", {
+    filterGroups: [{ filters: [{ value: contentful_id, propertyName: "project_id", operator: "EQ" }] }],
+    properties: ["project_id", "project_name"],
+  });
+
+  if (searchResponse.results.length > 0) {
+    const [existingObject] = searchResponse.results;
+    // update only if name changed (no other fields need synchronization for now)
+    if (existingObject.properties.project_name !== projectName) {
+      await hubspotClient.crm.objects.basicApi.update("PROJECT", existingObject.id, {
+        properties: {
+          project_name: projectName,
+        },
+      });
+      console.log(`Updated HubSpot Project for "${projectName}" (contentful_id=${contentful_id})`);
+    }
+  } else {
+    await hubspotClient.crm.objects.basicApi.create("PROJECT", {
+      properties: {
+        project_id: contentful_id,
+        project_name: projectName,
+      },
+    });
+    console.log(`Created HubSpot Project for "${projectName}" (contentful_id=${contentful_id})`);
   }
 }
 
@@ -165,6 +198,8 @@ exports.sourceNodes = async args => {
       name: "transitScore",
       value: transitScore,
     });
+
+    await processHubspotProject(project);
   }
 
   for (const project of projects) {
