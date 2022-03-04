@@ -27,21 +27,21 @@ const PrestigePage = ({ data }) => {
       /> */}
       <Header logoLink="/" variant="prestige" />
       <PremiumAndPrestigeHero
+        isBlack
         image={
           <StaticImage
-            src="../assets/prestige-page/heroImage.png"
-            alt="Prestige hero section background"
+            src="../assets/premium-page/premiumHeroImage.png"
+            alt="Premium hero section background"
             className="-z-10 w-full h-screen sm+:h-500px object-fill"
           />
         }
-        title="Penthouse"
+        title="Prestige"
         heroTopText="COLLECTIONS"
         heroContent="The capital of Ontario and the financial hub of Canada. Home to over 3M residents."
       />
-
-      <div className="bg-dark-orange bg-opacity-75 w-full pt-49px md:pt-87px">
+      <div className="bg-black-gray w-full py-50px md:pt-87px">
         <PremiumAndPrestigeText
-          title="The Penthouse Collection"
+          title="The Prestige Collection"
           textContent={
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -53,12 +53,8 @@ const PrestigePage = ({ data }) => {
           }
           prestigePage
         />
-        <PrestigeAndPremiumSlider title="Platinum Access" projects={platinumAccessProjects} />
-        <PrestigeAndPremiumSlider title="Launching Soon" projects={launchingSoonProjects} />
-        {/* <PrestigeAndPremiumSlider
-          title="All Penthouse Properties"
-          projects={tileData.sliderTileContent}
-        /> */}
+        <PrestigeAndPremiumSlider title="Platinum Access" projects={platinumAccessProjects} blackVariant />
+        <PrestigeAndPremiumSlider title="Launching Soon" projects={launchingSoonProjects} blackVariant />
       </div>
       <ContactRealtorFormSection />
       <Footer />
@@ -73,8 +69,7 @@ export const query = graphql`
     platinumAccessProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "platinum-access" } }
-        projectCollection: { eq: "Prestige" }
+        fields: { projectStatus: { eq: "platinum-access" }, projectMinPrice: { gte: 2000000 } }
       }
     ) {
       nodes {
@@ -96,8 +91,7 @@ export const query = graphql`
     launchingSoonProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "launching-soon" } }
-        projectCollection: { eq: "Prestige" }
+        fields: { projectStatus: { eq: "launching-soon" }, projectMinPrice: { gte: 2000000 } }
       }
     ) {
       nodes {
