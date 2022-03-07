@@ -55,7 +55,7 @@ const DeveloperPageTemplate = ({ data }) => {
         paddingTitleClasses="pt-50px md:pt-30px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+      <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
       <ContactRealtorFormSection />
       <Footer />
     </>
@@ -84,7 +84,7 @@ export const query = graphql`
         lon
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {
@@ -93,9 +93,7 @@ export const query = graphql`
       }
     }
     otherProjects: allContentfulProject(
-      filter: { 
-        isSoldOut: { eq: false }
-        projectDeveloper: { contentful_id: { eq: $developer_contentful_id } } }
+      filter: { isSoldOut: { eq: false }, projectDeveloper: { contentful_id: { eq: $developer_contentful_id } } }
     ) {
       nodes {
         contentful_id

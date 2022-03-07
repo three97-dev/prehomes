@@ -94,7 +94,7 @@ const IndexPage = ({ data }) => {
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
+      <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Launching Soon"
@@ -115,7 +115,7 @@ const IndexPage = ({ data }) => {
         paddingTitleClasses="pt-70px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+      <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
       <ViewLargeTilesSection
         title="Search by Property Type"
         firstTile={firstTile}
@@ -146,7 +146,7 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
@@ -154,7 +154,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {

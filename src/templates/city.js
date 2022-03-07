@@ -101,7 +101,7 @@ const CityPageTemplate = ({ data }) => {
           paddingSliderClasses="pt-70px pb-50px"
         />
       </div>
-      <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
+      <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
         mainTitle={`${city.cityName} Condo Developments`}
@@ -206,7 +206,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
