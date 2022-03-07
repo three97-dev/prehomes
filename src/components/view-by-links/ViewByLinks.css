@@ -1,6 +1,6 @@
 @layer base {
   .view-all {
-    @apply relative -top-10px text-white border-2 border-white font-semibold w-full flex justify-between p-5px items-center;
+    @apply text-white border-2 border-white font-semibold w-full flex justify-between p-5px items-center;
   }
   @variants responsive {
     .view-by-links-grid {
@@ -14,22 +14,26 @@
       -webkit-overflow-scrolling: touch; /* Important for iOS devices */
     }
 
-    .view-by-links-mobile > ul {
-      width: 50%;
-    }
-
-    .view-by-links-mobile > ul:nth-child(3),
-    .view-by-links-mobile > ul:nth-child(4) {
-      margin-top: 15px;
-    }
     .view-by-links-desktop {
       overflow-x: hidden;
       scroll-snap-type: none;
       -webkit-overflow-scrolling: auto; /* Important for iOS devices */
     }
 
+    .list {
+      @apply flex flex-wrap w-full items-center;
+    }
+
     .view-by-links-item {
       margin-bottom: 20px;
+    }
+
+    .view-by-links-items-desktop {
+      width: 25%;
+    }
+
+    .view-by-links-items-mobile {
+      width: 50%;
     }
 
     .view-all-li + li {

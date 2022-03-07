@@ -12,20 +12,26 @@ const ViewByLinks = ({ title, links, viewAllLink }) => {
           {title}
         </h2>
         <div
-          className={`view-by-links-mobile sm+:view-by-links-desktop view-by-links-hide-scroll flex flex-wrap sm+:flex-no-wrap sm+:grid grid-cols-4 border-l-0 md+:border-l md+:border-dark-orange pl-5px md+:pl-41px`}
+          className={`w-full view-by-links-mobile sm+:view-by-links-desktop view-by-links-hide-scroll border-l-0 md+:border-l md+:border-dark-orange pl-5px md+:pl-41px`}
         >
           {links.map((linksColumn, index) => (
-            <ul key={index} className={index === links.length - 1 ? "" : "pr-25px sm+:pr-0px"}>
+            <ul key={index} className="list">
               {linksColumn.map((link, index) =>
                 link ? (
-                  <li key={index} className="view-by-links-item">
-                    <a className="link-font text-white" href={link.url.pageUrl}>
+                  <li
+                    key={index}
+                    className="view-by-links-item sm+:view-by-links-items-desktop view-by-links-items-mobile"
+                  >
+                    <a className="link-font text-white pl-7px" href={link.url.pageUrl}>
                       {link.label}
                     </a>
                   </li>
                 ) : (
                   viewAllLink && (
-                    <li key="view-all" className="view-by-links-item w-full view-all-li">
+                    <li
+                      key="view-all"
+                      className="view-by-links-item w-full view-all-li sm+:view-by-links-items-desktop view-by-links-items-mobile"
+                    >
                       <a className="link-font view-all" href={viewAllLink}>
                         View All
                         <StaticImage src="../../assets/arrow-right/arrow-right.svg" className="h-20px w-20px" />
