@@ -45,7 +45,7 @@ export const query = graphql`
         contentful_id
         developerName
         developerPreviewImage {
-          ...Image
+          ...SearchImage
         }
         fields {
           pageUrl

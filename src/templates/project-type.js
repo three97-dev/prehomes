@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
 
 import {
   Header,
@@ -10,66 +9,58 @@ import {
   ViewByLinks,
   ContactRealtorFormSection,
   Footer,
+  Markdown,
 } from "../components";
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 // import Seo from "../seo/Seo";
 
-const TownhousePage = ({ data }) => {
+const ProjectTypePageTemplate = ({ data }) => {
+  const projectType = data.contentfulProjectType;
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
-
   return (
     <div>
-      {/* <Seo
-        seo={{
-          seoTitle: "Townhouse",
-          seoDescription: "This is where we’d write some friendly text about how we appealing a condo is to own.",
-        }}
-      /> */}
+      {/*   <Seo
+      seo={{
+        seoTitle: projectType.name,
+        seoDescription: projectType.descriptionText,
+      }}
+    />  */}
       <Header logoLink="/" />
       <HeroSection
-        image={
-          <StaticImage
-            src="../assets/hero/condo-hero-image.png"
-            alt="Condo hero section background"
-            className="-z-10 w-full h-screen md:h-500px"
-          />
-        }
-        title="Townhouse"
+        image={projectType.projectTypePreviewImage}
+        title={projectType.name}
         heroTopText="PROPERTY TYPE"
-        heroContent="This is where we’d write some friendly text about how we appealing a condo is to own."
+        heroContent={projectType.descriptionText}
         heroContentCss="footer-font md:font-normal text-black-gray"
-        isStaticImage
+        isFixedHeader
       />
       <div className="bg-white-pink md:bg-transparent">
         <div className="mx-25px lg:mx-120px pt-50px md:pt-100px mb-24px">
-          <h2 className="mb-40px">Owning a Townhouse</h2>
-          <p>
-            Toronto is Canada’s largest city, with one of the most diverse populations in the world. The structure of
-            Toronto’s population has changed over time, influencing population health status and other social outcomes,
-            and shaping the city in a dynamic fashion. Demographic information reflecting the city’s changing size and
-            composition, helps public health and other service providers prepare to respond to issues and demands
-            arising from population growth, aging, migration, and other changes.
-          </p>
+          <h2 className="mb-40px">Owning a {projectType.name}</h2>
+          <div className="mb-24px">
+            <Markdown data={projectType.aboutProjectType} />
+          </div>
         </div>
-        <div className="lg:px-120px pb-40px lg:pb-0px">
+        <div className="lg:px-120px pb-30px sm+:pb-40px lg:pb-0px">
           <ThreeStatsSection
-            statOneLabel="Average Condo Price"
-            statOneValue="$545,000"
-            statTwoLabel="Average Condo SIZE"
-            statTwoValue="716 sq.ft"
-            statThreeLabel="Acondo market trend"
-            statThreeValue="+17% yoy"
+            statOneLabel={`Average ${projectType.name} Price`}
+            statOneValue={`${projectType.averagePrice ? "$" + projectType.averagePrice.toLocaleString("en-US") : ""}`}
+            statTwoLabel={`Average ${projectType.name} SIZE`}
+            statTwoValue={`${projectType.averageSize} sq.ft`}
+            statThreeLabel={`A ${projectType.name} market trend`}
+            statThreeValue={`+${projectType.marketTrend} % yoy`}
             className="px-25px lg:0-px pb-20px md:pb-40px"
           />
         </div>
         <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px md:mt-35px mb-10px md:-mb-10px border-gray-border md:border-white-pink"></div>
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
+            arrowsColor="black-gray-2"
             mainTitle="Platinum Access"
             helpMarkTooltip="Platinum Access Slider Tooltip"
             showHelpMark={true}
@@ -79,6 +70,7 @@ const TownhousePage = ({ data }) => {
             paddingSliderClasses="pt-70px"
           />
           <SliderSmallTiles
+            arrowsColor="black-gray-2"
             mainTitle="Launching Soon"
             helpMarkTooltip="Launching Soon Slider Tooltip"
             showHelpMark={true}
@@ -91,6 +83,7 @@ const TownhousePage = ({ data }) => {
         <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
+            arrowsColor="black-gray-2"
             mainTitle="Selling"
             helpMarkTooltip="Selling Slider Tooltip"
             showHelpMark={true}
@@ -100,23 +93,36 @@ const TownhousePage = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
+        <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+        <ContactRealtorFormSection />
+        <Footer />
       </div>
-      <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
-      <ContactRealtorFormSection />
-      <Footer />
     </div>
   );
 };
 
-export default TownhousePage;
+export default ProjectTypePageTemplate;
 
 export const query = graphql`
-  query {
+  query ProjectTypeTemplate($projectType_contentful_id: String!, $projectType_name: String!) {
+    contentfulProjectType(contentful_id: { eq: $projectType_contentful_id }) {
+      name
+      descriptionText
+      averagePrice
+      averageSize
+      marketTrend
+      aboutProjectType {
+        raw
+      }
+      projectTypePreviewImage {
+        ...Image
+      }
+    }
     platinumAccessProjects: allContentfulProject(
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "platinum-access" } }
-        projectType: { type: { eq: "townhouse" } }
+        projectType: { name: { eq: $projectType_name } }
       }
     ) {
       nodes {
@@ -138,7 +144,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" } }
-        projectType: { type: { eq: "townhouse" } }
+        projectType: { name: { eq: $projectType_name } }
       }
     ) {
       nodes {
@@ -160,7 +166,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "selling" } }
-        projectType: { type: { eq: "townhouse" } }
+        projectType: { name: { eq: $projectType_name } }
       }
     ) {
       nodes {

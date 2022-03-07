@@ -218,7 +218,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { type: { eq: "condo" } }
+        projectType: { name: { eq: "Condo" } }
       }
     ) {
       nodes {
@@ -240,7 +240,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { type: { eq: "townhouse" } }
+        projectType: { name: { eq: "Townhouse" } }
       }
     ) {
       nodes {
@@ -262,7 +262,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { type: { eq: "detached" } }
+        projectType: { name: { eq: "Detached" } }
       }
     ) {
       nodes {

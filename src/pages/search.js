@@ -6,6 +6,7 @@ import { Header, SearchSection } from "../components";
 
 const SearchPage = ({ data }) => {
   const projects = data.allContentfulProject.nodes;
+  const types = data.allContentfulProjectType.nodes;
 
   const allProjects = projects.map(project => {
     const minPrice = project.fields.prices[0] ? project.fields.prices[0].toLocaleString() : "";
@@ -31,7 +32,7 @@ const SearchPage = ({ data }) => {
       price: `$${minPrice} - $${maxPrice}`,
       lat: project?.projectAddressMapLocation?.lat,
       lng: project?.projectAddressMapLocation?.lon,
-      type: project?.projectType?.type,
+      type: project?.projectType?.name,
       maxBeds: project.fields.maxBeds,
       maxBaths: project.fields.maxBaths,
       squareFootages: project.fields.squareFootages,
@@ -64,6 +65,7 @@ const SearchPage = ({ data }) => {
         clearButtonLabel="Clear"
         applyButtonLabel="Apply"
         allProjects={allProjects}
+        allTypes={types}
         newHomesForSaleLabel="New Homes for Sale"
         filtersLabel="Filters"
         mapViewLabel="Map View"
@@ -92,7 +94,7 @@ export const query = graphql`
           neighborhood
         }
         projectType {
-          type
+          name
         }
         projectPreviewImage {
           ...SearchImage
@@ -104,6 +106,11 @@ export const query = graphql`
         fields {
           pageUrl
         }
+      }
+    }
+    allContentfulProjectType {
+      nodes {
+        name
       }
     }
   }

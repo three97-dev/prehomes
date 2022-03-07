@@ -23,6 +23,7 @@ const SearchSection = ({
   resultsLabel,
   noResultsLabel,
   allProjects,
+  allTypes,
   modalTitle,
   clearButtonLabel,
   applyButtonLabel,
@@ -38,6 +39,8 @@ const SearchSection = ({
   const [mapBounds, setMapBounds] = useState(null);
   const [zoom, setZoom] = useState(null);
 
+  options.types = [options.types[0], ...allTypes.map(e => ({ value: e.name, label: e.name }))];
+
   const defaultFilters = {
     typeFilter: options.types[0],
     bedsFilter: options.beds[0],
@@ -47,14 +50,13 @@ const SearchSection = ({
     minSizeFilter: "",
     maxSizeFilter: "",
   };
-
   const [filter, setFilter] = useState(defaultFilters);
 
   const [typeSort, setTypeSort] = useState(options.sort[0]);
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(project => {
-      if (filter.typeFilter.value && filter.typeFilter.value !== project.type.toLowerCase()) return false;
+      if (filter.typeFilter.value && filter.typeFilter.value !== project.type) return false;
       if (filter.bedsFilter.value && filter.bedsFilter.value > project.maxBeds) return false;
       if (filter.bathsFilter.value && filter.bathsFilter.value > project.maxBaths) return false;
 

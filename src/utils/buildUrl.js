@@ -15,3 +15,6 @@ exports.buildCityUrl = city => {
 exports.buildDeveloperUrl = developer => {
   return `/developers/${strToUrl(developer.developerName)}`;
 };
+exports.buildProjectTypeUrl = projectType => {
+  return `/project-type/${strToUrl(projectType.name)}`;
+};
