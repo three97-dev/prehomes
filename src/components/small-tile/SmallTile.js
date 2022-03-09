@@ -30,10 +30,7 @@ const SmallTile = ({
       className={`relative w-216px md:w-291px h-323px md:h-379px rounded-15px filter drop-shadow-tile px-10px md:px-20px ${className}`}
     >
       <div className="absolute z-10 top-9px md:top-13px right-17px md:right-31px">
-        <FavoriteButton
-          buttonProjectId={id}
-          className="m-6px"
-        />
+        <FavoriteButton buttonProjectId={id} className="m-6px" />
       </div>
       <UniversalLink link={link}>
         <div
@@ -61,7 +58,7 @@ const SmallTile = ({
           <h3 className={`small-tile-title md:h-54px overflow-ellipsis overflow-hidden ${titleClassName}`}>{title}</h3>
           <div className={`eyebrow-font mb-10px mt-10px ${subtitleClassName}`}>{location}</div>
           <h4 className={`${textColor ? textColor : "text-black-gray"}`}>
-            From: ${price ? price.toLocaleString("en-US") : ""}
+            {price ? `From: \$${price.toLocaleString("en-US")}` : "Please contact"}
           </h4>
         </div>
       </UniversalLink>

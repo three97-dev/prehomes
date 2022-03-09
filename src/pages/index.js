@@ -94,16 +94,9 @@ const IndexPage = ({ data }) => {
       <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
       <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <PrestigeCollectionSliderSection
-        title="Penthouse Collection"
-        subtitle="The highest standard in construction and interior development."
-        link="/prestige"
-        linkLabel="View the collection"
-        projects={premiumProjects}
-      />
-      <PrestigeCollectionSliderSection
         title="Prestige Collection"
         subtitle="These developments standout for their attention to detail and renowned reputation."
-        link="/premium"
+        link="/prestige"
         linkLabel="View the collection"
         projects={prestigeProjects}
         blackVariant
@@ -208,25 +201,8 @@ export const query = graphql`
         }
       }
     }
-    premiumProjects: allContentfulProject(filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Premium" } }) {
-      nodes {
-        contentful_id
-        projectName
-        projectCity {
-          cityName
-        }
-        fields {
-          pageUrl
-          projectMinPrice
-        }
-        projectPreviewShortText
-        projectPreviewImage {
-          ...SearchImage
-        }
-      }
-    }
     prestigeProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Prestige" } }
+      filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
     ) {
       nodes {
         contentful_id
