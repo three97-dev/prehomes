@@ -9,7 +9,7 @@ const HorizontalCard = ({ image, title, pageUrl, isCity }) => (
     link={pageUrl}
     className="horizontal-card-wrapper flex h-105px md:h-161px mb-27px rounded-15px shadow-md border border-silver justify-between"
   >
-    <div className="w-2/5 md:w-2/6 h-full flex items-center justify-center overflow-hidden">
+    <div className="w-2/5 md:w-2/6 h-148px flex items-center justify-center overflow-hidden">
       <Image image={image} className={`horizontal-card-image rounded-l-15px ${isCity && "h-full"}`} />
     </div>
     <div className="w-3/5 md:w-4/6 p-22px">

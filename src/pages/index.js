@@ -23,20 +23,8 @@ const IndexPage = ({ data }) => {
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
   const viewLargeTiles = data.allContentfulProjectType.nodes;
-  const premiumProjects = data.premiumProjects.nodes;
-  const prestigeProjects = data.prestigeProjects.nodes;
+  const penthouseProjects = data.penthouseProjects.nodes;
 
-  const inputAutocompleteItems = [
-    {
-      label: "New York, New York, United States",
-      subtitle: "Location",
-      link: "/",
-    },
-    { label: "Lorem Ipsum", subtitle: "Location", link: "/" },
-    { label: "Lorem Ipsum", subtitle: "Location", link: "/" },
-    { label: "Lorem Ipsum", subtitle: "Architect in New York", link: "/" },
-    { label: "Lorem Ipsum", subtitle: "Developer and Builder in New York", link: "/" },
-  ];
   return (
     <>
       {/* <Seo
@@ -55,7 +43,6 @@ const IndexPage = ({ data }) => {
             className="home-hero-image absolute min-w-700px w-full -z-10 right-0px h-screen"
           />
         }
-        inputAutocompleteItems={inputAutocompleteItems}
         placeholder="Type in a city, neighborhood, or new development"
         bottomText="New to prehomes?"
         bottomTextUnderline="Watch our video."
@@ -98,7 +85,7 @@ const IndexPage = ({ data }) => {
         subtitle="The highest standard in construction and interior development."
         link="/prestige"
         linkLabel="View the collection"
-        projects={premiumProjects}
+        projects={penthouseProjects}
       />
       <ContactRealtorFormSection />
       <Footer />
@@ -200,7 +187,7 @@ export const query = graphql`
         }
       }
     }
-    prestigeProjects: allContentfulProject(
+    penthouseProjects: allContentfulProject(
       filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
     ) {
       nodes {
