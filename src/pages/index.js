@@ -155,7 +155,7 @@ export const query = graphql`
       }
     }
     sellingProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "selling" } } }
+      filter: { isSoldOut: { eq: false }, specialIncentive: { specialIncentiveDescription: { regex: "/.*/" } } }
     ) {
       nodes {
         contentful_id

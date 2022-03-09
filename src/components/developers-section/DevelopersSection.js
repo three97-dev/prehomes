@@ -69,6 +69,8 @@ const DevelopersSection = ({ title, showHelpMark, helpMarkTooltip, developers })
                 pageUrl={developer.fields.pageUrl}
                 title={developer.developerName}
                 image={developer.developerPreviewImage}
+                specialIncentives={developer.specialIncentives}
+                newListing={developer.newListing}
                 key={developer.contentful_id}
               />
             ))}
