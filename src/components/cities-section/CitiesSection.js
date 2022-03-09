@@ -67,6 +67,8 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
                 pageUrl={city.fields.pageUrl}
                 title={city.cityName}
                 image={city.cityImages[0]}
+                specialIncentives={city.specialIncentives}
+                newListing={city.newListing}
                 key={city.contentful_id}
                 isCity
               />

@@ -5,7 +5,21 @@ import { graphql } from "gatsby";
 import { Header, HeroSection, ContactRealtorFormSection, Footer, DevelopersSection } from "../components";
 
 const DeveloperPageTemplate = ({ data }) => {
-  const developers = data.developers.nodes;
+  const developers = data.developers.nodes.map(developer => {
+    if (developer.project) {
+      return {
+        ...developer,
+        specialIncentives: developer.project.filter(project => project.specialIncentive).length,
+        newListing: developer.project.filter(project => project.fields.projectStatus === "platinum-access").length,
+      };
+    }
+
+    return {
+      ...developer,
+      specialIncentives: 0,
+      newListing: 0,
+    };
+  });
   return (
     <>
       <Header />
@@ -49,6 +63,15 @@ export const query = graphql`
         }
         fields {
           pageUrl
+        }
+        project {
+          id
+          fields {
+            projectStatus
+          }
+          specialIncentive {
+            specialIncentiveDescription
+          }
         }
       }
     }
