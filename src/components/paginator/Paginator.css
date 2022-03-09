@@ -11,7 +11,10 @@
 .active-page {
   @apply font-bold !important;
 }
-
+.button-outline-none a:focus {
+  outline: none !important;
+  border: none !important;
+}
 .paginate-block a:focus,
 .prev-next-button-outline:focus {
   outline: none;

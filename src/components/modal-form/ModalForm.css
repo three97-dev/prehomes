@@ -8,6 +8,7 @@
   border-radius: 15px;
   background-color: #f0f0f1;
   margin: 0 auto;
+  outline: none !important;
 }
 
 .modal-form-overlay {

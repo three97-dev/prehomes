@@ -16,26 +16,26 @@ const Paginator = ({ pageCount, handlePageClick }) => {
           isDesktop ? (
             <SliderArrow color="#212121" />
           ) : (
-            <button className="w-80px text-center link-font text-dark-green prev-next-button-outline">Prev</button>
+            <button className="w-50px sm:w-80px text-center link-font text-dark-green prev-next-button-outline">Prev</button>
           )
         }
         nextLabel={
           isDesktop ? (
             <SliderArrow rotate={true} color="#212121" />
           ) : (
-            <button className="w-80px text-center link-font font-bold text-dark-green prev-next-button-outline">
+            <button className="w-50px sm:w-80px text-center link-font font-bold text-dark-green prev-next-button-outline cursor-pointer">
               Next
             </button>
           )
         }
         onPageChange={handlePageClick}
         pageCount={pageCount}
-        breakClassName="mr-10px"
+        breakClassName="mr-10px button-outline-none cursor-pointer"
         className={`paginate-block flex justify-center items-center relative`} //style of all paginate block
-        pageClassName="link-font text-black pr-9px" //style of all paginate numbers
+        pageClassName="link-font text-black pr-9px button-outline-none cursor-pointer" //style of all paginate numbers
         activeClassName="active-page" //style of active number
-        previousClassName={isDesktop ? "absolute left-142px" : "absolute left-35px"}
-        nextClassName={isDesktop ? "absolute right-142px" : "absolute right-35px"}
+        previousClassName={isDesktop ? "absolute left-142px button-outline-none cursor-pointer" : "absolute left-35px"}
+        nextClassName={isDesktop ? "absolute right-142px button-outline-none cursor-pointer" : "absolute right-35px"}
       />
     </div>
   );

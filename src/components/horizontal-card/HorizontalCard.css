@@ -34,3 +34,7 @@
     width: 100%;
   }
 }
+
+.horizontal-card-image {
+  z-index: -50;
+}
