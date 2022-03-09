@@ -80,7 +80,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks title="View Projects by City:" links={projectsByCityLinks} />
+        <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
@@ -93,7 +93,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+        <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
         <ContactRealtorFormSection />
         <Footer />
       </div>
@@ -184,7 +184,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 16, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
@@ -192,7 +192,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 16, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {

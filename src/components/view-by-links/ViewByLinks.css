@@ -1,4 +1,7 @@
 @layer base {
+  .view-all {
+    @apply text-white border-2 border-white font-semibold w-full flex justify-between p-5px items-center;
+  }
   @variants responsive {
     .view-by-links-grid {
       display: grid;
@@ -6,7 +9,7 @@
       column-gap: 18px;
     }
     .view-by-links-mobile {
-      overflow-x: auto;
+      overflow: hidden;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch; /* Important for iOS devices */
     }
@@ -16,23 +19,25 @@
       scroll-snap-type: none;
       -webkit-overflow-scrolling: auto; /* Important for iOS devices */
     }
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .view-by-links-hide-scroll::-webkit-scrollbar {
-      display: none;
-    }
 
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .view-by-links-hide-scroll {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
+    .list {
+      @apply flex flex-wrap w-full items-center;
     }
 
     .view-by-links-item {
       margin-bottom: 20px;
     }
 
-    .view-by-links-item:last-child {
-      margin-bottom: 0px;
+    .view-by-links-items-desktop {
+      width: 25%;
+    }
+
+    .view-by-links-items-mobile {
+      width: 50%;
+    }
+
+    .view-all-li + li {
+      margin-bottom: 0;
     }
   }
 }
