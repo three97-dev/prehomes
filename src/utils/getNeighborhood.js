@@ -12,6 +12,11 @@ const mapsClient = new Client({
 exports.getNeighborhood = async (project) => {
   const { lat, lon } = project.projectAddressMapLocation;
 
+  if (process.env.SKIP_RESOLVE_NEIGHBORHOOD) {
+    console.log(`Skip resolve Neighborhood GMAP call for "${project.projectName}"`);
+    return "UNRESOLVED";
+  }
+
   const geocodeResp = await mapsClient.reverseGeocode({
     params: {
       latlng: [lat, lon],
