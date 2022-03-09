@@ -3,9 +3,16 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { StaticImage } from "gatsby-plugin-image";
 
-import ModalCongratulations from "../components/modal-congratulations/ModalCongratulations";
+import {
+  Header,
+  HeroSection,
+  SliderSmallTiles,
+  ContactRealtorFormSection,
+  FloorPlans,
+  Footer,
+  ModalCongratulations,
+} from "../components";
 
-import { Header, HeroSection, SliderSmallTiles, ContactRealtorFormSection, FloorPlans, Footer } from "../components";
 import { options } from "../utils/filterOptions";
 
 const UserDashboardPage = () => {
@@ -39,7 +46,7 @@ const UserDashboardPage = () => {
       localStorage.removeItem("greeting");
     }
   }, [session, setFavoriteProjects, setFavoriteFloorPlans]);
-  
+
   return (
     <div>
       <ModalCongratulations

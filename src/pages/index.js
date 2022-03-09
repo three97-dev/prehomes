@@ -22,32 +22,9 @@ const IndexPage = ({ data }) => {
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
+  const viewLargeTiles = data.allContentfulProjectType.nodes;
+  const premiumProjects = data.premiumProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
-
-  const firstTile = {
-    link: "/townhouse",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Townhouse",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
-  const secondTile = {
-    link: "/condo",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Condos",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
-  const thirdTile = {
-    link: "/detached-home",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Detached Homes",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
 
   const inputAutocompleteItems = [
     {
@@ -115,12 +92,7 @@ const IndexPage = ({ data }) => {
         paddingSliderClasses="pt-70px pb-50px"
       />
       <ViewByLinks title="View Projects by Developer:" links={projectsByDeveloperLinks} />
-      <ViewLargeTilesSection
-        title="Search by Property Type"
-        firstTile={firstTile}
-        secondTile={secondTile}
-        thirdTile={thirdTile}
-      />
+      <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <PrestigeCollectionSliderSection
         title="Prestige Collection"
         subtitle="These developments standout for their attention to detail and renowned reputation."
@@ -214,6 +186,18 @@ export const query = graphql`
         }
         specialIncentive {
           specialIncentiveDescription
+        }
+      }
+    }
+    allContentfulProjectType {
+      nodes {
+        name
+        descriptionText
+        fields {
+          pageUrl
+        }
+        projectTypePreviewImage {
+          ...ProjectTypePreviewImage
         }
       }
     }
