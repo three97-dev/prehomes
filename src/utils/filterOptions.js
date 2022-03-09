@@ -1,12 +1,5 @@
 export const options = {
-  types: [
-    { value: null, label: "All" },
-    { value: "commercial", label: "Commercial" },
-    { value: "condo", label: "Condo" },
-    { value: "detached", label: "Detached" },
-    { value: "semi-detached", label: "Semi-Detached" },
-    { value: "townhome", label: "Townhome" },
-  ],
+  types: [{ value: null, label: "All" }],
   beds: [
     { value: null, label: "Any" },
     { value: 1, label: "1 +" },

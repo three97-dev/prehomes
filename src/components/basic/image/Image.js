@@ -56,6 +56,14 @@ export const query = graphql`
     title
     gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
   }
+  fragment ProjectTypePreviewImage on ContentfulAsset {
+    file {
+      url
+      contentType
+    }
+    title
+    gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 1000, quality: 100)
+  }
   fragment SEOImage on ContentfulAsset {
     file {
       url

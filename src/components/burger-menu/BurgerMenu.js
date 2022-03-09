@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { navigate } from "gatsby";
 import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
+import classNames from "classnames";
 
 import UniversalLink from "../../utils/UniversalLink";
 import headerLinks from "../../config/headerLinks";
@@ -17,8 +18,8 @@ import "./BurgerMenu.css";
 
 const ListItem = ({ name, link, image, onClick }) => {
   return (
-    <UniversalLink link={link} onClick={onClick} className="flex items-center w-full pt-27px pb-27px">
-      <img src={image} alt={name} className="ml-4px mr-38px" />
+    <UniversalLink link={link} onClick={onClick} className="grid burger-menu-item items-center pt-27px pb-27px">
+      <img src={image} alt={name} className={name === "Search" ? "ml-4px" : ""} />
       <div className="link-font text-black">{name}</div>
     </UniversalLink>
   );

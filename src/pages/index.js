@@ -22,33 +22,9 @@ const IndexPage = ({ data }) => {
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
+  const viewLargeTiles = data.allContentfulProjectType.nodes;
   const premiumProjects = data.premiumProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
-
-  const firstTile = {
-    link: "/townhouse",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Townhouse",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
-  const secondTile = {
-    link: "/condo",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Condos",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
-  const thirdTile = {
-    link: "/detached-home",
-    image: <StaticImage src="../assets/home/large-tile-section.png" alt="Tile" className="h-215px lg:h-349px" />,
-    title: "Detached Homes",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    viewAll: "View All",
-  };
 
   const inputAutocompleteItems = [
     {
@@ -116,26 +92,13 @@ const IndexPage = ({ data }) => {
         paddingSliderClasses="pt-70px pb-50px"
       />
       <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
-      <ViewLargeTilesSection
-        title="Search by Property Type"
-        firstTile={firstTile}
-        secondTile={secondTile}
-        thirdTile={thirdTile}
-      />
+      <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <PrestigeCollectionSliderSection
         title="Penthouse Collection"
         subtitle="The highest standard in construction and interior development."
         link="/prestige"
         linkLabel="View the collection"
         projects={premiumProjects}
-      />
-      <PrestigeCollectionSliderSection
-        title="Prestige Collection"
-        subtitle="These developments standout for their attention to detail and renowned reputation."
-        link="/premium"
-        linkLabel="View the collection"
-        projects={prestigeProjects}
-        blackVariant
       />
       <ContactRealtorFormSection />
       <Footer />
@@ -225,25 +188,20 @@ export const query = graphql`
         }
       }
     }
-    premiumProjects: allContentfulProject(filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Premium" } }) {
+    allContentfulProjectType {
       nodes {
-        contentful_id
-        projectName
-        projectCity {
-          cityName
-        }
+        name
+        descriptionText
         fields {
           pageUrl
-          projectMinPrice
         }
-        projectPreviewShortText
-        projectPreviewImage {
-          ...SearchImage
+        projectTypePreviewImage {
+          ...ProjectTypePreviewImage
         }
       }
     }
     prestigeProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectCollection: { eq: "Prestige" } }
+      filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
     ) {
       nodes {
         contentful_id

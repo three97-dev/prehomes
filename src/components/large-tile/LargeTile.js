@@ -1,19 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Image from "../basic/image/Image";
+
 import UniversalLink from "../../utils/UniversalLink";
 
 const LargeTile = ({ link, image, title, description }) => {
   return (
-    <div className="w-250px lg:w-349px filter drop-shadow-tile mx-12px lg:px-0px my-50px lg:my-0px rounded-15px overflow-hidden">
-      <UniversalLink link={link}>
-        {image}
-        <div className="text-center p-20px bg-white">
-          <h3 className="text-black mb-10px lg:mb-20px">{title}</h3>
-          <p className="text-black-gray">{description}</p>
-        </div>
-      </UniversalLink>
-    </div>
+    <div className="px-13px lg:px-0px pb-15px">
+      <div className="w-250px lg:w-349px filter drop-shadow-tile rounded-15px overflow-hidden mx-auto">
+        <UniversalLink link={link}>
+          <Image image={image} className="w-250px lg:w-349px h-218px lg:h-349px"/>
+          <div className="text-center p-20px bg-white">
+            <h3 className="text-black mb-10px lg:mb-20px">{title}</h3>
+            <p className="text-black-gray">{description}</p>
+          </div>
+        </UniversalLink>
+      </div>
+ </div>
   );
 };
 

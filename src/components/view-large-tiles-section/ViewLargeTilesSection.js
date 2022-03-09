@@ -1,53 +1,72 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import Slider from "react-slick";
 
 import LargeTile from "../large-tile/LargeTile";
+import SliderArrow from "../basic/slider-arrow/SliderArrow";
 
-import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
-
-const ViewLargeTilesSection = ({ title, firstTile, secondTile, thirdTile }) => {
-  const isDesktop = useApplyAfterWidth(1365);
-  const tiles = [firstTile, secondTile, thirdTile];
+const ViewLargeTilesSection = ({ title, tiles }) => {
+  const [slider, setSlider] = useState(null);
+  const [tileCount, setTileCount] = useState(0);
 
   const settings = {
-    slidesToShow: 1,
-    initialSlide: 1,
+    prevArrow: <SliderArrow classNames="small-tile-prev-arrow py-8px px-8px bg-white" />,
+    nextArrow: <SliderArrow rotate={true} classNames="small-tile-next-arrow py-8px px-8px bg-white" />,
     infinite: false,
-    arrows: false,
-    touchMove: true,
-    swipeToSlide: true,
-    centerMode: true,
-    variableWidth: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    touchMove: false,
+    onInit: useCallback(() => {
+      if (slider) {
+        setTileCount(slider.innerSlider.props.slidesToShow);
+      }
+    }, [slider, setTileCount]),
+    onReInit: useCallback(() => {
+      if (slider.innerSlider.props.slidesToShow !== tileCount) {
+        setTileCount(slider.innerSlider.props.slidesToShow);
+      }
+    }, [slider, tileCount, setTileCount]),
+    responsive: [
+      {
+        breakpoint: 833,
+        settings: {
+          slidesToShow: 1,
+          arrows: false,
+          touchMove: true,
+          swipeToSlide: true,
+          variableWidth: true,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   };
 
   const largeTiles = tiles.map((tile, index) => (
     <LargeTile
       key={index}
-      link={tile.link}
-      image={tile.image}
-      title={tile.title}
-      description={tile.description}
-      viewAll={tile.viewAll}
+      link={tile.fields.pageUrl}
+      image={tile.projectTypePreviewImage}
+      title={tile.name}
+      description={tile.descriptionText}
     />
   ));
 
   return (
-    <div className="bg-light-gray lg:px-121px">
-      {isDesktop ? (
-        <>
-          <h2 className="text-black-gray text-center pt-85px pb-60px">{title}</h2>
-          <div className="grid justify-items-center text-center grid-cols-3 gap-x-38px max-w-1126px mx-auto pb-77px">
-            {largeTiles}
-          </div>
-        </>
-      ) : (
-        <>
-          <h2 className="text-black-gray md:text-center pt-50px px-25px md:px-120px">{title}</h2>
-          <Slider className="w-full relative" {...settings}>
-            {largeTiles}
-          </Slider>
-        </>
-      )}
+    <div className="bg-light-gray md:px-90px">
+      <h2 className="text-black-gray pl-25px md:pl-35px pt-50px lg:pt-85px pb-50px lg:pb-60px">{title}</h2>
+      <Slider ref={s => setSlider(s)} {...settings} className="relative pb-43px lg:pb-50px">
+        {largeTiles}
+      </Slider>
     </div>
   );
 };

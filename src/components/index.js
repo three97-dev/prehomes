@@ -52,6 +52,7 @@ import ViewLargeTilesSection from "./view-large-tiles-section/ViewLargeTilesSect
 import CitiesSection from "./cities-section/CitiesSection";
 import HorizontalCard from "./horizontal-card/HorizontalCard";
 import DevelopersSection from "./developers-section/DevelopersSection";
+import ModalCongratulations from "./modal-congratulations/ModalCongratulations";
 
 export {
   Button,
@@ -105,4 +106,5 @@ export {
   CitiesSection,
   HorizontalCard,
   DevelopersSection,
+  ModalCongratulations,
 };

@@ -9,13 +9,22 @@ const hubspotClient = new hubspot.Client({ apiKey: process.env.HUBSPOT_API_KEY }
 const projectTemplate = path.resolve("./src/templates/project.js");
 const cityTemplate = path.resolve("./src/templates/city.js");
 const developerTemplate = path.resolve("./src/templates/developer.js");
+const projectTypeTemplate = path.resolve("./src/templates/project-type.js");
 
-const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("./src/utils/buildUrl");
+const { buildProjectUrl, buildCityUrl, buildDeveloperUrl, buildProjectTypeUrl } = require("./src/utils/buildUrl");
 const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSquareFoot");
 const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft");
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 const { resolveStatus } = require("./src/utils/resolveStatus");
 const { getNeighborhood } = require("./src/utils/getNeighborhood");
+
+async function wait(time) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+}
 
 const getUniquePrices = projectFloors => {
   if (!projectFloors || projectFloors.length === 0) {
@@ -71,6 +80,8 @@ async function getWalkScore(lat, lon) {
 
 async function processHubspotProject(project) {
   const { projectName, contentful_id } = project;
+
+  await wait(300); // wait for little bit to prevent API limit error
 
   const searchResponse = await hubspotClient.crm.objects.searchApi.doSearch("PROJECT", {
     filterGroups: [{ filters: [{ value: contentful_id, propertyName: "project_id", operator: "EQ" }] }],
@@ -256,8 +267,16 @@ exports.sourceNodes = async args => {
       value: buildDeveloperUrl(developer),
     });
   }
-};
 
+  const projectTypes = getNodesByType("ContentfulProjectType");
+  for (const projectType of projectTypes) {
+    createNodeField({
+      node: projectType,
+      name: "pageUrl",
+      value: buildProjectTypeUrl(projectType),
+    });
+  }
+};
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
@@ -287,6 +306,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
+      allContentfulProjectType {
+        nodes {
+          contentful_id
+          name
+          fields {
+            pageUrl
+          }
+        }
+      }
     }
   `);
   if (projectsData.errors) {
@@ -296,6 +324,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const projects = projectsData.data.allContentfulProject.nodes;
   const cities = projectsData.data.allContentfulCity.nodes;
   const developers = projectsData.data.allContentfulDeveloper.nodes;
+  const projectTypes = projectsData.data.allContentfulProjectType.nodes;
 
   for (const project of projects) {
     console.log(`Generating Project page: ${project.fields.pageUrl}`);
@@ -326,6 +355,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: developerTemplate,
       context: {
         developer_contentful_id: developer.contentful_id,
+      },
+    });
+  }
+
+  for (const projectType of projectTypes) {
+    console.log(`Generating Project Type page: ${projectType.fields.pageUrl}`);
+    createPage({
+      path: projectType.fields.pageUrl,
+      component: projectTypeTemplate,
+      context: {
+        projectType_contentful_id: projectType.contentful_id,
+        projectType_name: projectType.name,
       },
     });
   }
