@@ -69,6 +69,7 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
                 image={city.cityImages[0]}
                 specialIncentives={city.specialIncentives}
                 newListing={city.newListing}
+                selling={city.selling}
                 key={city.contentful_id}
                 isCity
               />

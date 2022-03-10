@@ -11,6 +11,7 @@ const CityPageTemplate = ({ data }) => {
         ...city,
         specialIncentives: city.project.filter(project => project.specialIncentive).length,
         newListing: city.project.filter(project => project.fields.projectStatus === "platinum-access").length,
+        selling: city.project.filter(project => project.fields.projectStatus === "selling").length,
       };
     }
 
