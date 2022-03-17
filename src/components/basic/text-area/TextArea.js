@@ -21,8 +21,8 @@ const TextArea = ({
   return (
     <div className={`${className}`}>
       <div className={`grid grid-flow-col pb-8px w-full`}>
-        <label htmlFor={name} className={`justify-self-start sm+:ml-20px`}>
-          <div className="field-labels-font text-black-gray">{label}</div>
+        <label htmlFor={name} className={`justify-self-start sm+:ml-8px`}>
+          <div className="text-white text-12px font-pangram font-bold">{label}</div>
         </label>
       </div>
       <textarea
@@ -36,7 +36,7 @@ const TextArea = ({
         value={value}
         className={`${
           isShadow ? "text-area-shadow" : null
-        } placeholder-font resize-none text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
+        } pangram-font text-12px resize-none text-dark-orange h-100px w-full pr-20px py-14px pl-15px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`}
       />
     </div>
   );

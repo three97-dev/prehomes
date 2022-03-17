@@ -97,13 +97,14 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div className={`w-full justify-center px-10px md:px-120px bg-whitesmoke sm+:bg-light-gray ${className}`}>
-      <div className="w-full max-w-1126px mx-auto justify-center py-10px md:pt-73px md:pb-75px">
-        <div className="bg-white pt-55px pb-22px sm+:pb-45px px-17px md:px-50px lg:px-100px rounded-15px contact-realtor-form-form-box-shadow">
-          <h2 className="text-center text-black-gray mb-15px sm+:mb-13px ml-10px">Talk to a Realtor</h2>
-          <p className="text-center text-black-gray pl-4px sm+:pl-3px mx-20px sm+:px-0px">
-            Tour homes with a Property Real Estate Agent. It’s free, there’s no commitment.
-          </p>
+    <div
+      className={`contact-container w-full justify-center px-10px md:px-120px bg-whitesmoke sm+:bg-light-gray ${className}`}
+    >
+      <div className="flex w-full max-w-1126px mx-auto justify-center py-10px md:pt-73px md:pb-75px">
+        <div className="flex-1 flex justify-center items-center">
+          <h2 className="text-47px text-white font-normal mx-40px leading-61px">Maybe it’s time for a realtor.</h2>
+        </div>
+        <div className="form-wrapper contact-realtor-form-form-box-shadow">
           <form
             onSubmit={formik.handleSubmit}
             className="grid contact-realtor-form-grid-mobile sm+:contact-realtor-form-grid w-full mt-20px sm+:mt-18px"
@@ -111,7 +112,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <Input
               id="firstName"
               name="firstName"
-              placeholderColor="placeholder-dark-orange"
+              placeholderColor="text-mild-grey"
               label="First Name"
               placeholder="Placeholder Text"
               className="contact-realtor-form-first-name-area"
@@ -126,7 +127,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <Input
               id="lastName"
               name="lastName"
-              placeholderColor="placeholder-dark-orange"
+              placeholderColor="text-mild-grey"
               label="Last Name"
               placeholder="Placeholder Text"
               className="contact-realtor-form-last-name-area"
@@ -141,7 +142,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <Input
               id="email"
               name="email"
-              placeholderColor="placeholder-dark-orange"
+              placeholderColor="text-mild-grey"
               label="Email Address"
               placeholder="Placeholder Text"
               className="contact-realtor-form-email-area"
@@ -156,7 +157,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <InputPhone
               id="phone"
               name="phone"
-              placeholderColor="placeholder-dark-orange"
+              placeholderColor="text-mild-grey"
               label="Phone Number"
               placeholder="Placeholder Text"
               className="contact-realtor-form-phone-area"
@@ -172,7 +173,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <TextArea
               id="message"
               name="message"
-              placeholderColor="placeholder-dark-orange"
+              placeholderColor="text-mild-grey"
               label="How can we help?"
               placeholder="Placeholder Text"
               className="contact-realtor-form-information-area"

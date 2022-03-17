@@ -25,8 +25,8 @@ const Input = ({
     <div className={`${className}`}>
       {label ? (
         <div className={`grid grid-flow-col w-full`}>
-          <label htmlFor={name} className={`justify-self-start sm+:ml-19px`}>
-            <h2 className="field-labels-font text-black-gray pb-8px">{label}</h2>
+          <label htmlFor={name} className={`justify-self-start sm+:ml-8px`}>
+            <h2 className="font-pangram text-12px text-white font-bold">{label}</h2>
           </label>
         </div>
       ) : null}
@@ -42,7 +42,7 @@ const Input = ({
         disabled={disabled}
         className={`${
           isShadow ? "input-shadow" : null
-        } placeholder-font text-dark-orange ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-15px ${border} focus-visible:outline-none focus:outline-none ${placeholderColor}`}
+        } font-pangram text-12px text-mild-grey ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-5px ${border} focus-visible:outline-none focus:outline-none ${placeholderColor}`}
       />
     </div>
   );

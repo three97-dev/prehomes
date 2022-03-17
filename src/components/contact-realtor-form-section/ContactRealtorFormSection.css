@@ -1,3 +1,14 @@
+.contact-container {
+  background-image: url("../../assets/contact/contact-background.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form-wrapper {
+  @apply border border-mild-purple flex-1 bg-mild-grey p-20px rounded-5px;
+}
+
 @layer base {
   @variants responsive {
     .contact-realtor-form-grid-mobile {

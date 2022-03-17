@@ -35,17 +35,10 @@ const IndexPage = ({ data }) => {
       /> */}
       <Header logoLink="/" variant="home" />
       <HeroHome
-        title="Explore new construction homes."
-        image={
-          <StaticImage
-            src="../assets/hero/home-hero-image.jpg"
-            alt="Home hero page background"
-            className="home-hero-image absolute min-w-700px w-full -z-10 right-0px h-screen"
-          />
-        }
-        placeholder="Type in a city, neighborhood, or new development"
+        title="Explore New Construction Homes."
+        placeholder="Ex: 1234 New Construction Rd, Constructionville"
         bottomText="New to prehomes?"
-        bottomTextUnderline="Watch our video."
+        bottomTextUnderline="Watch our video"
       />
       <SliderSmallTiles
         arrowsColor="dark-orange"
@@ -57,7 +50,7 @@ const IndexPage = ({ data }) => {
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
+      <ViewByLinks viewAllLink="/cities" title="City" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Launching Soon"
@@ -78,7 +71,7 @@ const IndexPage = ({ data }) => {
         paddingTitleClasses="pt-70px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+      <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
       <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <PrestigeCollectionSliderSection
         title="Penthouse Collection"
@@ -104,7 +97,11 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(
+      limit: 15
+      sort: { fields: developerName, order: ASC }
+      filter: { developerName: { regex: "/^.{3,12}$/" } }
+    ) {
       nodes {
         label: developerName
         url: fields {

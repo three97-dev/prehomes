@@ -8,7 +8,8 @@ const ViewByLinks = ({ title, links, viewAllLink }) => {
   return (
     <div className="bg-black-gray w-full pt-50px md+:pt-75px pb-40px md+:pb-71px">
       <div className={`md+:view-by-links-grid px-30px md+:px-0px md+:mx-120px`}>
-        <h2 className={`text-white border-b md+:border-b-0 border-dark-orange pb-20px md+:pb-0px mb-20px md+:mb-0px`}>
+        <h2 className="title">
+          <span className="text-mild-purple">View Projects By: </span>
           {title}
         </h2>
         <div
@@ -22,7 +23,7 @@ const ViewByLinks = ({ title, links, viewAllLink }) => {
                     key={index}
                     className="view-by-links-item sm+:view-by-links-items-desktop view-by-links-items-mobile"
                   >
-                    <a className="link-font text-white pl-7px" href={link.url.pageUrl}>
+                    <a className="link-font text-white pl-7px font-medium" href={link.url.pageUrl}>
                       {link.label}
                     </a>
                   </li>

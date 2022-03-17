@@ -80,7 +80,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
+        <ViewByLinks viewAllLink="/cities" title="City" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
@@ -93,7 +93,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+        <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
         <ContactRealtorFormSection />
         <Footer />
       </div>

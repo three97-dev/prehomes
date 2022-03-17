@@ -117,15 +117,78 @@ html body {
     url("../fonts/poppins/poppins-v15-latin-700.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-ExtraLight.otf") format("otf"),
+    url("../fonts/pangram/Pangram-ExtraLight.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-Light.otf") format("otf"),
+    url("../fonts/pangram/Pangram-Light.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-Regular.otf") format("otf"),
+    url("../fonts/pangram/Pangram-Regular.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-Medium.otf") format("otf"),
+    url("../fonts/pangram/Pangram-Medium.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-Bold.otf") format("otf"),
+    url("../fonts/pangram/Pangram-Bold.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-ExtraBold.otf") format("otf"),
+    url("../fonts/pangram/Pangram-ExtraBold.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Pangram";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: local("Pangram"), url("../fonts/pangram/Pangram-Black.otf") format("otf"),
+    url("../fonts/pangram/Pangram-Black.otf") format("otf");
+}
+
 @layer utilities {
   h1 {
-    font-family: "Late November", "Roboto", "Arial", "sans-serif";
+    font-family: "Pangram", "Roboto", "Arial", "sans-serif";
     font-size: 4.66223464rem;
     line-height: 4.66223464rem;
   }
 
   h2 {
-    font-family: "Poppins", "Roboto", "Arial", "sans-serif";
+    font-family: "Pangram", "Roboto", "Arial", "sans-serif";
     font-weight: 700;
     font-size: 2.88148rem;
     line-height: 2.88148rem;
@@ -161,7 +224,6 @@ html body {
 
   .link-font {
     font-family: "Poppins", "Roboto", "Arial", "sans-serif";
-    font-weight: 100;
     font-size: 1.4rem;
     line-height: 1.4rem;
   }
