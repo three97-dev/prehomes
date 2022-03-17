@@ -1,21 +1,25 @@
 .buttonBlackGradient {
   background: linear-gradient(179.43deg, rgba(0, 0, 0, 0.95) -153.55%, rgba(0, 0, 0, 0.703) 99.51%);
-  @apply text-white rounded-15px
+  @apply text-white rounded-5px
       transition duration-300 ease-out
       hover:bg-black;
 }
 
 .buttonBeigeGradient {
   background: linear-gradient(180deg, rgba(229, 229, 229, 0.95) 0%, rgba(255, 248, 248, 0.95) 100%);
-  @apply text-dark-orange rounded-15px
+  @apply text-dark-orange rounded-5px
       transition duration-300 ease-out
       hover:opacity-80;
 }
 .buttonDarkOrange {
   box-shadow: 0px 18px 40px rgba(139, 139, 139, 0.15);
   @apply text-white-pink bg-dark-orange opacity-95
-     rounded-15px transition duration-300 ease-out
+     rounded-5px transition duration-300 ease-out
      hover:opacity-80;
+}
+
+.buttonOutline {
+  @apply border-2 border-minty-green text-minty-green;
 }
 
 .button-disabled {

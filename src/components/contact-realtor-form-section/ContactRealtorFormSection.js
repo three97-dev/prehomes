@@ -100,21 +100,21 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
     <div
       className={`contact-container w-full justify-center px-10px md:px-120px bg-whitesmoke sm+:bg-light-gray ${className}`}
     >
-      <div className="flex w-full max-w-1126px mx-auto justify-center py-10px md:pt-73px md:pb-75px">
+      <div className="flex w-full max-w-1126px mx-auto justify-center py-30px">
         <div className="flex-1 flex justify-center items-center">
-          <h2 className="text-47px text-white font-normal mx-40px leading-61px">Maybe it’s time for a realtor.</h2>
+          <h2 className="text-47px text-white font-normal w-350px leading-61px">Maybe it’s time for a realtor.</h2>
         </div>
         <div className="form-wrapper contact-realtor-form-form-box-shadow">
           <form
             onSubmit={formik.handleSubmit}
-            className="grid contact-realtor-form-grid-mobile sm+:contact-realtor-form-grid w-full mt-20px sm+:mt-18px"
+            className="grid contact-realtor-form-grid-mobile sm+:contact-realtor-form-grid w-full"
           >
             <Input
               id="firstName"
               name="firstName"
               placeholderColor="text-mild-grey"
               label="First Name"
-              placeholder="Placeholder Text"
+              placeholder="Ex: John"
               className="contact-realtor-form-first-name-area"
               border="border border-silver"
               height="h-49px"
@@ -129,7 +129,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
               name="lastName"
               placeholderColor="text-mild-grey"
               label="Last Name"
-              placeholder="Placeholder Text"
+              placeholder="Ex: Smith"
               className="contact-realtor-form-last-name-area"
               border="border border-silver"
               height="h-49px"
@@ -144,8 +144,8 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
               name="email"
               placeholderColor="text-mild-grey"
               label="Email Address"
-              placeholder="Placeholder Text"
-              className="contact-realtor-form-email-area"
+              placeholder="Ex: Johns@domain.com"
+              className="w-full contact-realtor-form-email-area"
               border="border border-silver"
               height="h-49px"
               paddingLeft="pl-15px sm+:pl-20px"
@@ -159,8 +159,8 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
               name="phone"
               placeholderColor="text-mild-grey"
               label="Phone Number"
-              placeholder="Placeholder Text"
-              className="contact-realtor-form-phone-area"
+              placeholder="Ex: 123-456-7890"
+              className="w-full contact-realtor-form-phone-area"
               border="border border-silver"
               height="h-49px"
               onChange={(value, country, e, formattedValue) => {
@@ -175,7 +175,7 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
               name="message"
               placeholderColor="text-mild-grey"
               label="How can we help?"
-              placeholder="Placeholder Text"
+              placeholder="Ex: I need help finding a new build home"
               className="contact-realtor-form-information-area"
               border="border border-silver"
               onChange={formik.handleChange}
@@ -189,10 +189,10 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
             <Button
               disabled={formik.isSubmitting || !formik.dirty || isSubmitted}
               onClick={formik.handleSubmit}
-              variants="dark_orange"
-              btnClasses="contact-realtor-form-button-area bg-dark-orange text-white w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow"
+              variants="outline"
+              btnClasses="contact-realtor-form-button-area w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow mt-20px"
             >
-              <div className="button-font text-white">{isSubmitted ? "Submitted" : "Submit"}</div>
+              <div className="button-font">{isSubmitted ? "Submitted" : "Submit"}</div>
             </Button>
           </form>
         </div>

@@ -26,7 +26,7 @@ const InputPhone = ({
     <div className={`${className} input-phone`}>
       <div className={`grid grid-flow-col w-full`}>
         <label htmlFor={name} className={`justify-self-start typography-body-small text-3xl sm+:ml-8px`}>
-          <div className="font-pangram text-12px text-white pb-8px font-bold">{label}</div>
+          <h2 className="font-pangram text-12px text-white font-bold">{label}</h2>
         </label>
       </div>
       <PhoneInput

@@ -25,8 +25,8 @@ const SliderSmallTiles = ({
   const [tileCount, setTileCount] = useState(0);
 
   const settings = {
-    prevArrow: <SliderArrow classNames="small-tile-prev-arrow py-8px px-8px bg-white" />,
-    nextArrow: <SliderArrow rotate={true} classNames="small-tile-next-arrow py-8px px-8px bg-white" />,
+    prevArrow: <SliderArrow classNames="small-tile-prev-arrow py-8px px-8px" />,
+    nextArrow: <SliderArrow rotate={true} classNames="small-tile-next-arrow py-8px px-8px" />,
     infinite: false,
     slidesToShow: 6,
     slidesToScroll: 1,

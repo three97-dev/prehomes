@@ -40,13 +40,14 @@ const IndexPage = ({ data }) => {
         bottomText="New to prehomes?"
         bottomTextUnderline="Watch our video"
       />
+      <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Platinum Access"
         helpMarkTooltip="Platinum Access Tooltip"
         showHelpMark={true}
         smallTileData={platinumAccessProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
+        bgWrapperClasses="mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px pb-50px"
       />
@@ -57,28 +58,27 @@ const IndexPage = ({ data }) => {
         helpMarkTooltip="Launching Soon Tooltip"
         showHelpMark={true}
         smallTileData={launchingSoonProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
+        bgWrapperClasses="mx-auto"
         paddingTitleClasses="pt-95px"
         paddingSliderClasses="pt-70px"
       />
-      <SliderSmallTiles
-        arrowsColor="dark-orange"
-        mainTitle="Special Incentives"
-        helpMarkTooltip="Special Incentives Tooltip"
-        showHelpMark={true}
-        smallTileData={sellingProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
-        paddingTitleClasses="pt-70px"
-        paddingSliderClasses="pt-70px pb-50px"
-      />
-      <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
-      <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
       <PrestigeCollectionSliderSection
         title="Penthouse Collection"
         subtitle="The highest standard in construction and interior development."
         link="/prestige"
         linkLabel="View the collection"
         projects={penthouseProjects}
+      />
+      <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
+      <SliderSmallTiles
+        arrowsColor="dark-orange"
+        mainTitle="Special Incentives"
+        helpMarkTooltip="Special Incentives Tooltip"
+        showHelpMark={true}
+        smallTileData={sellingProjects}
+        bgWrapperClasses="mx-auto"
+        paddingTitleClasses="pt-70px"
+        paddingSliderClasses="pt-70px pb-50px"
       />
       <ContactRealtorFormSection />
       <Footer />

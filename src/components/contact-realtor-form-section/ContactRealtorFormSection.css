@@ -34,7 +34,9 @@
       grid-template-areas:
         "ContactRealtorFormFirstName . ContactRealtorFormLastName"
         ". . . "
-        "ContactRealtorFormEmail . ContactRealtorFormPhone"
+        "ContactRealtorFormEmail ContactRealtorFormEmail ContactRealtorFormEmail"
+        ". . ."
+        "ContactRealtorFormPhone ContactRealtorFormPhone ContactRealtorFormPhone"
         ". . ."
         "ContactRealtorFormInformation ContactRealtorFormInformation ContactRealtorFormInformation"
         ". . . "
