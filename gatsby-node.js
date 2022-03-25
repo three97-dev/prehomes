@@ -3,6 +3,7 @@ const path = require("path");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
 const hubspot = require("@hubspot/api-client");
+const _ = require("lodash");
 
 const hubspotClient = new hubspot.Client({ apiKey: process.env.HUBSPOT_API_KEY });
 
@@ -17,6 +18,11 @@ const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft")
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 const { resolveStatus } = require("./src/utils/resolveStatus");
 const { getNeighborhood } = require("./src/utils/getNeighborhood");
+const {
+  hubSpotProperties,
+  mapOverProjectProperties,
+  toHubSpotProjectProperties,
+} = require("./src/utils/projectHubspotProperties");
 
 async function wait(time) {
   return new Promise(resolve => {
@@ -78,35 +84,37 @@ async function getWalkScore(lat, lon) {
   }
 }
 
-async function processHubspotProject(project) {
-  const { projectName, contentful_id } = project;
+async function processHubSpotProject(project) {
+  const projectHubSpotProperties = toHubSpotProjectProperties(project);
 
   await wait(300); // wait for little bit to prevent API limit error
 
   const searchResponse = await hubspotClient.crm.objects.searchApi.doSearch("PROJECT", {
-    filterGroups: [{ filters: [{ value: contentful_id, propertyName: "project_id", operator: "EQ" }] }],
-    properties: ["project_id", "project_name"],
+    filterGroups: [{ filters: [{ value: project.contentful_id, propertyName: "project_id", operator: "EQ" }] }],
+    properties: hubSpotProperties,
   });
 
   if (searchResponse.results.length > 0) {
     const [existingObject] = searchResponse.results;
     // update only if name changed (no other fields need synchronization for now)
-    if (existingObject.properties.project_name !== projectName) {
+    if (
+      !_.isEqual(
+        mapOverProjectProperties(existingObject.properties),
+        mapOverProjectProperties(projectHubSpotProperties)
+      )
+    ) {
       await hubspotClient.crm.objects.basicApi.update("PROJECT", existingObject.id, {
-        properties: {
-          project_name: projectName,
-        },
+        properties: projectHubSpotProperties,
       });
-      console.log(`Updated HubSpot Project for "${projectName}" (contentful_id=${contentful_id})`);
+      console.log(
+        `Updated HubSpot Project fields for "${project.projectName}" (contentful_id=${project.contentful_id})`
+      );
     }
   } else {
     await hubspotClient.crm.objects.basicApi.create("PROJECT", {
-      properties: {
-        project_id: contentful_id,
-        project_name: projectName,
-      },
+      properties: projectHubSpotProperties,
     });
-    console.log(`Created HubSpot Project for "${projectName}" (contentful_id=${contentful_id})`);
+    console.log(`Created HubSpot Project for "${project.projectName}" (contentful_id=${project.contentful_id})`);
   }
 }
 
@@ -210,7 +218,7 @@ exports.sourceNodes = async args => {
       value: transitScore,
     });
 
-    await processHubspotProject(project);
+    await processHubSpotProject(project);
   }
 
   for (const project of projects) {

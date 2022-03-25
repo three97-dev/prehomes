@@ -56,7 +56,8 @@ const SearchSection = ({
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(project => {
-      if (filter.typeFilter.value && filter.typeFilter.value !== project.type) return false;
+      if (filter.typeFilter.value && !project.types?.filter(type => type.name == filter.typeFilter.value).length > 0)
+        return false;
       if (filter.bedsFilter.value && filter.bedsFilter.value > project.maxBeds) return false;
       if (filter.bathsFilter.value && filter.bathsFilter.value > project.maxBaths) return false;
 

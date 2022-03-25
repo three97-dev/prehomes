@@ -122,7 +122,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "platinum-access" } }
-        projectType: { name: { eq: $projectType_name } }
+        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
       }
     ) {
       nodes {
@@ -144,7 +144,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" } }
-        projectType: { name: { eq: $projectType_name } }
+        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
       }
     ) {
       nodes {
@@ -166,7 +166,7 @@ export const query = graphql`
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "selling" } }
-        projectType: { name: { eq: $projectType_name } }
+        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
       }
     ) {
       nodes {

@@ -32,7 +32,7 @@ const SearchPage = ({ data }) => {
       price: `$${minPrice} - $${maxPrice}`,
       lat: project?.projectAddressMapLocation?.lat,
       lng: project?.projectAddressMapLocation?.lon,
-      type: project?.projectType?.name,
+      types: project?.projectTypes,
       maxBeds: project.fields.maxBeds,
       maxBaths: project.fields.maxBaths,
       squareFootages: project.fields.squareFootages,
@@ -93,7 +93,7 @@ export const query = graphql`
           squareFootages
           neighborhood
         }
-        projectType {
+        projectTypes {
           name
         }
         projectPreviewImage {

@@ -138,8 +138,8 @@ const ProjectPageTemplate = ({ data }) => {
         statusValue={project.fields.projectStatus}
         labelPriceSQFT="Price per sq.ft:"
         pricePerSqft={project.fields.pricePerSqft}
-        typeLabel="Type"
-        typeValue={project?.projectType?.name}
+        typeLabel={project?.projectTypes?.lenght < 1 ? "Type" : "Types"}
+        typeValue={project?.projectTypes}
         launchDateLabel="Launch Date"
         launchDateValue={project.launchDate}
         estimatedOccupancyLabel="Occupancy"
@@ -240,7 +240,7 @@ export const query = graphql`
       salesCentreEmail
       salesCentrePhone
       cooperatingCommission
-      projectType {
+      projectTypes {
         name
       }
       launchDate
