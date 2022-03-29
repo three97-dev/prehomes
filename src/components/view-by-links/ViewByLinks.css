@@ -1,9 +1,9 @@
 @layer base {
   .view-all {
-    @apply absolute right-24px rounded-5px -top-25px text-white border-2 border-minty-green font-black w-full flex justify-between py-12px px-31px items-center;
+    @apply absolute right-24px rounded-5px -top-24px text-white border-2 border-minty-green font-black w-full flex justify-between py-12px px-31px items-center;
   }
   .title {
-    @apply leading-35px text-white font-normal border-b md+:border-b-0 border-dark-orange pb-20px md+:pb-0px mb-20px md+:mb-0px;
+    @apply leading-35px text-white font-normal border-b md+:border-b-0 border-dark-orange pb-16px md+:pb-0px;
   }
   @variants responsive {
     .view-by-links-grid {
@@ -28,7 +28,7 @@
     }
 
     .view-by-links-item {
-      @apply mb-30px relative;
+      @apply mb-24px relative;
     }
 
     .view-by-links-items-desktop {

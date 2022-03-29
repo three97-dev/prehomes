@@ -240,9 +240,6 @@ export const query = graphql`
       salesCentreEmail
       salesCentrePhone
       cooperatingCommission
-      projectType {
-        name
-      }
       launchDate
       estimatedOccupancy
       majorIntersection {

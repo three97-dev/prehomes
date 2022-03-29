@@ -109,7 +109,7 @@ async function processHubspotProject(project) {
     console.log(`Created HubSpot Project for "${projectName}" (contentful_id=${contentful_id})`);
   }
 }
-
+let count = 0;
 exports.sourceNodes = async args => {
   const { actions, getNodesByType, getNode } = args;
   const { createNodeField } = actions;
@@ -210,7 +210,9 @@ exports.sourceNodes = async args => {
       value: transitScore,
     });
 
-    await processHubspotProject(project);
+    count = count + 1;
+
+    console.log(count);
   }
 
   for (const project of projects) {

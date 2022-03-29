@@ -11,6 +11,7 @@ const BUTTONS = {
   beige_gradient: "buttonBeigeGradient boxShadow",
   dark_orange: "buttonDarkOrange",
   outline: "buttonOutline",
+  outline_thin: "outlineThin",
 };
 
 const resolveButton = variants => {

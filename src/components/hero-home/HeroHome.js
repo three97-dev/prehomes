@@ -16,32 +16,34 @@ import linkedInIconMobile from "../../assets/home-mobile/logo-linkedin.svg";
 
 import "./HeroHome.css";
 
-const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, className }) => {
+const HeroHome = ({ title, placeholder, bottomTextUnderline, className }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   return (
     <div className={`relative z-20 w-full ${className} header-background`}>
       <div className="overlay"></div>
-      <div className="relative z-20 justify-end mx-92px md:ml-120px">
-        <div className="flex items-center home-hero-title px-25px md:px-0px w-full z-100">
-          <h1 className="flex-1 text-center md:text-left text-cream-pink md:text-white-pink leading-61px">{title}</h1>
-          <div className="flex-1 relative p-16px">
+      <div className="relative z-20 justify-end md:mx-92px md:ml-120px">
+        <div className="flex flex-col md:flex-row items-center home-hero-title px-25px md:px-0px w-full z-100">
+          <h1 className="flex-1 mb-64px md:mb-0px text-center md:text-left text-cream-pink md:text-white-pink md:leading-61px md:pr-64px">
+            {title}
+          </h1>
+          <div className="flex-1 relative p-8px md:p-16px">
             <div className="absolute bg-mild-purple rounded-5px opacity-75 top-0px bottom-0px left-0px right-0px"></div>
-            <p className="relative z-20 text-12px text-white font-pangram pl-16px pb-8px">
+            <p className="relative z-20 text-12px text-white font-pangram md:pl-16px px-16px pb-8px text-center md:text-left">
               Enter an address, city, neighborhood, project, or developer.
             </p>
             <HomeHeroInput placeholder={placeholder} className="relative" />
           </div>
         </div>
-        <div className="h-full min-h-600px">
-          <div className="absolute bottom-0px w-full flex items-center home-hero-links mb-22px">
+        <div className="header-container">
+          <div className="absolute bottom-10px md:bottom-0px w-full flex flex-col md:flex-row items-center home-hero-links my-64px">
             <div
               onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
-              className="flex-1 mx-auto cursor-pointer tracking-tight text-white md:text-white-pink eyebrow-font"
+              className="flex-1 mx-auto cursor-pointer tracking-tight text-white md:text-white-pink eyebrow-font md:mb-0px"
             >
-              <div className="md:underline capitalize">{bottomTextUnderline}</div>
+              <div className="underline capitalize">{bottomTextUnderline}</div>
             </div>
-            <div className="flex flex-1 justify-end space-x-16px mr-30px">
+            <div className="flex flex-1 justify-end space-x-16px md:mr-32px mt-64px md:mt-0px">
               <UniversalLink link={socialMediaLinks.facebook}>
                 <img className="hidden md:block" src={facebookIcon} alt="facebook" />
                 <img className="block md:hidden" src={facebookIconMobile} alt="facebook" />

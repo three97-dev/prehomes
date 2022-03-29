@@ -27,17 +27,17 @@ const SmallTile = ({
 }) => {
   return (
     <div
-      className={`relative w-216px md:w-291px px-10px md:px-20px border border-mild-purple rounded-5px ${className}`}
+      className={`relative w-216px md:w-291px px-8px mr-16px md:mx-10px border border-mild-purple rounded-5px ${className}`}
     >
-      <div className="absolute z-10 top-9px md:top-22px right-17px md:right-22px">
+      <div className="absolute z-10 top-22px right-17px md:right-22px">
         <FavoriteButton buttonProjectId={id} className="m-6px" />
       </div>
       <UniversalLink link={link}>
-        <div className={`rounded-5px overflow-hidden w-196px md:w-251px h-192px md:h-246px ${imageClassName}`}>
-          <Image image={image} className="w-full h-full object-cover filter drop-shadow-tile mt-20px rounded-5px" />
+        <div className={`rounded-5px overflow-hidden w-full h-192px md:h-246px mx-0px  ${imageClassName}`}>
+          <Image image={image} className="w-full h-full object-cover filter img-shadow mt-8px rounded-5px" />
         </div>
         <div
-          className={`text-center pt-20px md:pt-12px pb-20px md:pb-25px px-20px ${bgColor ? bgColor : "bg-white"} ${
+          className={`text-center pt-16px pb-8px px-16px ${bgColor ? bgColor : "bg-white"} ${
             textColor ? textColor : "text-black-gray"
           }`}
         >
@@ -49,11 +49,11 @@ const SmallTile = ({
             </div>
           )}
           <h3
-            className={`font-poppins font-bold text-16px small-tile-title md:h-54px overflow-ellipsis overflow-hidden ${titleClassName}`}
+            className={`font-poppins font-bold text-16px small-tile-title overflow-ellipsis overflow-hidden h-50px md:h-auto md:mb-8px`}
           >
             {title}
           </h3>
-          <div className={`font-pangram font-normal mb-10px mt-10px text-mild-purple text-12px ${subtitleClassName}`}>
+          <div className={`font-pangram font-normal mb-16px text-mild-purple text-12px ${subtitleClassName}`}>
             {location}
           </div>
           <h4 className="text-12px font-pangram font-bold">Pricing from:</h4>

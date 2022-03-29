@@ -6,7 +6,7 @@
 }
 
 .form-wrapper {
-  @apply border border-mild-purple flex-1 bg-mild-grey p-20px rounded-5px;
+  @apply border border-mild-purple flex-1 bg-mild-black p-20px rounded-5px;
 }
 
 @layer base {

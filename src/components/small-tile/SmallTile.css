@@ -8,13 +8,14 @@
 
 .ribbon-wrapper {
   @apply w-full absolute left-0px right-0px bg-black flex items-center justify-center;
-  top: 50%;
+  top: 55%;
   height: 35px;
 }
 
 @media screen and (max-width: 768px) {
-  .ribbon-wrapper .ribbon {
-    height: 47px;
+  .ribbon-wrapper {
+    height: 30px;
+    top: 50%;
   }
 }
 

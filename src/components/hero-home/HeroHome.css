@@ -15,6 +15,10 @@
   background-size: cover;
 }
 
+.header-container {
+  min-height: 75vh;
+}
+
 .overlay {
   @apply absolute top-0px bottom-0px left-0px right-0px;
   background: linear-gradient(180deg, #7043d4 0%, rgba(112, 67, 212, 0.2) 100%);
@@ -32,8 +36,14 @@
 }
 
 @media (max-width: 833px) {
+  .header-container {
+    min-height: 776px;
+  }
   .home-hero-image {
     width: 100vh;
+  }
+  h1 {
+    font-size: 40px;
   }
   .home-hero-title {
     position: absolute;

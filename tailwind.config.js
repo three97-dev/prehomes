@@ -69,7 +69,7 @@ module.exports = {
       transparent: "transparent",
       "mild-purple": "#B9A4E8",
       "minty-green": "#2DE2D9",
-      "mild-grey": "#363636",
+      "mild-black": "#363636",
       "placeholder-color": "#B3B3B3",
     },
     spacing: {
@@ -659,6 +659,7 @@ module.exports = {
       "29px": "2.9rem",
       "32px": "3.2rem",
       "33px": "3.3rem",
+      "36px": "3.6rem",
       "42px": "4.2rem",
       "46px": "4.6em",
       "47px": "4.7rem",

@@ -22,6 +22,10 @@
   @apply border-2 border-minty-green text-minty-green;
 }
 
+.outlineThin {
+  @apply border border-mild-purple text-minty-green rounded-5px;
+}
+
 .button-disabled {
   opacity: 0.5 !important;
 }

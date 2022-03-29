@@ -2,7 +2,7 @@ import React from "react";
 
 const SliderArrow = ({ rotate, classNames, onClick }) => {
   return (
-    <div onClick={onClick} className={`${classNames} z-30 h-65px w-65px cursor-pointer flex justify-center`}>
+    <div onClick={onClick} className={`${classNames} z-30 cursor-pointer flex justify-center`}>
       <div onClick={onClick} className={`my-auto`}>
         <div className={rotate && "transform rotate-180"}>
           <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">

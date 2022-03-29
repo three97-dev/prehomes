@@ -215,11 +215,7 @@ export const query = graphql`
       }
     }
     condoProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { name: { eq: "Condo" } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id
@@ -237,11 +233,7 @@ export const query = graphql`
       }
     }
     townhouseProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { name: { eq: "Townhouse" } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id
@@ -259,11 +251,7 @@ export const query = graphql`
       }
     }
     detachedProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectType: { name: { eq: "Detached" } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id

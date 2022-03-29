@@ -1,0 +1,8 @@
+.slick-slider.display-flex {
+  @apply flex items-center;
+}
+
+.property-type-section {
+  min-height: 25vh;
+  @apply flex justify-center items-center;
+}
