@@ -1,6 +1,6 @@
 @layer base {
   .view-all {
-    @apply absolute right-24px rounded-5px -top-24px text-white border-2 border-minty-green font-black w-full flex justify-between py-12px px-31px items-center;
+    @apply absolute right-32px md:right-24px rounded-5px -top-24px text-white border-2 border-minty-green font-black w-full flex justify-between py-12px px-31px items-center;
   }
   .title {
     @apply leading-35px text-white font-normal border-b md+:border-b-0 border-dark-orange pb-16px md+:pb-0px;

@@ -35,7 +35,7 @@ const PrestigeCollection = ({ projects }) => {
     <div className="bg-gray-border md:mx-48px mb-64px rounded-b-5px">
       <div className="p-25px md:p-16px ">
         <div>
-          <div className="flex px-16px md:px-0px flex-col space-y-20px md:space-y-0px md:flex-row justify-between items-center bg-mild-black py-50px md:p-50px rounded-t-5px">
+          <div className="flex px-16px flex-col space-y-20px md:space-y-0px md:flex-row justify-between items-center bg-mild-black py-50px md:p-50px rounded-t-5px">
             <StaticImage src="../../assets/prestige/prestige-logo.png" alt="Prestige Logo" />
             <h3 className="text-white text-16px font-poppins font-medium uppercase text-center">
               A collection of ultra-luxury homes from revered developers

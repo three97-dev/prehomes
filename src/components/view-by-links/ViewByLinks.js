@@ -23,7 +23,7 @@ const ViewByLinks = ({ title, links, viewAllLink }) => {
                     key={index}
                     className="view-by-links-item sm+:view-by-links-items-desktop view-by-links-items-mobile"
                   >
-                    <a className="link-font text-white odd:pl-0px md:pl-8px font-medium" href={link.url.pageUrl}>
+                    <a className="link-font text-white md:pl-8px font-medium" href={link.url.pageUrl}>
                       {link.label}
                     </a>
                   </li>
