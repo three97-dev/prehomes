@@ -69,7 +69,7 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
 
   return (
     <div
-      className={`absolute w-full px-25px md:px-16px z-100 mt-16px ${className} ${
+      className={`absolute w-full px-25px md:px-16px z-100 py-16px ${className} ${
         isStickyHeader || headerStyle ? "header-show" : ""
       } ${isStickyHeader ? "header-border" : ""}`}
     >
