@@ -50,7 +50,7 @@ const KeyInformation = ({
         </div>
         <div className="key-info-grid-type-area">
           <h3 className="text-dark-orange">{typeLabel}</h3>
-          <p className="text-black-gray mt-20px">{typeValue}</p>
+          <p className="text-black-gray mt-20px">{typeValue?.map(type => type.name).join(", ")}</p>
         </div>
         <div className="key-info-grid-launch-date-area">
           <h3 className="text-dark-orange">{launchDateLabel}</h3>
@@ -204,7 +204,7 @@ KeyInformation.propTypes = {
   statusLabel: PropTypes.string,
   statusValue: PropTypes.string,
   typeLabel: PropTypes.string,
-  typeValue: PropTypes.string,
+  typeValue: PropTypes.array,
   launchDateLabel: PropTypes.string,
   launchDateValue: PropTypes.string,
   estimatedOccupancyLabel: PropTypes.string,
@@ -238,7 +238,7 @@ KeyInformation.defaultProps = {
   statusLabel: "Missing",
   statusValue: "Missing",
   typeLabel: "Missing",
-  typeValue: "Missing",
+  typeValue: [],
   launchDateLabel: "Missing",
   launchDateValue: "Missing",
   estimatedOccupancyLabel: "Missing",
