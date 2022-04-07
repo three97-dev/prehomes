@@ -61,9 +61,9 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
     );
   } else {
     logoImage = isDesktop ? (
-      <StaticImage src="../../assets/header/header-logo.svg" className={imageClassName} alt={altText} />
+      <StaticImage src="../../assets/header/header-logo.png" className={imageClassName} alt={altText} />
     ) : (
-      <StaticImage src="../../assets/header/header-logo-mobile-black.png" className={imageClassName} alt={altText} />
+      <StaticImage src="../../assets/header/header-logo.png" className={imageClassName} alt={altText} />
     );
   }
 
@@ -77,13 +77,9 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
         <UniversalLink link={logoLink}>
           {isStickyHeader || headerStyle ? (
             isDesktop ? (
-              <StaticImage src="../../assets/header/header-logo.svg" className={imageClassName} alt={altText} />
+              <StaticImage src="../../assets/header/header-logo-home.png" className={imageClassName} alt={altText} />
             ) : (
-              <StaticImage
-                src="../../assets/header/header-logo-mobile-black.png"
-                className={imageClassName}
-                alt={altText}
-              />
+              <StaticImage src="../../assets/header/header-logo.png" className={imageClassName} alt={altText} />
             )
           ) : (
             logoImage

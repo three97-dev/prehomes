@@ -24,15 +24,14 @@ const DeveloperPageTemplate = ({ data }) => {
     <>
       <Header />
       <HeroSection
-        image={
+        rightHeroContent={
           <StaticImage
-            src="../assets/hero/cities.jpg"
-            alt="Cities hero page background"
-            className="-z-12 w-full h-screen md:h-500px"
+            src="../assets/hero/developers-hero-image.png"
+            alt="Developers hero"
+            className="h-300px md:h-auto md:w-470px"
           />
         }
-        isStaticImage
-        heroTopText="View All"
+        heroTopText="You're Exploring:"
         title="Developers"
         className="bg-transparent"
       />

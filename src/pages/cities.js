@@ -24,15 +24,14 @@ const CityPageTemplate = ({ data }) => {
     <>
       <Header />
       <HeroSection
-        image={
+        rightHeroContent={
           <StaticImage
-            src="../assets/hero/cities.jpg"
-            alt="Cities hero page background"
-            className="-z-12 w-full h-screen md:h-500px"
+            src="../assets/hero/cities-hero-image.png"
+            alt="Cities hero"
+            className="h-300px md:h-305px md:w-494px"
           />
         }
-        isStaticImage
-        heroTopText="View All"
+        heroTopText="You're Exploring:"
         title="Cities"
         className="bg-transparent"
       />

@@ -97,10 +97,8 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div
-      className={`contact-container w-full justify-center px-25px md:px-10px md:px-120px bg-whitesmoke sm+:bg-light-gray ${className}`}
-    >
-      <div className="flex w-full max-w-1126px mx-auto justify-center py-64px flex-col md:flex-row">
+    <div className={`contact-container w-full px-25px py-64px md:px-10px md:px-120px`}>
+      <div className="flex w-full max-w-1126px mx-auto justify-center flex-col md:flex-row">
         <div className="md:w-1/2 flex items-center">
           <h2 className="text-36px md:text-47px text-white font-normal md:w-350px leading-42px md:leading-61px mb-32px md:mb-0px">
             Maybe it’s time for a realtor.
@@ -185,14 +183,16 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
               value={formik.values.message}
               isShadow
             />
-            <div className="contact-realtor-form-message-area text-red-color-error-2 uppercase footer-font self-center ml-auto sm+:ml-0px my-15px">
-              {showError}
-            </div>
+            {showError && (
+              <div className="contact-realtor-form-message-area text-red-color-error-2 uppercase footer-font self-center ml-auto sm+:ml-0px my-15px">
+                {showError}
+              </div>
+            )}
             <Button
               disabled={formik.isSubmitting || !formik.dirty || isSubmitted}
               onClick={formik.handleSubmit}
               variants="outline"
-              btnClasses="contact-realtor-form-button-area w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow mt-20px rounded-5px"
+              btnClasses="contact-realtor-form-button-area w-full max-w-173px md:max-w-250px h-54px ml-auto contact-realtor-form-button-shadow md:mt-20px rounded-5px"
             >
               <div className="button-font">{isSubmitted ? "Submitted" : "Submit"}</div>
             </Button>

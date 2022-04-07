@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { graphql } from "gatsby";
 
 import {
   Header,
-  HeroSectionSlider,
   TextMapSection,
   TextSection,
   ThreeStatsSection,
@@ -11,19 +10,114 @@ import {
   ViewByLinks,
   ContactRealtorFormSection,
   Footer,
+  HeroSection,
+  SliderArrow,
+  Image,
 } from "../components";
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+import Slider from "react-slick";
+
+import "../components/city-section/CitySection.css";
 // import Seo from "../seo/Seo";
 
 const CityPageTemplate = ({ data }) => {
   const city = data.contentfulCity;
+  const [tileCount, setTileCount] = useState(0);
+  const [hero, setHero] = useState(0);
+  const [slider, setSlider] = useState(null);
+
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const condoProjects = data.condoProjects.nodes;
   const townhouseProjects = data.townhouseProjects.nodes;
   const detachedProjects = data.detachedProjects.nodes;
+
+  const images = city.cityImages;
+
+  const settings = {
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    afterChange: index => images[index] && setHero(index),
+    focusOnSelect: true,
+    prevArrow: <SliderArrow classNames="mr-64px" />,
+    nextArrow: <SliderArrow classNames="ml-64px" rotate />,
+    infinite: false,
+    touchMove: true,
+    onInit: useCallback(() => {
+      if (slider) {
+        setTileCount(slider.innerSlider.props.slidesToShow);
+      }
+    }, [slider, setTileCount]),
+    onReInit: useCallback(() => {
+      if (slider.innerSlider.props.slidesToShow !== tileCount) {
+        setTileCount(slider.innerSlider.props.slidesToShow);
+      }
+    }, [slider, tileCount, setTileCount]),
+    responsive: [
+      {
+        breakpoint: 833,
+        settings: {
+          slidesToShow: 1,
+          arrows: false,
+          touchMove: true,
+          swipeToSlide: true,
+          variableWidth: true,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 7,
+        },
+      },
+      {
+        breakpoint: 1900,
+        settings: {
+          slidesToShow: 8,
+        },
+      },
+    ],
+  };
+
+  const renderRightHeroContent = () => {
+    return (
+      <div className="relative w-full md:w-450px h-400px md:h-auto px-25px md:px-0px flex justify-center md:justify-start">
+        <div className="absolute w-308px md:w-450px h-300px bottom-32px rounded-15px left-25px md:right-32px bg-white"></div>
+        <div className="absolute w-308px md:w-450px h-300px bottom-16px rounded-15px right-25px md:right-48px border border-deep-purple"></div>
+        <Image image={images[hero]} alt="City hero" className="h-300px w-308px md:w-450px rounded-8px" />
+      </div>
+    );
+  };
+
+  const emptyTiles = (arr, amount) => {
+    if (arr.length < amount) {
+      let extra = [];
+      for (let i = arr.length; i < amount; i++) {
+        extra.push(i);
+      }
+      return extra.map(index => {
+        return (
+          <div key={index} className="flex justify-center w-120px h-80px">
+            <div className="w-full h-full mx-auto"></div>
+          </div>
+        );
+      });
+    }
+  };
 
   return (
     <>
@@ -34,15 +128,28 @@ const CityPageTemplate = ({ data }) => {
         }}
       /> */}
       <Header />
-      <HeroSectionSlider
-        images={city.cityImages}
-        topText="City View"
+      <HeroSection
+        rightHeroContent={renderRightHeroContent()}
+        heroTopText="You're exploring:"
         title={city.cityName}
-        subtitle={city.citySubtitleText}
-        isCity
-        isFixedHeader
         className="bg-transparent"
+        viewAllLink="/cities"
+        viewAllText="View all Cities"
       />
+      <Slider
+        ref={s => setSlider(s)}
+        {...settings}
+        className="slider-wrapper display-flex w-full bg-light-purple px-25px md:px-120px py-35px"
+      >
+        {images.map((img, index) => {
+          return (
+            <div className="slider-container">
+              <Image image={img} key={index} className="w-120px h-80px rounded-10px" />
+            </div>
+          );
+        })}
+        {emptyTiles(images, tileCount)}
+      </Slider>
       <div className="md+:hidden border-t-2 border-gray-border w-full mt-15px mb-30px"></div>
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
         <TextMapSection

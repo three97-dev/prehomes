@@ -79,7 +79,11 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allContentfulCity(
+      limit: 15
+      sort: { fields: cityName, order: ASC }
+      filter: { cityName: { regex: "/^.{3,10}$/" } }
+    ) {
       nodes {
         label: cityName
         url: fields {
@@ -90,7 +94,7 @@ export const query = graphql`
     projectsByDeveloperLinks: allContentfulDeveloper(
       limit: 15
       sort: { fields: developerName, order: ASC }
-      filter: { developerName: { regex: "/^.{3,12}$/" } }
+      filter: { developerName: { regex: "/^.{3,10}$/" } }
     ) {
       nodes {
         label: developerName
