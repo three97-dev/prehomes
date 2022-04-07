@@ -71,6 +71,7 @@ const DevelopersSection = ({ title, showHelpMark, helpMarkTooltip, developers })
                 image={developer.developerPreviewImage}
                 specialIncentives={developer.specialIncentives}
                 newListing={developer.newListing}
+                selling={developer.selling}
                 key={developer.contentful_id}
               />
             ))}

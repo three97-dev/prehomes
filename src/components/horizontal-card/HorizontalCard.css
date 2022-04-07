@@ -1,14 +1,20 @@
 .horizontal-card-wrapper {
   width: 49%;
-  height: 161px;
+  height: 171px;
+}
+
+.gatsby-image-wrapper img {
+  @apply rounded-l-15px;
 }
 
 .horizontal-card-wrapper .stat-value {
-  @apply text-black-gray;
+  @apply text-black-gray text-16px;
+  width: 10%;
 }
 
 .horizontal-card-wrapper .stat-title {
-  @apply font-normal text-dark-green;
+  @apply font-normal text-dark-green text-16px;
+  width: 90%;
 }
 
 .horizontal-card-wrapper .stat-container {
@@ -16,7 +22,7 @@
 }
 
 .horizontal-card-wrapper .horizontal-card-name {
-  @apply md:mb-20px mb-10px;
+  @apply md:mb-10px mb-5px text-23px;
 }
 
 @media screen and (max-width: 768px) {
@@ -33,7 +39,7 @@
 @media screen and (max-width: 500px) {
   .horizontal-card-wrapper {
     width: 100%;
-    height: 141px;
+    height: 151px;
   }
 }
 

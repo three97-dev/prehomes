@@ -4,16 +4,20 @@ import Image from "../basic/image/Image";
 import "./HorizontalCard.css";
 import UniversalLink from "../../utils/UniversalLink";
 
-const HorizontalCard = ({ image, title, pageUrl, isCity, newListing, specialIncentives }) => (
+const HorizontalCard = ({ image, title, pageUrl, isCity, newListing, specialIncentives, selling }) => (
   <UniversalLink
     link={pageUrl}
     className="horizontal-card-wrapper flex mb-27px rounded-15px shadow-md border border-silver justify-between"
   >
-    <div className="w-2/5 md:w-2/6 h-148px flex items-center justify-center overflow-hidden">
+    <div className="w-2/5 md:w-2/6 h-full flex items-center justify-center overflow-hidden">
       <Image image={image} className={`horizontal-card-image rounded-l-15px ${isCity && "h-full"}`} />
     </div>
-    <div className="w-3/5 md:w-4/6 p-22px">
+    <div className="w-3/5 md:w-4/6 p-12px">
       <h2 className="horizontal-card-name">{title}</h2>
+      <div className="stat-container mb-10px">
+        <h4 className="stat-value">{selling}</h4>
+        <h4 className="stat-title">Selling</h4>
+      </div>
       <div className="stat-container mb-10px">
         <h4 className="stat-value">{newListing}</h4>
         <h4 className="stat-title">New Listings</h4>
@@ -32,6 +36,7 @@ HorizontalCard.propTypes = {
   pageUrl: PropTypes.string,
   newListing: PropTypes.number,
   specialIncentives: PropTypes.number,
+  selling: PropTypes.number,
   isCity: PropTypes.bool,
 };
 
@@ -42,6 +47,7 @@ HorizontalCard.defaultProps = {
   isCity: false,
   newListing: 0,
   specialIncentives: 0,
+  selling: 0,
 };
 
 export default HorizontalCard;

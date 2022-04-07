@@ -11,6 +11,7 @@ const DeveloperPageTemplate = ({ data }) => {
         ...developer,
         specialIncentives: developer.project.filter(project => project.specialIncentive).length,
         newListing: developer.project.filter(project => project.fields.projectStatus === "platinum-access").length,
+        selling: developer.project.filter(project => project.fields.projectStatus === "selling").length,
       };
     }
 
