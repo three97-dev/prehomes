@@ -261,15 +261,13 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                         <p>{floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} sq.ft</p>
                       </td>
                       <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
-                        <p className="mb-20px lg+:mb-12px lg+:mr-20px">
-                          ${floorPlan.price ? floorPlan.price.toLocaleString("en-US") : ""}
+                        <p className={`${floorPlan.price && "mb-20px"} lg+:mb-12px lg+:mr-20px`}>
+                          {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
                         </p>
                         <p>
-                          $
                           {floorPlan.fields.pricePerSquareFoot
-                            ? floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")
-                            : ""}{" "}
-                          /sq.ft
+                            ? `\$${floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft`
+                            : ""}
                         </p>
                       </td>
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
@@ -298,7 +296,9 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                         <div className="table-data">
                           <div className="footer-font mb-20px">{floorPlan.name.toUpperCase()}</div>
                           <div className="floor-info">
-                            <p className="w-100px">${floorPlan.price ? floorPlan.price.toLocaleString("en-US") : ""}</p>
+                            <p className="w-100px">
+                              {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
+                            </p>
                             <p className="w-100px">
                               {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} SQ.FT
                             </p>
