@@ -55,7 +55,7 @@ const DeveloperPageTemplate = ({ data }) => {
         paddingTitleClasses="pt-50px md:pt-30px"
         paddingSliderClasses="pt-70px pb-50px"
       />
-      <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+      <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
       <ContactRealtorFormSection />
       <Footer />
     </>

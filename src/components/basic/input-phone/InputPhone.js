@@ -25,8 +25,8 @@ const InputPhone = ({
   return (
     <div className={`${className} input-phone`}>
       <div className={`grid grid-flow-col w-full`}>
-        <label htmlFor={name} className={`justify-self-start typography-body-small text-3xl sm+:ml-20px`}>
-          <div className="field-labels-font text-black-gray pb-8px">{label}</div>
+        <label htmlFor={name} className={`justify-self-start typography-body-small text-3xl sm+:ml-8px`}>
+          <h2 className="font-pangram text-12px text-white font-bold">{label}</h2>
         </label>
       </div>
       <PhoneInput
@@ -37,7 +37,7 @@ const InputPhone = ({
           onBlur: onBlur,
           className: `${
             isShadow ? "input-phone-shadow" : null
-          } placeholder-font text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-15px focus-visible:outline-none ${placeholderColor} ${border}`,
+          } font-pangram text-12px text-dark-orange h-49px w-full max-w-539px pr-20px pl-15px sm+:pl-20px rounded-5px focus-visible:outline-none ${placeholderColor} ${border}`,
         }}
         country={"us"}
         onlyCountries={["us"]}

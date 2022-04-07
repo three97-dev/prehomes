@@ -10,6 +10,8 @@ const BUTTONS = {
   black_gradient: "buttonBlackGradient boxShadow",
   beige_gradient: "buttonBeigeGradient boxShadow",
   dark_orange: "buttonDarkOrange",
+  outline: "buttonOutline",
+  outline_thin: "outlineThin",
 };
 
 const resolveButton = variants => {
@@ -26,7 +28,7 @@ const Button = ({ children, btnClasses, link, onClick, variants, disabled, type 
     resolveButton(variants),
     "focus-visible:outline-none focus:outline-none",
     {
-      "button-disabled": disabled
+      "button-disabled": disabled,
     }
   );
 
@@ -48,7 +50,7 @@ const Button = ({ children, btnClasses, link, onClick, variants, disabled, type 
 Button.propTypes = {
   onClick: PropTypes.func,
   link: PropTypes.string,
-  variants: PropTypes.oneOf(["black_gradient", "beige_gradient", "dark_orange"]),
+  variants: PropTypes.oneOf(["black_gradient", "beige_gradient", "dark_orange", "outline"]),
   btnClasses: PropTypes.string,
   disabled: PropTypes.bool,
 };

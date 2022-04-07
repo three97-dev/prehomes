@@ -68,15 +68,12 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
   return (
     <div ref={inputMenu} className={`${className} relative`}>
       <input
-        className={`home-hero-input-shadow placeholder-font w-full z-10 ${height} rounded-15px pl-20px pr-40px placeholder-dark-orange bg-white focus-visible:outline-none focus:outline-none`}
+        className={`home-hero-input-shadow text-16px w-full z-10 ${height} rounded-5px pl-20px pr-40px placeholder-placeholder-color bg-white focus-visible:outline-none focus:outline-none`}
         type="text"
         placeholder={placeholder}
         onChange={e => setSearchTerm(e.target.value)}
         onFocus={() => setIsSearchMenuShown(true)}
       />
-      <span className="hidden md:block absolute z-20 top-18px right-20px">
-        <img src={HeroSearch} alt="search icon" />
-      </span>
       {shortList.length > 0 && isSearchMenuShown && (
         <ul className="dropdown-menu">
           {shortList.map(({ label, type, link, index }) => (
@@ -85,9 +82,7 @@ const HomeHeroInput = ({ className, height, placeholder }) => {
                 <img className="my-auto" src={getIconByType(type)} alt="" />
               </div>
               <div className="text-wrapper mt-12px">
-                <div className={`text-title item-title link-font text-black-gray`}>
-                  {label}
-                </div>
+                <div className={`text-title item-title link-font text-black-gray`}>{label}</div>
               </div>
             </li>
           ))}

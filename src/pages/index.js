@@ -1,20 +1,23 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
 
 import {
   Header,
   HeroHome,
-  PrestigeCollectionSliderSection,
   SliderSmallTiles,
   ViewByLinks,
   ContactRealtorFormSection,
   Footer,
   ViewLargeTilesSection,
+  PrestigeCollection,
+  PropertyTypeSection,
 } from "../components";
 // import Seo from "../seo/Seo";
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+import platinumIcon from "../assets/platinum.png";
+import fastForwardIcon from "../assets/fast-forward.png";
+import starIcon from "../assets/star.png";
 
 const IndexPage = ({ data }) => {
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
@@ -22,8 +25,7 @@ const IndexPage = ({ data }) => {
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
-  const viewLargeTiles = data.allContentfulProjectType.nodes;
-  const penthouseProjects = data.penthouseProjects.nodes;
+  const prestigeProjects = data.prestigeProjects.nodes;
 
   return (
     <>
@@ -35,57 +37,38 @@ const IndexPage = ({ data }) => {
       /> */}
       <Header logoLink="/" variant="home" />
       <HeroHome
-        title="Explore new construction homes."
-        image={
-          <StaticImage
-            src="../assets/hero/home-hero-image.jpg"
-            alt="Home hero page background"
-            className="home-hero-image absolute min-w-700px w-full -z-10 right-0px h-screen"
-          />
-        }
-        placeholder="Type in a city, neighborhood, or new development"
+        title="Explore New Construction Homes."
+        placeholder="Ex: 1234 New Construction Rd, Constructionville"
         bottomText="New to prehomes?"
-        bottomTextUnderline="Watch our video."
+        bottomTextUnderline="Watch our video"
       />
+      <PropertyTypeSection />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Platinum Access"
-        helpMarkTooltip="Platinum Access Tooltip"
-        showHelpMark={true}
         smallTileData={platinumAccessProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
-        paddingTitleClasses="pt-95px"
-        paddingSliderClasses="pt-70px pb-50px"
+        bgWrapperClasses="mx-auto"
+        icon={platinumIcon}
+        paddingTitleClasses="mb-32px"
       />
-      <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
+      <ViewByLinks viewAllLink="/cities" title="City" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Launching Soon"
-        helpMarkTooltip="Launching Soon Tooltip"
-        showHelpMark={true}
         smallTileData={launchingSoonProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
-        paddingTitleClasses="pt-95px"
-        paddingSliderClasses="pt-70px"
+        bgWrapperClasses="mx-auto"
+        icon={fastForwardIcon}
+        paddingTitleClasses="mb-32px"
       />
+      <PrestigeCollection link="/prestige" linkLabel="View the collection" projects={prestigeProjects} />
+      <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Special Incentives"
-        helpMarkTooltip="Special Incentives Tooltip"
-        showHelpMark={true}
+        icon={starIcon}
         smallTileData={sellingProjects}
-        bgWrapperClasses="bg-light-gray mx-auto"
-        paddingTitleClasses="pt-70px"
-        paddingSliderClasses="pt-70px pb-50px"
-      />
-      <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
-      <ViewLargeTilesSection title="Search by Property Type" tiles={viewLargeTiles} />
-      <PrestigeCollectionSliderSection
-        title="Penthouse Collection"
-        subtitle="The highest standard in construction and interior development."
-        link="/prestige"
-        linkLabel="View the collection"
-        projects={penthouseProjects}
+        bgWrapperClasses="mx-auto"
+        paddingTitleClasses="mb-32px"
       />
       <ContactRealtorFormSection />
       <Footer />
@@ -104,7 +87,11 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allContentfulDeveloper(
+      limit: 15
+      sort: { fields: developerName, order: ASC }
+      filter: { developerName: { regex: "/^.{3,12}$/" } }
+    ) {
       nodes {
         label: developerName
         url: fields {
@@ -187,7 +174,7 @@ export const query = graphql`
         }
       }
     }
-    penthouseProjects: allContentfulProject(
+    prestigeProjects: allContentfulProject(
       filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
     ) {
       nodes {
@@ -200,7 +187,14 @@ export const query = graphql`
           pageUrl
           projectMinPrice
         }
+        projectDeveloper {
+          developerName
+        }
+        overviewVideoLink
         projectPreviewShortText
+        projectCity {
+          cityName
+        }
         projectPreviewImage {
           ...SearchImage
         }

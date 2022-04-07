@@ -101,7 +101,7 @@ const CityPageTemplate = ({ data }) => {
           paddingSliderClasses="pt-70px pb-50px"
         />
       </div>
-      <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
+      <ViewByLinks viewAllLink="/cities" title="City:" links={projectsByCityLinks} />
       <SliderSmallTiles
         arrowsColor="black-gray-2"
         mainTitle={`${city.cityName} Condo Developments`}
@@ -215,11 +215,7 @@ export const query = graphql`
       }
     }
     condoProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectTypes: { elemMatch: { name: { eq: "Condo" } } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id
@@ -237,11 +233,7 @@ export const query = graphql`
       }
     }
     townhouseProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectTypes: { elemMatch: { name: { eq: "Townhouse" } } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id
@@ -259,11 +251,7 @@ export const query = graphql`
       }
     }
     detachedProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        projectTypes: { elemMatch: { name: { eq: "Detached" } } }
-      }
+      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
     ) {
       nodes {
         contentful_id

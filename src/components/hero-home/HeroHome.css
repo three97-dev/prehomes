@@ -7,6 +7,24 @@
   border-top: 100vh solid #202020;
 }
 
+.header-background {
+  @apply h-2/3;
+  background-image: url("../../assets/home/header-background.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.header-container {
+  min-height: 75vh;
+}
+
+.overlay {
+  @apply absolute top-0px bottom-0px left-0px right-0px;
+  background: linear-gradient(180deg, #7043d4 0%, rgba(112, 67, 212, 0.2) 100%);
+  transform: rotate(-180deg);
+}
+
 .home-hero-image {
   width: calc(100vw - 400px);
 }
@@ -17,11 +35,15 @@
   transform: translateY(-50%);
 }
 
-
-
 @media (max-width: 833px) {
+  .header-container {
+    min-height: 776px;
+  }
   .home-hero-image {
     width: 100vh;
+  }
+  h1 {
+    font-size: 40px;
   }
   .home-hero-title {
     position: absolute;
@@ -33,6 +55,5 @@
     width: 250px;
     left: 50%;
     transform: translateX(-50%);
-  } 
+  }
 }
-

@@ -67,6 +67,10 @@ module.exports = {
       black: "#000",
       white: "#FFFFFF",
       transparent: "transparent",
+      "mild-purple": "#B9A4E8",
+      "minty-green": "#2DE2D9",
+      "mild-black": "#363636",
+      "placeholder-color": "#B3B3B3",
     },
     spacing: {
       "0px": "0rem",
@@ -540,6 +544,7 @@ module.exports = {
       "700px": "70rem",
     },
     borderRadius: {
+      "5px": "0.5rem",
       "8px": "0.8rem",
       "9px": "0.9rem",
       "15px": "1.5rem",
@@ -555,6 +560,7 @@ module.exports = {
       metropolis: ["Metropolis", "Roboto", "Arial", "sans-serif"],
       "late-november": ["Late November", "Roboto", "Arial", "sans-serif"],
       poppins: ["Poppins", "Roboto", "Arial", "sans-serif"],
+      pangram: ["Pangram", "Roboto", "Arial", "sans-serif"],
     },
     fontSize: {
       h1: [
@@ -653,6 +659,7 @@ module.exports = {
       "29px": "2.9rem",
       "32px": "3.2rem",
       "33px": "3.3rem",
+      "36px": "3.6rem",
       "42px": "4.2rem",
       "46px": "4.6em",
       "47px": "4.7rem",

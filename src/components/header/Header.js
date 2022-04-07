@@ -57,7 +57,7 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
     logoImage = isDesktop ? (
       <StaticImage src="../../assets/header/header-logo-home.png" className={imageClassName} alt={altText} />
     ) : (
-      <StaticImage src="../../assets/header/header-logo-mobile-white.png" className={imageClassName} alt={altText} />
+      <StaticImage src="../../assets/header/header-logo-home.png" className={imageClassName} alt={altText} />
     );
   } else {
     logoImage = isDesktop ? (
@@ -69,12 +69,12 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
 
   return (
     <div
-      className={`absolute w-full pl-27px pr-22px md:px-20px z-100 ${className} ${
+      className={`absolute w-full px-25px md:px-16px z-100 py-16px ${className} ${
         isStickyHeader || headerStyle ? "header-show" : ""
       } ${isStickyHeader ? "header-border" : ""}`}
     >
-      <div className="justify-between mx-auto flex pt-20px md:pt-5px mb-10px md:pb-5px">
-        <UniversalLink link={logoLink} className={`${isDesktop ? "mt-24px" : "mt-13px"}`}>
+      <div className="justify-between items-center mx-auto flex">
+        <UniversalLink link={logoLink}>
           {isStickyHeader || headerStyle ? (
             isDesktop ? (
               <StaticImage src="../../assets/header/header-logo.svg" className={imageClassName} alt={altText} />
@@ -91,9 +91,9 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
         </UniversalLink>
         <button
           onClick={() => setIsMenuActive(!isMenuActive)}
-          className={`button-circle-shadow rounded-full w-45px h-45px md:w-68px md:h-65px ${
+          className={`button-circle-shadow rounded-full w-40px h-40px  ${
             variant === "prestige" || variant === "premium" ? "bg-white-pink" : "burger-menu-not-active-bg"
-          } mt-8px mb-8px mr-3px`}
+          } mr-3px`}
         >
           <img src={BurgerMenuNotActiveImage} alt="button-icon" className="mx-auto" />
         </button>

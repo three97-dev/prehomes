@@ -93,9 +93,6 @@ export const query = graphql`
           squareFootages
           neighborhood
         }
-        projectTypes {
-          name
-        }
         projectPreviewImage {
           ...SearchImage
         }

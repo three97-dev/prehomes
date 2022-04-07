@@ -16,31 +16,39 @@ import linkedInIconMobile from "../../assets/home-mobile/logo-linkedin.svg";
 
 import "./HeroHome.css";
 
-const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, className }) => {
+const HeroHome = ({ title, placeholder, bottomTextUnderline, className }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`z-20 w-full bg-cream-white ${className}`}>
-      <div className="relative z-20 justify-end mx-auto h-screen">
-        <div className="absolute flex justify-end w-full">
-          {image}
-        </div>
-        <div className="absolute home-header-white-section hidden md:block"></div>
-        <div className="absolute block md:hidden bg-black w-full h-full bg-opacity-75"></div>
-        <div className="absolute home-hero-title px-25px md:px-0px w-full z-100 md:pl-120px">
-          <h1 className="relative md:w-540px mb-45px md:mb-16px text-center md:text-left text-cream-pink md:text-white-pink">
+    <div className={`relative z-20 w-full ${className} header-background`}>
+      <div className="overlay"></div>
+      <div className="relative z-20 justify-end md:mx-92px md:ml-120px">
+        <div className="flex flex-col md:flex-row items-center home-hero-title px-25px md:px-0px w-full z-100">
+          <h1 className="flex-1 mb-64px md:mb-0px text-center md:text-left text-cream-pink md:text-white-pink md:leading-61px md:pr-64px">
             {title}
           </h1>
-          <HomeHeroInput placeholder={placeholder} className="relative md:max-w-632px md:-ml-20px" />
+          <div className="flex-1 relative p-8px md:p-16px">
+            <div className="absolute bg-mild-purple rounded-5px opacity-75 top-0px bottom-0px left-0px right-0px"></div>
+            <p className="relative z-20 text-12px text-white font-pangram md:pl-16px px-16px pb-8px text-center md:text-left">
+              Enter an address, city, neighborhood, project, or developer.
+            </p>
+            <HomeHeroInput placeholder={placeholder} className="relative" />
+          </div>
         </div>
-        <div className="relative h-full min-h-600px">
-          <div className="absolute md:static flex flex-col bottom-80px home-hero-links">
-            <div className="md:absolute flex justify-around md:flex-col bottom-20px left-20px order-last md:order-none">
+        <div className="header-container">
+          <div className="absolute bottom-10px md:bottom-0px w-full flex flex-col md:flex-row items-center home-hero-links my-64px">
+            <div
+              onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
+              className="flex-1 mx-auto cursor-pointer tracking-tight text-white md:text-white-pink eyebrow-font md:mb-0px"
+            >
+              <div className="underline capitalize">{bottomTextUnderline}</div>
+            </div>
+            <div className="flex flex-1 justify-end space-x-16px md:mr-32px mt-64px md:mt-0px">
               <UniversalLink link={socialMediaLinks.facebook}>
                 <img className="hidden md:block" src={facebookIcon} alt="facebook" />
                 <img className="block md:hidden" src={facebookIconMobile} alt="facebook" />
               </UniversalLink>
-              <UniversalLink link={socialMediaLinks.twitter} className="md:my-40px">
+              <UniversalLink link={socialMediaLinks.twitter}>
                 <img className="hidden md:block" src={twitterIcon} alt="twitter" />
                 <img className="block md:hidden" src={twitterIconMobile} alt="twitter" />
               </UniversalLink>
@@ -48,13 +56,6 @@ const HeroHome = ({ image, title, placeholder, bottomText, bottomTextUnderline, 
                 <img className="hidden md:block" src={linkedInIcon} alt="linkedIn" />
                 <img className="block md:hidden" src={linkedInIconMobile} alt="linkedIn" />
               </UniversalLink>
-            </div>
-            <div
-              onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
-              className="flex mx-auto md:absolute cursor-pointer bottom-18px left-122px tracking-tight text-white md:text-white-pink mb-40px md:mb-0px eyebrow-font text-center"
-            >
-              <div className="mr-3px">{bottomText}</div>
-              <div className="md:underline">{bottomTextUnderline}</div>
             </div>
           </div>
         </div>

@@ -80,7 +80,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks viewAllLink="/cities" title="View Projects by City:" links={projectsByCityLinks} />
+        <ViewByLinks viewAllLink="/cities" title="City" links={projectsByCityLinks} />
         <div className="double-slider-small-tiles-background">
           <SliderSmallTiles
             arrowsColor="black-gray-2"
@@ -93,7 +93,7 @@ const ProjectTypePageTemplate = ({ data }) => {
             paddingSliderClasses="pt-70px pb-50px"
           />
         </div>
-        <ViewByLinks viewAllLink="/developers" title="View Projects by Developer:" links={projectsByDeveloperLinks} />
+        <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
         <ContactRealtorFormSection />
         <Footer />
       </div>
@@ -104,7 +104,7 @@ const ProjectTypePageTemplate = ({ data }) => {
 export default ProjectTypePageTemplate;
 
 export const query = graphql`
-  query ProjectTypeTemplate($projectType_contentful_id: String!, $projectType_name: String!) {
+  query ProjectTypeTemplate($projectType_contentful_id: String!) {
     contentfulProjectType(contentful_id: { eq: $projectType_contentful_id }) {
       name
       descriptionText
@@ -119,11 +119,7 @@ export const query = graphql`
       }
     }
     platinumAccessProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "platinum-access" } }
-        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
-      }
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "platinum-access" } } }
     ) {
       nodes {
         contentful_id
@@ -141,11 +137,7 @@ export const query = graphql`
       }
     }
     launchingSoonProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "launching-soon" } }
-        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
-      }
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "launching-soon" } } }
     ) {
       nodes {
         contentful_id
@@ -163,11 +155,7 @@ export const query = graphql`
       }
     }
     sellingProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        fields: { projectStatus: { eq: "selling" } }
-        projectTypes: { elemMatch: { name: { eq: $projectType_name } } }
-      }
+      filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "selling" } } }
     ) {
       nodes {
         contentful_id
