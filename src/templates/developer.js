@@ -14,21 +14,13 @@ import {
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 import { StaticImage } from "gatsby-plugin-image";
+import DeveloperHeroSection from "../components/hero-section/developer-hero-section/DeveloperHeroSection";
 // import Seo from "../seo/Seo";
 
 const DeveloperPageTemplate = ({ data }) => {
   const developer = data.contentfulDeveloper;
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
   const otherProjects = data.otherProjects.nodes;
-
-  const renderRightHeroContent = () => (
-    <div className="relative md:w-470px flex md:justify-end h-300px md:h-auto">
-      <StaticImage src="../assets/hero/developer-hero-image.png" alt="Developer hero" className="w-full md:w-384px" />
-      <div className="w-300px rounded-15px h-200px bg-white flex p-16px justify-center items-center absolute top-0px md:top-40px left-40px md:-left-160px z-100">
-        <Image image={developer.developerPreviewImage} alt="Developers hero" className="w-full" />
-      </div>
-    </div>
-  );
 
   return (
     <>
@@ -40,7 +32,7 @@ const DeveloperPageTemplate = ({ data }) => {
       /> */}
       <Header logoLink="/" />
       <HeroSection
-        rightHeroContent={renderRightHeroContent()}
+        rightHeroContent={<DeveloperHeroSection developerPreviewImage={developer.developerPreviewImage} />}
         title={developer.developerName}
         heroTopText="You're Exploring:"
         viewAllLink="/developers"
