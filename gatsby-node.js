@@ -85,6 +85,11 @@ async function getWalkScore(lat, lon) {
 }
 
 async function processHubSpotProject(project) {
+  if (process.env.SKIP_HUBSPOT_SYNC === "true") {
+    console.log(`Skip HubSpot sync for "${project.projectName}"`);
+    return;
+  }
+
   const projectHubSpotProperties = toHubSpotProjectProperties(project);
 
   await wait(300); // wait for little bit to prevent API limit error

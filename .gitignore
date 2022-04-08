@@ -76,5 +76,3 @@ yarn-error.log
 
 # Storybook build result
 storybook-static
-
-.env
