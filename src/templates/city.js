@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { graphql } from "gatsby";
 
 import {
   Header,
-  HeroSectionSlider,
   TextMapSection,
   TextSection,
   ThreeStatsSection,
@@ -11,19 +10,30 @@ import {
   ViewByLinks,
   ContactRealtorFormSection,
   Footer,
+  HeroSection,
+  SliderArrow,
+  Image,
 } from "../components";
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+import Slider from "react-slick";
+import CityHeroSection from "../components/hero-section/city-hero-section/CityHeroSection";
+import CitySectionSlider from "../components/city-section-slider/CitySectionSlider";
+
 // import Seo from "../seo/Seo";
 
 const CityPageTemplate = ({ data }) => {
   const city = data.contentfulCity;
+  const [hero, setHero] = useState(0);
+
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const projectsByCityLinks = spliceIntoChunks(data.projectsByCityLinks.nodes);
   const condoProjects = data.condoProjects.nodes;
   const townhouseProjects = data.townhouseProjects.nodes;
   const detachedProjects = data.detachedProjects.nodes;
+
+  const images = city.cityImages;
 
   return (
     <>
@@ -34,15 +44,15 @@ const CityPageTemplate = ({ data }) => {
         }}
       /> */}
       <Header />
-      <HeroSectionSlider
-        images={city.cityImages}
-        topText="City View"
+      <HeroSection
+        rightHeroContent={<CityHeroSection images={images} heroIndex={hero} />}
+        heroTopText="You're exploring:"
         title={city.cityName}
-        subtitle={city.citySubtitleText}
-        isCity
-        isFixedHeader
         className="bg-transparent"
+        viewAllLink="/cities"
+        viewAllText="View all Cities"
       />
+      <CitySectionSlider images={images} setHero={setHero} />
       <div className="md+:hidden border-t-2 border-gray-border w-full mt-15px mb-30px"></div>
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
         <TextMapSection

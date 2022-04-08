@@ -9,9 +9,12 @@ import {
   ViewByLinks,
   ContactRealtorFormSection,
   SliderSmallTiles,
+  Image,
 } from "../components";
 
 import { spliceIntoChunks } from "../utils/spliceIntoChunks";
+import { StaticImage } from "gatsby-plugin-image";
+import DeveloperHeroSection from "../components/hero-section/developer-hero-section/DeveloperHeroSection";
 // import Seo from "../seo/Seo";
 
 const DeveloperPageTemplate = ({ data }) => {
@@ -29,13 +32,13 @@ const DeveloperPageTemplate = ({ data }) => {
       /> */}
       <Header logoLink="/" />
       <HeroSection
-        image={developer.developerPreviewImage}
+        rightHeroContent={<DeveloperHeroSection developerPreviewImage={developer.developerPreviewImage} />}
         title={developer.developerName}
-        heroTopText="developer view"
-        heroContent={developer.developerSubtitleText}
+        heroTopText="You're Exploring:"
+        viewAllLink="/developers"
+        viewAllText="View all Developers"
         heroLogoImage={developer.developerPreviewLogo}
-        isFixedHeader
-        heroContentCss="footer-font md:font-normal text-black-gray"
+        viewAllClassName="bottom-32px"
       />
       <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">
         <TextMapSection

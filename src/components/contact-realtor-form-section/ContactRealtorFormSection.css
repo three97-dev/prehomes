@@ -3,6 +3,13 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  border: none;
+}
+
+@media screen and (max-width: 500px) {
+  .contact-container {
+    background-color: #7e41d7;
+  }
 }
 
 .form-wrapper {

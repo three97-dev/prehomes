@@ -1,41 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import Image from "../basic/image/Image";
+import "./HeroSection.css";
+import UniversalLink from "../../utils/UniversalLink";
 
 const HeroSection = ({
   heroTopText,
   title,
-  heroContent,
-  heroContentCss,
-  image,
-  heroLogoImage,
-  isUserDashboard,
+  rightHeroContent,
   className,
-  isStaticImage,
+  viewAllText,
+  viewAllLink,
+  viewAllClassName,
 }) => {
   return (
-    <div className={`w-full ${className}`}>
-      <div className="mx-auto text-beige h-screen md:h-500px">
-        <div className="absolute w-full -z-10 overflow-hidden">
-          {isStaticImage ? image : <Image image={image} className="-z-10 w-full h-screen sm+:h-500px" />}
-        </div>
-        <div
-          className={`z-100 md:flex md:pl-121px ${
-            heroLogoImage ? "justify-between md:pr-93px" : "pt-295px md:pt-0px"
-          } ${isUserDashboard ? "pt-391px md:pt-0px" : ""}`}
-        >
-          {heroLogoImage ? <Image image={heroLogoImage} className="md:hidden -z-10 pt-247px" /> : null}
-          <div className={`text-tundora md:ml-0px ${heroTopText ? "ml-27px" : ""}`}>
-            <div className="md:pt-217px eyebrow-font text-black-gray md:text-dark-orange">
-              {heroTopText.toUpperCase()}
-            </div>
-            <h1 className={`text-black-gray -mt-2px mb-18px ${heroTopText ? null : "text-center md:pl-13px pt-15px"} `}>
+    <div className={`hero-wrapper relative w-full ${className}`}>
+      <div className="mx-auto text-beige h-650px md:h-500px">
+        <div className="flex flex-col md:flex-row justify-between items-end absolute bottom-0px z-100 w-full md:px-120px">
+          <div className="w-full md:w-500px mb-54px md:mb-153px px-25px md:px-0px">
+            <h2 className="font-pangram font-normal text-40px md:text-48px text-mild-black leading-44px md:leading-54px">
+              {heroTopText}
+            </h2>
+            <h2 className="font-pangram font-normal text-deep-purple text-40px  md:text-48px leading-44px md:leading-54px">
               {title}
-            </h1>
-            <div className={`max-w-318px md:max-w-430px font-bold ${heroContentCss}`}>{heroContent}</div>
+            </h2>
           </div>
-          {heroLogoImage ? <Image image={heroLogoImage} className="hidden md:block -z-10 mt-197px" /> : null}
+          {viewAllText && viewAllLink && (
+            <UniversalLink
+              className={`hidden md:block absolute bottom-0px text-12px font-bold text-deep-purple underline ${viewAllClassName}`}
+              link={viewAllLink}
+            >
+              {viewAllText}
+            </UniversalLink>
+          )}
+          {rightHeroContent && rightHeroContent}
         </div>
       </div>
     </div>
@@ -45,17 +42,21 @@ const HeroSection = ({
 HeroSection.propTypes = {
   heroTopText: PropTypes.string,
   title: PropTypes.string,
-  heroContent: PropTypes.string,
   image: PropTypes.object,
   className: PropTypes.string,
+  viewAllLink: PropTypes.string,
+  viewAllText: PropTypes.string,
+  viewAllClassName: PropTypes.string,
 };
 
 HeroSection.defaultProps = {
   heroTopText: "",
   title: "",
-  heroContent: "",
   image: {},
   className: "",
+  viewAllLink: "",
+  viewAllText: "",
+  viewAllClassName: "",
 };
 
 export default HeroSection;
