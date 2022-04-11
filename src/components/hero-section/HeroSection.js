@@ -15,7 +15,7 @@ const HeroSection = ({
   return (
     <div className={`hero-wrapper relative w-full ${className}`}>
       <div className="mx-auto text-beige h-650px md:h-500px">
-        <div className="flex flex-col md:flex-row justify-between items-end absolute bottom-0px z-100 w-full md:px-120px">
+        <div className="flex flex-col md:flex-row justify-between md:items-end absolute bottom-0px z-100 w-full md:px-120px">
           <div className="w-full md:w-500px mb-54px md:mb-153px px-25px md:px-0px">
             <h2 className="font-pangram font-normal text-40px md:text-48px text-mild-black leading-44px md:leading-54px">
               {heroTopText}
@@ -26,7 +26,7 @@ const HeroSection = ({
           </div>
           {viewAllText && viewAllLink && (
             <UniversalLink
-              className={`hidden md:block absolute bottom-0px text-12px font-bold text-deep-purple underline ${viewAllClassName}`}
+              className={`md:absolute px-25px md:px-0px mb-16px md:mb-0px left-0px md:left-auto bottom-0px text-12px font-bold text-deep-purple underline ${viewAllClassName}`}
               link={viewAllLink}
             >
               {viewAllText}
