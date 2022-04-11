@@ -90,7 +90,7 @@ const CitySectionSlider = ({ images, setHero }) => {
       {images.map((img, index) => {
         return (
           <div className="slider-container">
-            <Image image={img} key={index} className="w-120px h-80px rounded-10px" />
+            <Image image={img} key={index} className="w-120px h-80px" />
           </div>
         );
       })}
