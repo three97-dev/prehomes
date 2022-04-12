@@ -87,8 +87,6 @@ const toHubSpotProjectProperties = project => {
     overview_video_link: project.overviewVideoLink,
     additional_description: fromContentfulRichTextToString(project.additionalDescription),
     google_drive_link: project.googleDriveLink,
-    sales_center_email: project.salesCentreEmail,
-    sales_center_phone: project.salesCentrePhone,
     cooperating_commission: project.cooperatingCommission,
     project_type: project.projectType?.name,
     launch_date: project.launchDate,
