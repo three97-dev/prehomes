@@ -9,8 +9,6 @@ const hubSpotProperties = [
   "overview_video_link",
   "additional_description",
   "google_drive_link",
-  "sales_center_email",
-  "sales_center_phone",
   "cooperating_commission",
   "project_type",
   "launch_date",
