@@ -16,7 +16,6 @@
 
 .header-white-section {
   height: 100%;
-  width: 650px;
   border-bottom: 0 solid white;
   border-left: 0 solid transparent;
   border-right: 260px solid transparent;
@@ -32,7 +31,7 @@
 }
 
 .hero-image {
-  width: calc(100vw - 350px);
+  width: 542px;
 }
 
 .save-button-shadow {

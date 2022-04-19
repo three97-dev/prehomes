@@ -12,6 +12,7 @@ const BUTTONS = {
   dark_orange: "buttonDarkOrange",
   outline: "buttonOutline",
   outline_thin: "outlineThin",
+  primary: "buttonPrimary",
 };
 
 const resolveButton = variants => {
@@ -50,7 +51,7 @@ const Button = ({ children, btnClasses, link, onClick, variants, disabled, type 
 Button.propTypes = {
   onClick: PropTypes.func,
   link: PropTypes.string,
-  variants: PropTypes.oneOf(["black_gradient", "beige_gradient", "dark_orange", "outline"]),
+  variants: PropTypes.oneOf(["black_gradient", "beige_gradient", "dark_orange", "outline", "primary"]),
   btnClasses: PropTypes.string,
   disabled: PropTypes.bool,
 };

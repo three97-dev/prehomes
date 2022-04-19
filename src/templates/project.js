@@ -57,7 +57,7 @@ const ProjectPageTemplate = ({ data }) => {
   }, [isFavorite, session, project, dispatch]);
 
   return (
-    <>
+    <div className="bg-light-gray">
       {/* <Seo
         seo={{
           seoTitle: project.projectName,
@@ -118,22 +118,23 @@ const ProjectPageTemplate = ({ data }) => {
         walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
         bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
-        className="pb-12px md:pb-40px"
+        className="pb-16px"
       />
-      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-transparent" />
-      <NeighborhoodMap geoLocation={project.projectAddressMapLocation} className="pt-40px bg-transparent" />
-
-      <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px border-gray-border md:my-40px"></div>
+      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-white" />
+      <NeighborhoodMap
+        geoLocation={project.projectAddressMapLocation}
+        className="pt-40px px-25px lg:px-120px bg-transparent"
+      />
       <FloorPlans
         options={options}
         projectData={project}
         floors={project.projectFloorPlans}
         isProject
-        className="mx-auto bg-transparent"
+        title="Floor Plans &amp; Prices"
+        className="py-64px mx-auto bg-transparent"
       />
-      <div className="hidden md:block border-t md:mx-25px lg:mx-120px md:mt-42px border-gray-border"></div>
       <KeyInformation
-        title="Key Information"
+        title="Project Information"
         statusLabel="Status"
         statusValue={project.fields.projectStatus}
         labelPriceSQFT="Price per sq.ft:"
@@ -164,12 +165,11 @@ const ProjectPageTemplate = ({ data }) => {
         totalSuitesValue={project.totalSuites}
         parkingMaintenanceLabel="Parking Maintenance"
         parkingMaintenanceValue={project.parkingMaintenance}
-        className="bg-transparent"
+        className="bg-transparent py-64px"
       />
       {project.amenities ? (
         <>
-          <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
-          <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
+          <Amenities title="Amenities" amenities={project.amenities} className="pb-64px px-25px lg:px-120px" />
         </>
       ) : null}
       <ContactRealtorFormSection
@@ -179,9 +179,10 @@ const ProjectPageTemplate = ({ data }) => {
             value: project.projectName,
           },
         ]}
+        className="rounded-t-100px"
       />
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,19 @@
+.overview-first-level-heading {
+  @apply font-pangram text-36px font-normal text-mild-black mb-16px;
+}
+
+.overview-second-level-heading {
+  @apply text-24px font-poppins font-bold text-deep-purple mb-8px;
+}
+
+.overview-paragraph {
+  @apply text-mild-black mb-16px font-normal;
+}
+
+.last-paragraph:last-child {
+  @apply mb-0px;
+}
+
 @layer base {
   @variants responsive {
     .project-overview-grid {

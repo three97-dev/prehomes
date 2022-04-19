@@ -8,7 +8,7 @@ const TextSection = ({ title, content, className }) => {
       <Markdown
         data={content}
         config={{
-          p: "mb-24px",
+          p: "text-mild-black text-16px font-normal",
         }}
       />
     </div>

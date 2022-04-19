@@ -38,9 +38,8 @@ const HeroSectionSlider = ({
             <div className="footer-font md:font-light text-black-gray md:max-w-430px mx-auto md:mx-0px">{subtitle}</div>
           </div>
         ) : (
-          <div className="md:w-270px md:mt-70px">
-            <div className="eyebrow-font text-dark-creamy">{topText}</div>
-            <h1 className="text-black-gray">{title}</h1>
+          <div className=" md:mt-70px">
+            <h1 className="text-48px text-mild-black font-pangram font-normal">{title}</h1>
             <div className="flex justify-center md:justify-start">
               {isLoggedIn && (
                 <Button
@@ -139,14 +138,16 @@ const HeroSectionSlider = ({
   };
 
   return (
-    <div className={`md:relative md:h-screen md:overflow-hidden bg-white-pink ${className}`}>
-      <div className="header-hero-section relative w-screen">
-        <div className="grid">
-          <div className="header-white-section hidden md:block z-10"></div>
-          <HeroTitle className="hero-title hidden md:block left-120px z-20 max-w-350px" />
-        </div>
-        <div className="hero-image h-full absolute pt-100px md:pt-0px md:right-0px top-0px">
-          <Image image={images[nav]} className="md:min-w-700px w-full h-full" />
+    <div className={`md:relative w-full md:h-screen md:overflow-hidden bg-white-pink ${className}`}>
+      <div className="header-hero-section relative px-25px lg:px-120px">
+        <div className="absolute w-full bottom-0px flex h-350px justify-between left-0px right-0px">
+          <div className="grid">
+            <div className="header-white-section hidden md:block z-10"></div>
+            <HeroTitle className="hero-title hidden md:block left-120px z-20 max-w-350px" />
+          </div>
+          <div className="hero-image pt-100px md:pt-0px">
+            <Image image={images[nav]} className="w-full h-full" />
+          </div>
         </div>
       </div>
       <div className="md:absolute bg-white md:bottom-0px w-full z-20 mb-50px md:mb-0px">

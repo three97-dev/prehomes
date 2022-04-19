@@ -73,6 +73,7 @@ module.exports = {
       "minty-green": "#2DE2D9",
       "mild-black": "#363636",
       "placeholder-color": "#B3B3B3",
+      grey: "#848484",
     },
     spacing: {
       "0px": "0rem",
@@ -562,6 +563,7 @@ module.exports = {
       "28px": "2.8rem",
       "32px": "3.2rem",
       "80px": "8rem",
+      "100px": "10rem",
       full: "999.9rem",
     },
     fontFamily: {
@@ -664,6 +666,7 @@ module.exports = {
       "20px": "2rem",
       "22px": "2.2rem",
       "23px": "2.3rem",
+      "24px": "2.4rem",
       "26px": "2.6rem",
       "29px": "2.9rem",
       "32px": "3.2rem",

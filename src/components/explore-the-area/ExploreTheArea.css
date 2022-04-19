@@ -1,3 +1,15 @@
+.explore-first-level-heading {
+  @apply font-pangram text-36px font-normal text-mild-black mb-16px;
+}
+
+.explore-second-level-heading {
+  @apply text-24px font-poppins font-bold text-deep-purple;
+}
+
+.explore-second-level-modifier {
+  @apply text-mild-black;
+}
+
 @layer base {
   @variants responsive {
     .walk-score-grid-area-mobile {
@@ -8,7 +20,7 @@
 
     .walk-score-grid-area {
       display: grid;
-      grid-template-columns: 2.2rem 3.1rem 13.4rem 2rem 3.7rem 2rem 2rem;
+      grid-template-columns: 2.2rem 3.1rem 15rem 2rem 3.7rem 2rem 2rem;
       grid-template-areas: "PedestrianIcon . WalkScoreTitle . WalkScoreNumber . WalkScoreHelpMark";
     }
 
