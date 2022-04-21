@@ -10,7 +10,7 @@
   @apply text-mild-black mb-16px font-normal;
 }
 
-.last-paragraph:last-child {
+p.overview-content:last-child {
   @apply mb-0px;
 }
 

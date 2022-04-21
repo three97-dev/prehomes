@@ -15,6 +15,7 @@ import {
   Footer,
   ContactRealtorFormSection,
   InformationPanel,
+  RegisterForProject,
 } from "../components";
 
 import { options } from "../utils/filterOptions";
@@ -57,7 +58,11 @@ const ProjectPageTemplate = ({ data }) => {
   }, [isFavorite, session, project, dispatch]);
 
   return (
-    <div className="bg-light-gray">
+    <div
+      style={{
+        backgroundColor: "#FBFBFB",
+      }}
+    >
       {/* <Seo
         seo={{
           seoTitle: project.projectName,
@@ -75,6 +80,7 @@ const ProjectPageTemplate = ({ data }) => {
         onClickSave={saveUnsaveProjectButton}
         isFixedHeader
         className="bg-transparent"
+        videoLink={project.overviewVideoLink}
       />
       {project.googleDriveLink && showInfoPanel ? (
         <InformationPanel
@@ -120,10 +126,18 @@ const ProjectPageTemplate = ({ data }) => {
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
         className="pb-16px"
       />
-      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-white" />
+      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px" />
       <NeighborhoodMap
         geoLocation={project.projectAddressMapLocation}
-        className="pt-40px px-25px lg:px-120px bg-transparent"
+        className="pb-64px mt-16px px-25px lg:px-120px bg-transparent"
+      />
+      <RegisterForProject
+        additionalFields={[
+          {
+            name: "projectName",
+            value: project.projectName,
+          },
+        ]}
       />
       <FloorPlans
         options={options}
@@ -131,7 +145,7 @@ const ProjectPageTemplate = ({ data }) => {
         floors={project.projectFloorPlans}
         isProject
         title="Floor Plans &amp; Prices"
-        className="py-64px mx-auto bg-transparent"
+        className="pt-64px mx-auto bg-transparent"
       />
       <KeyInformation
         title="Project Information"
@@ -228,6 +242,7 @@ export const query = graphql`
       }
       fields {
         projectStatus
+        pageUrl
         walkScore
         bikeScore
         transitScore

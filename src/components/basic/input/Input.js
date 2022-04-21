@@ -20,13 +20,15 @@ const Input = ({
   isShadow,
   className,
   disabled,
+  labelClasses,
+  borderRadius,
 }) => {
   return (
     <div className={`${className}`}>
       {label ? (
         <div className={`grid grid-flow-col w-full`}>
           <label htmlFor={name} className={`justify-self-start sm+:ml-8px`}>
-            <h2 className="font-pangram text-12px text-white font-bold">{label}</h2>
+            <h2 className={`font-pangram text-12px text-white font-bold ${labelClasses}`}>{label}</h2>
           </label>
         </div>
       ) : null}
@@ -42,7 +44,7 @@ const Input = ({
         disabled={disabled}
         className={`${
           isShadow ? "input-shadow" : null
-        } font-pangram text-12px text-mild-black ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-5px ${border} focus-visible:outline-none focus:outline-none ${placeholderColor}`}
+        } font-pangram text-12px placeholder-${placeholderColor} ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-5px ${border} focus-visible:outline-none focus:outline-none ${borderRadius}`}
       />
     </div>
   );
@@ -74,7 +76,7 @@ Input.defaultProps = {
   id: "",
   label: "",
   placeholder: "",
-  placeholderColor: "",
+  placeholderColor: "text-mild-black",
   className: "",
   onBlur: () => {},
   onChange: () => {},

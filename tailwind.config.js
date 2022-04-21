@@ -274,6 +274,7 @@ module.exports = {
       "250px": "25rem",
       "251px": "25.1rem",
       "252px": "25.2rem",
+      "253px": "25.3rem",
       "254px": "25.4rem",
       "255px": "25.5rem",
       "257px": "25.7rem",

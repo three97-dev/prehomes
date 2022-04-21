@@ -221,23 +221,23 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                 <tr className="table-head">
                   <th></th>
                   <th className="table-head-item pl-32px py-16px text-deep-purple min-w-136px">
-                    <h4 className="text-16px">Suite Name</h4>
+                    <h4 className="text-16px font-bold">Suite Name</h4>
                   </th>
                   <th className="table-head-item pl-32px py-16px text-deep-purple">
-                    <h4 className="text-16px">Suite Type</h4>
+                    <h4 className="text-16px font-bold">Suite Type</h4>
                   </th>
                   <th className="table-head-item pl-32px py-16px text-deep-purple">
-                    <h4 className="text-16px">Size</h4>
+                    <h4 className="text-16px font-bold">Size</h4>
                   </th>
                   <th className="table-head-item pl-32px py-16px text-deep-purple">
-                    <h4 className="text-16px">Price</h4>
+                    <h4 className="text-16px font-bold">Price</h4>
                   </th>
                   <th className="table-head-item"></th>
                 </tr>
               </thead>
             )}
             <div className="w-full mt-20px"></div>
-            <tbody className="">
+            <tbody>
               {isDesktop
                 ? sortedTiles.map((floorPlan, index) => (
                     <tr key={index} className="table-info">
@@ -281,7 +281,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
                         <Button
                           variants="primary"
-                          btnClasses="rounded-100px w-113px h-54px"
+                          btnClasses="rounded-100px w-110px h-52px"
                           onClick={() => setMoreInfoModal(floorPlan)}
                         >
                           <div className="font-medium font-poppins text-16px">More info</div>
@@ -354,6 +354,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                 />
               )}
             </tbody>
+            <tr className="divider"></tr>
           </table>
         </div>
       )}

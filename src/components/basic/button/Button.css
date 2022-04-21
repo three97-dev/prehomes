@@ -34,6 +34,10 @@
   @apply bg-deep-purple rounded-100px text-white;
 }
 
+.buttonBlack {
+  @apply bg-mild-black rounded-100px text-white;
+}
+
 .boxShadow {
   box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.15);
 }

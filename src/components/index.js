@@ -56,6 +56,7 @@ import ModalCongratulations from "./modal-congratulations/ModalCongratulations";
 import PrestigeCollection from "./prestige-collection/PrestigeCollection";
 import PropertyTypeSection from "./property-type-section/PropertyTypeSection";
 import PropertyType from "./property-type/PropertyType";
+import RegisterForProject from "./register-for-project/RegisterForProject";
 
 export {
   Button,
@@ -113,4 +114,5 @@ export {
   PrestigeCollection,
   PropertyTypeSection,
   PropertyType,
+  RegisterForProject,
 };
