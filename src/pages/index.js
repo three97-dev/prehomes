@@ -26,6 +26,7 @@ const IndexPage = ({ data }) => {
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
+  const projectTypes = data.allContentfulProjectType.nodes;
 
   return (
     <>
@@ -42,7 +43,7 @@ const IndexPage = ({ data }) => {
         bottomText="New to prehomes?"
         bottomTextUnderline="Watch our video"
       />
-      <PropertyTypeSection />
+      <PropertyTypeSection projectTypes={projectTypes} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Platinum Access"

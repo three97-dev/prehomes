@@ -30,7 +30,6 @@ const HeroSectionSlider = ({
   const [slider, setSlider] = useState(null);
   const [tileCount, setTileCount] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const { isLoggedIn } = useSelector(state => state.session);
 
   const HeroTitle = ({ className }) => {
     return (
@@ -43,25 +42,25 @@ const HeroSectionSlider = ({
           </div>
         ) : (
           <div>
-            <h1 className="text-48px text-mild-black font-pangram font-normal mb-32px">{title}</h1>
+            <h1 className="text-40px text-center md:text-left md:text-48px text-mild-black font-pangram font-normal mb-32px">
+              {title}
+            </h1>
             <div className="flex justify-center md:justify-start">
-              {isLoggedIn && (
-                <Button
-                  variants="primary"
-                  onClick={onClickSave}
-                  btnClasses="flex justify-center justify-self-center button-font w-168px h-52px md:mr-16px"
-                >
-                  <div className="flex items-center my-auto">
-                    <img className="w-22px h-19px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favorite" />
-                    <div className="mr-10px">{saveButton}</div>
-                  </div>
-                </Button>
-              )}
+              <Button
+                variants="primary"
+                onClick={onClickSave}
+                btnClasses="flex justify-center justify-self-center button-font w-142px md:w-168px h-52px mr-16px"
+              >
+                <div className="flex items-center my-auto">
+                  <img className="w-22px h-19px mr-10px" src={isFavorite ? FavoriteRed : Favorite} alt="favorite" />
+                  <div className="mr-10px">{saveButton}</div>
+                </div>
+              </Button>
               {videoLink && (
                 <Button
                   variants="black"
                   onClick={() => (modalIsOpen ? setIsOpen(false) : setIsOpen(true))}
-                  btnClasses="flex justify-center justify-self-center button-font w-168px h-52px"
+                  btnClasses="flex justify-center justify-self-center button-font w-142px md:w-168px h-52px"
                 >
                   <div className="flex items-center my-auto">
                     <img className="w-22px h-19px mr-10px" src={VideoIcon} alt="Video" />
@@ -85,7 +84,6 @@ const HeroSectionSlider = ({
     touchMove: false,
     className: "center",
     afterChange: index => images[index] && setNav(index),
-    focusOnSelect: true,
     prevArrow: <SliderArrow classNames="prev project-prev" />,
     nextArrow: <SliderArrow classNames="next project-next" rotate />,
     onInit: useCallback(() => {
@@ -100,37 +98,35 @@ const HeroSectionSlider = ({
     }, [slider, tileCount, setTileCount]),
     responsive: [
       {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 5,
-          arrows: false,
-          touchMove: true,
-          centerMode: true,
-          swipeToSlide: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 6,
-          arrows: false,
-          touchMove: true,
-          centerMode: true,
-          swipeToSlide: true,
-        },
-      },
-      {
         breakpoint: 833,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 1,
           arrows: false,
           touchMove: true,
-          centerMode: true,
           swipeToSlide: true,
+          variableWidth: true,
         },
       },
       {
-        breakpoint: 1100,
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 7,
+        },
+      },
+      {
+        breakpoint: 1900,
         settings: {
           slidesToShow: 8,
         },
@@ -155,23 +151,25 @@ const HeroSectionSlider = ({
   };
 
   return (
-    <div className={`md:relative w-full hero-wrapper md:overflow-hidden bg-light-purple rounded-b-100px ${className}`}>
-      <div className="px-25px lg:px-120px absolute bottom-0px left-0px right-0px">
-        <div className="header-hero-section relative h-4/5">
-          <div className="bg-white hero-shadow px-32px py-21px rounded-15px absolute w-full bottom-0px flex h-350px justify-between left-0px right-0px mb-32px">
-            <div className="flex items-center">
-              <HeroTitle className="hidden md:block z-20" />
+    <div
+      className={`md:relative w-full hero-wrapper md:overflow-hidden bg-light-purple md:rounded-b-100px rounded-b-50px ${className}`}
+    >
+      <div className="px-25px md:px-0px prehomes-container md:absolute bottom-0px left-0px right-0px h-full flex md:block flex-col justify-end">
+        <div className="header-hero-section relative md:h-4/5">
+          <div className="bg-white hero-shadow md:px-32px md:py-21px p-16px pt-32px rounded-15px md:absolute w-full bottom-0px flex flex-col md:flex-row md:h-350px h-auto md:justify-between left-0px right-0px mb-32px">
+            <div className="flex items-center md:w-356px">
+              <HeroTitle className="z-20 mb-32px md:mb-0px" />
             </div>
             <div className="hero-image">
               <Image image={images[nav]} className="w-full h-full rounded-15px" />
             </div>
           </div>
         </div>
-        <div className="w-full z-20 mb-32px hero-slider-wrapper h-80px">
+        <div className="w-full md:px-56px mb-32px hero-slider-wrapper h-80px">
           <Slider ref={s => setSlider(s)} {...settings}>
-            {[...images, ...images].map((img, index) => {
+            {images.map((img, index) => {
               return (
-                <div key={index} className="flex justify-center w-125px h-80px cursor-pointer">
+                <div key={index} onClick={() => setNav(index)} className="md:flex justify-center h-80px cursor-pointer">
                   <Image image={img} className="block h-full rounded-10px" />
                 </div>
               );

@@ -3,7 +3,7 @@
   height: 171px;
 }
 
-.gatsby-image-wrapper img {
+.horizontal-card-wrapper .gatsby-image-wrapper img {
   @apply rounded-l-15px;
 }
 

@@ -44,7 +44,7 @@ const Input = ({
         disabled={disabled}
         className={`${
           isShadow ? "input-shadow" : null
-        } font-pangram text-12px placeholder-${placeholderColor} ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-5px ${border} focus-visible:outline-none focus:outline-none ${borderRadius}`}
+        } font-pangram text-14px placeholder-${placeholderColor} ${height} w-full max-w-539px pr-20px ${paddingLeft} rounded-5px ${border} focus-visible:outline-none focus:outline-none ${borderRadius}`}
       />
     </div>
   );

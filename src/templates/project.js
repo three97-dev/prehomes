@@ -126,10 +126,10 @@ const ProjectPageTemplate = ({ data }) => {
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
         className="pb-16px"
       />
-      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px" />
+      <TextSection content={project.additionalDescription} className="px-25px lg:px-0px prehomes-container" />
       <NeighborhoodMap
         geoLocation={project.projectAddressMapLocation}
-        className="pb-64px mt-16px px-25px lg:px-120px bg-transparent"
+        className="pb-32px pt-20px md:pb-64px mt-16px px-0px lg:px-0px prehomes-container bg-transparent"
       />
       <RegisterForProject
         additionalFields={[
@@ -145,7 +145,7 @@ const ProjectPageTemplate = ({ data }) => {
         floors={project.projectFloorPlans}
         isProject
         title="Floor Plans &amp; Prices"
-        className="pt-64px mx-auto bg-transparent"
+        className="md:pt-64px pt-32px mx-auto bg-transparent"
       />
       <KeyInformation
         title="Project Information"
@@ -179,11 +179,15 @@ const ProjectPageTemplate = ({ data }) => {
         totalSuitesValue={project.totalSuites}
         parkingMaintenanceLabel="Parking Maintenance"
         parkingMaintenanceValue={project.parkingMaintenance}
-        className="bg-transparent py-64px"
+        className="bg-transparent md:py-64px py-32px prehomes-container"
       />
       {project.amenities ? (
         <>
-          <Amenities title="Amenities" amenities={project.amenities} className="pb-64px px-25px lg:px-120px" />
+          <Amenities
+            title="Amenities"
+            amenities={project.amenities}
+            className="pb-40px md:pb-64px px-25px lg:px-0px prehomes-container"
+          />
         </>
       ) : null}
       <ContactRealtorFormSection
@@ -193,7 +197,7 @@ const ProjectPageTemplate = ({ data }) => {
             value: project.projectName,
           },
         ]}
-        className="rounded-t-100px"
+        className="md:rounded-t-100px"
       />
       <Footer />
     </div>

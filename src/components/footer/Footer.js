@@ -22,7 +22,7 @@ const Footer = ({ className }) => {
         className
       )}
     >
-      <div>
+      <div className="prehomes-container">
         <div className="pb-20px">
           {isDesktop ? (
             <StaticImage src="../../assets/footer/logo.png" alt="logo" />

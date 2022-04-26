@@ -20,40 +20,39 @@ const ProjectOverview = ({
   className,
 }) => {
   return (
-    <div className={`lg:px-120px w-full py-64px ${className}`}>
-      <div className="md+:grid md+:project-overview-grid mx-auto md:gap-x-62px lg+:gap-x-160px">
-        <div className="md+:hidden border-t-2 border-gray-border w-full mb-40px"></div>
-        <div className="project-overview-price-area px-25px lg:px-0px w-446px">
-          <div className="mx-auto">
-            <h2 className="overview-first-level-heading">
-              ${minPrice ? minPrice.toLocaleString("en-US") : ""} - ${maxPrice ? maxPrice.toLocaleString("en-US") : ""}
-            </h2>
-            <h3 className="overview-second-level-heading">{labelPriceSQFT}</h3>
-            <p className="overview-paragraph">${priceSQFT ? priceSQFT.toLocaleString("en-US") : ""} </p>
-            <h3 className="overview-second-level-heading">{labelPriceNeighborhood}</h3>
-            <p className="overview-paragraph">${priceNeighborhood ? priceNeighborhood.toLocaleString("en-US") : ""}</p>
-            <h3 className="overview-second-level-heading">{labelPriceCity}</h3>
-            <p className="overview-paragraph">${priceCity ? priceCity.toLocaleString("en-US") : ""}</p>
+    <div className={`lg:px-0px w-full py-32px md:py-64px ${className}`}>
+      <div className="prehomes-container">
+        <div className="md+:grid md+:project-overview-grid mx-auto md:gap-x-62px lg+:gap-x-160px">
+          <div className="project-overview-content-area px-25px lg:px-0px">
+            <h2 className="overview-first-level-heading">{title}</h2>
+            <h3 className="overview-second-level-heading">{address}</h3>
+            <div className="text-black-gray">
+              <RRenderer
+                data={content}
+                config={{
+                  p: "mb-24px text-mild-black text-16px font-normal overview-content",
+                }}
+              />
+            </div>
+          </div>
+          <div className="project-overview-price-area px-25px lg:px-0px w-446px">
+            <div className="mx-auto">
+              <h2 className="overview-first-level-heading">
+                ${minPrice ? minPrice.toLocaleString("en-US") : ""} - $
+                {maxPrice ? maxPrice.toLocaleString("en-US") : ""}
+              </h2>
+              <h3 className="overview-second-level-heading">{labelPriceSQFT}</h3>
+              <p className="overview-paragraph">${priceSQFT ? priceSQFT.toLocaleString("en-US") : ""} </p>
+              <h3 className="overview-second-level-heading">{labelPriceNeighborhood}</h3>
+              <p className="overview-paragraph">
+                ${priceNeighborhood ? priceNeighborhood.toLocaleString("en-US") : ""}
+              </p>
+              <h3 className="overview-second-level-heading">{labelPriceCity}</h3>
+              <p className="overview-paragraph">${priceCity ? priceCity.toLocaleString("en-US") : ""}</p>
+            </div>
           </div>
         </div>
-
-        <div className="md+:hidden border-t-2 border-gray-border w-full mt-50px mb-40px"></div>
-
-        <div className="project-overview-content-area px-25px lg:px-0px">
-          <h2 className="overview-first-level-heading">{title}</h2>
-          <h3 className="overview-second-level-heading">{address}</h3>
-          <div className="text-black-gray">
-            <RRenderer
-              data={content}
-              config={{
-                p: "mb-24px text-mild-black text-16px font-normal overview-content",
-              }}
-            />
-          </div>
-        </div>
-        <div className="md+:hidden border-t-2 border-gray-border w-full mt-50px"></div>
       </div>
-      <div />
     </div>
   );
 };

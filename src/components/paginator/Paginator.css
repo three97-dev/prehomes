@@ -8,8 +8,14 @@
   border-bottom: 1px solid #c4c4c4;
 }
 
+@media screen and (max-width: 500px) {
+  .paginate-block {
+    margin-top: 16px;
+  }
+}
+
 .active-page {
-  @apply font-bold !important;
+  @apply text-mild-black font-bold !important;
 }
 .button-outline-none a:focus {
   outline: none !important;

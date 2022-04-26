@@ -129,22 +129,22 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
   );
 
   return (
-    <div className={`relative bg-white-pink md:bg-light-gray ${className}`}>
-      <div className="pl-25px lg:pl-120px">
+    <div className={`relative prehomes-container ${className}`}>
+      <div className="pl-25px lg:pl-0px">
         <h2 className="heading mb-16px">{title}</h2>
-        <div className="flex">
-          <h3 className="second-level-heading mr-64px">Total Floor Plans:</h3>
+        <div className="flex flex-col md:flex-row mb-32px md:mb-0px">
+          <h3 className="second-level-heading mb-8px md:mb-0px md:mr-64px">Total Floor Plans:</h3>
           <p className="second-level-heading second-level-heading-modifier">
             <span>{floors ? floors.length : 0}</span> ({availableFloors.length} Available)
           </p>
         </div>
       </div>
-      <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}>
+      <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb:mb-25px`}>
         <button
           onClick={() => {
             setIsModalFilterOpen(!isModalFilterOpen);
           }}
-          className="w-80px h-24px text-dark-orange button-font"
+          className="w-80px h-24px text-deep-purple text-16px font-medium uppercase"
         >
           Filters
         </button>
@@ -177,7 +177,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
           fontSize="11px"
         />
       </div>
-      <div className="drop-down-grid pl-25px lg:pl-120px mt-32px">
+      <div className="drop-down-grid pl-25px lg:pl-0px mt-32px">
         <Dropdown
           title="Size"
           options={options.sizes}
@@ -214,7 +214,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
       {sortedTiles.length === 0 ? (
         <h3 className="w-full pt-100px pb-50px text-center">No results</h3>
       ) : (
-        <div className="md:px-25px lg:px-120px mt-32px">
+        <div className="md:mt-32px">
           <table className="w-full">
             {isDesktop && (
               <thead>
@@ -236,7 +236,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                 </tr>
               </thead>
             )}
-            <div className="w-full mt-20px"></div>
+            <div className="w-full md:mt-20px mt-28px"></div>
             <tbody>
               {isDesktop
                 ? sortedTiles.map((floorPlan, index) => (
@@ -301,20 +301,20 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                         />
                       </td>
                       <td className="pl-20px lg:pl-37px lg+:pl-30px">
-                        <div className="table-data">
-                          <div className="footer-font mb-20px">{floorPlan.name.toUpperCase()}</div>
+                        <div className="table-data flex flex-col justify-center">
+                          <div className="text-16px font-bold mb-8px">{floorPlan.name.toUpperCase()}</div>
                           <div className="floor-info">
-                            <p className="w-100px">
+                            <p className="font-normal text-16px text-deep-purple w-100px">
                               {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
                             </p>
-                            <p className="w-100px">
-                              {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} SQ.FT
+                            <p className="font-normal text-16px text-deep-purple w-100px">
+                              {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} Sq.Ft
                             </p>
-                            <p className="w-100px text-mild-black font-normal text-16px">
-                              {floorPlan.bathrooms} BATHROOM
+                            <p className="w-100px font-normal text-16px text-deep-purple">
+                              {floorPlan.bathrooms} Bathroom
                             </p>
-                            <p className="w-100px text-mild-black font-normal text-16px">
-                              {floorPlan.bedrooms} BEDROOM
+                            <p className="w-100px font-normal text-16px text-deep-purple">
+                              {floorPlan.bedrooms} Bedroom
                             </p>
                           </div>
                         </div>
@@ -354,7 +354,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
                 />
               )}
             </tbody>
-            <tr className="divider"></tr>
+            <tr className="divider hidden md:block"></tr>
           </table>
         </div>
       )}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Select, { components } from "react-select";
 
 import DropdownArrow from "../dropdown-arrow/DropdownArrow";
+import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 const Dropdown = ({
   title,
@@ -22,6 +23,7 @@ const Dropdown = ({
   value,
   onChange,
 }) => {
+  const isDesktop = useApplyAfterWidth(833);
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -45,9 +47,9 @@ const Dropdown = ({
     singleValue: (provided, state) => ({
       ...provided,
       color: "#7043D4",
-      fontSize: "16px",
+      fontSize: isDesktop ? "16px" : "12px",
       fontWeight: 300,
-      fontFamily: "Poppins",
+      fontFamily: isDesktop ? "Poppins" : "Pangram",
     }),
     menu: provided => ({
       ...provided,

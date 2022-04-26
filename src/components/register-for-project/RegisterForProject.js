@@ -74,78 +74,81 @@ const RegisterForProject = ({ additionalFields }) => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div className="register-for-project-wrapper py-32px px-25px lg:px-120px bg-light-purple rounded-100px">
-      <h2 className="font-pangram font-normal text-36px text-deep-purple text-center mb-16px">
-        Register For This Project
-      </h2>
-      <p className="text-mild-black text-16px font-normal text-center mb-30px">
-        When you register for a project you’ll get access to all the news, information and updates about this project as
-        its made available to us. You’l also receive available pricing and floor plans. <strong>Sign up below</strong>.
-      </p>
-      <form onSubmit={formik.handleSubmit} className="w-full justify-between flex items-end">
-        <div className="flex space-x-40px">
-          <Input
-            id="firstName"
-            name="firstName"
-            placeholderColor="deep-purple"
-            label="First Name"
-            labelClasses="text-mild-black"
-            placeholder="John"
-            className="w-253px"
-            borderRadius="rounded-100px"
-            border=""
-            height="h-52px"
-            paddingLeft="px-16px"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.firstName}
-            isShadow
-          />
-          <Input
-            id="lastName"
-            name="lastName"
-            placeholderColor="deep-purple"
-            labelClasses="text-mild-black"
-            label="Last Name"
-            placeholder="Smith"
-            className="w-251px"
-            borderRadius="rounded-100px"
-            border=""
-            height="h-52px"
-            paddingLeft="px-16px"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.lastName}
-            isShadow
-          />
-          <Input
-            id="email"
-            name="email"
-            placeholderColor="deep-purple"
-            label="Email Address"
-            placeholder="johnsmith@email.com"
-            labelClasses="text-mild-black"
-            border=""
-            className="w-350px"
-            height="h-52px"
-            paddingLeft="px-16px"
-            borderRadius="rounded-100px"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            isShadow
-          />
-        </div>
-        <Button
-          disabled={formik.isSubmitting || !formik.dirty || isSubmitted}
-          onClick={formik.handleSubmit}
-          variants="primary"
-          btnClasses="w-110px rounded-200px h-52px"
-        >
-          <div className="font-medium text-16px">{isSubmitted ? "Submitted" : "Submit"}</div>
-        </Button>
-      </form>
-      {showError && <div className="text-red-color-error-2 uppercase mt-16px text-center">{showError}</div>}
+    <div className="register-for-project-wrapper py-32px px-25px lg:px-0px bg-light-purple rounded-50px md:rounded-100px">
+      <div className="prehomes-container">
+        <h2 className="font-pangram font-normal text-28px text-mild-black md:text-36px md:text-deep-purple text-center mb-16px">
+          Register For This Project
+        </h2>
+        <p className="text-mild-black text-16px font-normal text-center mb-30px">
+          When you register for a project you’ll get access to all the news, information and updates about this project
+          as its made available to us. You’l also receive available pricing and floor plans.{" "}
+          <strong>Sign up below</strong>.
+        </p>
+        <form onSubmit={formik.handleSubmit} className="w-full justify-between flex-col md:flex-row flex md:items-end">
+          <div className="flex flex-col md:flex-row space-y-16px md:space-x-40px md:space-y-0px">
+            <Input
+              id="firstName"
+              name="firstName"
+              placeholderColor="deep-purple"
+              label="First Name"
+              labelClasses="text-mild-black pl-16px"
+              placeholder="John"
+              className="w-full md:w-253px text-14px"
+              borderRadius="rounded-100px"
+              border=""
+              height="h-52px"
+              paddingLeft="px-16px"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+              isShadow
+            />
+            <Input
+              id="lastName"
+              name="lastName"
+              placeholderColor="deep-purple"
+              labelClasses="text-mild-black pl-16px"
+              label="Last Name"
+              placeholder="Smith"
+              className="w-full md:w-251px text-14px"
+              borderRadius="rounded-100px"
+              border=""
+              height="h-52px"
+              paddingLeft="px-16px"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
+              isShadow
+            />
+            <Input
+              id="email"
+              name="email"
+              placeholderColor="deep-purple"
+              label="Email Address"
+              placeholder="johnsmith@email.com"
+              labelClasses="text-mild-black pl-16px"
+              border=""
+              className="w-full text-14px md:w-350px"
+              height="h-52px"
+              paddingLeft="px-16px"
+              borderRadius="rounded-100px"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+              isShadow
+            />
+          </div>
+          <Button
+            disabled={formik.isSubmitting || !formik.dirty || isSubmitted}
+            onClick={formik.handleSubmit}
+            variants="primary"
+            btnClasses="w-110px rounded-200px h-52px self-end mt-32px md:mt-0px"
+          >
+            <div className="font-medium text-16px">{isSubmitted ? "Submitted" : "Submit"}</div>
+          </Button>
+        </form>
+        {showError && <div className="text-red-color-error-2 uppercase mt-16px text-center">{showError}</div>}
+      </div>
     </div>
   );
 };
