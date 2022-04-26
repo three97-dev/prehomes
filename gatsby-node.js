@@ -115,7 +115,9 @@ async function processHubSpotProject(project) {
         `Updated HubSpot Project fields for "${project.projectName}" (contentful_id=${project.contentful_id})`
       );
     } else {
-      console.log(`No changes for HubSpot Project "${project.projectName}" (contentful_id=${project.contentful_id})`);
+      console.log(
+        `No changes for HubSpot Project "${project.projectName}" (contentful_id=${project.contentful_id})`
+      );
     }
   } else {
     await hubspotClient.crm.objects.basicApi.create("PROJECT", {
@@ -224,6 +226,7 @@ exports.sourceNodes = async args => {
       name: "transitScore",
       value: transitScore,
     });
+
     await processHubSpotProject(project);
   }
 
