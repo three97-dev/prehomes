@@ -115,9 +115,7 @@ async function processHubSpotProject(project) {
         `Updated HubSpot Project fields for "${project.projectName}" (contentful_id=${project.contentful_id})`
       );
     } else {
-      console.log(
-        `No changes for HubSpot Project "${project.projectName}" (contentful_id=${project.contentful_id})`
-      );
+      console.log(`No changes for HubSpot Project "${project.projectName}" (contentful_id=${project.contentful_id})`);
     }
   } else {
     await hubspotClient.crm.objects.basicApi.create("PROJECT", {
@@ -126,7 +124,7 @@ async function processHubSpotProject(project) {
     console.log(`Created HubSpot Project for "${project.projectName}" (contentful_id=${project.contentful_id})`);
   }
 }
-let count = 0;
+
 exports.sourceNodes = async args => {
   const { actions, getNodesByType, getNode } = args;
   const { createNodeField } = actions;
@@ -226,8 +224,7 @@ exports.sourceNodes = async args => {
       name: "transitScore",
       value: transitScore,
     });
-    console.log(count++);
-    //await processHubSpotProject(project);
+    await processHubSpotProject(project);
   }
 
   for (const project of projects) {
