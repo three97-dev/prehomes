@@ -7,7 +7,7 @@ import "./ViewByLinks.css";
 const ViewByLinks = ({ title, links, viewAllLink }) => {
   return (
     <div className="bg-mild-black w-full py-64px">
-      <div className={`md+:view-by-links-grid px-25px md+:px-0px md+:mx-120px`}>
+      <div className={`md+:view-by-links-grid px-25px md+:px-0px prehomes-container`}>
         <h2 className="title">
           <span className="text-mild-purple">View Projects By: </span>
           {title}

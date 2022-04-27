@@ -197,7 +197,6 @@ const ProjectPageTemplate = ({ data }) => {
             value: project.projectName,
           },
         ]}
-        className="md:rounded-t-100px"
       />
       <Footer />
     </div>

@@ -13,3 +13,15 @@
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
 }
+
+.small-tiles-slider .slick-slide {
+  width: 213px !important;
+}
+
+.small-tiles-slider .slick-track {
+  @apply space-x-15px w-full;
+}
+
+.small-tiles-slider .slick-list {
+  width: 100% !important;
+}

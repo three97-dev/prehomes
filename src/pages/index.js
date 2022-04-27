@@ -59,7 +59,6 @@ const IndexPage = ({ data }) => {
         smallTileData={launchingSoonProjects}
         bgWrapperClasses="mx-auto"
         icon={fastForwardIcon}
-        paddingTitleClasses="mb-32px"
       />
       <PrestigeCollection link="/prestige" linkLabel="View the collection" projects={prestigeProjects} />
       <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />

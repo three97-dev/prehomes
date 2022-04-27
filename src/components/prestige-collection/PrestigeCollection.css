@@ -1,0 +1,6 @@
+@media (max-width: 500px) {
+  .prestige-slider .slick-list,
+  .prestige-slider .slick-track {
+    height: 640px;
+  }
+}

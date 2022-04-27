@@ -3,6 +3,17 @@
 }
 
 .property-type-section {
-  min-height: 25vh;
   @apply flex justify-center items-center;
+}
+
+.property-type-section-slider .slick-track {
+  @apply w-full space-x-32px;
+}
+
+.property-type-section-slider .slick-list {
+  width: 100% !important;
+}
+
+.property-type-section-slider .slick-slide {
+  width: 209px !important;
 }
