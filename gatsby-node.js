@@ -359,7 +359,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const projects = projectsData.data.allStrapiProjects.nodes;
   const cities = projectsData.data.allStrapiCities.nodes;
   const developers = projectsData.data.allStrapiDevelopers.nodes;
-  //const projectTypes = projectsData.data.allStrapiProjectTypes.nodes;
+  const projectTypes = projectsData.data.allStrapiProjectTypes.nodes;
 
   const renderProjectsLimit = process.env.RENDER_LIMIT_PROJECTS
     ? parseInt(process.env.RENDER_LIMIT_PROJECTS, 10)
