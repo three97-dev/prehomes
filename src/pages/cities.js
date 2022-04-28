@@ -8,19 +8,11 @@ import { Header, HeroSection, ContactRealtorFormSection, Footer, CitiesSection }
 
 const CityPageTemplate = ({ data }) => {
   const cities = data.cities.nodes.map(city => {
-    if (city.project) {
-      return {
-        ...city,
-        specialIncentives: city.fields.specialIncentivesProjects,
-        newListing:city.fields.newListingProjects,
-        selling: city.fields.sellingProjects,
-      };
-    }
-
-    return {
+    return  {
       ...city,
-      specialIncentives: 0,
-      newListing: 0,
+      specialIncentives: city.fields.specialIncentivesProjects || 0,
+      newListing: city.fields.newListingProjects || 0,
+      selling: city.fields.sellingProjects || 0,
     };
   });
   return (
@@ -39,7 +31,7 @@ const CityPageTemplate = ({ data }) => {
         className="bg-transparent"
       />
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
-        <CitiesSection title="List of Cities" showHelpMark helpMarkTooltip="List of Cities Tooltip" cities={[]} />
+        <CitiesSection title="List of Cities" showHelpMark helpMarkTooltip="List of Cities Tooltip" cities={cities} />
       </div>
       <ContactRealtorFormSection />
       <Footer />
