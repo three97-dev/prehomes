@@ -426,17 +426,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   }
 
-  let t = 0;
-  // No need for Project type for
-  // for (const projectType of projectTypes) {
-  //   console.log(`Generating ProjectType Type page: ${projectType.fields.pageUrl}`);
-  //   createPage({
-  //     path: projectType.fields.pageUrl,
-  //     component: projectTypeTemplate,
-  //     context: {
-  //       projectType_strapi_id: projectType.strapiId,
-  //       projectType_name: projectType.name,
-  //     },
-  //   });
-  // }
+  for (const projectType of projectTypes) {
+    console.log(`Generating ProjectType Type page: ${projectType.fields.pageUrl}`);
+    createPage({
+      path: projectType.fields.pageUrl,
+      component: projectTypeTemplate,
+      context: {
+        projectType_strapi_id: projectType.strapiId,
+        projectType_name: projectType.name,
+      },
+    });
+  }
 };
