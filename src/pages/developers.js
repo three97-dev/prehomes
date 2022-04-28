@@ -54,24 +54,19 @@ export default DeveloperPageTemplate;
 
 export const query = graphql`
   query {
-    developers: allContentfulDeveloper(sort: { fields: developerName, order: ASC }) {
+    developers: allStrapiDevelopers(sort: { fields: developerName, order: ASC }) {
       nodes {
-        contentful_id
+        strapiId
         developerName
         developerPreviewImage {
-          ...SearchImage
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         fields {
           pageUrl
-        }
-        project {
-          id
-          fields {
-            projectStatus
-          }
-          specialIncentive {
-            specialIncentiveDescription
-          }
         }
       }
     }

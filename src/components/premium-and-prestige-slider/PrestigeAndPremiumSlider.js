@@ -91,14 +91,14 @@ const PrestigeAndPremiumSlider = ({ title, projects, blackVariant }) => {
             return (
               <PremiumAndPrestigeTile
                 key={index}
-                id={project.contentful_id}
-                image={project.projectPreviewImage}
+                id={project.strapiId}
+                image={project.projectHeroImage}
                 tileTitle={project.projectName}
                 tileContent={project.projectPreviewShortText}
                 tilePrice={project.fields.projectMinPrice}
                 buttonLink={project.fields.pageUrl}
                 buttonLabel="View more"
-                location={project.projectCity.cityName}
+                location={project.city.cityName}
                 className="mx-10px md:mx-auto"
                 isLikeButton
                 blackVariant={blackVariant ? true : false}

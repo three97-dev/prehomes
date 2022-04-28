@@ -66,16 +66,16 @@ export default PrestigePage;
 
 export const query = graphql`
   query {
-    platinumAccessProjects: allContentfulProject(
+    platinumAccessProjects: allStrapiProjects(
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "platinum-access" }, projectMinPrice: { gte: 2000000 } }
       }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -83,21 +83,25 @@ export const query = graphql`
           projectMinPrice
         }
         projectPreviewShortText
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(
+    launchingSoonProjects: allStrapiProjects(
       filter: {
         isSoldOut: { eq: false }
         fields: { projectStatus: { eq: "launching-soon" }, projectMinPrice: { gte: 2000000 } }
       }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -105,8 +109,12 @@ export const query = graphql`
           projectMinPrice
         }
         projectPreviewShortText
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
       }
     }

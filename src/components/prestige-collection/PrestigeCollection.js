@@ -46,11 +46,11 @@ const PrestigeCollection = ({ projects }) => {
               {projects.map((project, index) => (
                 <div key={index}>
                   <div className="flex flex-col md:flex-row md:space-x-50px text-mild-black">
-                    <Image image={project.projectPreviewImage} className="md:w-2/5 rounded-5px img-shadow" />
+                    <Image image={project.projectHeroImage} className="md:w-2/5 rounded-5px img-shadow" />
                     <div className="md:w-3/5 relative md:mt-0px mt-16px">
                       <h2 className="pt-8px md:pt-0px pb-8px font-late-november">{project.projectName}</h2>
                       <h4 className="text-12px font-pangram font-bold md:font-normal">
-                        {project.projectCity.cityName}
+                        {project.city.cityName}
                       </h4>
                       <p className="text-14px md:text-16px py-20px font-normal h-164px text-black">
                         {project.projectPreviewShortText}
@@ -62,7 +62,7 @@ const PrestigeCollection = ({ projects }) => {
                         </div>
                         <div className="w-full md:w-1/3 order-3 md:order-2 md:mt-0px mt-16px">
                           <h4 className="font-pangram text-12px font-bold mb-8px">Developer</h4>
-                          <h4 className="font-light">{project.projectDeveloper.developerName}</h4>
+                          <h4 className="font-light">{project.developer.developerName}</h4>
                         </div>
                         <div className="w-1/2 md:w-1/3 order-2 md:order-3">
                           <Button

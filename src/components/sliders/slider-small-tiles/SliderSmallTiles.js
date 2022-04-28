@@ -117,11 +117,11 @@ const SliderSmallTiles = ({
                     return (
                       <SmallTile
                         key={index}
-                        id={item.contentful_id}
-                        image={item.projectPreviewImage}
+                        id={item.strapiId}
+                        image={item.projectHeroImage}
                         link={item.fields.pageUrl}
                         title={item.projectName}
-                        location={item.projectCity?.cityName}
+                        location={item.city?.cityName}
                         price={item.fields.projectMinPrice}
                         specialIncentive={item.specialIncentive}
                         className="mx-auto"

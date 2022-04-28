@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cities",
+  "info": {
+    "name": "City",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cityName": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "cityImages": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "cityLocation": {
+      "type": "json",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "additionalDescription": {
+      "type": "richtext",
+      "pluginOptions": {}
+    },
+    "averageCondoPrice": {
+      "type": "integer",
+      "pluginOptions": {}
+    },
+    "citySubtitleText": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "thingsToDo": {
+      "type": "richtext",
+      "pluginOptions": {}
+    },
+    "educationEmployment": {
+      "type": "richtext",
+      "pluginOptions": {}
+    },
+    "transitConnectivity": {
+      "type": "richtext",
+      "pluginOptions": {}
+    },
+    "averageTownhomePrice": {
+      "type": "integer",
+      "pluginOptions": {}
+    },
+    "averageDetachedPrice": {
+      "type": "integer",
+      "pluginOptions": {}
+    },
+    "projects": {
+      "via": "city",
+      "collection": "projects"
+    }
+  }
+}

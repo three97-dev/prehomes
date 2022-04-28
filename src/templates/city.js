@@ -23,7 +23,7 @@ import CitySectionSlider from "../components/city-section-slider/CitySectionSlid
 // import Seo from "../seo/Seo";
 
 const CityPageTemplate = ({ data }) => {
-  const city = data.contentfulCity;
+  const city = data.strapiCities;
   const [hero, setHero] = useState(0);
 
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
@@ -145,47 +145,43 @@ const CityPageTemplate = ({ data }) => {
 export default CityPageTemplate;
 
 export const query = graphql`
-  query CityTemplate($city_contentful_id: String!) {
-    contentfulCity(contentful_id: { eq: $city_contentful_id }) {
+  query CityTemplate($city_strapi_id: Int) {
+    strapiCities(strapiId: { eq: $city_strapi_id }) {
       cityName
       cityImages {
-        ...Image
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+          }
+        }
       }
       citySubtitleText
       cityLocation {
         lat
         lon
       }
-      additionalDescription {
-        raw
-      }
-      thingsToDo {
-        raw
-      }
-      educationEmployment {
-        raw
-      }
-      transitConnectivity {
-        raw
-      }
+      additionalDescription
+      thingsToDo
+      educationEmployment
+      transitConnectivity
       averageCondoPrice
       averageDetachedPrice
       averageTownhomePrice
     }
-    platinumAccessProjects: allContentfulProject(
-      filter: {
-        isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
-        fields: { projectStatus: { eq: "platinum-access" } }
-      }
+    platinumAccessProjects: allStrapiProjects(
+      filter: { isSoldOut: { eq: false }, city: { id: { eq: $city_strapi_id } } }
     ) {
       nodes {
-        contentful_id
-        projectPreviewImage {
-          ...SearchImage
+        strapiId
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -194,20 +190,24 @@ export const query = graphql`
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(
+    launchingSoonProjects: allStrapiProjects(
       filter: {
         isSoldOut: { eq: false }
-        projectCity: { contentful_id: { eq: $city_contentful_id } }
+        city: { id: { eq: $city_strapi_id } }
         fields: { projectStatus: { eq: "launching-soon" } }
       }
     ) {
       nodes {
-        contentful_id
-        projectPreviewImage {
-          ...SearchImage
+        strapiId
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -216,7 +216,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allStrapiCities(limit: 15, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
@@ -224,16 +224,18 @@ export const query = graphql`
         }
       }
     }
-    condoProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
-    ) {
+    condoProjects: allStrapiProjects(filter: { isSoldOut: { eq: false }, city: { id: { eq: $city_strapi_id } } }) {
       nodes {
-        contentful_id
-        projectPreviewImage {
-          ...SearchImage
+        strapiId
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -242,16 +244,18 @@ export const query = graphql`
         }
       }
     }
-    townhouseProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
-    ) {
+    townhouseProjects: allStrapiProjects(filter: { isSoldOut: { eq: false }, city: { id: { eq: $city_strapi_id } } }) {
       nodes {
-        contentful_id
-        projectPreviewImage {
-          ...SearchImage
+        strapiId
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -260,16 +264,18 @@ export const query = graphql`
         }
       }
     }
-    detachedProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectCity: { contentful_id: { eq: $city_contentful_id } } }
-    ) {
+    detachedProjects: allStrapiProjects(filter: { isSoldOut: { eq: false }, city: { id: { eq: $city_strapi_id } } }) {
       nodes {
-        contentful_id
-        projectPreviewImage {
-          ...SearchImage
+        strapiId
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {

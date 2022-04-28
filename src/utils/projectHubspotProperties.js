@@ -77,7 +77,7 @@ const fromContentfulRichTextToString = richText => {
 
 const toHubSpotProjectProperties = project => {
   return {
-    project_id: project.contentful_id,
+    project_id: project.strapiId,
     project_name: project.projectName,
     project_address: project.projectAddress,
     project_images: project.projectImages?.file?.url,

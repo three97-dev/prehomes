@@ -72,7 +72,7 @@ const DevelopersSection = ({ title, showHelpMark, helpMarkTooltip, developers })
                 specialIncentives={developer.specialIncentives}
                 newListing={developer.newListing}
                 selling={developer.selling}
-                key={developer.contentful_id}
+                key={developer.strapiId}
               />
             ))}
           </div>

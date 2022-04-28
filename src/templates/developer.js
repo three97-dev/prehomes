@@ -18,7 +18,7 @@ import DeveloperHeroSection from "../components/hero-section/developer-hero-sect
 // import Seo from "../seo/Seo";
 
 const DeveloperPageTemplate = ({ data }) => {
-  const developer = data.contentfulDeveloper;
+  const developer = data.strapiDevelopers;
   const projectsByDeveloperLinks = spliceIntoChunks(data.projectsByDeveloperLinks.nodes);
   const otherProjects = data.otherProjects.nodes;
 
@@ -37,7 +37,6 @@ const DeveloperPageTemplate = ({ data }) => {
         heroTopText="You're Exploring:"
         viewAllLink="/developers"
         viewAllText="View all Developers"
-        heroLogoImage={developer.developerPreviewLogo}
         viewAllClassName="bottom-32px"
       />
       <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">
@@ -68,26 +67,25 @@ const DeveloperPageTemplate = ({ data }) => {
 export default DeveloperPageTemplate;
 
 export const query = graphql`
-  query DeveloperTemplate($developer_contentful_id: String!) {
-    contentfulDeveloper(contentful_id: { eq: $developer_contentful_id }) {
-      contentful_id
+  query DeveloperTemplate($developer_strapi_id: Int) {
+    strapiDevelopers(strapiId: { eq: $developer_strapi_id }) {
+      strapiId
       developerName
       developerSubtitleText
       developerPreviewImage {
-        ...Image
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+          }
+        }
       }
-      developerPreviewLogo {
-        ...Image
-      }
-      overviewText {
-        raw
-      }
+      overviewText
       developerLocation {
         lat
         lon
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allStrapiDevelopers(limit: 15, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {
@@ -95,21 +93,25 @@ export const query = graphql`
         }
       }
     }
-    otherProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, projectDeveloper: { contentful_id: { eq: $developer_contentful_id } } }
+    otherProjects: allStrapiProjects(
+      filter: { isSoldOut: { eq: false }, developer: { id: { eq: $developer_strapi_id } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
       }
     }

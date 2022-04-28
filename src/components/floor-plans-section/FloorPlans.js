@@ -265,8 +265,8 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                           {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
                         </p>
                         <p>
-                          {floorPlan.fields.pricePerSquareFoot
-                            ? `\$${floorPlan.fields.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft`
+                          {floorPlan.pricePerSquareFoot
+                            ? `\$${floorPlan.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft`
                             : ""}
                         </p>
                       </td>
@@ -294,7 +294,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                       </td>
                       <td className="pl-20px lg:pl-37px lg+:pl-30px">
                         <div className="table-data">
-                          <div className="footer-font mb-20px">{floorPlan.name.toUpperCase()}</div>
+                          <div className="footer-font mb-20px">{floorPlan.floorPlanName.toUpperCase()}</div>
                           <div className="floor-info">
                             <p className="w-100px">
                               {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
@@ -318,7 +318,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
               ) : (
                 <ModalFloorPlan
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
-                  projectContentfulId={moreInfoModal?.projectContentfulId || projectData?.contentful_id}
+                  projectContentfulId={moreInfoModal?.projectContentfulId || projectData?.strapiId}
                   floorPlan={moreInfoModal}
                   modalIsOpen={moreInfoModal ? true : false}
                   onClose={closeModal}
@@ -329,11 +329,11 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
                   floorPlanName={moreInfoModal?.name}
                   contactSalesIsOpen={moreInfoModal ? true : false}
-                  isFormDisabled={alreadySubmittedFloorPlans.includes(moreInfoModal?.contentful_id)}
+                  isFormDisabled={alreadySubmittedFloorPlans.includes(moreInfoModal?.id)}
                   onSubmit={() => {
                     setIsSubmittedContactSales(true);
                     setIsSubmitted(true);
-                    setAlreadySubmittedFloorPlans([...alreadySubmittedFloorPlans, moreInfoModal.contentful_id]);
+                    setAlreadySubmittedFloorPlans([...alreadySubmittedFloorPlans, moreInfoModal.id]);
                   }}
                   onSubmitWithError={() => {
                     setIsSubmittedContactSales(true);

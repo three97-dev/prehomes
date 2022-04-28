@@ -1,0 +1,152 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "name": "Project",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projectName": {
+      "type": "string",
+      "required": true
+    },
+    "isSoldOut": {
+      "type": "boolean",
+      "required": true
+    },
+    "projectHeroImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "projectImages": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "projectPreviewShortText": {
+      "type": "string"
+    },
+    "projectAddress": {
+      "type": "string",
+      "required": true
+    },
+    "projectAddressMapLocation": {
+      "type": "json",
+      "required": true
+    },
+    "overviewText": {
+      "type": "richtext",
+      "required": true
+    },
+    "overviewVideoLink": {
+      "type": "string",
+      "required": false
+    },
+    "overviewVideoPreviewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "projectCollection": {
+      "type": "enumeration",
+      "enum": [
+        "Common",
+        "Premium"
+      ],
+      "required": true
+    },
+    "launchDate": {
+      "type": "date"
+    },
+    "estimatedOccupancy": {
+      "type": "date"
+    },
+    "majorIntersection": {
+      "type": "richtext"
+    },
+    "architects": {
+      "type": "richtext"
+    },
+    "depositAmount": {
+      "type": "richtext"
+    },
+    "depositStructure": {
+      "type": "richtext"
+    },
+    "lockerPrice": {
+      "type": "decimal"
+    },
+    "lockerMaintenance": {
+      "type": "decimal"
+    },
+    "maintenanceFee": {
+      "type": "decimal"
+    },
+    "parkingPrice": {
+      "type": "decimal"
+    },
+    "totalSuites": {
+      "type": "richtext"
+    },
+    "parkingMaintenance": {
+      "type": "decimal"
+    },
+    "googleDriveLink": {
+      "type": "text"
+    },
+    "salesCentreEmail": {
+      "type": "email"
+    },
+    "salesCentrePhone": {
+      "type": "string"
+    },
+    "cooperatingCommission": {
+      "type": "text"
+    },
+    "developer": {
+      "via": "project",
+      "model": "developer"
+    },
+    "amenities": {
+      "collection": "amenity"
+    },
+    "project_types": {
+      "collection": "project-type",
+      "via": "project"
+    },
+    "city": {
+      "via": "projects",
+      "model": "cities"
+    },
+    "special_incentive": {
+      "via": "project",
+      "model": "special-incentives"
+    },
+    "floor_plans": {
+      "collection": "floor-plan",
+      "via": "project"
+    }
+  }
+}

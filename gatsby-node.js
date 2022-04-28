@@ -1,7 +1,6 @@
 require("dotenv").config();
 const path = require("path");
 const axios = require("axios");
-const { v4: uuidv4 } = require("uuid");
 const hubspot = require("@hubspot/api-client");
 const _ = require("lodash");
 
@@ -95,7 +94,7 @@ async function processHubSpotProject(project) {
   await wait(300); // wait for little bit to prevent API limit error
 
   const searchResponse = await hubspotClient.crm.objects.searchApi.doSearch("PROJECT", {
-    filterGroups: [{ filters: [{ value: project.contentful_id, propertyName: "project_id", operator: "EQ" }] }],
+    filterGroups: [{ filters: [{ value: project.strapiId, propertyName: "project_id", operator: "EQ" }] }],
     properties: hubSpotProperties,
   });
 
@@ -111,29 +110,26 @@ async function processHubSpotProject(project) {
       await hubspotClient.crm.objects.basicApi.update("PROJECT", existingObject.id, {
         properties: projectHubSpotProperties,
       });
-      console.log(
-        `Updated HubSpot Project fields for "${project.projectName}" (contentful_id=${project.contentful_id})`
-      );
+      console.log(`Updated HubSpot Project fields for "${project.projectName}" (strapi_id=${project.strapiId})`);
     } else {
-      console.log(
-        `No changes for HubSpot Project "${project.projectName}" (contentful_id=${project.contentful_id})`
-      );
+      console.log(`No changes for HubSpot Project "${project.projectName}" (strapi_id=${project.strapiId})`);
     }
   } else {
     await hubspotClient.crm.objects.basicApi.create("PROJECT", {
       properties: projectHubSpotProperties,
     });
-    console.log(`Created HubSpot Project for "${project.projectName}" (contentful_id=${project.contentful_id})`);
+    console.log(`Created HubSpot Project for "${project.projectName}" (strapi_id=${project.strapiId})`);
   }
 }
 
 exports.sourceNodes = async args => {
-  const { actions, getNodesByType, getNode } = args;
+  const { actions, getNodesByType } = args;
   const { createNodeField } = actions;
 
-  const projects = getNodesByType("ContentfulProject");
+  const projects = getNodesByType("StrapiProjects");
   for (const project of projects) {
-    const floorNodes = project.projectFloorPlans___NODE ? project.projectFloorPlans___NODE.map(id => getNode(id)) : [];
+    const floorNodes = project.floor_plans || [];
+
     const prices = getUniquePrices(floorNodes);
     const projectMinPrice = prices.length > 0 ? prices[0] : 0;
     const projectMaxPrice = prices.length > 0 ? prices[prices.length - 1] : 0;
@@ -143,6 +139,7 @@ exports.sourceNodes = async args => {
     const squareFootages = getUniqueSquareFootages(floorNodes);
     const lat = project?.projectAddressMapLocation?.lat;
     const lon = project?.projectAddressMapLocation?.lon;
+
     let score = {};
     if (process.env.SKIP_WALKSCORE_API_USAGE === "true") {
       console.log(`Skip WalkScore API call for "${project.projectName}"`);
@@ -160,6 +157,16 @@ exports.sourceNodes = async args => {
     const status = resolveStatus(project.launchDate);
 
     const neighborhood = await getNeighborhood(project);
+
+    const floorPricePerSquareFoot = floorNodes.map(floorPlan =>
+      calculatePricePerSquareFoot(floorPlan.price, floorPlan.squareFootage)
+    );
+
+    createNodeField({
+      node: project,
+      name: "floorPricePerSquareFoot",
+      value: floorPricePerSquareFoot,
+    });
 
     createNodeField({
       node: project,
@@ -232,19 +239,23 @@ exports.sourceNodes = async args => {
 
   for (const project of projects) {
     const pricesPerSqftByCity = projects
-      .filter(p => p.isSoldOut === false && p.projectCity___NODE === project.projectCity___NODE)
+      .filter(p => p.isSoldOut === false && p?.city?.id === project?.city?.id)
       .map(p => p.fields.pricePerSqft);
-    const priceCityAverage = project.projectCity___NODE // city is null
+    const priceCityAverage = project.city // city is null
       ? calculateAveragePrice(pricesPerSqftByCity)
       : 0;
 
     const pricesPerSqftByNeighborhood = projects
-      .filter(p => p.isSoldOut === false && p.projectNeighborhood___NODE === project.projectNeighborhood___NODE)
+      .filter(
+        p =>
+          p.isSoldOut === false &&
+          p?.city?.id === project?.city?.id &&
+          p.fields.neighborhood === project.fields.neighborhood
+      )
       .map(project => project.fields.pricePerSqft);
 
-    const priceNeighborhoodAverage = project.projectNeighborhood___NODE // neighborhood is null
-      ? calculateAveragePrice(pricesPerSqftByNeighborhood)
-      : 0;
+    const priceNeighborhoodAverage =
+      pricesPerSqftByNeighborhood.length > 0 ? calculateAveragePrice(pricesPerSqftByNeighborhood) : 0;
 
     createNodeField({
       node: project,
@@ -258,25 +269,33 @@ exports.sourceNodes = async args => {
     });
   }
 
-  const floorPlans = getNodesByType("ContentfulFloorPlan");
-  for (const floorPlan of floorPlans) {
-    createNodeField({
-      node: floorPlan,
-      name: "pricePerSquareFoot",
-      value: calculatePricePerSquareFoot(floorPlan.price, floorPlan.squareFootage),
-    });
-  }
-
-  const cities = getNodesByType("ContentfulCity");
+  const cities = getNodesByType("StrapiCities");
   for (const city of cities) {
+    const cityProjects = projects.filter(p => p.isSoldOut === false && p?.city?.id === city.strapiId);
+
     createNodeField({
       node: city,
       name: "pageUrl",
       value: buildCityUrl(city),
     });
+    createNodeField({
+      node: city,
+      name: "specialIncentivesProjects",
+      value: cityProjects.filter(project => project.special_incentive).length,
+    });
+    createNodeField({
+      node: city,
+      name: "newListingProjects",
+      value: cityProjects.filter(project => project.fields.projectStatus === "platinum-access").length,
+    });
+    createNodeField({
+      node: city,
+      name: "sellingProjects",
+      value: cityProjects.filter(project => project.fields.projectStatus === "selling").length,
+    });
   }
 
-  const developers = getNodesByType("ContentfulDeveloper");
+  const developers = getNodesByType("StrapiDevelopers");
   for (const developer of developers) {
     createNodeField({
       node: developer,
@@ -285,7 +304,7 @@ exports.sourceNodes = async args => {
     });
   }
 
-  const projectTypes = getNodesByType("ContentfulProjectType");
+  const projectTypes = getNodesByType("StrapiProjectTypes");
   for (const projectType of projectTypes) {
     createNodeField({
       node: projectType,
@@ -296,37 +315,35 @@ exports.sourceNodes = async args => {
 };
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-
   const projectsData = await graphql(`
     {
-      allContentfulProject {
+      allStrapiProjects {
         nodes {
-          contentful_id
+          strapiId
           fields {
             pageUrl
           }
         }
       }
-      allContentfulCity {
+      allStrapiCities {
         nodes {
-          contentful_id
+          strapiId
           fields {
             pageUrl
           }
         }
       }
-      allContentfulDeveloper {
+      allStrapiDevelopers {
         nodes {
-          contentful_id
+          strapiId
           fields {
             pageUrl
           }
         }
       }
-      allContentfulProjectType {
+      allStrapiProjectTypes {
         nodes {
-          contentful_id
-          name
+          strapiId
           fields {
             pageUrl
           }
@@ -335,56 +352,91 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
   if (projectsData.errors) {
-    reporter.panicOnBuild(`There was an error loading your Contentful Projects`, projectsData.errors);
+    reporter.panicOnBuild(`There was an error loading your Strapi CMS data`, projectsData.errors);
     return;
   }
-  const projects = projectsData.data.allContentfulProject.nodes;
-  const cities = projectsData.data.allContentfulCity.nodes;
-  const developers = projectsData.data.allContentfulDeveloper.nodes;
-  const projectTypes = projectsData.data.allContentfulProjectType.nodes;
 
-  for (const project of projects) {
-    console.log(`Generating Project page: ${project.fields.pageUrl}`);
-    createPage({
-      path: project.fields.pageUrl,
-      component: projectTemplate,
-      context: {
-        project_contentful_id: project.contentful_id,
-      },
-    });
+  const projects = projectsData.data.allStrapiProjects.nodes;
+  const cities = projectsData.data.allStrapiCities.nodes;
+  const developers = projectsData.data.allStrapiDevelopers.nodes;
+  //const projectTypes = projectsData.data.allStrapiProjectTypes.nodes;
+
+  const renderProjectsLimit = process.env.RENDER_LIMIT_PROJECTS
+    ? parseInt(process.env.RENDER_LIMIT_PROJECTS, 10)
+    : projects.length;
+
+  if (renderProjectsLimit === 0) {
+    reporter.warn(`Skipping Project pages generation (see RENDER_LIMIT_PROJECTS env variable)`);
+  } else {
+    let counter = 1;
+    const projectsToRender = projects.slice(0, renderProjectsLimit);
+    for (const project of projectsToRender) {
+      reporter.info(`Generating Project page [${counter++}/${projectsToRender.length}]: ${project.fields.pageUrl}`);
+      createPage({
+        path: project.fields.pageUrl,
+        component: projectTemplate,
+        context: {
+          project_strapi_id: project.strapiId,
+        },
+      });
+    }
   }
 
-  for (const city of cities) {
-    console.log(`Generating Project page: ${city.fields.pageUrl}`);
-    createPage({
-      path: city.fields.pageUrl,
-      component: cityTemplate,
-      context: {
-        city_contentful_id: city.contentful_id,
-      },
-    });
+  const renderCitiesLimit = process.env.RENDER_LIMIT_CITIES
+    ? parseInt(process.env.RENDER_LIMIT_CITIES, 10)
+    : cities.length;
+
+  if (renderCitiesLimit === 0) {
+    reporter.warn(`Skipping City pages generation (see RENDER_LIMIT_CITIES env variable)`);
+  } else {
+    let counter = 1;
+    const citiesToRender = cities.slice(0, renderCitiesLimit);
+    for (const city of citiesToRender) {
+      reporter.info(`Generating City page [${counter++}/${citiesToRender.length}]: ${city.fields.pageUrl}`);
+      createPage({
+        path: city.fields.pageUrl,
+        component: cityTemplate,
+        context: {
+          city_strapi_id: city.strapiId,
+        },
+      });
+    }
   }
 
-  for (const developer of developers) {
-    console.log(`Generating Project page: ${developer.fields.pageUrl}`);
-    createPage({
-      path: developer.fields.pageUrl,
-      component: developerTemplate,
-      context: {
-        developer_contentful_id: developer.contentful_id,
-      },
-    });
+  const renderDevelopersLimit = process.env.RENDER_LIMIT_DEVELOPERS
+    ? parseInt(process.env.RENDER_LIMIT_DEVELOPERS, 10)
+    : developers.length;
+
+  if (renderDevelopersLimit === 0) {
+    reporter.warn(`Skipping Developer pages generation (see RENDER_LIMIT_DEVELOPERS env variable)`);
+  } else {
+    let counter = 1;
+    const developersToRender = developers.slice(0, renderDevelopersLimit);
+    for (const developer of developersToRender) {
+      reporter.info(
+        `Generating Developer page [${counter++}/${developersToRender.length}]: ${developer.fields.pageUrl}`
+      );
+      createPage({
+        path: developer.fields.pageUrl,
+        component: developerTemplate,
+        context: {
+          developer_strapi_id: developer.strapiId,
+        },
+      });
+    }
   }
 
-  for (const projectType of projectTypes) {
-    console.log(`Generating Project Type page: ${projectType.fields.pageUrl}`);
-    createPage({
-      path: projectType.fields.pageUrl,
-      component: projectTypeTemplate,
-      context: {
-        projectType_contentful_id: projectType.contentful_id,
-        projectType_name: projectType.name,
-      },
-    });
-  }
+  let t = 0;
+  // No need for Project type for
+  // for (const projectType of projectTypes) {
+  //   console.log(`Generating ProjectType Type page: ${projectType.fields.pageUrl}`);
+  //   createPage({
+  //     path: projectType.fields.pageUrl,
+  //     component: projectTypeTemplate,
+  //     context: {
+  //       projectType_strapi_id: projectType.strapiId,
+  //       projectType_name: projectType.name,
+  //     },
+  //   });
+  // }
 };

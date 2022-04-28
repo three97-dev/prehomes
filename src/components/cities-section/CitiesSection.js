@@ -70,7 +70,7 @@ const CitiesSection = ({ title, showHelpMark, helpMarkTooltip, cities }) => {
                 specialIncentives={city.specialIncentives}
                 newListing={city.newListing}
                 selling={city.selling}
-                key={city.contentful_id}
+                key={city.strapiId}
                 isCity
               />
             ))}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/special-incentives",
+      "handler": "special-incentives.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/special-incentives/count",
+      "handler": "special-incentives.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/special-incentives/:id",
+      "handler": "special-incentives.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/special-incentives",
+      "handler": "special-incentives.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/special-incentives/:id",
+      "handler": "special-incentives.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/special-incentives/:id",
+      "handler": "special-incentives.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "special-incentives",
+  "info": {
+    "name": "Special Incentives",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "specialIncentiveDescription": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "project": {
+      "via": "special_incentive",
+      "model": "projects"
+    }
+  }
+}

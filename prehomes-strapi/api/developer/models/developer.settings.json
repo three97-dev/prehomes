@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "developers",
+  "info": {
+    "name": "Developer",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "developerName": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "developerSubtitleText": {
+      "type": "string"
+    },
+    "developerPreviewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "overviewText": {
+      "type": "richtext",
+      "required": true
+    },
+    "developerLocation": {
+      "type": "json",
+      "required": true
+    },
+    "project": {
+      "via": "developer",
+      "model": "projects"
+    }
+  }
+}

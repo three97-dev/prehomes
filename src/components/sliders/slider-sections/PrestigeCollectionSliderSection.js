@@ -127,7 +127,7 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
                 return isDesktop ? (
                   <PremiumAndPrestigeTile
                     key={index}
-                    id={project.contentful_id}
+                    id={project.strapiId}
                     image={project.projectPreviewImage}
                     tileTitle={project.projectName}
                     tileContent={project.projectPreviewShortText}
@@ -140,7 +140,7 @@ const PrestigeCollectionSliderSection = ({ title, subtitle, link, linkLabel, pro
                 ) : (
                   <SmallTile
                     key={index}
-                    id={project.contentful_id}
+                    id={project.strapiId}
                     image={project.projectPreviewImage}
                     link={project.fields.pageUrl}
                     title={project.projectName}

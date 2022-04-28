@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/floor-plans",
+      "handler": "floor-plan.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/floor-plans/count",
+      "handler": "floor-plan.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/floor-plans/:id",
+      "handler": "floor-plan.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/floor-plans",
+      "handler": "floor-plan.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/floor-plans/:id",
+      "handler": "floor-plan.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/floor-plans/:id",
+      "handler": "floor-plan.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -21,3 +21,11 @@ h4.markdown-default {
 p.markdown-default {
   @apply paragraph text-black-gray;
 }
+
+a.markdown-default {
+  @apply text-dark-orange font-medium;
+}
+
+a.markdown-default:hover {
+  @apply underline;
+}

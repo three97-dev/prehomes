@@ -11,15 +11,14 @@ const Image = ({ image, className, width, height, objectFill, imgStyle }) => {
   if (image.mock) {
     return <img src={image.mock} alt="mocked" className={className} width={width} height={height} />;
   }
-
-  if (image.file.contentType === "image/svg+xml") {
-    return <img src={image.file.url} alt={image.title} className={className} width={width} height={height} />;
+  if (image.ext === ".svg") {
+    return <img src={image.localFile.url} alt={image.name} className={className} width={width} height={height} />;
   } else {
     return (
       <GatsbyImage
         objectFit={objectFill && "fill"}
         imgStyle={imgStyle}
-        image={image.gatsbyImageData}
+        image={image.localFile.childImageSharp.gatsbyImageData}
         alt={image.title}
         className={className}
       />
@@ -39,34 +38,34 @@ Image.defaultProps = {
 
 export default Image;
 
-export const query = graphql`
-  fragment Image on ContentfulAsset {
-    file {
-      url
-      contentType
-    }
-    title
-    gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
-  }
-  fragment SearchImage on ContentfulAsset {
-    file {
-      url
-      contentType
-    }
-    title
-    gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
-  }
-  fragment ProjectTypePreviewImage on ContentfulAsset {
-    file {
-      url
-      contentType
-    }
-    title
-    gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 1000, quality: 100)
-  }
-  fragment SEOImage on ContentfulAsset {
-    file {
-      url
-    }
-  }
-`;
+// export const query = graphql`
+//   fragment Image on ContentfulAsset {
+//     file {
+//       url
+//       contentType
+//     }
+//     title
+//     gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+//   }
+//   fragment SearchImage on ContentfulAsset {
+//     file {
+//       url
+//       contentType
+//     }
+//     title
+//     gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+//   }
+//   fragment ProjectTypePreviewImage on ContentfulAsset {
+//     file {
+//       url
+//       contentType
+//     }
+//     title
+//     gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 1000, quality: 100)
+//   }
+//   fragment SEOImage on ContentfulAsset {
+//     file {
+//       url
+//     }
+//   }
+// `;

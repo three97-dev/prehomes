@@ -5,8 +5,8 @@ import { Header, SearchSection } from "../components";
 // import Seo from "../seo/Seo";
 
 const SearchPage = ({ data }) => {
-  const projects = data.allContentfulProject.nodes;
-  const types = data.allContentfulProjectType.nodes;
+  const projects = data.allStrapiProjects.nodes;
+  const types = data.allStrapiProjectTypes.nodes;
 
   const allProjects = projects.map(project => {
     const minPrice = project.fields.prices[0] ? project.fields.prices[0].toLocaleString() : "";
@@ -15,18 +15,18 @@ const SearchPage = ({ data }) => {
       : "";
 
     let neighborhoodStr = project?.fields?.neighborhood;
-    const cityNameStr = project?.projectCity?.cityName || "";
+    const cityNameStr = project?.city?.cityName || "";
 
     if (neighborhoodStr && neighborhoodStr.toLowerCase() === cityNameStr.toLowerCase()) {
       // do not show neighborhood with same value as city
       neighborhoodStr = null;
     }
-
+    
     return {
-      id: project.contentful_id,
-      image: project.projectPreviewImage,
+      id: project.strapiId,
+      image: project.projectHeroImage,
       title: project.projectName,
-      city: project?.projectCity?.cityName,
+      city: project?.city?.cityName,
       neighborhood: neighborhoodStr,
       prices: project?.fields?.prices,
       price: `$${minPrice} - $${maxPrice}`,
@@ -39,7 +39,6 @@ const SearchPage = ({ data }) => {
       link: project.fields.pageUrl,
     };
   });
-
   return (
     <>
       {/* <Seo
@@ -79,11 +78,11 @@ export default SearchPage;
 
 export const query = graphql`
   query {
-    allContentfulProject(filter: { isSoldOut: { eq: false } }) {
+    allStrapiProjects(filter: { isSoldOut: { eq: false } }) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
@@ -93,8 +92,12 @@ export const query = graphql`
           squareFootages
           neighborhood
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
         projectAddressMapLocation {
           lat
@@ -105,7 +108,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulProjectType {
+    allStrapiProjectTypes {
       nodes {
         name
       }

@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project-types",
+  "info": {
+    "name": "Project Type",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "projectTypePreviewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "aboutProjectType": {
+      "type": "richtext"
+    },
+    "descriptionText": {
+      "type": "text"
+    },
+    "averagePrice": {
+      "type": "integer",
+      "required": true
+    },
+    "averageSize": {
+      "type": "integer"
+    },
+    "marketTrend": {
+      "type": "integer"
+    },
+    "project": {
+      "via": "project_types",
+      "model": "projects"
+    }
+  }
+}

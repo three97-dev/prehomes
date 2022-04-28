@@ -2,6 +2,8 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 
+import { resolveStatus } from "../utils/resolveStatus";
+
 import { Header, HeroSection, ContactRealtorFormSection, Footer, CitiesSection } from "../components";
 
 const CityPageTemplate = ({ data }) => {
@@ -9,9 +11,9 @@ const CityPageTemplate = ({ data }) => {
     if (city.project) {
       return {
         ...city,
-        specialIncentives: city.project.filter(project => project.specialIncentive).length,
-        newListing: city.project.filter(project => project.fields.projectStatus === "platinum-access").length,
-        selling: city.project.filter(project => project.fields.projectStatus === "selling").length,
+        specialIncentives: city.fields.specialIncentivesProjects,
+        newListing:city.fields.newListingProjects,
+        selling: city.fields.sellingProjects,
       };
     }
 
@@ -37,7 +39,7 @@ const CityPageTemplate = ({ data }) => {
         className="bg-transparent"
       />
       <div className="lg:px-120px md:pb-35px md+:pt-75px">
-        <CitiesSection title="List of Cities" showHelpMark helpMarkTooltip="List of Cities Tooltip" cities={cities} />
+        <CitiesSection title="List of Cities" showHelpMark helpMarkTooltip="List of Cities Tooltip" cities={[]} />
       </div>
       <ContactRealtorFormSection />
       <Footer />
@@ -49,24 +51,22 @@ export default CityPageTemplate;
 
 export const query = graphql`
   query {
-    cities: allContentfulCity(sort: { fields: cityName, order: ASC }) {
+    cities: allStrapiCities(sort: { fields: cityName, order: ASC }) {
       nodes {
-        contentful_id
+        strapiId
         cityName
         cityImages {
-          ...Image
-        }
-        project {
-          id
-          fields {
-            projectStatus
-          }
-          specialIncentive {
-            specialIncentiveDescription
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
           }
         }
         fields {
           pageUrl
+          specialIncentivesProjects
+          newListingProjects
+          sellingProjects
         }
       }
     }

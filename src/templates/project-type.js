@@ -16,7 +16,7 @@ import { spliceIntoChunks } from "../utils/spliceIntoChunks";
 // import Seo from "../seo/Seo";
 
 const ProjectTypePageTemplate = ({ data }) => {
-  const projectType = data.contentfulProjectType;
+  const projectType = data.strapiProjectTypes;
   const platinumAccessProjects = data.platinumAccessProjects.nodes;
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
@@ -32,7 +32,6 @@ const ProjectTypePageTemplate = ({ data }) => {
     />  */}
       <Header logoLink="/" />
       <HeroSection
-        image={projectType.projectTypePreviewImage}
         title={projectType.name}
         heroTopText="PROPERTY TYPE"
         heroContent={projectType.descriptionText}
@@ -104,75 +103,82 @@ const ProjectTypePageTemplate = ({ data }) => {
 export default ProjectTypePageTemplate;
 
 export const query = graphql`
-  query ProjectTypeTemplate($projectType_contentful_id: String!) {
-    contentfulProjectType(contentful_id: { eq: $projectType_contentful_id }) {
+  query ProjectTypeTemplate($projectType_strapi_id: Int) {
+    strapiProjectTypes(strapiId: { eq: $projectType_strapi_id }) {
       name
       descriptionText
       averagePrice
       averageSize
       marketTrend
-      aboutProjectType {
-        raw
-      }
-      projectTypePreviewImage {
-        ...Image
-      }
+      aboutProjectType
     }
-    platinumAccessProjects: allContentfulProject(
+    platinumAccessProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "platinum-access" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(
+    launchingSoonProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "launching-soon" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
-    sellingProjects: allContentfulProject(
+    sellingProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "selling" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
-    projectsByCityLinks: allContentfulCity(limit: 15, sort: { fields: cityName, order: ASC }) {
+    projectsByCityLinks: allStrapiCities(limit: 15, sort: { fields: cityName, order: ASC }) {
       nodes {
         label: cityName
         url: fields {
@@ -180,7 +186,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(limit: 15, sort: { fields: developerName, order: ASC }) {
+    projectsByDeveloperLinks: allStrapiDevelopers(limit: 15, sort: { fields: developerName, order: ASC }) {
       nodes {
         label: developerName
         url: fields {

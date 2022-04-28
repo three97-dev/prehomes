@@ -22,21 +22,21 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
   const dispatch = useDispatch();
   const saveFloorPlan = useSelector(state => state.saveFloorPlan);
   const session = useSelector(state => state.session);
-  const isFavorite = saveFloorPlan.savedFloorPlans.some(floorPlanId => floorPlanId === floorPlan?.contentful_id);
+  const isFavorite = saveFloorPlan.savedFloorPlans.some(floorPlanId => floorPlanId === floorPlan?.id);
 
   const saveUnsaveFloorPlanButton = useCallback(() => {
     if (isFavorite) {
       dispatch({
         type: DELETE_FLOOR_PLAN_TRIGGER,
         email: session.email,
-        floorPlanId: floorPlan?.contentful_id,
+        floorPlanId: floorPlan?.id,
         projectId: projectContentfulId,
       });
     } else {
       dispatch({
         type: SAVE_FLOOR_PLAN_TRIGGER,
         email: session.email,
-        floorPlanId: floorPlan?.contentful_id,
+        floorPlanId: floorPlan?.id,
         projectId: projectContentfulId,
       });
     }

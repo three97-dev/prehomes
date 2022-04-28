@@ -26,6 +26,7 @@ const IndexPage = ({ data }) => {
   const launchingSoonProjects = data.launchingSoonProjects.nodes;
   const sellingProjects = data.sellingProjects.nodes;
   const prestigeProjects = data.prestigeProjects.nodes;
+  const projectTypes = data.allStrapiProjectTypes.nodes;
 
   return (
     <>
@@ -79,7 +80,7 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    projectsByCityLinks: allContentfulCity(
+    projectsByCityLinks: allStrapiCities(
       limit: 15
       sort: { fields: cityName, order: ASC }
       filter: { cityName: { regex: "/^.{3,10}$/" } }
@@ -91,7 +92,7 @@ export const query = graphql`
         }
       }
     }
-    projectsByDeveloperLinks: allContentfulDeveloper(
+    projectsByDeveloperLinks: allStrapiDevelopers(
       limit: 15
       sort: { fields: developerName, order: ASC }
       filter: { developerName: { regex: "/^.{3,10}$/" } }
@@ -103,70 +104,112 @@ export const query = graphql`
         }
       }
     }
-    platinumAccessProjects: allContentfulProject(
+    platinumAccessProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "platinum-access" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
-        specialIncentive {
+        special_incentive {
           specialIncentiveDescription
         }
       }
     }
-    launchingSoonProjects: allContentfulProject(
+    launchingSoonProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "launching-soon" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
-        specialIncentive {
+        special_incentive {
           specialIncentiveDescription
         }
       }
     }
-    sellingProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, specialIncentive: { specialIncentiveDescription: { regex: "/.*/" } } }
+    sellingProjects: allStrapiProjects(
+      filter: { isSoldOut: { eq: false }, special_incentive: { specialIncentiveDescription: { regex: "/.*/" } } }
     ) {
       nodes {
-        contentful_id
+        strapiId
         projectName
-        projectCity {
+        city {
           cityName
         }
         fields {
           pageUrl
           projectMinPrice
         }
-        projectPreviewImage {
-          ...SearchImage
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
         }
-        specialIncentive {
+        special_incentive {
           specialIncentiveDescription
         }
       }
     }
-    allContentfulProjectType {
+    prestigeProjects: allStrapiProjects(
+      filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
+    ) {
+      nodes {
+        strapiId
+        projectName
+        city {
+          cityName
+        }
+        fields {
+          pageUrl
+          projectMinPrice
+        }
+        developer {
+          developerName
+        }
+        overviewVideoLink
+        projectPreviewShortText
+        city {
+          cityName
+        }
+        projectHeroImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
+            }
+          }
+        }
+      }
+    }
+    allStrapiProjectTypes {
       nodes {
         name
         descriptionText
@@ -174,35 +217,14 @@ export const query = graphql`
           pageUrl
         }
         projectTypePreviewImage {
-          ...ProjectTypePreviewImage
-        }
-      }
-    }
-    prestigeProjects: allContentfulProject(
-      filter: { isSoldOut: { eq: false }, fields: { projectMinPrice: { gte: 2000000 } } }
-    ) {
-      nodes {
-        contentful_id
-        projectName
-        projectCity {
-          cityName
-        }
-        fields {
-          pageUrl
-          projectMinPrice
-        }
-        projectDeveloper {
-          developerName
-        }
-        overviewVideoLink
-        projectPreviewShortText
-        projectCity {
-          cityName
-        }
-        projectPreviewImage {
-          ...SearchImage
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 1000, quality: 100)
+            }
+          }
         }
       }
     }
   }
 `;
+

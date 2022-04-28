@@ -24,7 +24,11 @@ import { DELETE_PROJECT_TRIGGER } from "../redux/actions/save-project";
 // import Seo from "../seo/Seo";
 
 const ProjectPageTemplate = ({ data }) => {
-  const project = data.contentfulProject;
+  const project = data.strapiProjects;
+
+  project.fields.floorPricePerSquareFoot.forEach((price, index) => {
+    project.floor_plans[index].pricePerSquareFoot = price;
+  });
 
   const [showInfoPanel, setShowInfoPanel] = useState(false);
   const [showFullInfoPanel, setShowFullInfoPanel] = useState(false);
@@ -32,7 +36,7 @@ const ProjectPageTemplate = ({ data }) => {
   const dispatch = useDispatch();
   const saveProject = useSelector(state => state.saveProject);
   const session = useSelector(state => state.session);
-  const isFavorite = saveProject.savedProjects.some(projectId => projectId === project.contentful_id);
+  const isFavorite = saveProject.savedProjects.some(projectId => projectId === project.strapiId);
 
   useEffect(() => {
     if (session) {
@@ -50,9 +54,9 @@ const ProjectPageTemplate = ({ data }) => {
 
   const saveUnsaveProjectButton = useCallback(() => {
     if (isFavorite) {
-      dispatch({ type: DELETE_PROJECT_TRIGGER, email: session.email, projectId: project.contentful_id });
+      dispatch({ type: DELETE_PROJECT_TRIGGER, email: session.email, projectId: project.strapiId });
     } else {
-      dispatch({ type: SAVE_PROJECT_TRIGGER, email: session.email, projectId: project.contentful_id });
+      dispatch({ type: SAVE_PROJECT_TRIGGER, email: session.email, projectId: project.strapiId });
     }
   }, [isFavorite, session, project, dispatch]);
 
@@ -127,7 +131,7 @@ const ProjectPageTemplate = ({ data }) => {
       <FloorPlans
         options={options}
         projectData={project}
-        floors={project.projectFloorPlans}
+        floors={project.floor_plans}
         isProject
         className="mx-auto bg-transparent"
       />
@@ -188,41 +192,46 @@ const ProjectPageTemplate = ({ data }) => {
 export default ProjectPageTemplate;
 
 export const query = graphql`
-  query ProjectTemplate($project_contentful_id: String!) {
-    contentfulProject(contentful_id: { eq: $project_contentful_id }) {
-      contentful_id
+  query ProjectTemplate($project_strapi_id: Int) {
+    strapiProjects(strapiId: { eq: $project_strapi_id }) {
+      strapiId
       projectName
       projectImages {
-        ...Image
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+          }
+        }
       }
       projectAddress
       projectAddressMapLocation {
         lat
         lon
       }
-      overviewText {
-        raw
-      }
+      overviewText
       overviewVideoLink
       overviewVideoPreviewImage {
-        ...Image
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+          }
+        }
       }
-      additionalDescription {
-        raw
-      }
-      projectFloorPlans {
-        contentful_id
+      additionalDescription
+      floor_plans {
+        id
         squareFootage
         bedrooms
         bathrooms
-        name
+        floorPlanName
         price
         isAvailable
         floorPlanImage {
-          ...Image
-        }
-        fields {
-          pricePerSquareFoot
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
         }
       }
       fields {
@@ -235,6 +244,7 @@ export const query = graphql`
         pricePerSqft
         priceCityAverage
         priceNeighborhoodAverage
+        floorPricePerSquareFoot
       }
       googleDriveLink
       salesCentreEmail
@@ -242,25 +252,15 @@ export const query = graphql`
       cooperatingCommission
       launchDate
       estimatedOccupancy
-      majorIntersection {
-        raw
-      }
-      architects {
-        raw
-      }
-      depositAmount {
-        raw
-      }
+      majorIntersection
+      architects
+      depositAmount
       lockerPrice
-      depositStructure {
-        raw
-      }
+      depositStructure
       lockerMaintenance
       maintenanceFee
       parkingPrice
-      totalSuites {
-        raw
-      }
+      totalSuites
       parkingMaintenance
       amenities {
         label

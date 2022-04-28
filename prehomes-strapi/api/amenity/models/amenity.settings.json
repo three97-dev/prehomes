@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "amenities",
+  "info": {
+    "name": "Amenity",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}
