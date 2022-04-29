@@ -1,17 +1,31 @@
-const contentful = require(`contentful`);
+const fetch = require("node-fetch");
 
 const db = require("../../src/db");
-const convertContentfulImageToGatsbyFormat = require("../../src/db/transformImage");
 const { calculatePricePerSquareFoot } = require("../../src/utils/calculatePricePerSquareFoot");
 
-const contentfulConfig = {
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
-};
-const client = contentful.createClient(contentfulConfig);
-
 const headers = { "Content-Type": "application/json" };
+
+async function getRequest(url) {
+  let resp;
+  let rawResp;
+  try {
+    resp = await fetch(process.env.STRAPI_HOST + url);
+
+    if (!resp.ok) {
+      console.log("Not 200 response");
+    }
+
+    const rawResp = await resp.text();
+
+    const data = JSON.parse(rawResp);
+    return data;
+  } catch (err) {
+    console.log("Fetch error", err);
+    if (resp && rawResp) {
+      console.log("Fetch error response", rawResp);
+    }
+  }
+}
 
 exports.handler = async function (event, context) {
   try {
@@ -20,44 +34,46 @@ exports.handler = async function (event, context) {
     const user_identification = data.email;
 
     const savedFloorPlans = await db.getSavedFloorPlans({ user_identification });
-    const contentfulFloorPlans = await client.getEntries({
-      content_type: "floor",
-      "sys.id[in]": savedFloorPlans.map(savedFloorPlans => savedFloorPlans.floor_plan_contentful_id).join(),
-    });
+    const strapiFloorPlans =
+      savedFloorPlans.length > 0
+        ? await getRequest(
+            "/floor-plans?" +
+              savedFloorPlans.map(savedFloorPlan => `id=${savedFloorPlan.floor_plan_contentful_id}&`).join("")
+          )
+        : [];
 
-    const contentfulProjects = await client.getEntries({
-      content_type: "project",
-      select: "sys.id,fields.projectName",
-      "fields.isSoldOut": false,
-      "sys.id[in]": savedFloorPlans.map(savedFloorPlans => savedFloorPlans.project_contentful_id).join(),
-    });
+    const strapiProjects =
+      savedFloorPlans.length > 0
+        ? await getRequest(
+            "/projects?isSoldOut=false&" +
+              savedFloorPlans.map(savedFloorPlan => `id=${savedFloorPlan.project_contentful_id}&`).join("")
+          )
+        : [];
 
-    const responseData = contentfulFloorPlans.items
+    const responseData = strapiFloorPlans
       .map(floorPlan => {
         const savedFloorPlan = savedFloorPlans.find(
-          savedFloorPlan => savedFloorPlan.floor_plan_contentful_id === floorPlan?.sys?.id
+          savedFloorPlan => savedFloorPlan.floor_plan_contentful_id == floorPlan?.id
         );
-        const project = contentfulProjects.items.find(
-          project => project?.sys?.id === savedFloorPlan.project_contentful_id
-        );
+        const project = strapiProjects.find(project => project?.id == savedFloorPlan?.project_contentful_id);
 
         if (!project) {
           return null;
         }
         return {
-          contentful_id: floorPlan?.sys?.id,
-          squareFootage: floorPlan?.fields?.squareFootage,
-          bedrooms: floorPlan?.fields?.bedrooms,
-          bathrooms: floorPlan?.fields?.bathrooms,
-          name: floorPlan?.fields?.name,
-          price: floorPlan?.fields?.price,
+          id: floorPlan?.id,
+          squareFootage: floorPlan?.squareFootage,
+          bedrooms: floorPlan?.bedrooms,
+          bathrooms: floorPlan?.bathrooms,
+          floorPlanName: floorPlan?.floorPlanName,
+          price: floorPlan?.price,
           fields: {
-            pricePerSquareFoot: calculatePricePerSquareFoot(floorPlan?.fields?.price, floorPlan?.fields?.squareFootage),
+            pricePerSquareFoot: calculatePricePerSquareFoot(floorPlan?.price, floorPlan?.squareFootage),
           },
-          isAvailable: floorPlan?.fields?.isAvailable,
-          projectName: project?.fields?.projectName,
-          projectContentfulId: savedFloorPlan.project_contentful_id,
-          floorPlanImage: convertContentfulImageToGatsbyFormat(floorPlan?.fields?.floorPlanImage?.fields),
+          isAvailable: floorPlan?.isAvailable,
+          projectName: project?.projectName,
+          projectContentfulId: savedFloorPlan?.project_contentful_id,
+          floorPlanImage: { mock: process.env.STRAPI_HOST + floorPlan.floorPlanImage.url },
         };
       })
       .filter(responseItem => responseItem);

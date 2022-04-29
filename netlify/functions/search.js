@@ -1,64 +1,86 @@
-const contentful = require(`contentful`);
+const fetch = require("node-fetch");
 const { v4: uuidv4 } = require("uuid");
 
 const { buildProjectUrl, buildCityUrl, buildDeveloperUrl } = require("../../src/utils/buildUrl");
 const { getAutocompletePlaces } = require("../../src/utils/getAutocompletePlaces");
 
-const contentfulConfig = {
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
-};
-const contentfulClient = contentful.createClient(contentfulConfig);
+async function getRequest(url) {
+  let resp;
+  let rawResp;
+  try {
+    resp = await fetch(process.env.STRAPI_HOST + url);
+
+    if (!resp.ok) {
+      console.log("Not 200 response");
+    }
+
+    const rawResp = await resp.text();
+
+    const data = JSON.parse(rawResp);
+    return data;
+  } catch (err) {
+    console.log("Fetch error", err);
+    if (resp && rawResp) {
+      console.log("Fetch error response", rawResp);
+    }
+  }
+}
 
 const searchProjectsByName = async searchTerm => {
-  const contentfulProjects = await contentfulClient.getEntries({
-    content_type: "project",
-    "fields.isSoldOut": false,
-    "fields.projectName[match]": searchTerm,
-  });
-
-  return [...(contentfulProjects?.items || [])];
+  const strapiProjects = await getRequest(`/projects?isSoldOut=false&projectName_contains=${searchTerm}`);
+  return [...(strapiProjects || [])];
 };
+
 const searchCitiesByName = async searchTerm => {
-  const contentfulProjects = await contentfulClient.getEntries({
-    content_type: "city",
-    "fields.cityName[match]": searchTerm,
-  });
-
-  return contentfulProjects?.items || [];
+  const starpiCities = await getRequest(`/cities?&cityName_contains=${searchTerm}`);
+  return starpiCities || [];
 };
+
 const searchDevelopersByName = async searchTerm => {
-  const contentfulProjects = await contentfulClient.getEntries({
-    content_type: "developer",
-    "fields.developerName[match]": searchTerm,
-  });
-
-  return contentfulProjects?.items || [];
+  const strapiDevelopers = await getRequest(`/developers?&developerName_contains=${searchTerm}`);
+  return strapiDevelopers || [];
 };
+
+const toRad = Value => {
+  return (Value * Math.PI) / 180;
+};
+
+const calcCrow = (lat1, lon1, lat2, lon2) => {
+  var R = 6371;
+  var dLat = toRad(lat2 - lat1);
+  var dLon = toRad(lon2 - lon1);
+  var lat1 = toRad(lat1);
+  var lat2 = toRad(lat2);
+
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d;
+};
+
+let projectsCache = [];
 
 const searchProjectsByLocation = async places => {
-  const roundTo2Decimals = number => {
-    return Math.round((number + Number.EPSILON) * 1000) / 1000;
-  };
-  const coordinatesQuery = (lat, lng) => {
-    return `${roundTo2Decimals(lat)},${roundTo2Decimals(lng)},5`;
-  };
-  const responses = await Promise.all(
-    places.map(place => {
+  if (!projectsCache || projectsCache.length === 0) {
+    projectsCache = await getRequest("/projects?isSoldOut=false");
+  }
+
+  let projectsWithin = [];
+  for (const project of projectsCache) {
+    const projectLat = project?.projectAddressMapLocation?.lat;
+    const projectLon = project?.projectAddressMapLocation?.lon;
+
+    for (const place of places) {
       const { lat, lng } = place.geometry.location;
-      const locationQuery = coordinatesQuery(lat, lng);
+      const distance = calcCrow(projectLat, projectLon, lat, lng);
+      if (distance < 5) {
+        projectsWithin.push(project);
+      }
+    }
+  }
 
-      return contentfulClient.getEntries({
-        content_type: "project",
-        "fields.isSoldOut": false,
-        "fields.projectAddressMapLocation[within]": locationQuery,
-      });
-    })
-  );
-
-  const allProjects = responses.map(response => response.items);
-  const uniqueProjects = [...new Map(allProjects.flat().map(item => [item.sys.id, item])).values()];
+  const uniqueProjects = [...new Map(projectsWithin.flat().map(item => [item?.id, item])).values()];
 
   return uniqueProjects;
 };
@@ -83,25 +105,25 @@ const mapResults = ({
 
   function projectToResponse(project) {
     return {
-      label: project?.fields?.projectName,
+      label: project?.projectName,
       type: "project",
-      link: buildProjectUrl({ projectName: project?.fields?.projectName }),
+      link: buildProjectUrl({ projectName: project?.projectName }),
     };
   }
 
   function cityToResponse(city) {
     return {
-      label: city?.fields?.cityName,
+      label: city?.cityName,
       type: "city",
-      link: buildCityUrl({ cityName: city?.fields?.cityName }),
+      link: buildCityUrl({ cityName: city?.cityName }),
     };
   }
 
   function developerToResponse(developer) {
     return {
-      label: developer?.fields?.developerName,
+      label: developer?.developerName,
       type: "developer",
-      link: buildDeveloperUrl({ developerName: developer?.fields?.developerName }),
+      link: buildDeveloperUrl({ developerName: developer?.developerName }),
     };
   }
 
@@ -161,7 +183,6 @@ exports.handler = async function (event, context) {
     const searchTerm = data.searchTerm || "";
 
     const googleMapsSessionToken = data.sessiontoken || uuidv4();
-
 
     const [places, projectMatchesByName, citiesMatchesByName, developersMatchesByName] = await Promise.all([
       getAutocompletePlaces(googleMapsSessionToken, searchTerm),

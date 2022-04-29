@@ -1,17 +1,31 @@
-const contentful = require(`contentful`);
+const fetch = require("node-fetch");
 
 const db = require("../../src/db");
-const convertContentfulImageToGatsbyFormat = require("../../src/db/transformImage");
 const { buildProjectUrl } = require("../../src/utils/buildUrl");
 
-const contentfulConfig = {
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
-};
-const client = contentful.createClient(contentfulConfig);
-
 const headers = { "Content-Type": "application/json" };
+
+async function getRequest(url) {
+  let resp;
+  let rawResp;
+  try {
+    resp = await fetch(process.env.STRAPI_HOST + url);
+
+    if (!resp.ok) {
+      console.log("Not 200 response");
+    }
+
+    const rawResp = await resp.text();
+
+    const data = JSON.parse(rawResp);
+    return data;
+  } catch (err) {
+    console.log("Fetch error", err);
+    if (resp && rawResp) {
+      console.log("Fetch error response", rawResp);
+    }
+  }
+}
 
 exports.handler = async function (event, context) {
   try {
@@ -20,30 +34,27 @@ exports.handler = async function (event, context) {
     const user_identification = data.email;
 
     const savedProjects = await db.getSavedProjects({ user_identification });
-    const contentfulProjects = await client.getEntries({
-      content_type: "project",
-      select: "sys.id,fields.projectName,fields.projectCity,fields.projectFloorPlans,fields.projectPreviewImage",
-      "fields.isSoldOut": false,
-      "sys.id[in]": savedProjects.map(savedProject => savedProject.project_contentful_id).join(),
-    });
+    const strapiProjects =
+      savedProjects.length > 0
+        ? await getRequest(
+            "/projects?isSoldOut=false&" +
+              savedProjects.map(savedProject => `id=${savedProject.project_contentful_id}&`).join("")
+          )
+        : [];
 
-    const responseData = contentfulProjects.items.map(project => {
-      const projectFloorPrices = project?.fields?.projectFloorPlans
-        ? project?.fields?.projectFloorPlans.map(floor => floor.fields.price)
-        : [0];
+    const responseData = strapiProjects.map(project => {
+      const projectFloorPrices = project?.floor_plans ? project?.floor_plans.map(floor => floor.price) : [0];
       return {
-        contentful_id: project?.sys?.id,
-        projectName: project?.fields?.projectName,
-        projectCity: {
-          cityName: project?.fields?.projectCity?.fields?.cityName,
+        strapiId: project?.id,
+        projectName: project?.projectName,
+        city: {
+          cityName: project?.city?.cityName,
         },
         fields: {
-          pageUrl: buildProjectUrl({ projectName: project?.fields?.projectName }),
+          pageUrl: buildProjectUrl({ projectName: project?.projectName }),
           projectMinPrice: Math.min(...projectFloorPrices),
         },
-        projectPreviewImage: convertContentfulImageToGatsbyFormat(project?.fields?.projectPreviewImage?.fields, {
-          width: 300,
-        }),
+        projectHeroImage: { mock: process.env.STRAPI_HOST + project?.projectHeroImage?.url },
       };
     });
 

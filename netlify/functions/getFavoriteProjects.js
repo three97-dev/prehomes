@@ -9,7 +9,7 @@ exports.handler = async function (event, context) {
     const user_identification = data.email;
 
     const savedProjects = await db.getSavedProjects({ user_identification });
-    const responseData = savedProjects.map(project => project.project_contentful_id);
+    const responseData = savedProjects.map(project => Number(project.project_contentful_id));
 
     return {
       statusCode: 200,

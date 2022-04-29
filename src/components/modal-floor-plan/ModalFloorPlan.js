@@ -101,7 +101,7 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectStrapiId, proj
               {floorPlan?.price ? `\$${floorPlan?.price?.toLocaleString("en-US")}` : "Please contact"}
             </h3>
             <span className="eyebrow-font text-black">SUITE NAME</span>
-            <p className="mb-25px text-black">{floorPlan?.name?.toUpperCase()}</p>
+            <p className="mb-25px text-black">{floorPlan?.floorPlanName?.toUpperCase()}</p>
             <div className="apartment-parameters-grid-area">
               <span className="grid-square-footage-title-area eyebrow-font text-black justify-self-start">SQ.FT</span>
               <p className="grid-square-footage-value-area text-black justify-self-start">

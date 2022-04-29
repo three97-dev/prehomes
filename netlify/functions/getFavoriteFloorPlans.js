@@ -9,7 +9,7 @@ exports.handler = async function (event, context) {
     const user_identification = data.email;
 
     const savedFloorPlans = await db.getSavedFloorPlans({ user_identification });
-    const responseData = savedFloorPlans.map(floorPlan => floorPlan.floor_plan_contentful_id);
+    const responseData = savedFloorPlans.map(floorPlan => Number(floorPlan.floor_plan_contentful_id));
 
     return {
       statusCode: 200,
