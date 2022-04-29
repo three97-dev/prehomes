@@ -1,3 +1,5 @@
+const { markdownToTxt } = require("markdown-to-txt");
+
 const hubSpotProperties = [
   "project_id",
   "project_name",
@@ -38,41 +40,11 @@ const hubSpotProperties = [
   "price_per_square_foot",
 ];
 
-const recursiveTreeProcess = tree => {
-  let newResult = "";
-
-  for (const treeNode of tree.content) {
-    if (treeNode.nodeType === "paragraph") {
-      if (newResult === "") {
-        newResult += recursiveTreeProcess(treeNode);
-      } else {
-        newResult += recursiveTreeProcess(treeNode);
-        newResult += "\n";
-      }
-    } else if (treeNode.nodeType === "text") {
-      newResult += treeNode.value;
-    } else {
-      newResult += recursiveTreeProcess(treeNode);
-    }
+const convertMarkdown = md => {
+  if (md) {
+    return markdownToTxt(md);
   }
-
-  return newResult;
-};
-
-const fromContentfulRichTextToString = richText => {
-  if (!richText) {
-    return undefined;
-  }
-  try {
-    const rawTree = JSON.parse(richText.raw);
-    const str = recursiveTreeProcess(rawTree);
-
-    //console.log("test", str);
-
-    return str;
-  } catch (err) {
-    console.log(`Failed to process Contentful rich text to string:`, err);
-  }
+  return null;
 };
 
 const toHubSpotProjectProperties = project => {
@@ -83,23 +55,23 @@ const toHubSpotProjectProperties = project => {
     project_images: project.projectImages?.file?.url,
     latitude: project.projectAddressMapLocation.lat,
     longitude: project.projectAddressMapLocation.lon,
-    overview_text: fromContentfulRichTextToString(project.overviewText),
+    overview_text: convertMarkdown(project.overviewText),
     overview_video_link: project.overviewVideoLink,
-    additional_description: fromContentfulRichTextToString(project.additionalDescription),
+    additional_description: convertMarkdown(project.additionalDescription),
     google_drive_link: project.googleDriveLink,
     cooperating_commission: project.cooperatingCommission,
     project_type: project.projectType?.name,
     launch_date: project.launchDate,
     estimated_occupancy: project.estimatedOccupancy,
-    major_intersection: fromContentfulRichTextToString(project.majorIntersection),
-    architects: fromContentfulRichTextToString(project.architects),
-    deposit_amount: fromContentfulRichTextToString(project.depositAmount),
+    major_intersection: convertMarkdown(project.majorIntersection),
+    architects: convertMarkdown(project.architects),
+    deposit_amount: convertMarkdown(project.depositAmount),
     locker_price: project.lockerPrice,
-    deposit_structure: fromContentfulRichTextToString(project.depositStructure),
+    deposit_structure: convertMarkdown(project.depositStructure),
     locker_maintenance: project.lockerMaintenance,
     maintenance_fee: project.maintenanceFee,
     parking_price: project.parkingPrice,
-    total_suites: fromContentfulRichTextToString(project.totalSuites),
+    total_suites: convertMarkdown(project.totalSuites),
     parking_maintenance: project.parkingMaintenance,
     amenities: project.amenities?.label,
     overview_video_preview_image: project.overviewVideoPreviewImage?.file?.url,

@@ -1,10 +1,6 @@
 require("dotenv").config();
 const path = require("path");
 const axios = require("axios");
-const hubspot = require("@hubspot/api-client");
-const _ = require("lodash");
-
-const hubspotClient = new hubspot.Client({ apiKey: process.env.HUBSPOT_API_KEY });
 
 const projectTemplate = path.resolve("./src/templates/project.js");
 const cityTemplate = path.resolve("./src/templates/city.js");
@@ -17,19 +13,7 @@ const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft")
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 const { resolveStatus } = require("./src/utils/resolveStatus");
 const { getNeighborhood } = require("./src/utils/getNeighborhood");
-const {
-  hubSpotProperties,
-  mapOverProjectProperties,
-  toHubSpotProjectProperties,
-} = require("./src/utils/projectHubspotProperties");
-
-async function wait(time) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-}
+const processHubSpotProject = require("./src/utils/hubspot-sync");
 
 const getUniquePrices = projectFloors => {
   if (!projectFloors || projectFloors.length === 0) {
@@ -83,44 +67,7 @@ async function getWalkScore(lat, lon) {
   }
 }
 
-async function processHubSpotProject(project) {
-  if (process.env.SKIP_HUBSPOT_SYNC === "true") {
-    console.log(`Skip HubSpot sync for "${project.projectName}"`);
-    return;
-  }
 
-  const projectHubSpotProperties = toHubSpotProjectProperties(project);
-
-  await wait(300); // wait for little bit to prevent API limit error
-
-  const searchResponse = await hubspotClient.crm.objects.searchApi.doSearch("PROJECT", {
-    filterGroups: [{ filters: [{ value: project.strapiId, propertyName: "project_id", operator: "EQ" }] }],
-    properties: hubSpotProperties,
-  });
-
-  if (searchResponse.results.length > 0) {
-    const [existingObject] = searchResponse.results;
-    // update only if name changed (no other fields need synchronization for now)
-    if (
-      !_.isEqual(
-        mapOverProjectProperties(existingObject.properties),
-        mapOverProjectProperties(projectHubSpotProperties)
-      )
-    ) {
-      await hubspotClient.crm.objects.basicApi.update("PROJECT", existingObject.id, {
-        properties: projectHubSpotProperties,
-      });
-      console.log(`Updated HubSpot Project fields for "${project.projectName}" (strapi_id=${project.strapiId})`);
-    } else {
-      console.log(`No changes for HubSpot Project "${project.projectName}" (strapi_id=${project.strapiId})`);
-    }
-  } else {
-    await hubspotClient.crm.objects.basicApi.create("PROJECT", {
-      properties: projectHubSpotProperties,
-    });
-    console.log(`Created HubSpot Project for "${project.projectName}" (strapi_id=${project.strapiId})`);
-  }
-}
 
 exports.sourceNodes = async args => {
   const { actions, getNodesByType } = args;
