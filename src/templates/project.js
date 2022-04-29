@@ -15,6 +15,7 @@ import {
   Footer,
   ContactRealtorFormSection,
   InformationPanel,
+  RegisterForProject,
 } from "../components";
 
 import { options } from "../utils/filterOptions";
@@ -61,7 +62,11 @@ const ProjectPageTemplate = ({ data }) => {
   }, [isFavorite, session, project, dispatch]);
 
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: "#FBFBFB",
+      }}
+    >
       {/* <Seo
         seo={{
           seoTitle: project.projectName,
@@ -79,6 +84,7 @@ const ProjectPageTemplate = ({ data }) => {
         onClickSave={saveUnsaveProjectButton}
         isFixedHeader
         className="bg-transparent"
+        videoLink={project.overviewVideoLink}
       />
       {project.googleDriveLink && showInfoPanel ? (
         <InformationPanel
@@ -122,22 +128,31 @@ const ProjectPageTemplate = ({ data }) => {
         walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
         bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
         busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
-        className="pb-12px md:pb-40px"
+        className="pb-16px"
       />
-      <TextSection content={project.additionalDescription} className="px-25px lg:px-120px bg-transparent" />
-      <NeighborhoodMap geoLocation={project.projectAddressMapLocation} className="pt-40px bg-transparent" />
-
-      <div className="border-t-2 md:border-t md:mx-25px lg:mx-120px border-gray-border md:my-40px"></div>
+      <TextSection content={project.additionalDescription} className="px-25px lg:px-0px prehomes-container" />
+      <NeighborhoodMap
+        geoLocation={project.projectAddressMapLocation}
+        className="pb-32px pt-20px md:pb-64px mt-16px px-0px lg:px-0px prehomes-container bg-transparent"
+      />
+      <RegisterForProject
+        additionalFields={[
+          {
+            name: "projectName",
+            value: project.projectName,
+          },
+        ]}
+      />
       <FloorPlans
         options={options}
         projectData={project}
         floors={project.floor_plans}
         isProject
-        className="mx-auto bg-transparent"
+        title="Floor Plans &amp; Prices"
+        className="md:pt-64px pt-32px mx-auto bg-transparent"
       />
-      <div className="hidden md:block border-t md:mx-25px lg:mx-120px md:mt-42px border-gray-border"></div>
       <KeyInformation
-        title="Key Information"
+        title="Project Information"
         statusLabel="Status"
         statusValue={project.fields.projectStatus}
         labelPriceSQFT="Price per sq.ft:"
@@ -168,12 +183,15 @@ const ProjectPageTemplate = ({ data }) => {
         totalSuitesValue={project.totalSuites}
         parkingMaintenanceLabel="Parking Maintenance"
         parkingMaintenanceValue={project.parkingMaintenance}
-        className="bg-transparent"
+        className="bg-transparent md:py-64px py-32px prehomes-container"
       />
       {project.amenities ? (
         <>
-          <div className="border-t md:mx-25px lg:mx-120px border-gray-border mt-30px md:mt-0px mb-30px md:mb-0px"></div>
-          <Amenities title="Amenities" amenities={project.amenities} className="pb-40px px-25px lg:px-120px" />
+          <Amenities
+            title="Amenities"
+            amenities={project.amenities}
+            className="pb-40px md:pb-64px px-25px lg:px-0px prehomes-container"
+          />
         </>
       ) : null}
       <ContactRealtorFormSection
@@ -185,7 +203,7 @@ const ProjectPageTemplate = ({ data }) => {
         ]}
       />
       <Footer />
-    </>
+    </div>
   );
 };
 
@@ -236,6 +254,7 @@ export const query = graphql`
       }
       fields {
         projectStatus
+        pageUrl
         walkScore
         bikeScore
         transitScore

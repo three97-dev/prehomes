@@ -39,6 +39,7 @@ const SearchPage = ({ data }) => {
       link: project.fields.pageUrl,
     };
   });
+
   return (
     <>
       {/* <Seo

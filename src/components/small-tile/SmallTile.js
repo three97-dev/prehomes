@@ -26,18 +26,16 @@ const SmallTile = ({
   specialIncentive,
 }) => {
   return (
-    <div
-      className={`relative w-216px md:w-291px px-8px mr-16px md:mx-10px border border-mild-purple rounded-5px ${className}`}
-    >
+    <div className={`relative w-full px-8px border border-mild-purple rounded-5px ${className}`}>
       <div className="absolute z-10 top-22px right-17px md:right-22px">
         <FavoriteButton buttonProjectId={id} className="m-6px" />
       </div>
       <UniversalLink link={link}>
-        <div className={`rounded-5px overflow-hidden w-full h-192px md:h-246px mx-0px  ${imageClassName}`}>
+        <div className={`rounded-5px overflow-hidden w-full h-200px mx-0px  ${imageClassName}`}>
           <Image image={image} className="w-full h-full object-cover filter img-shadow mt-8px rounded-5px" />
         </div>
         <div
-          className={`text-center pt-16px pb-8px px-16px ${bgColor ? bgColor : "bg-white"} ${
+          className={`text-center pt-16px pb-8px px-8px ${bgColor ? bgColor : "bg-white"} ${
             textColor ? textColor : "text-black-gray"
           }`}
         >

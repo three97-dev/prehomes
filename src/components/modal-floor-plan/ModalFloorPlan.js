@@ -15,7 +15,7 @@ import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 import "./ModalFloorPlan.css";
 
-const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, projectName }) => {
+const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectStrapiId, projectName }) => {
   const { isLoggedIn } = useSelector(state => state.session);
   const isDesktop = useApplyAfterWidth(833);
 
@@ -30,14 +30,14 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
         type: DELETE_FLOOR_PLAN_TRIGGER,
         email: session.email,
         floorPlanId: floorPlan?.id,
-        projectId: projectContentfulId,
+        projectId: projectStrapiId,
       });
     } else {
       dispatch({
         type: SAVE_FLOOR_PLAN_TRIGGER,
         email: session.email,
         floorPlanId: floorPlan?.id,
-        projectId: projectContentfulId,
+        projectId: projectStrapiId,
       });
     }
   }, [floorPlan, isFavorite, session, dispatch]);
@@ -61,7 +61,7 @@ const ModalFloorPlan = ({ modalIsOpen, onClose, floorPlan, projectContentfulId, 
             <span className="eyebrow-font text-black">PROJECT NAME</span>
             <p className="text-black mt-18px mb-31px">{projectName.toUpperCase()}</p>
             <span className="eyebrow-font text-black">SUITE NAME</span>
-            <p className="text-black mt-18px mb-31px">{floorPlan?.name?.toUpperCase()}</p>
+            <p className="text-black mt-18px mb-31px">{floorPlan?.floorPlanName?.toUpperCase()}</p>
             <span className="eyebrow-font text-black">SQUARE FOOTAGE</span>
             <p className="text-black mt-18px mb-31px">
               {floorPlan?.squareFootage ? floorPlan?.squareFootage?.toLocaleString("en-US") : ""}

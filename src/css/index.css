@@ -268,8 +268,29 @@ html body {
     font-style: italic;
   }
 
+  .prehomes-container {
+    max-width: 1126px;
+    margin: 0px auto;
+  }
+
   .img-shadow {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.16));
+  }
+
+  .heading {
+    @apply font-pangram text-28px md:text-36px font-normal text-mild-black;
+  }
+
+  .second-level-heading {
+    @apply text-20px md:text-24px font-poppins font-bold text-deep-purple;
+  }
+
+  .key-information-text {
+    @apply text-mild-black font-light;
+  }
+
+  .second-level-heading-modifier {
+    @apply text-mild-black;
   }
 
   @media screen(md) {

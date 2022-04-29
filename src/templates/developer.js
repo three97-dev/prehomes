@@ -37,6 +37,7 @@ const DeveloperPageTemplate = ({ data }) => {
         heroTopText="You're Exploring:"
         viewAllLink="/developers"
         viewAllText="View all Developers"
+        heroLogoImage={developer.developerPreviewLogo}
         viewAllClassName="bottom-32px"
       />
       <div className="lg:px-120px flex flex-col items-center pt-49px md:pt-100px bg-white-pink md:bg-transparent">

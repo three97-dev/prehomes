@@ -43,7 +43,7 @@ const IndexPage = ({ data }) => {
         bottomText="New to prehomes?"
         bottomTextUnderline="Watch our video"
       />
-      <PropertyTypeSection />
+      <PropertyTypeSection projectTypes={projectTypes} />
       <SliderSmallTiles
         arrowsColor="dark-orange"
         mainTitle="Platinum Access"
@@ -59,7 +59,6 @@ const IndexPage = ({ data }) => {
         smallTileData={launchingSoonProjects}
         bgWrapperClasses="mx-auto"
         icon={fastForwardIcon}
-        paddingTitleClasses="mb-32px"
       />
       <PrestigeCollection link="/prestige" linkLabel="View the collection" projects={prestigeProjects} />
       <ViewByLinks viewAllLink="/developers" title="Developer" links={projectsByDeveloperLinks} />
@@ -227,4 +226,3 @@ export const query = graphql`
     }
   }
 `;
-

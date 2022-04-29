@@ -2,8 +2,6 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 
-import { resolveStatus } from "../utils/resolveStatus";
-
 import { Header, HeroSection, ContactRealtorFormSection, Footer, CitiesSection } from "../components";
 
 const CityPageTemplate = ({ data }) => {

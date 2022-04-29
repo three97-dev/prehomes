@@ -32,6 +32,7 @@ const ProjectTypePageTemplate = ({ data }) => {
     />  */}
       <Header logoLink="/" />
       <HeroSection
+        image={projectType.projectTypePreviewImage}
         title={projectType.name}
         heroTopText="PROPERTY TYPE"
         heroContent={projectType.descriptionText}
@@ -111,6 +112,13 @@ export const query = graphql`
       averageSize
       marketTrend
       aboutProjectType
+      projectTypePreviewImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 1000, quality: 100)
+        }
+      }
+    }
     }
     platinumAccessProjects: allStrapiProjects(
       filter: { isSoldOut: { eq: false }, fields: { projectStatus: { eq: "platinum-access" } } }
@@ -128,7 +136,7 @@ export const query = graphql`
         projectHeroImage {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
             }
           }
         }
@@ -150,7 +158,7 @@ export const query = graphql`
         projectHeroImage {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
             }
           }
         }
@@ -172,7 +180,7 @@ export const query = graphql`
         projectHeroImage {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR, width: 350)
             }
           }
         }

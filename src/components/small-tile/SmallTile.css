@@ -8,7 +8,7 @@
 
 .ribbon-wrapper {
   @apply w-full absolute left-0px right-0px bg-mild-black flex items-center justify-center;
-  top: 55%;
+  top: 50%;
   height: 35px;
 }
 

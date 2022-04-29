@@ -4,25 +4,33 @@
       display: grid;
       grid-template-rows: auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto 2rem auto;
       grid-template-areas:
-        "Status Type"
-        " . ."
-        "LaunchDate EstimatedOccupancy"
-        " . ."
-        "MajorIntersection MajorIntersection"
-        " . ."
-        "Architects Architects"
-        " . ."
-        "DepositAmount LockerPrice"
-        " . ."
-        "DepositStructure DepositStructure"
-        " . ."
-        "LockerMaintenance LockerMaintenance"
-        " . ."
-        "MaintenanceFee MaintenanceFee"
-        " . ."
-        "ParkingPrice TotalSuites"
-        " . ."
-        "ParkingMaintenance ParkingMaintenance";
+        "Status"
+        "."
+        "Type"
+        "."
+        "LaunchDate"
+        "."
+        "EstimatedOccupancy"
+        "."
+        "MajorIntersection"
+        "."
+        "Architects"
+        "."
+        "DepositAmount"
+        "."
+        "LockerPrice"
+        "."
+        "DepositStructure"
+        "."
+        "LockerMaintenance"
+        "."
+        "MaintenanceFee"
+        "."
+        "ParkingPrice"
+        "."
+        "TotalSuites"
+        "."
+        "ParkingMaintenance";
 
       align-items: start;
     }
@@ -31,19 +39,16 @@
       display: grid;
       grid-template-columns:
         minmax(auto, 252px)
-        auto
         minmax(auto, 252px)
-        auto
         minmax(auto, 252px)
-        auto
         minmax(auto, 252px);
       grid-template-rows: auto;
       grid-template-areas:
-        "Status . Type . LaunchDate . EstimatedOccupancy"
-        "MajorIntersection MajorIntersection MajorIntersection . Architects Architects Architects"
-        "DepositAmount . DepositStructure . LockerPrice . LockerMaintenance"
-        "MaintenanceFee . ParkingPrice . TotalSuites . ParkingMaintenance";
-      row-gap: 40px;
+        "Status Status . Type Type Type . LaunchDate LaunchDate LaunchDate . EstimatedOccupancy"
+        "MaintenanceFee MaintenanceFee . TotalSuites TotalSuites TotalSuites . LockerPrice LockerPrice LockerPrice . ParkingPrice"
+        "DepositAmount DepositAmount . DepositStructure DepositStructure DepositStructure . MajorIntersection MajorIntersection MajorIntersection . ."
+        "Architects Architects . ParkingMaintenance ParkingMaintenance ParkingMaintenance . LockerMaintenance LockerMaintenance LockerMaintenance . .";
+      row-gap: 16px;
       align-items: start;
     }
 

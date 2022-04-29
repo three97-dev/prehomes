@@ -22,7 +22,7 @@ const HeroHome = ({ title, placeholder, bottomTextUnderline, className }) => {
   return (
     <div className={`relative z-20 w-full ${className} header-background`}>
       <div className="overlay"></div>
-      <div className="relative z-20 justify-end md:mx-92px md:ml-120px">
+      <div className="relative z-20 justify-end prehomes-container">
         <div className="flex flex-col md:flex-row items-center home-hero-title px-25px md:px-0px w-full z-100">
           <h1 className="flex-1 mb-64px md:mb-0px text-center md:text-left text-cream-pink md:text-white-pink md:leading-61px md:pr-64px">
             {title}

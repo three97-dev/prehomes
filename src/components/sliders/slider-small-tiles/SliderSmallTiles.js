@@ -93,9 +93,9 @@ const SliderSmallTiles = ({
   }
 
   return (
-    <div className={`py-64px px-25px md:px-0px${classNames(bgWrapperClasses)}`}>
-      <div className="md:mx-60px">
-        <div className={classNames("md:px-64px", paddingTitleClasses)}>
+    <div className={`py-64px px-25px md:px-0px prehomes-container ${classNames(bgWrapperClasses)}`}>
+      <div>
+        <div className={classNames(paddingTitleClasses)}>
           <div className="flex justify-between">
             <div className="flex items-center flex-1 space-x-16px md:space-x-32px">
               {icon && <img src={icon} alt={`${mainTitle} icon`} />}
@@ -110,9 +110,9 @@ const SliderSmallTiles = ({
         </div>
         {smallTileData && smallTileData.length > 0 ? (
           <div className={paddingSliderClasses}>
-            <div className="flex md:px-20px">
+            <div className="flex">
               <div className="w-full">
-                <Slider ref={s => setSlider(s)} {...settings} className="relative space-x-8px">
+                <Slider ref={s => setSlider(s)} {...settings} className="small-tiles-slider relative">
                   {smallTileData.map((item, index) => {
                     return (
                       <SmallTile

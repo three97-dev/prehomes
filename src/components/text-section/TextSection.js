@@ -3,12 +3,12 @@ import Markdown from "../basic/markdown/Markdown";
 
 const TextSection = ({ title, content, className }) => {
   return (
-    <div className={`text-black-gray lg:-mb-24px ${className}`}>
+    <div className={`text-black-gray ${className}`}>
       <h2 className={title ? "mt-30px mb-20px lg:mb-40px" : ""}>{title}</h2>
       <Markdown
         data={content}
         config={{
-          p: "mb-24px",
+          p: "text-mild-black text-16px font-normal",
         }}
       />
     </div>

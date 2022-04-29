@@ -69,7 +69,7 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
 
   return (
     <div
-      className={`absolute w-full px-25px md:px-16px z-100 py-16px ${className} ${
+      className={`header-wrapper absolute w-full px-25px md:px-16px z-100 py-16px ${className} ${
         isStickyHeader || headerStyle ? "header-show" : ""
       } ${isStickyHeader ? "header-border" : ""}`}
     >
@@ -77,7 +77,7 @@ const Header = ({ logoLink, variant, isStickyHeader, className }) => {
         <UniversalLink link={logoLink}>
           {isStickyHeader || headerStyle ? (
             isDesktop ? (
-              <StaticImage src="../../assets/header/header-logo-home.png" className={imageClassName} alt={altText} />
+              <StaticImage src="../../assets/header/header-logo.png" className={imageClassName} alt={altText} />
             ) : (
               <StaticImage src="../../assets/header/header-logo.png" className={imageClassName} alt={altText} />
             )

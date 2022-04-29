@@ -97,8 +97,8 @@ const ContactRealtorFormSection = ({ additionalFields, className }) => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div className={`contact-container w-full px-25px py-64px md:px-10px md:px-120px`}>
-      <div className="flex w-full max-w-1126px mx-auto justify-center flex-col md:flex-row">
+    <div className={`contact-container w-full px-25px py-64px md:px-0px md:rounded-t-100px ${className}`}>
+      <div className="flex w-full prehomes-container mx-auto justify-center flex-col md:flex-row">
         <div className="md:w-1/2 flex items-center">
           <h2 className="text-36px md:text-47px text-white font-normal md:w-350px leading-42px md:leading-61px mb-32px md:mb-0px">
             Maybe it’s time for a realtor.

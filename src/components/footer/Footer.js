@@ -17,12 +17,9 @@ const Footer = ({ className }) => {
 
   return (
     <div
-      className={classNames(
-        "bg-black-gray w-full px-25px md:px-120px pt-50px md:pt-65px pb-70px md:pb-60px",
-        className
-      )}
+      className={classNames("bg-black-gray w-full px-25px md:px-0px pt-50px md:pt-65px pb-70px md:pb-60px", className)}
     >
-      <div>
+      <div className="prehomes-container">
         <div className="pb-20px">
           {isDesktop ? (
             <StaticImage src="../../assets/footer/logo.png" alt="logo" />

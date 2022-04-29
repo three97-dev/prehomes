@@ -41,84 +41,112 @@ const KeyInformation = ({
   const statusValueToShow = statusResolver(statusValue);
 
   return (
-    <div className={`grid bg-white-pink md:bg-transparent px-25px lg:px-120px pb-20px ${className}`}>
-      <h2 className="text-tundora md:text-black-gray mt-48px mb-20px">{title}</h2>
+    <div className={`grid bg-white-pink md:bg-transparent px-25px lg:px-0px ${className}`}>
+      <h2 className="heading mb-16px">{title}</h2>
       <div className="key-info-grid-area-wrapper-mobile md:key-info-grid-area-wrapper">
         <div className="key-info-grid-status-area">
-          <h3 className="text-dark-orange">{statusLabel}</h3>
-          <p className="text-black-gray mt-20px">{statusValueToShow}</p>
+          <h3 className="second-level-heading">{statusLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">{statusValueToShow}</p>
         </div>
         <div className="key-info-grid-type-area">
-          <h3 className="text-dark-orange">{typeLabel}</h3>
-          <p className="text-black-gray mt-20px">{typeValue?.map(type => type.name).join(", ")}</p>
+          <h3 className="second-level-heading">{typeLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
+            {typeValue?.map(type => type.name).join(", ")}
+          </p>
         </div>
         <div className="key-info-grid-launch-date-area">
-          <h3 className="text-dark-orange">{launchDateLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{launchDateLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {launchDateValue ? DateTime.fromISO(launchDateValue).toFormat("dd / LL / yyyy") : ""}
           </p>
         </div>
         <div className="key-info-grid-estimated-occupancy-area">
-          <h3 className="text-dark-orange">{estimatedOccupancyLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{estimatedOccupancyLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {estimatedOccupancyValue ? DateTime.fromISO(estimatedOccupancyValue).toFormat("dd / LL / yyyy") : ""}
           </p>
         </div>
+        <div className="key-info-grid-maintenance-fee-area">
+          <h3 className="second-level-heading">{maintenanceFeeLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
+            {maintenanceFeeValue
+              ? maintenanceFeeValue.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+              : ""}
+          </p>
+        </div>
+        <div className="key-info-grid-total-suites-area">
+          <h3 className="second-level-heading">{totalSuitesLabel}:</h3>
+          <p className="mt-14px">
+            {totalSuitesValue ? (
+              <Markdown
+                data={totalSuitesValue}
+                config={{
+                  p: "text-mild-black font-light text-16px mb-16px",
+                }}
+              />
+            ) : null}
+          </p>
+        </div>
         <div className="key-info-grid-major-intersection-area">
-          <h3 className="text-dark-orange">{majorIntersectionLabel}</h3>
-          <div className="mt-20px">
+          <h3 className="second-level-heading">{majorIntersectionLabel}:</h3>
+          <div className="mt-14px">
             {majorIntersectionValue ? (
               <Markdown
                 data={majorIntersectionValue}
                 config={{
-                  p: "text-black-gray mt-20px",
+                  p: "text-mild-black font-light mt-20px text-16px  mb-16px",
                 }}
               />
             ) : null}
           </div>
         </div>
         <div className="key-info-grid-architects-area">
-          <h3 className="text-dark-orange">{architectsLabel}</h3>
-          <div className="mt-20px">
+          <h3 className="second-level-heading">{architectsLabel}:</h3>
+          <div className="mt-14px">
             {architectsValue ? (
               <Markdown
                 data={architectsValue}
                 config={{
-                  p: "text-black-gray",
+                  p: "key-information-text text-16px mb-16px",
                 }}
               />
             ) : null}
           </div>
         </div>
         <div className="key-info-grid-deposit-amount-area">
-          <h3 className="text-dark-orange">{depositAmountLabel}</h3>
-          <div className="mt-20px">
+          <h3 className="second-level-heading">{depositAmountLabel}:</h3>
+          <div className="mt-14px">
             {depositAmountValue ? (
               <Markdown
                 data={depositAmountValue}
                 config={{
-                  p: "text-black-gray",
+                  p: "text-mild-black font-light text-16px mb-16px",
                 }}
               />
             ) : null}
           </div>
         </div>
         <div className="key-info-grid-deposit-structure-area">
-          <h3 className="text-dark-orange">{depositStructureLabel}</h3>
-          <div className="mt-20px">
+          <h3 className="second-level-heading">{depositStructureLabel}:</h3>
+          <div className="mt-14px">
             {depositStructureValue ? (
               <Markdown
                 data={depositStructureValue}
                 config={{
-                  p: "text-black-gray",
+                  p: "text-mild-black font-light text-16px mb-16px",
                 }}
               />
             ) : null}
           </div>
         </div>
         <div className="key-info-grid-locker-price-area">
-          <h3 className="text-dark-orange">{lockerPriceLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{lockerPriceLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {lockerPriceValue
               ? lockerPriceValue.toLocaleString("en-US", {
                   style: "currency",
@@ -130,8 +158,8 @@ const KeyInformation = ({
           </p>
         </div>
         <div className="key-info-grid-locker-maintenance-area">
-          <h3 className="text-dark-orange">{lockerMaintenanceLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{lockerMaintenanceLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {lockerMaintenanceValue
               ? lockerMaintenanceValue.toLocaleString("en-US", {
                   style: "currency",
@@ -142,22 +170,9 @@ const KeyInformation = ({
               : ""}
           </p>
         </div>
-        <div className="key-info-grid-maintenance-fee-area">
-          <h3 className="text-dark-orange">{maintenanceFeeLabel}</h3>
-          <p className="text-black-gray mt-20px">
-            {maintenanceFeeValue
-              ? maintenanceFeeValue.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-              : ""}
-          </p>
-        </div>
         <div className="key-info-grid-parking-price-area">
-          <h3 className="text-dark-orange">{parkingPriceLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{parkingPriceLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {parkingPriceValue
               ? parkingPriceValue.toLocaleString("en-US", {
                   style: "currency",
@@ -168,22 +183,9 @@ const KeyInformation = ({
               : ""}
           </p>
         </div>
-        <div className="key-info-grid-total-suites-area">
-          <h3 className="text-dark-orange">{totalSuitesLabel}</h3>
-          <p className="mt-20px">
-            {totalSuitesValue ? (
-              <Markdown
-                data={totalSuitesValue}
-                config={{
-                  p: "text-black-gray",
-                }}
-              />
-            ) : null}
-          </p>
-        </div>
         <div className="key-info-grid-parking-maintenance-area">
-          <h3 className="text-dark-orange">{parkingMaintenanceLabel}</h3>
-          <p className="text-black-gray mt-20px">
+          <h3 className="second-level-heading">{parkingMaintenanceLabel}:</h3>
+          <p className="text-mild-black font-light text-16px mt-14px mb-16px">
             {parkingMaintenanceValue
               ? parkingMaintenanceValue.toLocaleString("en-US", {
                   style: "currency",

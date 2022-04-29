@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Select, { components } from "react-select";
 
 import DropdownArrow from "../dropdown-arrow/DropdownArrow";
+import useApplyAfterWidth from "../../utils/useApplyAfterWidth";
 
 const Dropdown = ({
   title,
@@ -22,6 +23,7 @@ const Dropdown = ({
   value,
   onChange,
 }) => {
+  const isDesktop = useApplyAfterWidth(833);
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -31,7 +33,7 @@ const Dropdown = ({
       fontSize: fontSize ? fontSize : "13px",
       padding: selectFieldPadding ? selectFieldPadding : "0px 0px 0px 2px",
       backgroundColor: "#fff",
-      borderRadius: "15px",
+      borderRadius: "100px",
       border: "1px solid #F0F0F1",
       fontFamily: font,
       fontStyle: fontStyle,
@@ -44,7 +46,10 @@ const Dropdown = ({
     }),
     singleValue: (provided, state) => ({
       ...provided,
-      color: "#AC9986",
+      color: "#7043D4",
+      fontSize: isDesktop ? "16px" : "12px",
+      fontWeight: 300,
+      fontFamily: isDesktop ? "Poppins" : "Pangram",
     }),
     menu: provided => ({
       ...provided,
@@ -67,10 +72,12 @@ const Dropdown = ({
     option: (provided, state) => ({
       ...provided,
       backgroundColor: "#fff",
-      color: "#AC9986",
+      color: "#7043D4",
       fontFamily: font,
       fontStyle: fontStyle,
       fontSize: fontSize ? fontSize : "14px",
+      fontWeight: 300,
+      fontFamily: "Poppins",
       cursor: "pointer",
       "&:first-of-type": {
         color: "#000",
@@ -88,13 +95,13 @@ const Dropdown = ({
     }),
   };
 
-  const defaultTitleClasses = "field-labels-font mb-10px ml-10px text-black-gray";
+  const defaultTitleClasses = "font-pangram text-mild-black text-12px mb-16px ml-10px font-bold";
 
   const DropdownIndicator = props => {
     return (
       components.DropdownIndicator && (
         <components.DropdownIndicator {...props}>
-          {sf ? <div className="field-labels-font text-black-gray">SF</div> : <DropdownArrow color={arrowColor} />}
+          {sf ? <div className="text-mild-black text-12px">SF</div> : <DropdownArrow color={arrowColor} />}
         </components.DropdownIndicator>
       )
     );

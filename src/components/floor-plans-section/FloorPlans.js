@@ -17,7 +17,7 @@ import "./FloorPlans.css";
 const ITEMS_PER_PAGE_MOBILE = 4;
 const ITEMS_PER_PAGE_DESKTOP = 8;
 
-const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
+const FloorPlans = ({ title, options, floors, projectData, isProject, className }) => {
   const [moreInfoModal, setMoreInfoModal] = useState(null);
   const [isSubmittedContactSales, setIsSubmittedContactSales] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -129,23 +129,22 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
   );
 
   return (
-    <div className={`relative pt-50px md:pt-30px bg-white-pink md:bg-light-gray ${className}`}>
-      {isDesktop && (
-        <hr className="absolute left-0px top-265px w-full h-1px md:px-25px lg:px-120px border-none bg-black bg-clip-content" />
-      )}
-      <div className="pl-25px lg:pl-120px">
-        <h2 className="text-tundora md:text-black-gray mb-29px md:mb-20px">Saved Floor Plans</h2>
-        <h3 className="text-dark-orange mb-21px md:mb-43px">Total Floor Plans:</h3>
-        <p className="mb-20px md:mb-40px">
-          <span className="font-bold">{floors ? floors.length : 0}</span> ({availableFloors.length} Available)
-        </p>
+    <div className={`relative prehomes-container ${className}`}>
+      <div className="pl-25px lg:pl-0px">
+        <h2 className="heading mb-16px">{title}</h2>
+        <div className="flex flex-col md:flex-row mb-32px md:mb-0px">
+          <h3 className="second-level-heading mb-8px md:mb-0px md:mr-64px">Total Floor Plans:</h3>
+          <p className="second-level-heading second-level-heading-modifier">
+            <span>{floors ? floors.length : 0}</span> ({availableFloors.length} Available)
+          </p>
+        </div>
       </div>
-      <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb-25px`}>
+      <div className={`table-filters flex justify-between items-center md:hidden h-44px pl-35px pr-22px mb:mb-25px`}>
         <button
           onClick={() => {
             setIsModalFilterOpen(!isModalFilterOpen);
           }}
-          className="w-80px h-24px text-dark-orange button-font"
+          className="w-80px h-24px text-deep-purple text-16px font-medium uppercase"
         >
           Filters
         </button>
@@ -178,7 +177,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
           fontSize="11px"
         />
       </div>
-      <div className="drop-down-grid absolute right-25px md+right-90px lg:right-120px top-136px">
+      <div className="drop-down-grid pl-25px lg:pl-0px mt-32px">
         <Dropdown
           title="Size"
           options={options.sizes}
@@ -215,29 +214,30 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
       {sortedTiles.length === 0 ? (
         <h3 className="w-full pt-100px pb-50px text-center">No results</h3>
       ) : (
-        <div className="md:px-25px lg:px-120px">
+        <div className="md:mt-32px">
           <table className="w-full">
             {isDesktop && (
               <thead>
                 <tr className="table-head">
                   <th></th>
-                  <th className="table-head-item pl-20px md:pl-16px lg:pl-37px text-black-gray min-w-136px">
-                    <h4>Suite Name</h4>
+                  <th className="table-head-item pl-32px py-16px text-deep-purple min-w-136px">
+                    <h4 className="text-16px font-bold">Suite Name</h4>
                   </th>
-                  <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
-                    <h4>Suite Type</h4>
+                  <th className="table-head-item pl-32px py-16px text-deep-purple">
+                    <h4 className="text-16px font-bold">Suite Type</h4>
                   </th>
-                  <th className="table-head-item pl-20px md:pl-22px lg:pl-40px text-black-gray">
-                    <h4>Size</h4>
+                  <th className="table-head-item pl-32px py-16px text-deep-purple">
+                    <h4 className="text-16px font-bold">Size</h4>
                   </th>
-                  <th className="table-head-item pl-20px md:pl-22px lg:pl-48px text-black-gray">
-                    <h4>Price</h4>
+                  <th className="table-head-item pl-32px py-16px text-deep-purple">
+                    <h4 className="text-16px font-bold">Price</h4>
                   </th>
                   <th className="table-head-item"></th>
                 </tr>
               </thead>
             )}
-            <tbody className="">
+            <div className="w-full md:mt-20px mt-28px"></div>
+            <tbody>
               {isDesktop
                 ? sortedTiles.map((floorPlan, index) => (
                     <tr key={index} className="table-info">
@@ -251,20 +251,28 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                         />
                       </td>
                       <td className="pl-20px lg:pl-37px lg+:pl-30px">
-                        <div className="max-w-154px footer-font">{floorPlan.name}</div>
+                        <p className="text-mild-black font-normal text-16px max-w-154px">{floorPlan.floorPlanName}</p>
                       </td>
-                      <td className="text-black-gray pl-20px lg:pl-37px">
-                        <p className="mb-20px w-110px lg+:mb-12px lg+:mr-20px">{floorPlan.bedrooms} Bedroom</p>
-                        <p className="w-110px">{floorPlan.bathrooms} Bathroom</p>
+                      <td className=" pl-20px lg:pl-37px">
+                        <p className="text-mild-black font-normal text-16px mb-20px w-110px lg+:mb-12px lg+:mr-20px">
+                          {floorPlan.bedrooms} Bedroom
+                        </p>
+                        <p className="text-mild-black font-normal text-16px w-110px">{floorPlan.bathrooms} Bathroom</p>
                       </td>
-                      <td className="text-black-gray pl-20px lg:pl-37px">
-                        <p>{floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} sq.ft</p>
+                      <td className="pl-20px lg:pl-37px">
+                        <p className="text-mild-black font-normal text-16px">
+                          {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} sq.ft
+                        </p>
                       </td>
-                      <td className="text-black-gray pl-20px lg:pl-44px lg+:mt-71px">
-                        <p className={`${floorPlan.price && "mb-20px"} lg+:mb-12px lg+:mr-20px`}>
+                      <td className="pl-20px lg:pl-44px lg+:mt-71px">
+                        <p
+                          className={`text-mild-black font-normal text-16px ${
+                            floorPlan.price && "mb-20px"
+                          } lg+:mb-12px lg+:mr-20px`}
+                        >
                           {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
                         </p>
-                        <p>
+                        <p className="text-mild-black font-normal text-16px">
                           {floorPlan.pricePerSquareFoot
                             ? `\$${floorPlan.pricePerSquareFoot.toLocaleString("en-US")} /sq.ft`
                             : ""}
@@ -272,11 +280,11 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                       </td>
                       <td className="pl-25px lg:pl-64px pr-5px lg:pr-0px">
                         <Button
-                          variants="black_gradient"
-                          btnClasses="w-113px h-54px"
+                          variants="primary"
+                          btnClasses="rounded-100px w-110px h-52px"
                           onClick={() => setMoreInfoModal(floorPlan)}
                         >
-                          <div className="button-font">More info</div>
+                          <div className="font-medium font-poppins text-16px">More info</div>
                         </Button>
                       </td>
                     </tr>
@@ -293,17 +301,21 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                         />
                       </td>
                       <td className="pl-20px lg:pl-37px lg+:pl-30px">
-                        <div className="table-data">
-                          <div className="footer-font mb-20px">{floorPlan.floorPlanName.toUpperCase()}</div>
+                        <div className="table-data flex flex-col justify-center">
+                          <div className="text-16px font-bold mb-8px">{floorPlan.floorPlanName.toUpperCase()}</div>
                           <div className="floor-info">
-                            <p className="w-100px">
+                            <p className="font-normal text-16px text-deep-purple w-100px">
                               {floorPlan.price ? `\$${floorPlan.price.toLocaleString("en-US")}` : "Please contact"}
                             </p>
-                            <p className="w-100px">
-                              {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} SQ.FT
+                            <p className="font-normal text-16px text-deep-purple w-100px">
+                              {floorPlan.squareFootage ? floorPlan.squareFootage.toLocaleString("en-US") : ""} Sq.Ft
                             </p>
-                            <p className="w-100px text-black-gray">{floorPlan.bathrooms} BATHROOM</p>
-                            <p className="w-100px text-black-gray">{floorPlan.bedrooms} BEDROOM</p>
+                            <p className="w-100px font-normal text-16px text-deep-purple">
+                              {floorPlan.bathrooms} Bathroom
+                            </p>
+                            <p className="w-100px font-normal text-16px text-deep-purple">
+                              {floorPlan.bedrooms} Bedroom
+                            </p>
                           </div>
                         </div>
                       </td>
@@ -318,7 +330,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
               ) : (
                 <ModalFloorPlan
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
-                  projectContentfulId={moreInfoModal?.projectContentfulId || projectData?.strapiId}
+                  projectStrapiId={moreInfoModal?.id || projectData?.strapiId}
                   floorPlan={moreInfoModal}
                   modalIsOpen={moreInfoModal ? true : false}
                   onClose={closeModal}
@@ -327,7 +339,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
               {isDesktop && (
                 <ContactSalesFooter
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
-                  floorPlanName={moreInfoModal?.name}
+                  floorPlanName={moreInfoModal?.floorPlanName}
                   contactSalesIsOpen={moreInfoModal ? true : false}
                   isFormDisabled={alreadySubmittedFloorPlans.includes(moreInfoModal?.id)}
                   onSubmit={() => {
@@ -342,6 +354,7 @@ const FloorPlans = ({ options, floors, projectData, isProject, className }) => {
                 />
               )}
             </tbody>
+            <tr className="divider hidden md:block"></tr>
           </table>
         </div>
       )}
