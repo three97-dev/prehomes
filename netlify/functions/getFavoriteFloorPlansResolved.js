@@ -73,7 +73,7 @@ exports.handler = async function (event, context) {
           isAvailable: floorPlan?.isAvailable,
           projectName: project?.projectName,
           projectContentfulId: savedFloorPlan?.project_contentful_id,
-          floorPlanImage: { mock: process.env.STRAPI_HOST + floorPlan.floorPlanImage.url },
+          floorPlanImage: { mock: floorPlan.floorPlanImage.url },
         };
       })
       .filter(responseItem => responseItem);

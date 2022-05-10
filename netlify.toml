@@ -6,3 +6,9 @@
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
+
+[[redirects]]
+  from = "/uploads/*"
+  to = "http://35.224.141.148/uploads/:splat"
+  status = 200
+  force = true

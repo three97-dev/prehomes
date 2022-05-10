@@ -54,7 +54,7 @@ exports.handler = async function (event, context) {
           pageUrl: buildProjectUrl({ projectName: project?.projectName }),
           projectMinPrice: Math.min(...projectFloorPrices),
         },
-        projectHeroImage: { mock: process.env.STRAPI_HOST + project?.projectHeroImage?.url },
+        projectHeroImage: { mock: project?.projectHeroImage?.url },
       };
     });
 
