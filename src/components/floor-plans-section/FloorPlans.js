@@ -330,7 +330,7 @@ const FloorPlans = ({ title, options, floors, projectData, isProject, className 
               ) : (
                 <ModalFloorPlan
                   projectName={moreInfoModal?.projectName || projectData?.projectName || ""}
-                  projectStrapiId={moreInfoModal?.id || projectData?.strapiId}
+                  projectStrapiId={moreInfoModal?.projectContentfulId || projectData?.strapiId}
                   floorPlan={moreInfoModal}
                   modalIsOpen={moreInfoModal ? true : false}
                   onClose={closeModal}
