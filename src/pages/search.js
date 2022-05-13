@@ -14,7 +14,7 @@ const SearchPage = ({ data }) => {
       ? project.fields.prices[project.fields.prices.length - 1].toLocaleString()
       : "";
 
-    let neighborhoodStr = project?.fields?.neighborhood;
+    let neighborhoodStr = project?.neighborhood;
     const cityNameStr = project?.city?.cityName || "";
 
     if (neighborhoodStr && neighborhoodStr.toLowerCase() === cityNameStr.toLowerCase()) {
@@ -86,12 +86,12 @@ export const query = graphql`
         city {
           cityName
         }
+        neighborhood
         fields {
           maxBeds
           maxBaths
           prices
           squareFootages
-          neighborhood
         }
         projectHeroImage {
           localFile {

@@ -125,9 +125,9 @@ const ProjectPageTemplate = ({ data }) => {
         bikeScoreTooltip="Bike Score Tooltip"
         busScoreLabel="Bus Score"
         busScoreTooltip="Bus Score Tooltip"
-        walkScoreNumber={project.fields.walkScore === "none" ? null : project.fields.walkScore}
-        bikeScoreNumber={project.fields.bikeScore === "none" ? null : project.fields.bikeScore}
-        busScoreNumber={project.fields.transitScore === "none" ? null : project.fields.transitScore}
+        walkScoreNumber={project.projectAddressMapLocation.walkScore}
+        bikeScoreNumber={project.projectAddressMapLocation.bikeScore}
+        busScoreNumber={project.projectAddressMapLocation.transitScore}
         className="pb-16px"
       />
       <TextSection content={project.additionalDescription} className="px-25px lg:px-0px prehomes-container" />
@@ -225,6 +225,9 @@ export const query = graphql`
       projectAddressMapLocation {
         lat
         lon
+        walkScore
+        bikeScore
+        transitScore
       }
       overviewText
       overviewVideoLink
@@ -255,9 +258,6 @@ export const query = graphql`
       fields {
         projectStatus
         pageUrl
-        walkScore
-        bikeScore
-        transitScore
         projectMinPrice
         projectMaxPrice
         pricePerSqft

@@ -1,6 +1,5 @@
 require("dotenv").config();
 const path = require("path");
-const axios = require("axios");
 
 const projectTemplate = path.resolve("./src/templates/project.js");
 const cityTemplate = path.resolve("./src/templates/city.js");
@@ -12,7 +11,6 @@ const { calculatePricePerSquareFoot } = require("./src/utils/calculatePricePerSq
 const { getProjectPricePerSqft } = require("./src/utils/getProjectPricePerSqft");
 const { calculateAveragePrice } = require("./src/utils/calculateAveragePrice");
 const { resolveStatus } = require("./src/utils/resolveStatus");
-const { getNeighborhood } = require("./src/utils/getNeighborhood");
 const processHubSpotProject = require("./src/utils/hubspot-sync");
 
 const getUniquePrices = projectFloors => {
@@ -53,20 +51,6 @@ const getUniqueSquareFootages = projectFloors => {
   return [...new Set(projectFloors.map(projectFloor => projectFloor.squareFootage))];
 };
 
-async function getWalkScore(lat, lon) {
-  if (!lat || !lon) {
-    return null;
-  }
-
-  try {
-    const url = `https://api.walkscore.com/score?format=json&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=${process.env.WALK_SCORE_API_KEY}`;
-    const result = await axios.get(url);
-    return result.data;
-  } catch (err) {
-    console.log("Walk Score API error:", err.message);
-  }
-}
-
 
 
 exports.sourceNodes = async args => {
@@ -84,26 +68,8 @@ exports.sourceNodes = async args => {
     const maxBeds = getMaxProjectBeds(floorNodes);
     const maxBaths = getMaxProjectBaths(floorNodes);
     const squareFootages = getUniqueSquareFootages(floorNodes);
-    const lat = project?.projectAddressMapLocation?.lat;
-    const lon = project?.projectAddressMapLocation?.lon;
-
-    let score = {};
-    if (process.env.SKIP_WALKSCORE_API_USAGE === "true") {
-      console.log(`Skip WalkScore API call for "${project.projectName}"`);
-    } else {
-      score = await getWalkScore(lat, lon);
-      if (score?.status !== 1) {
-        console.log(`Failed to get WalkScore API response for "${project.projectName}"`);
-      }
-    }
-
-    const walkScore = score?.walkscore || 0;
-    const bikeScore = score?.bike?.score || 0;
-    const transitScore = score?.transit?.score || 0;
 
     const status = resolveStatus(project.launchDate);
-
-    const neighborhood = await getNeighborhood(project);
 
     const floorPricePerSquareFoot = floorNodes.map(floorPlan =>
       calculatePricePerSquareFoot(floorPlan.price, floorPlan.squareFootage)
@@ -115,11 +81,6 @@ exports.sourceNodes = async args => {
       value: floorPricePerSquareFoot,
     });
 
-    createNodeField({
-      node: project,
-      name: "neighborhood",
-      value: neighborhood,
-    });
     createNodeField({
       node: project,
       name: "pageUrl",
@@ -165,21 +126,6 @@ exports.sourceNodes = async args => {
       name: "projectStatus",
       value: status,
     });
-    createNodeField({
-      node: project,
-      name: "walkScore",
-      value: walkScore,
-    });
-    createNodeField({
-      node: project,
-      name: "bikeScore",
-      value: bikeScore,
-    });
-    createNodeField({
-      node: project,
-      name: "transitScore",
-      value: transitScore,
-    });
 
     await processHubSpotProject(project);
   }
@@ -197,7 +143,7 @@ exports.sourceNodes = async args => {
         p =>
           p.isSoldOut === false &&
           p?.city?.id === project?.city?.id &&
-          p.fields.neighborhood === project.fields.neighborhood
+          p.neighborhood === project.neighborhood
       )
       .map(project => project.fields.pricePerSqft);
 
